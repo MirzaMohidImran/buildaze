@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import { useState } from "react";
 import type { ServiceSelectedCase } from "@/lib/data/services";
 
 function TextLine({ w, dim = false }: { w: string; dim?: boolean }) {
@@ -129,26 +131,55 @@ const visuals = {
 
 export function ShopifyWorkVisual({
   visual,
+  image,
+  imageAlt,
 }: {
   visual: ServiceSelectedCase["visual"];
+  image?: string;
+  imageAlt?: string;
 }) {
+  const [imageFailed, setImageFailed] = useState(false);
   const { component: Visual, chrome } = visuals[visual];
+  const showImage = Boolean(image) && !imageFailed;
+
   return (
-    <div className="build-grid relative aspect-[16/11] overflow-hidden border border-line bg-ink-2 md:aspect-[16/10]">
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 70% at 50% 0%, rgba(37,99,235,0.07), transparent 65%)",
-        }}
-      />
-      <div className="relative flex h-full flex-col">
-        <ChromeBar label={chrome} />
-        <div className="min-h-0 flex-1">
-          <Visual />
+    <div className="relative aspect-[16/11] overflow-hidden border border-line bg-ink-2 md:aspect-[16/10]">
+      {showImage ? (
+        <>
+          <Image
+            src={image!}
+            alt={imageAlt ?? "Shopify project cover"}
+            fill
+            sizes="(max-width: 1024px) 100vw, 58vw"
+            className="object-cover object-top"
+            onError={() => setImageFailed(true)}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-ink/35"
+          />
+          <div className="absolute inset-x-0 top-0 z-[1] bg-ink/55 backdrop-blur-[2px]">
+            <ChromeBar label={chrome} />
+          </div>
+        </>
+      ) : (
+        <div className="build-grid relative flex h-full flex-col">
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 80% 70% at 50% 0%, rgba(37,99,235,0.07), transparent 65%)",
+            }}
+          />
+          <div className="relative flex h-full flex-col">
+            <ChromeBar label={chrome} />
+            <div className="min-h-0 flex-1">
+              <Visual />
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

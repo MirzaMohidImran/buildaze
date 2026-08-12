@@ -60,7 +60,11 @@ export function ServiceSelectedWorkSection({
                           aria-label={`${study.cta}: ${study.title}`}
                           className="block overflow-hidden border border-transparent transition-colors hover:border-line-strong"
                         >
-                          <ShopifyWorkVisual visual={study.visual} />
+                          <ShopifyWorkVisual
+                            visual={study.visual}
+                            image={study.image}
+                            imageAlt={study.imageAlt}
+                          />
                         </Link>
                       </Reveal>
                     </Parallax>

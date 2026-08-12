@@ -32,8 +32,15 @@ export interface ServiceSelectedCase {
   tags: string[];
   cta: string;
   href: string;
-  /** Abstract visual theme for the case canvas. */
+  /** Abstract visual theme for the case canvas (fallback when no image). */
   visual: "performance" | "build" | "redesign";
+  /**
+   * Optional project cover image under /public.
+   * Example: `/work/shopify-performance/cover.webp`
+   */
+  image?: string;
+  /** Accessible alt text for the cover image. */
+  imageAlt?: string;
 }
 
 export interface ServiceSelectedWork {
@@ -839,6 +846,8 @@ export const services: Service[] = [
             cta: "View Case Study",
             href: "/work/shopify-performance-optimization",
             visual: "performance",
+            image: "/work/shopify-performance/cover.webp",
+            imageAlt: "Shopify performance optimization storefront cover",
           },
           {
             id: "shopify-full-build",
@@ -858,6 +867,8 @@ export const services: Service[] = [
             cta: "Discuss a Similar Build",
             href: "#contact",
             visual: "build",
+            image: "/work/shopify-full-build/cover.webp",
+            imageAlt: "Custom Shopify storefront build cover",
           },
           {
             id: "shopify-redesign",
@@ -877,6 +888,8 @@ export const services: Service[] = [
             cta: "Discuss a Redesign",
             href: "#contact",
             visual: "redesign",
+            image: "/work/shopify-redesign/cover.webp",
+            imageAlt: "Shopify store redesign cover",
           },
         ],
       },
