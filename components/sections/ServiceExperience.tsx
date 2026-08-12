@@ -6,43 +6,9 @@ import { useState } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { ServiceFlow } from "@/components/ui/ServiceFlow";
 import { services } from "@/lib/data/services";
 import { getServicePath } from "@/lib/seo/paths";
-
-/** Animated flow diagram for the active service: node → data line → node. */
-function ServiceFlow({ flow }: { flow: string[] }) {
-  return (
-    <div className="flex flex-wrap items-center gap-y-4">
-      {flow.map((node, i) => (
-        <div key={node} className="flex items-center">
-          <motion.span
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.15 + i * 0.12, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className={`t-label border px-3.5 py-2.5 whitespace-nowrap ${
-              i === flow.length - 1
-                ? "border-accent bg-accent-dim text-accent-soft"
-                : "border-line-strong text-mist"
-            }`}
-          >
-            {node}
-          </motion.span>
-          {i < flow.length - 1 && (
-            <motion.span
-              aria-hidden
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 0.22 + i * 0.12, duration: 0.35 }}
-              className="relative mx-1 h-px w-6 origin-left bg-accent/50 md:w-9"
-            >
-              <span className="absolute top-1/2 right-0 h-[5px] w-[5px] -translate-y-1/2 rotate-45 border-t border-r border-accent/70" />
-            </motion.span>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export function ServiceExperience() {
   const [activeId, setActiveId] = useState(services[0].id);
