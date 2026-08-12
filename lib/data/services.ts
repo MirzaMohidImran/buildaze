@@ -888,7 +888,7 @@ export const services: Service[] = [
             cta: "Discuss a Redesign",
             href: "#contact",
             visual: "redesign",
-            image: "/work/shopify-redesign/cover.webp",
+            image: "/work/shopify-redesign/cover.png",
             imageAlt: "Shopify store redesign cover",
           },
         ],
