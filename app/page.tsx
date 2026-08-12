@@ -9,7 +9,6 @@ import { Industries } from "@/components/sections/Industries";
 import { Manifesto } from "@/components/sections/Manifesto";
 import { Navbar } from "@/components/sections/Navbar";
 import { Outcomes } from "@/components/sections/Outcomes";
-import { PricingSection } from "@/components/sections/PricingSection";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { Results } from "@/components/sections/Results";
 import { SecurityOwnership } from "@/components/sections/SecurityOwnership";
@@ -41,7 +40,6 @@ export default function Home() {
         <Industries />
         <TeamShowcase />
         <Testimonials />
-        <PricingSection />
         <FaqSection />
         <ContactCTA />
       </main>

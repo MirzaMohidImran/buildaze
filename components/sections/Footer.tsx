@@ -8,7 +8,6 @@ const companyLinks = [
   { label: "Work", href: "/work" },
   { label: "Process", href: "/#process" },
   { label: "Team", href: "/#team" },
-  { label: "Pricing", href: "/#pricing" },
   { label: "FAQ", href: "/#faq" },
 ];
 
