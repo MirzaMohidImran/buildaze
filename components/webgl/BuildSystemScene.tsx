@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
 const ACCENT = new THREE.Color("#2563eb");
@@ -175,12 +175,26 @@ function BuildSystem() {
  * connected by data lines, responding to cursor and scroll.
  */
 export default function BuildSystemScene() {
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const sync = () => setCompact(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
   return (
     <Canvas
-      dpr={[1, 1.75]}
+      dpr={compact ? [1, 1.25] : [1, 1.75]}
       camera={{ position: [0, 2.4, 9.4], fov: 38 }}
       onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      gl={{
+        antialias: !compact,
+        alpha: true,
+        powerPreference: compact ? "default" : "high-performance",
+      }}
       style={{ background: "transparent" }}
       aria-hidden
     >

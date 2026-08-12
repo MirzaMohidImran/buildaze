@@ -12,7 +12,7 @@ const BuildSystemScene = dynamic(() => import("@/components/webgl/BuildSystemSce
 
 const LAYER_LABELS = ["Idea", "Architecture", "Code", "Product", "Scale"];
 
-/** Static Build System fallback for touch devices and reduced motion. */
+/** Static Build System fallback for reduced motion / WebGL unavailable. */
 function StaticBuildSystem() {
   return (
     <svg viewBox="0 0 400 400" fill="none" aria-hidden className="h-full w-full opacity-80">
@@ -48,9 +48,19 @@ export function Hero() {
   const [renderWebGL, setRenderWebGL] = useState(false);
 
   useEffect(() => {
-    const fine = window.matchMedia("(pointer: fine)").matches;
-    const wide = window.matchMedia("(min-width: 1024px)").matches;
-    if (fine && wide && !reduced) setRenderWebGL(true);
+    // Same WebGL build system on mobile and desktop; skip only for reduced motion.
+    if (reduced) return;
+    const canWebGL = (() => {
+      try {
+        const canvas = document.createElement("canvas");
+        return !!(
+          canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
+        );
+      } catch {
+        return false;
+      }
+    })();
+    if (canWebGL) setRenderWebGL(true);
   }, [reduced]);
 
   const { scrollYProgress } = useScroll({
@@ -61,8 +71,15 @@ export function Hero() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
   const sceneOpacity = useTransform(scrollYProgress, [0, 0.9], [1, 0]);
 
+  const scene = renderWebGL ? <BuildSystemScene /> : <StaticBuildSystem />;
+
   return (
-    <section ref={ref} id="top" aria-label="Introduction" className="relative min-h-svh overflow-hidden">
+    <section
+      ref={ref}
+      id="top"
+      aria-label="Introduction"
+      className="relative flex min-h-svh flex-col overflow-hidden lg:block"
+    >
       {/* Build Grid canvas */}
       <div aria-hidden className="build-grid fade-edges absolute inset-0" />
       {/* Blue atmospheric depth, derived only from the accent */}
@@ -75,22 +92,8 @@ export function Hero() {
         }}
       />
 
-      {/* Build system: mobile/tablet static background; desktop WebGL on the right */}
-      <motion.div
-        aria-hidden
-        style={reduced ? undefined : { opacity: sceneOpacity }}
-        className="pointer-events-none absolute inset-x-0 top-[6%] h-[min(52vh,420px)] opacity-[0.55] sm:top-[4%] sm:h-[min(56vh,480px)] sm:opacity-60 lg:inset-y-0 lg:right-0 lg:left-auto lg:top-auto lg:h-auto lg:w-[58%] lg:opacity-100"
-      >
-        {renderWebGL ? <BuildSystemScene /> : <StaticBuildSystem />}
-      </motion.div>
-      {/* Keep mobile copy readable over the scene */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[min(58vh,460px)] bg-gradient-to-b from-transparent via-ink/40 to-ink lg:hidden"
-      />
-
-      {/* Layer captions — the build system legend */}
-      <div aria-hidden className="absolute top-1/2 right-10 hidden -translate-y-1/2 flex-col gap-5 xl:flex">
+      {/* Layer captions — desktop legend only */}
+      <div aria-hidden className="absolute top-1/2 right-10 z-[1] hidden -translate-y-1/2 flex-col gap-5 xl:flex">
         {LAYER_LABELS.map((label, i) => (
           <motion.div
             key={label}
@@ -105,9 +108,10 @@ export function Hero() {
         ))}
       </div>
 
+      {/* Content first — then canvas on mobile; side-by-side on desktop */}
       <motion.div
         style={reduced ? undefined : { y: contentY, opacity: contentOpacity }}
-        className="relative mx-auto flex min-h-svh max-w-[1600px] flex-col justify-center px-5 pt-28 pb-24 md:px-10"
+        className="relative z-[1] order-1 mx-auto flex w-full max-w-[1600px] flex-1 flex-col justify-center px-5 pt-28 pb-8 md:px-10 lg:min-h-svh lg:pb-24"
       >
         <div className="max-w-[780px]">
           <motion.p
@@ -182,13 +186,22 @@ export function Hero() {
         </div>
       </motion.div>
 
+      {/* Same build-system canvas: below content on mobile, right rail on desktop */}
+      <motion.div
+        aria-hidden
+        style={reduced ? undefined : { opacity: sceneOpacity }}
+        className="pointer-events-none relative z-[1] order-2 mx-auto mb-10 h-[min(72vw,400px)] w-full max-w-[560px] px-2 sm:h-[420px] lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:mb-0 lg:h-auto lg:max-w-none lg:w-[58%] lg:px-0"
+      >
+        {scene}
+      </motion.div>
+
       {/* Scroll cue */}
       <motion.div
         aria-hidden
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6, duration: 1 }}
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 md:flex"
+        className="absolute bottom-8 left-1/2 z-[1] hidden -translate-x-1/2 flex-col items-center gap-3 md:flex"
       >
         <span className="t-label text-[10px] text-mist-2">Scroll</span>
         <div className="h-10 w-px overflow-hidden bg-line">
