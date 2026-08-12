@@ -75,14 +75,19 @@ export function Hero() {
         }}
       />
 
-      {/* WebGL build system / static fallback */}
+      {/* Build system: mobile/tablet static background; desktop WebGL on the right */}
       <motion.div
         aria-hidden
         style={reduced ? undefined : { opacity: sceneOpacity }}
-        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block"
+        className="pointer-events-none absolute inset-x-0 top-[6%] h-[min(52vh,420px)] opacity-[0.55] sm:top-[4%] sm:h-[min(56vh,480px)] sm:opacity-60 lg:inset-y-0 lg:right-0 lg:left-auto lg:top-auto lg:h-auto lg:w-[58%] lg:opacity-100"
       >
         {renderWebGL ? <BuildSystemScene /> : <StaticBuildSystem />}
       </motion.div>
+      {/* Keep mobile copy readable over the scene */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-[min(58vh,460px)] bg-gradient-to-b from-transparent via-ink/40 to-ink lg:hidden"
+      />
 
       {/* Layer captions — the build system legend */}
       <div aria-hidden className="absolute top-1/2 right-10 hidden -translate-y-1/2 flex-col gap-5 xl:flex">
