@@ -11,7 +11,7 @@ import {
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { site } from "@/lib/data/site";
+import { linkedIn, site } from "@/lib/data/site";
 
 const PROJECT_TYPES = [
   "New Shopify Store",
@@ -549,6 +549,16 @@ export function ServiceShopifyContact({
                       strokeLinejoin="round"
                     />
                   </svg>
+                </a>
+                <p className="mt-8 t-label text-mist-2">Ecommerce on LinkedIn</p>
+                <a
+                  href={linkedIn.ecommerceGrowth}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-analytics="shopify-linkedin-showcase"
+                  className="mt-3 inline-block text-[15px] text-mist transition-colors hover:text-accent-soft"
+                >
+                  Buildaze Ecommerce Growth
                 </a>
               </div>
             </Reveal>

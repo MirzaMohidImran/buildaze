@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ServicePage } from "@/components/services/ServicePage";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getServiceById } from "@/lib/data/services";
-import { site } from "@/lib/data/site";
+import { linkedIn, site } from "@/lib/data/site";
 import {
   ORGANIZATION_ID,
   breadcrumbList,
@@ -71,6 +71,7 @@ const structuredData = {
       description: service.page.metaDescription,
       provider: { "@id": ORGANIZATION_ID },
       url,
+      sameAs: [linkedIn.ecommerceGrowth],
       areaServed: {
         "@type": "Place",
         name: "Worldwide",

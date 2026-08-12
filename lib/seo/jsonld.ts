@@ -1,4 +1,4 @@
-import { site } from "@/lib/data/site";
+import { linkedIn, site } from "@/lib/data/site";
 
 /** Stable Organization @id — do not duplicate Organization entities across pages. */
 export const ORGANIZATION_ID = `${site.url}/#organization`;
@@ -10,6 +10,14 @@ export function safeJsonLd(data: unknown): string {
 }
 
 export function organizationNode() {
+  const sameAs = Array.from(
+    new Set([
+      ...site.socials.map((s) => s.href),
+      linkedIn.company,
+      linkedIn.ecommerceGrowth,
+    ]),
+  );
+
   return {
     "@type": "Organization",
     "@id": ORGANIZATION_ID,
@@ -21,7 +29,7 @@ export function organizationNode() {
       "@type": "ImageObject",
       url: `${site.url}/icon.svg`,
     },
-    sameAs: site.socials.map((s) => s.href),
+    sameAs,
   };
 }
 

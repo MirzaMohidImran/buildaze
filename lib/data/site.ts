@@ -1,3 +1,11 @@
+/** Official LinkedIn properties — company page + ecommerce showcase. */
+export const linkedIn = {
+  /** Main Buildaze company page (pk.linkedin.com/company/buildaze). */
+  company: "https://www.linkedin.com/company/buildaze",
+  /** Showcase for Shopify / ecommerce growth — pairs with /shopify-growth-agency. */
+  ecommerceGrowth: "https://www.linkedin.com/showcase/buildaze-ecommerce-growth/",
+} as const;
+
 export const site = {
   name: "Buildaze",
   tagline: "AI-Native Software Development Studio",
@@ -8,7 +16,7 @@ export const site = {
   socials: [
     { label: "Twitter (X)", href: "https://x.com/buildaze" },
     { label: "Dribbble", href: "https://dribbble.com/buildaze" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/company/buildaze" },
+    { label: "LinkedIn", href: linkedIn.company },
   ],
 } as const;
 
