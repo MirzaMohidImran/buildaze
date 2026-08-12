@@ -1,0 +1,3 @@
+# Drop real client review screenshots here (e.g. featured.webp)
+# Then set imageSrc on the featured review in lib/data/services.ts:
+#   imageSrc: "/reviews/featured.webp"

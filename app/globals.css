@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Buildaze color system: near-black canvas, white type, electric blue action ── */
+  --color-ink: #0a0a0a;
+  --color-ink-2: #0e0e10;
+  --color-ink-3: #131316;
+  --color-paper: #ffffff;
+  --color-accent: #2563eb;
+  --color-accent-bright: #3b76f6;
+  --color-accent-soft: #7fa6f5; /* tint of #2563EB for readable blue text on dark */
+  --color-accent-dim: rgba(37, 99, 235, 0.14);
+  --color-line: rgba(255, 255, 255, 0.09);
+  --color-line-strong: rgba(255, 255, 255, 0.16);
+  --color-mist: rgba(255, 255, 255, 0.6);
+  --color-mist-2: rgba(255, 255, 255, 0.42);
+
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* type scale */
+  --text-display: clamp(2.75rem, 1rem + 6.2vw, 5.5rem); /* 44 → 88 */
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.035em;
+  --text-h2: clamp(2.125rem, 1.1rem + 3.4vw, 4rem); /* 34 → 64 */
+  --text-h2--line-height: 1.06;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h3: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem); /* 24 → 36 */
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.02em;
+  --text-lead: clamp(1.125rem, 1rem + 0.4vw, 1.3125rem); /* 18 → 21 */
+  --text-lead--line-height: 1.55;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.14em;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee 42s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* Visible focus for keyboard users, on-brand */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Build Grid motif: fine blueprint line grid ── */
+.build-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.build-grid-blue {
+  background-image:
+    linear-gradient(to right, rgba(37, 99, 235, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.12) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* radial fade utility used to vignette grids/scenes into the canvas */
+.fade-edges {
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, black 40%, transparent 100%);
+}
+
+/* mono technical label */
+.t-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--text-label--letter-spacing);
+  line-height: var(--text-label--line-height);
+  text-transform: uppercase;
+}
+
+/* thin rule that draws in */
+.rule {
+  height: 1px;
+  background: var(--color-line);
+}
+
+/* Hide scrollbar for horizontal scrollers while keeping scrollability */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom cursor: hide native cursor only when custom cursor is active on fine pointers */
+@media (pointer: fine) {
+  body[data-custom-cursor="true"] a,
+  body[data-custom-cursor="true"] button {
+    cursor: none;
+  }
+  body[data-custom-cursor="true"] {
+    cursor: none;
+  }
+}
+
+/* Lenis smooth-scroll integration */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Reduced motion: kill marquee + transitions that are purely decorative */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+  }
+}
