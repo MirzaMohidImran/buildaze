@@ -59,6 +59,40 @@ export const comparison = {
   },
 } as const;
 
+/** Paired rows for the comparison matrix — Buildaze first in the UI. */
+export const comparisonRows = [
+  {
+    axis: "Scoping",
+    buildaze: "Fixed technical scope in 3–5 days",
+    traditional: "Long discovery cycles before anything is built",
+  },
+  {
+    axis: "Visibility",
+    buildaze: "A live demo of working software every week",
+    traditional: "Monthly status updates instead of working software",
+  },
+  {
+    axis: "Team",
+    buildaze: "Senior specialists on every project — no bait-and-switch",
+    traditional: "Junior-heavy delivery behind senior salespeople",
+  },
+  {
+    axis: "Commercials",
+    buildaze: "Scope, timeline and cost agreed before we build",
+    traditional: "Scope ambiguity and surprise invoices",
+  },
+  {
+    axis: "Ownership",
+    buildaze: "Full repo, infrastructure and deployment access at handoff",
+    traditional: "Proprietary platforms that create lock-in",
+  },
+  {
+    axis: "Feedback",
+    buildaze: "Course corrections every sprint, while they're cheap",
+    traditional: "Feedback arrives after the budget is spent",
+  },
+] as const;
+
 export const differentiators = [
   {
     title: "Results, not retainers",
