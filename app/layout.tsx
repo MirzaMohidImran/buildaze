@@ -53,8 +53,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${geist.variable} ${geistMono.variable} antialiased`}>
+    // suppressHydrationWarning: browser extensions / embedded previews often inject
+    // attributes onto <html>/<body> before React hydrates (e.g. __processed_*).
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geist.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
+      >
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:bg-accent focus:px-5 focus:py-3 focus:text-white"

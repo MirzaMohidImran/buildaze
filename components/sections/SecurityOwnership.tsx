@@ -49,7 +49,7 @@ export function SecurityOwnership() {
       <div className="relative mx-auto max-w-[1600px] px-5 md:px-10">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-6">
-            <SectionLabel index="10" label="Security & ownership" />
+            <SectionLabel index="11" label="Security & ownership" />
             <RevealText
               as="h2"
               id="ownership-heading"

@@ -20,9 +20,21 @@ export const site = {
   ],
 } as const;
 
+export const products = [
+  {
+    id: "voice-agent",
+    index: "01",
+    label: "Voice Agent",
+    href: "/voice-agent",
+    oneLiner:
+      "Custom AI voice agent for business — try the live browser demo, then scope a Buildaze build.",
+  },
+] as const;
+
 export const nav = {
   links: [
-    { label: "Services", href: "/services", megaMenu: true },
+    { label: "Services", href: "/services", menu: "services" as const },
+    { label: "Our Products", href: "/voice-agent", menu: "products" as const },
     { label: "Work", href: "/work" },
     { label: "Process", href: "/#process" },
     { label: "About", href: "/#team" },

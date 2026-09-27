@@ -356,6 +356,7 @@ export const services: Service[] = [
         "LLM integrations into existing products",
         "RAG pipelines over private company knowledge",
         "AI agents with tool use and audit trails",
+        "Custom AI voice agents for callers and handoff",
         "Internal copilots for support, ops and sales",
         "Document intelligence & summarization",
         "Evaluation frameworks with acceptance thresholds",
@@ -416,6 +417,11 @@ export const services: Service[] = [
           question: "What are AI development services?",
           answer:
             "Planning, architecture, development, integration, deployment and monitoring of AI systems — LLM workflows, RAG applications, agents, copilots and document-processing pipelines.",
+        },
+        {
+          question: "Do you build custom AI voice agents?",
+          answer:
+            "Yes. Voice agents for routine inquiries, lead qualification, appointment requests and human handoff are a focused Buildaze product. See the Voice Agent page for a browser demo and how a custom deployment works: https://www.buildaze.com/voice-agent",
         },
         {
           question: "When do you need RAG instead of fine-tuning?",

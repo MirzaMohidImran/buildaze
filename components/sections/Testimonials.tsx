@@ -26,7 +26,7 @@ export function Testimonials() {
       />
       <div className="relative mx-auto max-w-[1600px] px-5 md:px-10">
         <div className="flex flex-wrap items-center justify-between gap-6">
-          <SectionLabel index="14" label="What clients say" />
+          <SectionLabel index="15" label="What clients say" />
           <Reveal>
             <div className="flex items-center gap-5">
               <span className="t-label text-mist-2">

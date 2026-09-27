@@ -16,7 +16,7 @@ export function TechEcosystem() {
   return (
     <section aria-labelledby="stack-heading" className="relative py-28 md:py-40">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
-        <SectionLabel index="11" label="Technology" />
+        <SectionLabel index="12" label="Technology" />
         <div className="mt-10 flex flex-wrap items-end justify-between gap-8">
           <RevealText
             as="h2"

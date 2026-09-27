@@ -96,7 +96,7 @@ export function TeamShowcase() {
       className="relative scroll-mt-20 py-20 md:py-40"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
-        <SectionLabel index="13" label="The team" />
+        <SectionLabel index="14" label="The team" />
         <div className="mt-8 flex flex-wrap items-end justify-between gap-8 md:mt-10">
           <RevealText
             as="h2"

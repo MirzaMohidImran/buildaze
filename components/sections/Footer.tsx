@@ -6,6 +6,7 @@ import { getServicePath } from "@/lib/seo/paths";
 
 const companyLinks = [
   { label: "Work", href: "/work" },
+  { label: "Voice Agent", href: "/voice-agent" },
   { label: "Process", href: "/#process" },
   { label: "Team", href: "/#team" },
   { label: "FAQ", href: "/#faq" },

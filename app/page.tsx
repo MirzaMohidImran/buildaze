@@ -17,6 +17,7 @@ import { TeamShowcase } from "@/components/sections/TeamShowcase";
 import { TechEcosystem } from "@/components/sections/TechEcosystem";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { TrustStrip } from "@/components/sections/TrustStrip";
+import { VoiceAgentSection } from "@/components/sections/VoiceAgentSection";
 import { WhyBuildaze } from "@/components/sections/WhyBuildaze";
 
 export default function Home() {
@@ -35,6 +36,7 @@ export default function Home() {
         <Comparison />
         <ProcessTimeline />
         <AiNative />
+        <VoiceAgentSection />
         <SecurityOwnership />
         <TechEcosystem />
         <Industries />

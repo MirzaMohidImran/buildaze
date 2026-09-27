@@ -46,8 +46,9 @@ const nextConfig: NextConfig = {
             value: "DENY",
           },
           {
+            // microphone=(self) required for the /voice-agent browser demo.
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=(), payment=()",
+            value: "camera=(), microphone=(self), geolocation=(), payment=()",
           },
           {
             key: "Cross-Origin-Opener-Policy",
@@ -58,7 +59,8 @@ const nextConfig: NextConfig = {
             value: "max-age=63072000; includeSubDomains; preload",
           },
           {
-            // Marketing site CSP: allow self + Next inline bootstrap; tighten further if you add analytics IDs.
+            // Marketing site CSP: allow self + Next inline bootstrap; ElevenLabs voice demo over wss.
+            // AudioWorklets are self-hosted under /vendor/elevenlabs (no blob: in script-src).
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
@@ -66,7 +68,9 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
-              "connect-src 'self' https:",
+              "media-src 'self' blob:",
+              "worker-src 'self' blob:",
+              "connect-src 'self' https: wss://api.elevenlabs.io wss://*.elevenlabs.io",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self' mailto:",

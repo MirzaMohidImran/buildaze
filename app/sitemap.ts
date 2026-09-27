@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/lib/data/services";
 import { site } from "@/lib/data/site";
+import { voiceAgent } from "@/lib/data/voice-agent";
 import { caseStudies } from "@/lib/data/work";
 import { getServicePath } from "@/lib/seo/paths";
 
@@ -11,6 +12,7 @@ import { getServicePath } from "@/lib/seo/paths";
 const SITE_UPDATED = new Date("2026-08-11");
 const SHOPIFY_UPDATED = new Date("2026-08-11");
 const WORK_UPDATED = new Date("2026-08-11");
+const VOICE_UPDATED = new Date("2026-09-28");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -33,6 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: service.id === "shopify" ? 0.95 : 0.85,
     })),
+    {
+      url: `${site.url}${voiceAgent.path}`,
+      lastModified: VOICE_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
     {
       url: `${site.url}/work`,
       lastModified: WORK_UPDATED,

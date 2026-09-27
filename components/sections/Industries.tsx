@@ -12,7 +12,7 @@ export function Industries() {
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <SectionLabel index="12" label="Industries" />
+            <SectionLabel index="13" label="Industries" />
             <RevealText
               as="h2"
               id="industries-heading"

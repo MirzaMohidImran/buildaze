@@ -52,6 +52,24 @@ The form validates client-side and opens a pre-composed email to
 `team@buildaze.com`. Swap the submit handler in
 `components/sections/ContactCTA.tsx` for an API route when a backend exists.
 
+## Voice Agent demo
+
+The `/voice-agent` page embeds a live browser demo powered by
+[ElevenLabs Conversational AI](https://elevenlabs.io/docs/agents-platform/libraries/javaScript)
+via `@elevenlabs/client`.
+
+1. Copy `.env.example` to `.env.local`.
+2. Set `ELEVENLABS_API_KEY` and `ELEVENLABS_AGENT_ID` from your ElevenLabs agent.
+3. Restart `npm run dev`.
+
+Without both variables, the UI shows **Demo currently unavailable** and never
+simulates a connection. Signed URLs are created only on the server
+(`POST /api/voice-agent/session`). AudioWorklets are self-hosted under
+`public/vendor/elevenlabs/` for CSP compliance.
+
+`Permissions-Policy` allows `microphone=(self)` so the demo can request mic
+access after the user clicks Start Conversation.
+
 ## Accessibility & performance
 
 - Full `prefers-reduced-motion` support (WebGL, marquee, smooth scroll, reveals)

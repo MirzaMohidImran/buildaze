@@ -7,7 +7,13 @@ import { RevealText } from "@/components/motion/RevealText";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { site } from "@/lib/data/site";
 
-const PROJECT_TYPES = ["AI Development", "SaaS Development", "Web Development", "Ecommerce"] as const;
+const PROJECT_TYPES = [
+  "AI Development",
+  "Voice Agent",
+  "SaaS Development",
+  "Web Development",
+  "Ecommerce",
+] as const;
 
 function resolveProjectType(value: string): string {
   if (!value) return "";
@@ -17,6 +23,7 @@ function resolveProjectType(value: string): string {
   );
   if (match) return match;
   if (/ecommerce|shopify/i.test(value)) return "Ecommerce";
+  if (/voice/i.test(value)) return "Voice Agent";
   return "";
 }
 
