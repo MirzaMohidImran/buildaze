@@ -1,8 +1,8 @@
 import { site } from "./site";
 
 /** Final revision date for visitor-facing policy pages (ISO calendar date). */
-export const LEGAL_LAST_UPDATED = "12 October 2026";
-export const LEGAL_LAST_UPDATED_ISO = "2026-10-12";
+export const LEGAL_LAST_UPDATED = "13 October 2026";
+export const LEGAL_LAST_UPDATED_ISO = "2026-10-13";
 
 export type LegalSection = {
   id: string;
@@ -54,7 +54,7 @@ export const privacyPolicyContent: LegalPageContent = {
       id: "sharing",
       heading: "Sharing and processors",
       paragraphs: [
-        "Information may be processed by providers that support hosting, email delivery, communications and project delivery. In this website’s configured stack, enquiry emails may be sent through an email delivery provider when that integration is enabled. The Voice Agent demo uses a conversational AI provider when the demo is available and you choose to start it.",
+        "Information may be processed by providers that support hosting, email delivery, communications, analytics and project delivery. In this website’s configured stack, enquiry emails may be sent through an email delivery provider when that integration is enabled. Google Analytics 4 may process usage data for measurement. The Voice Agent demo uses a conversational AI provider when the demo is available and you choose to start it.",
         "Some providers may process data outside your country. Where applicable law requires safeguards for international transfers, those safeguards should be in place with the relevant provider. This policy does not invent specific contractual clauses or certifications beyond what Buildaze can confirm operationally.",
       ],
     },
@@ -159,6 +159,15 @@ export const cookieTechnologyRows: CookieRow[] = [
       "Primarily request-time processing; any host cookies depend on the hosting platform configuration.",
   },
   {
+    technology: "Google Analytics 4 (gtag.js)",
+    provider: "Google LLC",
+    purpose:
+      "Measure page views, engagement and selected interaction events (such as labelled CTA clicks) to understand how the website is used. Measurement ID G-SXMYZ684LN.",
+    category: "Analytics",
+    duration:
+      "Google analytics cookies and similar identifiers (for example _ga, _ga_*). Durations follow Google’s current documentation and may include multi-month retention.",
+  },
+  {
     technology: "Voice Agent demo (when used)",
     provider: "Conversational AI provider (configured for the demo)",
     purpose:
@@ -184,7 +193,7 @@ export const cookiePolicyContent: LegalPageContent = {
       heading: "How we use cookies and similar technologies",
       paragraphs: [
         "Essential technologies support requested functions such as loading pages, submitting enquiry forms and protecting the site from abuse.",
-        "This website’s application code does not ship a built-in advertising pixel library or a hard-coded analytics measurement ID. An interaction helper can send events only if an analytics library (such as gtag or a data layer) is already present in the browser from the deployment environment.",
+        "This website loads Google Analytics 4 (gtag.js, measurement ID G-SXMYZ684LN) to measure page views and selected interaction events. No advertising pixel library is shipped in the application. Form field contents are not sent to analytics.",
         "Optional embedded services, such as the Voice Agent browser demo, run only when you use those features and may involve third-party processing under the provider’s policies.",
       ],
     },
@@ -193,15 +202,15 @@ export const cookiePolicyContent: LegalPageContent = {
       heading: "Your choices",
       paragraphs: [
         "You can manage cookies through your browser settings. Blocking essential cookies or storage may affect website functionality.",
-        "This website does not currently provide a separate on-site cookie preference panel. Continued browsing is not treated as consent for optional tracking in this policy.",
-        "If optional analytics or advertising tags are added later, they should wait for any consent required by applicable law, and this policy should be updated to match.",
+        "This website does not currently provide a separate on-site cookie preference panel. Browser settings and Google’s advertising/analytics controls remain available where applicable.",
+        "If a consent preference panel is required for your jurisdiction or for future advertising tags, it should be added and this policy updated to match the live behaviour.",
       ],
     },
     {
       id: "third-parties",
       heading: "Third-party features",
       paragraphs: [
-        "Third-party features may process information under their providers’ privacy policies. Links to social profiles and external resources open on third-party sites that set their own cookies.",
+        "Google Analytics is provided by Google LLC and is subject to Google’s privacy and terms documentation. Other third-party websites and services linked from this site set their own cookies under their own policies.",
       ],
     },
     {

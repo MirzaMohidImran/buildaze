@@ -59,18 +59,18 @@ const nextConfig: NextConfig = {
             value: "max-age=63072000; includeSubDomains; preload",
           },
           {
-            // Marketing site CSP: allow self + Next inline bootstrap; ElevenLabs voice demo over wss.
+            // Marketing site CSP: self + Next inline bootstrap; GA4 gtag; ElevenLabs voice demo over wss.
             // AudioWorklets are self-hosted under /vendor/elevenlabs (no blob: in script-src).
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
               "media-src 'self' blob:",
               "worker-src 'self' blob:",
-              "connect-src 'self' https: wss://api.elevenlabs.io wss://*.elevenlabs.io",
+              "connect-src 'self' https: wss://api.elevenlabs.io wss://*.elevenlabs.io https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self' mailto:",

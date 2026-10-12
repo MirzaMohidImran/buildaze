@@ -10,8 +10,8 @@ declare global {
 }
 
 /**
- * Maps data-analytics attribute clicks to GA4 / GTM custom events when present.
- * Does not invent a measurement ID — only fires if gtag or dataLayer already exists.
+ * Maps data-analytics attribute clicks to GA4 custom events when gtag is present
+ * (loaded once by GoogleAnalytics). Does not call gtag('config') or send page_view.
  * Never sends form field contents.
  */
 export function Analytics() {

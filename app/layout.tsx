@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Space_Grotesk } from "next/font/google";
 import { Analytics } from "@/components/seo/Analytics";
+import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CursorFollower } from "@/components/motion/CursorFollower";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
@@ -79,6 +80,7 @@ export default function RootLayout({
         </a>
         <SmoothScroll />
         <CursorFollower />
+        <GoogleAnalytics />
         <Analytics />
         {children}
         <JsonLd data={structuredData} />
