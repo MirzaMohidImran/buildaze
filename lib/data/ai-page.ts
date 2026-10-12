@@ -127,7 +127,7 @@ export const aiPageContent: ServicePageContent = {
     eyebrow: "Portfolio",
     headline: "Selected AI-related work",
     intro: [
-      "Genuine projects where Buildaze contributed AI product features, retrieval or operational tooling. Metrics below are taken from published case studies — verify measurement context with the owner before wider claims.",
+      "Genuine projects where Buildaze contributed AI product features, retrieval or operational tooling. Outcome figures below match the published case studies and should be read with each project's baseline and measurement notes.",
     ],
     cases: [
       {

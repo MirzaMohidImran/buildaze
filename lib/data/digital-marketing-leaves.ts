@@ -943,7 +943,7 @@ export const digitalMarketingLeaves: Service[] = [
         eyebrow: "Google Ads scope",
         headline: "What Google Ads management can include",
         intro: [
-          "Supported campaign types are confirmed during scoping. Shopping, product-feed work and Performance Max are discussed only when delivery capability exists. We do not invent partner badges or certifications.",
+          "Supported campaign types are confirmed during scoping. Shopping, product-feed work and Performance Max are discussed only when delivery capability exists. Partner badges or certifications are claimed only when Buildaze is eligible.",
         ],
         capabilities: [
           {

@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { CursorFollower } from "@/components/motion/CursorFollower";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { organizationNode, websiteNode } from "@/lib/seo/jsonld";
+import { DEFAULT_OG_IMAGE, ogImages, twitterImages } from "@/lib/seo/social";
 import { site } from "@/lib/data/site";
 import "./globals.css";
 
@@ -40,11 +41,13 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
+    images: ogImages(DEFAULT_OG_IMAGE),
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
+    images: twitterImages(DEFAULT_OG_IMAGE),
   },
   robots: { index: true, follow: true },
 };

@@ -63,7 +63,14 @@ export const categoryOverviews: Service[] = [
     flow: ["Scope", "Build", "Review", "Launch"],
     flowLabel: "Clear scope · Progress reviews · Practical handover",
     cta: "Explore Development Services",
-    relatedServiceIds: ["web", "saas", "ecommerce", "shopify"],
+    relatedServiceIds: [
+      "web",
+      "saas",
+      "ecommerce",
+      "dev-app",
+      "dev-software",
+      "dev-web-apps",
+    ],
     page: developmentPageContent,
   },
   {

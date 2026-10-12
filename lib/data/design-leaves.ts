@@ -1587,7 +1587,7 @@ export const designLeaves: Service[] = [
         closingBody:
           "Share whether you need a focused logo project or a wider identity system, and where it must work.",
         pillars: ["Direction", "Identity", "Guidelines"],
-        closingNote: "Website fonts stay unchanged.",
+        closingNote: "Client brand typography is defined in the identity guidelines for their channels.",
         ctaLabel: "Discuss your brand identity",
         ctaHref: "/contact?service=design",
       },

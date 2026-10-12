@@ -15,11 +15,13 @@ const DEVELOPMENT_UPDATED = new Date("2026-10-12");
 const DIGITAL_MARKETING_UPDATED = new Date("2026-10-12");
 const AI_UPDATED = new Date("2026-10-12");
 const DESIGN_UPDATED = new Date("2026-10-12");
-const WORK_UPDATED = new Date("2026-08-11");
+const WORK_UPDATED = new Date("2026-10-12");
 const VOICE_UPDATED = new Date("2026-10-12");
 const LEGAL_UPDATED = new Date("2026-10-12");
 const ABOUT_UPDATED = new Date("2026-10-12");
 const CONTACT_UPDATED = new Date("2026-10-12");
+const SHOPIFY_LEAVES_UPDATED = new Date("2026-10-12");
+const DEVELOPMENT_LEAVES_UPDATED = new Date("2026-10-12");
 
 function isDigitalMarketingService(id: string) {
   return id === "digital-marketing" || id.startsWith("dm-");
@@ -31,6 +33,14 @@ function isAiService(id: string) {
 
 function isDesignService(id: string) {
   return id === "design" || id.startsWith("design-");
+}
+
+function isShopifyLeaf(id: string) {
+  return id.startsWith("shopify-") && id !== "shopify";
+}
+
+function isDevelopmentLeaf(id: string) {
+  return id.startsWith("dev-");
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -52,17 +62,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified:
         service.id === "shopify"
           ? SHOPIFY_UPDATED
-          : service.id === "development"
-            ? DEVELOPMENT_UPDATED
-            : isDigitalMarketingService(service.id)
-              ? DIGITAL_MARKETING_UPDATED
-              : isAiService(service.id)
-                ? service.id === "ai-voice"
-                  ? VOICE_UPDATED
-                  : AI_UPDATED
-                : isDesignService(service.id)
-                  ? DESIGN_UPDATED
-                  : SITE_UPDATED,
+          : isShopifyLeaf(service.id)
+            ? SHOPIFY_LEAVES_UPDATED
+            : isDevelopmentLeaf(service.id)
+              ? DEVELOPMENT_LEAVES_UPDATED
+              : service.id === "development"
+                ? DEVELOPMENT_UPDATED
+                : isDigitalMarketingService(service.id)
+                  ? DIGITAL_MARKETING_UPDATED
+                  : isAiService(service.id)
+                    ? service.id === "ai-voice"
+                      ? VOICE_UPDATED
+                      : AI_UPDATED
+                    : isDesignService(service.id)
+                      ? DESIGN_UPDATED
+                      : SITE_UPDATED,
       changeFrequency: "monthly" as const,
       priority:
         service.id === "shopify"

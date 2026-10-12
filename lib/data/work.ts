@@ -70,7 +70,7 @@ export const caseStudies: CaseStudy[] = [
       ],
       stack: ["OpenAI", "LangChain", "Pinecone", "Next.js", "Helpdesk API"],
       timeline: "7 weeks",
-      relatedServiceIds: ["ai", "saas"],
+      relatedServiceIds: ["ai", "ai-chatbots", "ai-solutions", "saas"],
     },
   },
   {
@@ -109,14 +109,14 @@ export const caseStudies: CaseStudy[] = [
       ],
       stack: ["Anthropic Claude", "LangChain", "Postgres", "Next.js"],
       timeline: "8 weeks",
-      relatedServiceIds: ["ai", "saas"],
+      relatedServiceIds: ["ai", "ai-solutions", "ai-applications", "saas"],
     },
   },
   {
     id: "clinical-summarizer",
     slug: "clinical-note-summarizer",
     index: "03",
-    name: "Clinical Note Summarizer",
+    name: "Clinic Front Desk AI Assistant",
     industry: "Healthcare",
     challenge:
       "Front-desk staff fielding constant pre-visit questions that pulled them away from patients.",
@@ -126,7 +126,7 @@ export const caseStudies: CaseStudy[] = [
     deliverables: ["PHI-safe RAG", "HIPAA-aligned workflows", "Lobby assistant"],
     visual: "clinical",
     page: {
-      metaTitle: "Clinical Note Summarizer — Case Study",
+      metaTitle: "Clinic Front Desk AI Assistant — Case Study",
       metaDescription:
         "How Buildaze shipped a PHI-safe clinic-lobby assistant — reducing front-desk calls by 28%.",
       headline: "Pre-visit answers without pulling staff off the floor.",
@@ -148,7 +148,7 @@ export const caseStudies: CaseStudy[] = [
       ],
       stack: ["OpenAI", "Supabase Vector", "Next.js", "RBAC"],
       timeline: "6 weeks",
-      relatedServiceIds: ["ai", "web"],
+      relatedServiceIds: ["ai", "ai-chatbots", "ai-solutions", "web"],
     },
   },
   {
@@ -187,7 +187,13 @@ export const caseStudies: CaseStudy[] = [
       ],
       stack: ["OpenAI", "Pinecone", "Shopify", "Next.js"],
       timeline: "7 weeks",
-      relatedServiceIds: ["ecommerce", "ai", "shopify"],
+      relatedServiceIds: [
+        "ecommerce",
+        "ai",
+        "ai-applications",
+        "shopify",
+        "shopify-apps",
+      ],
     },
   },
   {
@@ -224,13 +230,18 @@ export const caseStudies: CaseStudy[] = [
         "Mobile shopping paths were reviewed alongside performance so speed gains would support conversion clarity, not just lab metrics.",
       ],
       results: [
-        "Documented Lighthouse Performance score improved from 28 to 91 (lab score — not a Core Web Vitals field claim or revenue outcome). Exact tool version, device profile and test date should be confirmed by the owner where recorded.",
+        "Documented Lighthouse Performance score improved from 28 to 91 (lab score — not a Core Web Vitals field claim or revenue outcome). Exact tool version, device profile and test date remain recorded with the project evidence pack where available.",
         "Storefront architecture became easier to maintain for ongoing Shopify development.",
-        "The engagement stayed scoped to performance and experience — no invented revenue claims beyond the documented lab score.",
+        "The engagement stayed scoped to performance and experience. Revenue outcomes are not inferred from the lab score alone.",
       ],
       stack: ["Shopify", "Liquid", "Theme architecture", "Lighthouse Performance"],
       timeline: "Scoped performance engagement",
-      relatedServiceIds: ["shopify", "ecommerce"],
+      relatedServiceIds: [
+        "shopify",
+        "shopify-performance",
+        "shopify-store-design",
+        "ecommerce",
+      ],
     },
   },
 ];

@@ -186,7 +186,7 @@ export const shopifyPageContent: ServicePageContent = {
         title: "From a slow storefront to a clearer, faster shopping experience.",
         relevance: "This project involved theme and front-end performance work.",
         description:
-          "We optimized theme code, assets and front-end delivery on an existing Shopify storefront so pages loaded more reliably. Documented lab result: Lighthouse Performance score moved from 28 to 91 (lab metric — not a Core Web Vitals field claim or revenue outcome). Device, tool and date context should be confirmed on the case study where recorded.",
+          "We optimized theme code, assets and front-end delivery on an existing Shopify storefront so pages loaded more reliably. Documented lab result: Lighthouse Performance score moved from 28 to 91 (lab metric — not a Core Web Vitals field claim or revenue outcome). See the case study for the published measurement notes.",
         outcome: {
           value: "28 → 91",
           label: "Lighthouse Performance (lab score)",
@@ -231,7 +231,7 @@ export const shopifyPageContent: ServicePageContent = {
     eyebrow: "Shopify services",
     headline: "Shopify services built around your business needs",
     intro: [
-      "Five service groups cover most Shopify needs. Store redesign, theme work, mobile UX, performance and conversion improvements sit inside Store Design & Development and/or ongoing support — not as separate top-level promises.",
+      "Six specialist destinations cover Shopify storefront, migration, apps, headless/B2B, support and performance work. Use the dedicated pages for detail; enquire when you already know the next step.",
     ],
     capabilities: [
       {
@@ -240,7 +240,7 @@ export const shopifyPageContent: ServicePageContent = {
         name: "Store Design & Development",
         title: "New stores and stronger storefronts for existing brands.",
         bestFor:
-          "Teams launching on Shopify or improving an existing theme, redesign, mobile UX, performance or buying journey.",
+          "Teams launching on Shopify or improving an existing theme, redesign, mobile UX or buying journey.",
         boundaries:
           "An existing theme can often be improved before a full rebuild. Custom or headless is not always the better option. Conversion outcomes depend on more than development — we do not promise a specific lift.",
         description:
@@ -251,12 +251,13 @@ export const shopifyPageContent: ServicePageContent = {
           "Theme customization and custom sections",
           "Navigation, collections and product pages",
           "Responsive development and mobile UX",
-          "Performance improvements",
           "Conversion-focused storefront improvements",
           "Appropriate app setup within storefront scope",
         ],
         cta: "Discuss store design & development",
         href: "/contact?service=shopify&capability=Store%20Design%20%26%20Development",
+        detailHref: "/shopify-growth-agency/store-design-development",
+        detailLabel: "Explore store design & development",
       },
       {
         id: "migrations-replatforming",
@@ -281,6 +282,8 @@ export const shopifyPageContent: ServicePageContent = {
         ],
         cta: "Discuss a migration",
         href: "/contact?service=shopify&capability=Migrations%20%26%20Replatforming",
+        detailHref: "/shopify-growth-agency/migrations",
+        detailLabel: "Explore Shopify migrations",
       },
       {
         id: "apps-integrations",
@@ -304,6 +307,8 @@ export const shopifyPageContent: ServicePageContent = {
         ],
         cta: "Discuss apps & integrations",
         href: "/contact?service=shopify&capability=App%20Development%20%26%20System%20Integrations",
+        detailHref: "/shopify-growth-agency/apps-integrations",
+        detailLabel: "Explore apps & integrations",
       },
       {
         id: "headless-b2b",
@@ -327,6 +332,8 @@ export const shopifyPageContent: ServicePageContent = {
         ],
         cta: "Discuss headless or B2B",
         href: "/contact?service=shopify&capability=Headless%20Commerce%20%26%20Enterprise%20B2B",
+        detailHref: "/shopify-growth-agency/headless-b2b",
+        detailLabel: "Explore headless & B2B",
       },
       {
         id: "ongoing-support",
@@ -336,7 +343,7 @@ export const shopifyPageContent: ServicePageContent = {
         bestFor:
           "Ecommerce teams that need a prioritized backlog of theme changes, fixes, features, integrations and performance or UX work.",
         boundaries:
-          "Included work, exclusions, capacity and communication are agreed. We do not invent monthly hours, prices, 24/7 coverage, SLAs, response times or unlimited tasks.",
+          "Included work, exclusions, capacity and communication are agreed in writing. Monthly hours, prices, 24/7 coverage, SLAs and unlimited tasks are not published as universal defaults.",
         description:
           "Agree a prioritized backlog covering theme changes, bug fixes, new features, integrations and performance or UX improvements, with clear release checks and communication. Ongoing support is optional — not required to keep agreed custom work after handover.",
         items: [
@@ -349,6 +356,30 @@ export const shopifyPageContent: ServicePageContent = {
         ],
         cta: "Discuss ongoing support",
         href: "/contact?service=shopify&capability=Retainers%20%26%20Ongoing%20Support",
+        detailHref: "/shopify-growth-agency/ongoing-support",
+        detailLabel: "Explore ongoing support",
+      },
+      {
+        id: "performance",
+        index: "06",
+        name: "Shopify Performance",
+        title: "Theme and front-end speed work with honest measurement.",
+        bestFor:
+          "Stores where theme debt, apps or media make product and collection pages feel slow.",
+        boundaries:
+          "Lab Lighthouse scores are diagnostics — not Core Web Vitals field claims or revenue promises.",
+        description:
+          "Audit bottlenecks, prioritize maintainable front-end changes and record comparable lab notes where measured. See the dedicated performance page and case study for detail.",
+        items: [
+          "Theme performance audits",
+          "Asset and script optimization",
+          "Mobile shopping path review",
+          "Comparable lab measurement notes",
+        ],
+        cta: "Discuss performance work",
+        href: "/contact?service=shopify&capability=Store%20Design%20%26%20Development&problem=Shopify%20performance",
+        detailHref: "/shopify-growth-agency/performance",
+        detailLabel: "Explore Shopify performance",
       },
     ],
     closingTitle: "Not sure which service fits?",

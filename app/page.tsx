@@ -14,6 +14,7 @@ import { WhyBuildaze } from "@/components/sections/WhyBuildaze";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/lib/data/site";
 import { ORGANIZATION_ID, WEBSITE_ID } from "@/lib/seo/jsonld";
+import { DEFAULT_OG_IMAGE, ogImages, twitterImages } from "@/lib/seo/social";
 
 const HOME_TITLE = "Buildaze | Design, Development & Digital Growth Agency";
 const HOME_DESCRIPTION =
@@ -29,11 +30,13 @@ export const metadata: Metadata = {
     url: site.url,
     siteName: site.name,
     type: "website",
+    images: ogImages(DEFAULT_OG_IMAGE, HOME_TITLE),
   },
   twitter: {
     card: "summary_large_image",
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
+    images: twitterImages(DEFAULT_OG_IMAGE),
   },
   robots: { index: true, follow: true },
 };

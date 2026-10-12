@@ -7,6 +7,7 @@ import { getServiceById, getServiceBySlug } from "@/lib/data/services";
 import { site } from "@/lib/data/site";
 import { ORGANIZATION_ID, breadcrumbList } from "@/lib/seo/jsonld";
 import { getServicePath, getServiceUrl } from "@/lib/seo/paths";
+import { DEFAULT_OG_IMAGE, ogImages, twitterImages } from "@/lib/seo/social";
 
 const NESTED_PREFIX = "/services/design/";
 
@@ -39,11 +40,13 @@ export async function generateMetadata({
       url,
       siteName: site.name,
       type: "website",
+      images: ogImages(service.page.ogImage ?? DEFAULT_OG_IMAGE, service.page.metaTitle),
     },
     twitter: {
       card: "summary_large_image",
       title: service.page.metaTitle,
       description: service.page.metaDescription,
+      images: twitterImages(service.page.ogImage ?? DEFAULT_OG_IMAGE),
     },
     robots: { index: true, follow: true },
   };

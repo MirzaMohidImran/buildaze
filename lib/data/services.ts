@@ -2,7 +2,9 @@ import { aiLeaves } from "./ai-leaves";
 import { aiPageContent } from "./ai-page";
 import { categoryOverviews } from "./category-overviews";
 import { designLeaves } from "./design-leaves";
+import { developmentLeaves } from "./development-leaves";
 import { digitalMarketingLeaves } from "./digital-marketing-leaves";
+import { shopifyLeaves } from "./shopify-leaves";
 import { shopifyPageContent } from "./shopify-page";
 
 export interface ServiceFaq {
@@ -516,10 +518,10 @@ const legacyServices: Service[] = [
     cta: "Explore SaaS Development",
     relatedServiceIds: ["development", "web", "ai", "ecommerce"],
     page: {
-      metaTitle: "SaaS Development Services | Multi-Tenant SaaS Products",
+      metaTitle: "SaaS Development Services | Buildaze",
       metaDescription:
         "Buildaze designs and ships multi-tenant SaaS products with Stripe billing, RBAC, analytics and operational tooling — fixed scope, weekly demos, full code ownership.",
-      headline: "SaaS architecture that survives your second customer.",
+      headline: "SaaS Development Services for Scalable Products",
       subheadline:
         "Multi-tenancy, billing, permissions and dashboards designed early — so the product can grow without a painful rebuild.",
       overviewTitle: "What SaaS development covers",
@@ -626,10 +628,10 @@ const legacyServices: Service[] = [
     cta: "Explore Web Development",
     relatedServiceIds: ["development", "saas", "ecommerce", "shopify"],
     page: {
-      metaTitle: "Web Development Services | Fast, SEO-Ready Websites & Apps",
+      metaTitle: "Custom Web Development Services | Buildaze",
       metaDescription:
         "Buildaze builds custom websites and web applications that are fast, accessible, SEO-ready and fully owned by you — Next.js, React, Node.js and Laravel.",
-      headline: "Websites and apps built to perform.",
+      headline: "Custom Website & Web Application Development",
       subheadline:
         "Custom marketing sites and web applications with front-end performance, semantic HTML, accessible components and content architecture search engines can understand.",
       overviewTitle: "What web development includes",
@@ -736,10 +738,10 @@ const legacyServices: Service[] = [
     cta: "Explore Ecommerce Development",
     relatedServiceIds: ["development", "shopify", "web", "saas"],
     page: {
-      metaTitle: "Ecommerce Development Services | Fast, Conversion-Ready Stores",
+      metaTitle: "Ecommerce Development Services | Buildaze",
       metaDescription:
         "Buildaze builds, redesigns and migrates Shopify, WooCommerce and headless commerce stores — performance, conversion and SEO preservation included.",
-      headline: "Stores measured in revenue, not page views.",
+      headline: "Ecommerce Development for Shopify, WooCommerce & Headless Stores",
       subheadline:
         "Shopify, WooCommerce and headless commerce builds with conversion-focused UX, clean migrations and performance tested before launch.",
       overviewTitle: "What ecommerce development includes",
@@ -905,6 +907,14 @@ function normalizeLegacyService(service: Service): Service {
       index: "05",
       name: "Shopify",
       shortName: "Shopify",
+      relatedServiceIds: [
+        "shopify-store-design",
+        "shopify-migrations",
+        "shopify-apps",
+        "shopify-headless",
+        "shopify-support",
+        "shopify-performance",
+      ],
     };
   }
 
@@ -924,6 +934,8 @@ export const services: Service[] = [
   ...digitalMarketingLeaves,
   ...aiLeaves,
   ...designLeaves,
+  ...developmentLeaves,
+  ...shopifyLeaves,
 ];
 
 /** Primary five categories for nav, hub, homepage and footer. */

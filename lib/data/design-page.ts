@@ -333,7 +333,7 @@ export const designPageContent: ServicePageContent = {
     ],
     closingTitle: "What your project includes",
     closingBody:
-      "Every engagement lists outputs, formats and review stages in writing. We do not invent universal revision counts or file packages.",
+      "Every engagement lists outputs, formats and review stages in writing. Revision counts and file packages are agreed per project rather than published as universal defaults.",
     ctaLabel: "Discuss your design project",
     ctaHref: "/contact?service=design",
   },
@@ -394,7 +394,7 @@ export const designPageContent: ServicePageContent = {
     closingBody:
       "Share the problem, audience, channels and required outputs. Existing brand guidelines help when you have them.",
     pillars: ["Brief", "Scope", "Review", "Handoff"],
-    closingNote: "Typography on this website stays unchanged.",
+    closingNote: "Client brand typography and usage rules are defined in the identity package — not copied from this website's UI fonts.",
     ctaLabel: "Discuss your design project",
     ctaHref: "/contact?service=design",
   },

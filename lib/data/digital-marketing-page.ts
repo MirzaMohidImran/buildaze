@@ -212,7 +212,7 @@ export const digitalMarketingPageContent: ServicePageContent = {
         bestFor:
           "Brands that need organic planning, publishing support and community handling within an agreed process.",
         boundaries:
-          "Paid Facebook and Instagram advertising is a separate Meta Ads engagement. We do not invent monthly post counts or response SLAs.",
+          "Paid Facebook and Instagram advertising is a separate Meta Ads engagement. Posting volume and response expectations are agreed per engagement.",
         description:
           "Brand voice, content themes, calendar and approval workflow, with reporting focused on useful learning — not vanity metrics alone.",
         items: [

@@ -141,7 +141,7 @@ export const developmentPageContent: ServicePageContent = {
     eyebrow: "Portfolio",
     headline: "Selected development work",
     intro: [
-      "Genuine projects with a clear problem and Buildaze's contribution. Metrics below are taken from published case studies — verify measurement context with the owner before wider claims.",
+      "Genuine projects with a clear problem and Buildaze's contribution. Outcome figures below match the published case studies and should be read with each project's baseline and measurement notes.",
     ],
     cases: [
       {
@@ -155,7 +155,7 @@ export const developmentPageContent: ServicePageContent = {
           "A SaaS support team was buried in repeat tickets with account context scattered across tools. Buildaze delivered a production web application feature that drafts replies and pulls live account context through integrations.",
         outcome: {
           value: "-38%",
-          label: "first-response time (case study — verify context)",
+          label: "first-response time (see case study)",
         },
         tags: ["Web Applications", "Software Development", "Integrations"],
         cta: "View case study",
@@ -173,7 +173,7 @@ export const developmentPageContent: ServicePageContent = {
           "Shoppers could not find products because search ignored attributes and intent. Buildaze cleaned catalogue data, built a retrieval layer and shipped a shopping experience integration on that foundation.",
         outcome: {
           value: "+12%",
-          label: "add-to-cart rate (case study — verify context)",
+          label: "add-to-cart rate (see case study)",
         },
         tags: ["Ecommerce Development", "Web Applications", "Catalogue data"],
         cta: "View case study",
@@ -191,7 +191,7 @@ export const developmentPageContent: ServicePageContent = {
           "Underwriters spent hours summarizing claims before decisions. Buildaze built operational software that summarizes claims and surfaces risk signals, with UI patterns designed for day-to-day use.",
         outcome: {
           value: "-42%",
-          label: "manual review time (case study — verify context)",
+          label: "manual review time (see case study)",
         },
         tags: ["Software Development", "Dashboards", "Workflow tooling"],
         cta: "View case study",
@@ -240,7 +240,7 @@ export const developmentPageContent: ServicePageContent = {
         bestFor:
           "Teams that need mobile journeys beyond a responsive website — confirmed during scoping against real platform requirements.",
         boundaries:
-          "Supported platforms are agreed in scope. We do not invent a native or cross-platform stack promise, or guarantee App Store or Play Store approval. There is no separate App route yet.",
+          "Supported platforms are agreed in scope. Native or cross-platform choices follow the project requirements. App Store or Play Store approval is never guaranteed.",
         description:
           "Create a mobile application around the tasks your customers or team need to complete. We define the key journeys, supported platforms and backend requirements before development, then plan testing and release preparation around the agreed scope.",
         items: [
@@ -252,6 +252,8 @@ export const developmentPageContent: ServicePageContent = {
         ],
         cta: "Discuss Your App",
         href: enquiry("App Development"),
+        detailHref: "/services/development/app-development",
+        detailLabel: "Explore App Development",
       },
       {
         id: "ecommerce-development",
@@ -296,8 +298,8 @@ export const developmentPageContent: ServicePageContent = {
         ],
         cta: "Discuss Your Software Requirements",
         href: enquiry("Software Development"),
-        detailHref: "/services/saas-development",
-        detailLabel: "Explore SaaS Development",
+        detailHref: "/services/development/custom-software",
+        detailLabel: "Explore Custom Software",
       },
       {
         id: "dashboards",
@@ -307,7 +309,7 @@ export const developmentPageContent: ServicePageContent = {
         bestFor:
           "Operators and leaders who need clearer views of metrics already available (or soon available) in reliable sources.",
         boundaries:
-          "Refresh frequency and data quality depend on upstream systems. Real-time data is conditional on source and architecture. We do not claim Power BI, Tableau or other BI-tool specialisms unless separately approved.",
+          "Refresh frequency and data quality depend on upstream systems. Real-time data is conditional on source and architecture. Dedicated BI-tool specialisms are not claimed unless separately approved.",
         description:
           "Bring relevant metrics and operational information into an interface your team can use. Dashboard development starts with the decisions it must support, the data sources available and the access each user needs.",
         items: [
@@ -319,6 +321,8 @@ export const developmentPageContent: ServicePageContent = {
         ],
         cta: "Discuss Your Dashboard",
         href: enquiry("Dashboards"),
+        detailHref: "/services/development/web-applications",
+        detailLabel: "Explore Web Applications & Dashboards",
       },
       {
         id: "web-applications",
@@ -328,7 +332,7 @@ export const developmentPageContent: ServicePageContent = {
         bestFor:
           "Businesses that need accounts, portals, interactive tools or data-driven workflows in the browser.",
         boundaries:
-          "Informational marketing sites sit under Web Development. Related website and web-application engineering detail also appears on the existing Web Development page — without treating that page as a separately verified App route.",
+          "Informational marketing sites sit under Web Development. Multi-tenant commercial products sit under SaaS Development.",
         description:
           "Develop browser-based software for customers, partners or internal teams. Web applications can support accounts, portals, interactive tools and data-driven workflows that go beyond an informational website.",
         items: [
@@ -340,8 +344,8 @@ export const developmentPageContent: ServicePageContent = {
         ],
         cta: "Discuss Your Web Application",
         href: enquiry("Web Applications"),
-        detailHref: "/services/web-development",
-        detailLabel: "Related Web Development page",
+        detailHref: "/services/development/web-applications",
+        detailLabel: "Explore Web Applications & Dashboards",
       },
       {
         id: "management-systems",
@@ -363,6 +367,8 @@ export const developmentPageContent: ServicePageContent = {
         ],
         cta: "Discuss Your Management System",
         href: enquiry("Management Systems"),
+        detailHref: "/services/development/web-applications",
+        detailLabel: "Explore Web Applications & Dashboards",
       },
     ],
     closingTitle: "Need more than one service?",

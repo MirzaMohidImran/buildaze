@@ -5,8 +5,8 @@ export const voiceAgent = {
   /** Preserved route — AI Voice Agents destination (not duplicated under AI hub). */
   metaTitle: "Custom AI Voice Agent Development | Buildaze",
   metaDescription:
-    "Explore custom AI voice agents for routine calls, lead intake and appointment requests. Review the demo and discuss integrations and handoff with Buildaze.",
-  ogImage: "/og/voice-agent.svg",
+    "Custom AI voice agents for routine enquiries, lead intake and human handoff. Discuss a scoped build or request a Buildaze walkthrough.",
+  ogImage: "/og/voice-agent-og.png",
   hero: {
     eyebrow: "AI Voice Agents",
     headline: "Custom AI Voice Agents for Your Business",
