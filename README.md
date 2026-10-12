@@ -33,7 +33,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ```
 app/                  Routes, layout, global styles, SEO (sitemap, robots)
 components/sections/  One component per homepage section
-components/motion/    Motion primitives (Reveal, Parallax, Counter, cursor, smooth scroll)
+components/motion/    Motion primitives (Reveal, RevealText, cursor, smooth scroll)
 components/ui/        Reusable UI (buttons, labels, logo)
 components/webgl/     Three.js hero scene
 components/work/      Case-study visual canvases
@@ -42,15 +42,32 @@ lib/data/             All site content, typed — edit copy here, not in compone
 
 ## Content
 
-All copy, case studies, metrics, team, testimonials, pricing and FAQs live in
-`lib/data/` and are sourced from the existing Buildaze site. No invented
-clients, metrics or testimonials.
+All copy, case studies, team, testimonials and FAQs live in `lib/data/` and are
+sourced from the existing Buildaze site. No invented clients, metrics or
+testimonials.
 
-## Contact form
+## Contact / project enquiry
 
-The form validates client-side and opens a pre-composed email to
-`team@buildaze.com`. Swap the submit handler in
-`components/sections/ContactCTA.tsx` for an API route when a backend exists.
+The Contact page form (`ContactInquiryForm`) and shared enquiry components
+submit to `POST /api/contact`, which delivers to **team@buildaze.com** through
+[Resend](https://resend.com). Subject format: `Buildaze Inquiry — [Service]`.
+Reply-To is the visitor’s email; From is the verified Resend sender.
+
+1. Copy `.env.example` to `.env.local`.
+2. Set `RESEND_API_KEY` and `CONTACT_FROM_EMAIL` (verified sender domain).
+3. Set `CONTACT_TO_EMAIL=team@buildaze.com` (other values are ignored server-side).
+4. Restart `npm run dev`.
+
+When Resend is not configured, the API returns an honest unconfigured error.
+Mailto drafts are a human fallback only — never counted as received enquiries.
+Success appears only after the provider accepts the message.
+
+Safe mock check (no real email): `npm run verify:contact`
+
+See `docs/contact-forms-coverage.md` for the full form inventory.
+
+The route validates input, ignores honeypot submissions, rate-limits by IP, and
+deduplicates retries via an `Idempotency-Key` header.
 
 ## Voice Agent demo
 

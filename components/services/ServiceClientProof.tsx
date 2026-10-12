@@ -30,7 +30,7 @@ function SourceBadge({ source }: { source: ServiceReviewSource }) {
 function ReviewEvidence({ review }: { review: ServiceClientReview }) {
   if (review.imageSrc) {
     return (
-      <div className="relative h-full min-h-[320px] overflow-hidden border border-line bg-ink-2">
+      <div className="media-frame relative h-full min-h-[320px] border border-line bg-ink-2">
         <Image
           src={review.imageSrc}
           alt={
@@ -51,7 +51,7 @@ function ReviewEvidence({ review }: { review: ServiceClientReview }) {
 
   // Stylized review artifact when a real screenshot hasn't been added yet.
   return (
-    <div className="relative flex h-full min-h-[320px] flex-col overflow-hidden border border-line bg-ink-2 p-6 md:p-8">
+    <div className="media-frame relative flex h-full min-h-[320px] flex-col border border-line bg-ink-2 p-6 md:p-8">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -142,7 +142,7 @@ export function ServiceClientProof({
   return (
     <section
       aria-labelledby="service-proof-heading"
-      className="relative border-y border-line py-24 md:py-32"
+      className="surface-ink relative border-y border-line py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index={sectionIndex} label="Client proof" />
@@ -253,7 +253,7 @@ export function ServiceClientProof({
         </div>
 
         {/* Categories + CTA */}
-        <Reveal y={28} className="relative mt-20 overflow-hidden border border-line p-8 md:p-12">
+        <Reveal y={28} className="relative mt-20 overflow-hidden rounded-panel border border-line p-8 md:p-12">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"

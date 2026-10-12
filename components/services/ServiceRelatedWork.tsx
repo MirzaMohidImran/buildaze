@@ -24,7 +24,7 @@ export function ServiceRelatedWork({
   return (
     <section
       aria-labelledby="service-work-heading"
-      className="relative border-t border-line py-24 md:py-32"
+      className="surface-ink relative border-t border-line py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index={sectionIndex} label="Related work" />

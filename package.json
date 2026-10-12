@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "verify:contact": "npx tsx scripts/verify-contact-delivery.ts"
   },
   "dependencies": {
     "@elevenlabs/client": "^1.25.0",
@@ -16,6 +17,7 @@
     "next": "^15.5.23",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "resend": "^6.32.1",
     "three": "^0.170.0"
   },
   "devDependencies": {

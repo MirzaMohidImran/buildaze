@@ -15,7 +15,7 @@ export function ServiceOverview({
   const { page } = service;
 
   return (
-    <section aria-labelledby="service-overview-heading" className="relative py-24 md:py-32">
+    <section aria-labelledby="service-overview-heading" className="surface-page relative py-24 md:py-32">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">

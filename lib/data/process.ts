@@ -1,36 +1,55 @@
 export interface ProcessPhase {
   index: string;
   name: string;
-  duration: string;
   description: string;
   deliverables: string[];
 }
 
-/** The real Buildaze delivery model with verified timelines. */
+/** Homepage How We Work sequence — timelines depend on agreed scope. */
 export const processPhases: ProcessPhase[] = [
   {
     index: "01",
-    name: "Scope & Plan",
-    duration: "3–5 days",
+    name: "Understand",
     description:
-      "We align on requirements, stack and success metrics in a scoping workshop. You get a fixed scope document, timeline and cost estimate before we write a line of code.",
-    deliverables: ["Scoping workshop", "Fixed scope document", "Timeline & cost estimate"],
+      "We discuss your goals, current setup and the problem to solve — so recommendations match the business, not a generic template.",
+    deliverables: [
+      "Discovery conversation",
+      "Current setup review",
+      "Problem framing",
+    ],
   },
   {
     index: "02",
-    name: "Build & Demo",
-    duration: "2–8 weeks",
+    name: "Define the Scope",
     description:
-      "Weekly sprints with live demos. You see working software every week, not status emails. Course corrections happen before they get expensive.",
-    deliverables: ["Weekly live demos", "Working software each sprint", "Continuous feedback loop"],
+      "We agree on deliverables, responsibilities, milestones and cost before development starts. You know what is in and out of the engagement.",
+    deliverables: [
+      "Scope document",
+      "Milestones and responsibilities",
+      "Cost before build",
+    ],
   },
   {
     index: "03",
-    name: "Ship & Hand Off",
-    duration: "1 week",
+    name: "Build and Review",
     description:
-      "We test, deploy and hand over the full codebase with documentation. You own the repo, the infrastructure and every line of code.",
-    deliverables: ["Testing & deployment", "Full repo + documentation", "Infrastructure access"],
+      "We develop the agreed work and share progress at defined review points so feedback arrives while changes are still practical.",
+    deliverables: [
+      "Agreed deliverables in progress",
+      "Scheduled reviews",
+      "Course corrections within scope",
+    ],
+  },
+  {
+    index: "04",
+    name: "Launch and Handover",
+    description:
+      "We test, launch and hand over the agreed deliverables. You receive the custom work and access we scoped. Shopify, hosting, apps and other third-party services keep their own licensing and costs. Ongoing support is optional — not required to keep access to what we delivered.",
+    deliverables: [
+      "Testing and launch",
+      "Agreed code and access handover",
+      "Optional support options explained",
+    ],
   },
 ];
 
@@ -49,31 +68,31 @@ export const comparison = {
   buildaze: {
     title: "How Buildaze works",
     points: [
-      "Fixed technical scope in 3–5 days",
-      "A live demo of working software every week",
-      "Senior specialists on every project — no bait-and-switch",
+      "Clear scope before development",
+      "Progress reviews at defined points",
+      "Practical handover of agreed custom work",
       "Scope, timeline and cost agreed before we build",
-      "Full repo, infrastructure and deployment access at handoff",
-      "Course corrections every sprint, while they're cheap",
+      "Third-party platforms retain their own licensing",
+      "Optional support after launch",
     ],
   },
 } as const;
 
-/** Paired rows for the comparison matrix — Buildaze first in the UI. */
+/** Paired rows for the comparison matrix — retained for any non-homepage use. */
 export const comparisonRows = [
   {
     axis: "Scoping",
-    buildaze: "Fixed technical scope in 3–5 days",
+    buildaze: "Clear scope before development",
     traditional: "Long discovery cycles before anything is built",
   },
   {
     axis: "Visibility",
-    buildaze: "A live demo of working software every week",
+    buildaze: "Progress reviews at defined points",
     traditional: "Monthly status updates instead of working software",
   },
   {
     axis: "Team",
-    buildaze: "Senior specialists on every project — no bait-and-switch",
+    buildaze: "The people you speak with stay close to delivery",
     traditional: "Junior-heavy delivery behind senior salespeople",
   },
   {
@@ -83,35 +102,35 @@ export const comparisonRows = [
   },
   {
     axis: "Ownership",
-    buildaze: "Full repo, infrastructure and deployment access at handoff",
+    buildaze: "Handover of agreed custom work and access",
     traditional: "Proprietary platforms that create lock-in",
   },
   {
     axis: "Feedback",
-    buildaze: "Course corrections every sprint, while they're cheap",
+    buildaze: "Course corrections during agreed review points",
     traditional: "Feedback arrives after the budget is spent",
   },
 ] as const;
 
 export const differentiators = [
   {
-    title: "Results, not retainers",
+    title: "Clear scope and responsibilities",
     description:
-      "Fixed-scope sprints. You know exactly what ships, when, and for how much — before we write a line of code.",
+      "Deliverables, responsibilities and cost are agreed before work begins, so both sides know what success looks like.",
   },
   {
-    title: "Weekly visibility",
+    title: "Business needs first",
     description:
-      "Every sprint ends with a live demo. You review working software, not slide decks or status emails.",
+      "We start from the problem you need solved — not a technology or channel list — and shape the engagement around practical outcomes.",
   },
   {
-    title: "Secure by design",
+    title: "Regular communication and reviews",
     description:
-      "PII handling, SSO/SAML, RBAC, encryption and audit trails — built in, not bolted on.",
+      "Progress is shared at defined review points so feedback arrives while changes are still practical to make.",
   },
   {
-    title: "Senior team, full ownership",
+    title: "Maintainable delivery and handover",
     description:
-      "No junior developers billed at senior rates. Every line of code is yours the day we ship.",
+      "You receive the agreed custom deliverables, documentation and access. Third-party platforms keep their own terms. Ongoing support is available when you want it.",
   },
 ] as const;

@@ -21,8 +21,13 @@ export async function generateMetadata({
   if (!study) return {};
 
   const url = `${site.url}/work/${study.slug}`;
+  // absolute avoids root template appending " — Buildaze" twice when metaTitle already brands
+  const title = study.page.metaTitle.includes("Buildaze")
+    ? { absolute: study.page.metaTitle }
+    : study.page.metaTitle;
+
   return {
-    title: study.page.metaTitle,
+    title,
     description: study.page.metaDescription,
     alternates: { canonical: `/work/${study.slug}` },
     openGraph: {

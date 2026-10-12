@@ -6,28 +6,31 @@ import { RevealText } from "@/components/motion/RevealText";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { differentiators } from "@/lib/data/process";
 
-/**
- * Asymmetric interactive composition: a statement column plus four
- * differentiator panels that respond to hover with the Build Grid language.
- */
-export function WhyBuildaze() {
+type SectionTone = "dark" | "light";
+
+export function WhyBuildaze({ tone = "dark" }: { tone?: SectionTone }) {
+  const isLight = tone === "light";
+
   return (
-    <section aria-labelledby="why-heading" className="relative py-28 md:py-40">
+    <section
+      aria-labelledby="why-heading"
+      className={`relative py-28 md:py-40${isLight ? " surface-soft" : ""}`}
+    >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">
-              <SectionLabel index="06" label="Why Buildaze" />
+              <SectionLabel index="04" label="Why Buildaze" />
               <RevealText
                 as="h2"
                 id="why-heading"
-                text="Why serious teams build with Buildaze."
+                text="Practical reasons teams work with us."
                 className="text-h2 mt-10 font-semibold text-white"
               />
               <Reveal delay={0.2} className="mt-8">
                 <p className="max-w-[420px] text-[15.5px] leading-relaxed text-mist">
-                  Every rule below exists because it protects your budget, your
-                  timeline or your ownership. That&apos;s the whole philosophy.
+                  A short set of delivery practices — not a repeat of the
+                  process above.
                 </p>
               </Reveal>
             </div>
@@ -42,7 +45,11 @@ export function WhyBuildaze() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ delay: i * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                  className="group relative bg-ink p-8 transition-colors duration-500 hover:bg-ink-2 md:p-10"
+                  className={
+                    isLight
+                      ? "group relative home-card border border-line bg-white p-8 transition-colors duration-500 hover:border-accent hover:bg-[var(--section-blue-soft,#EFF5FF)] md:p-10"
+                      : "group relative bg-ink p-8 transition-colors duration-500 hover:bg-ink-2 md:p-10"
+                  }
                 >
                   <span
                     aria-hidden

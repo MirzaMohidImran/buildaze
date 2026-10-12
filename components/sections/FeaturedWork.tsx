@@ -7,11 +7,12 @@ import {
   type PanInfo,
 } from "framer-motion";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CaseVisual } from "@/components/work/CaseVisual";
+import { featuredWorkIds } from "@/lib/data/home-services";
 import { caseStudies } from "@/lib/data/work";
 
 function ArrowIcon({ direction }: { direction: "prev" | "next" }) {
@@ -35,15 +36,29 @@ function ArrowIcon({ direction }: { direction: "prev" | "next" }) {
   );
 }
 
-export function FeaturedWork() {
+/** Outcomes shown only when the case study documents a tightly scoped metric. */
+const HOMEPAGE_OUTCOME_IDS = new Set(["shopify-performance"]);
+
+type HomeSectionTone = "dark" | "light";
+
+export function FeaturedWork({ tone = "dark" }: { tone?: HomeSectionTone }) {
+  const isLight = tone === "light";
   const reduced = useReducedMotion();
+  const studies = useMemo(
+    () =>
+      featuredWorkIds
+        .map((id) => caseStudies.find((c) => c.id === id))
+        .filter((c): c is (typeof caseStudies)[number] => Boolean(c)),
+    [],
+  );
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
-  const total = caseStudies.length;
-  const study = caseStudies[index];
+  const total = studies.length;
+  const study = studies[index];
 
   const goTo = useCallback(
     (next: number, dir?: number) => {
+      if (!total) return;
       const wrapped = ((next % total) + total) % total;
       setDirection(dir ?? (wrapped > index ? 1 : -1));
       setIndex(wrapped);
@@ -78,42 +93,45 @@ export function FeaturedWork() {
 
   const slideVariants = {
     enter: (dir: number) =>
-      reduced
-        ? { opacity: 0 }
-        : { x: dir > 0 ? 72 : -72, opacity: 0 },
+      reduced ? { opacity: 0 } : { x: dir > 0 ? 72 : -72, opacity: 0 },
     center: { x: 0, opacity: 1 },
     exit: (dir: number) =>
-      reduced
-        ? { opacity: 0 }
-        : { x: dir > 0 ? -72 : 72, opacity: 0 },
+      reduced ? { opacity: 0 } : { x: dir > 0 ? -72 : 72, opacity: 0 },
   };
+
+  if (!study || !total) return null;
+
+  const showOutcome = HOMEPAGE_OUTCOME_IDS.has(study.id);
 
   return (
     <section
       id="work"
       aria-labelledby="work-heading"
       aria-roledescription="carousel"
-      className="relative scroll-mt-20 py-28 md:py-40"
+      className={`relative scroll-mt-20 py-28 md:py-40${
+        isLight ? " surface-soft" : " surface-ink"
+      }`}
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
-        <SectionLabel index="04" label="Featured work" />
+        <SectionLabel index="02" label="Selected work" />
 
         <div className="mt-10 flex flex-wrap items-end justify-between gap-8">
           <RevealText
             as="h2"
             id="work-heading"
-            text="Real products. Measured results."
+            text="Projects that show how we work."
             className="text-h2 max-w-[760px] font-semibold text-white"
           />
           <Reveal delay={0.15}>
             <div className="flex w-full flex-col gap-5 sm:w-auto sm:items-end">
               <p className="max-w-[380px] text-[15.5px] leading-relaxed text-mist sm:text-right">
-                Every engagement below shipped to production and moved a number
-                the client cared about.
+                A short mix across AI, Shopify and ecommerce. Visuals are
+                product illustrations where live screenshots are not available.
               </p>
               <div className="flex items-center justify-between gap-6 sm:justify-end">
                 <Link
                   href="/work"
+                  data-analytics="work-view-all"
                   className="group inline-flex items-center gap-2 text-[14.5px] font-medium text-mist transition-colors hover:text-white"
                 >
                   <span className="border-b border-line-strong pb-0.5 group-hover:border-accent">
@@ -150,7 +168,11 @@ export function FeaturedWork() {
                       type="button"
                       aria-label="Previous case study"
                       onClick={() => go(-1)}
-                      className="inline-flex h-10 w-10 items-center justify-center border border-line-strong text-mist transition-colors hover:border-accent hover:text-white"
+                      className={`inline-flex h-10 w-10 items-center justify-center rounded-full border text-mist transition-colors hover:border-accent ${
+                        isLight
+                          ? "border-[var(--border-default,#E2E8F0)] bg-white hover:text-[var(--text-primary,#0C1017)]"
+                          : "border-line-strong hover:text-white"
+                      }`}
                     >
                       <ArrowIcon direction="prev" />
                     </button>
@@ -158,7 +180,11 @@ export function FeaturedWork() {
                       type="button"
                       aria-label="Next case study"
                       onClick={() => go(1)}
-                      className="inline-flex h-10 w-10 items-center justify-center border border-line-strong text-mist transition-colors hover:border-accent hover:text-white"
+                      className={`inline-flex h-10 w-10 items-center justify-center rounded-full border text-mist transition-colors hover:border-accent ${
+                        isLight
+                          ? "border-[var(--border-default,#E2E8F0)] bg-white hover:text-[var(--text-primary,#0C1017)]"
+                          : "border-line-strong hover:text-white"
+                      }`}
                     >
                       <ArrowIcon direction="next" />
                     </button>
@@ -192,7 +218,7 @@ export function FeaturedWork() {
                   href={`/work/${study.slug}`}
                   data-analytics={`work-visual-${study.id}`}
                   data-cursor="view"
-                  className="block overflow-hidden border border-transparent transition-colors hover:border-line-strong"
+                  className="block rounded-panel border border-transparent transition-colors hover:border-line-strong"
                   aria-label={`${study.name} — view case study`}
                   draggable={false}
                 >
@@ -202,7 +228,9 @@ export function FeaturedWork() {
 
               <div className="lg:col-span-5">
                 <p className="t-label flex items-center gap-3 text-mist-2">
-                  <span className="text-accent-soft">{study.index}</span>
+                  <span className="text-accent-soft">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <span aria-hidden className="h-px w-8 bg-line-strong" />
                   {study.industry}
                 </p>
@@ -217,25 +245,27 @@ export function FeaturedWork() {
 
                 <dl className="mt-8 space-y-6">
                   <div>
-                    <dt className="t-label mb-2 text-mist-2">Challenge</dt>
+                    <dt className="t-label mb-2 text-mist-2">Problem</dt>
                     <dd className="text-[15px] leading-relaxed text-mist">
                       {study.challenge}
                     </dd>
                   </div>
                   <div>
-                    <dt className="t-label mb-2 text-mist-2">What we shipped</dt>
+                    <dt className="t-label mb-2 text-mist-2">What Buildaze did</dt>
                     <dd className="text-[15px] leading-relaxed text-mist">
                       {study.solution}
                     </dd>
                   </div>
                 </dl>
 
-                <div className="mt-9 flex items-baseline gap-4 border-l-2 border-accent pl-5">
-                  <span className="text-[clamp(2.2rem,3vw,3rem)] leading-none font-semibold tracking-tight text-accent-soft">
-                    {study.outcome.value}
-                  </span>
-                  <span className="text-[14px] text-mist">{study.outcome.label}</span>
-                </div>
+                {showOutcome && (
+                  <div className="mt-9 flex items-baseline gap-4 border-l-2 border-accent pl-5">
+                    <span className="text-[clamp(2.2rem,3vw,3rem)] leading-none font-semibold tracking-tight text-accent-soft">
+                      {study.outcome.value}
+                    </span>
+                    <span className="text-[14px] text-mist">{study.outcome.label}</span>
+                  </div>
+                )}
 
                 <ul className="mt-8 flex flex-wrap gap-2">
                   {study.deliverables.map((deliverable) => (
@@ -248,43 +278,51 @@ export function FeaturedWork() {
                   ))}
                 </ul>
 
-                <Link
-                  href={`/work/${study.slug}`}
-                  data-analytics={`work-cta-${study.id}`}
-                  className="group mt-9 inline-flex items-center gap-2.5 text-[15px] font-medium text-white"
-                >
-                  <span className="border-b border-accent pb-0.5 transition-colors group-hover:text-accent-soft">
-                    View case study
-                  </span>
-                  <svg
-                    aria-hidden
-                    width="13"
-                    height="13"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    className="text-accent transition-transform duration-300 group-hover:translate-x-1"
+                <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <Link
+                    href={`/work/${study.slug}`}
+                    data-analytics={`work-cta-${study.id}`}
+                    className="group inline-flex items-center gap-2.5 text-[15px] font-medium text-white"
                   >
-                    <path
-                      d="M1 7h11M8 2.5 12.5 7 8 11.5"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </Link>
+                    <span className="border-b border-accent pb-0.5 transition-colors group-hover:text-accent-soft">
+                      View case study
+                    </span>
+                    <svg
+                      aria-hidden
+                      width="13"
+                      height="13"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      className="text-accent transition-transform duration-300 group-hover:translate-x-1"
+                    >
+                      <path
+                        d="M1 7h11M8 2.5 12.5 7 8 11.5"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </Link>
+                  <Link
+                    href="/contact"
+                    data-analytics={`work-discuss-${study.id}`}
+                    className="text-[14.5px] text-mist transition-colors hover:text-white"
+                  >
+                    Discuss a similar project
+                  </Link>
+                </div>
               </div>
             </motion.article>
           </AnimatePresence>
         </div>
 
-        {/* Segment progress rail — clickable positions */}
         <div
           role="tablist"
-          aria-label="Featured case studies"
+          aria-label="Selected case studies"
           className="mt-12 flex gap-2 md:mt-14"
         >
-          {caseStudies.map((item, i) => {
+          {studies.map((item, i) => {
             const active = i === index;
             return (
               <button
@@ -299,19 +337,43 @@ export function FeaturedWork() {
                 <span
                   aria-hidden
                   className={`absolute inset-x-0 top-1/2 h-px -translate-y-1/2 transition-colors ${
-                    active ? "bg-accent" : "bg-line group-hover:bg-line-strong"
+                    active
+                      ? "bg-accent"
+                      : isLight
+                        ? "bg-line-strong group-hover:bg-[var(--border-default,#E2E8F0)]"
+                        : "bg-line group-hover:bg-line-strong"
                   }`}
                 />
                 <span
                   aria-hidden
                   className={`absolute top-1/2 left-0 h-1.5 w-1.5 -translate-y-1/2 transition-colors ${
-                    active ? "bg-accent" : "bg-mist-2 group-hover:bg-mist"
+                    active
+                      ? "bg-accent"
+                      : isLight
+                        ? "bg-line-strong group-hover:bg-mist-2"
+                        : "bg-mist-2 group-hover:bg-mist"
                   }`}
                 />
               </button>
             );
           })}
         </div>
+
+        <nav aria-label="Featured case studies" className="mt-8">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            {studies.map((item) => (
+              <li key={item.id}>
+                <Link
+                  href={`/work/${item.slug}`}
+                  data-analytics={`work-featured-link-${item.id}`}
+                  className="text-[13.5px] text-mist transition-colors hover:text-white"
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </section>
   );

@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/lib/data/services";
 import { site } from "@/lib/data/site";
-import { voiceAgent } from "@/lib/data/voice-agent";
 import { caseStudies } from "@/lib/data/work";
 import { getServicePath } from "@/lib/seo/paths";
 
@@ -9,10 +8,30 @@ import { getServicePath } from "@/lib/seo/paths";
  * Content last-modified dates are fixed per URL where known.
  * Avoid stamping `new Date()` on every deploy for unchanged pages.
  */
-const SITE_UPDATED = new Date("2026-08-11");
-const SHOPIFY_UPDATED = new Date("2026-08-11");
+/** Homepage & hub content last meaningfully updated. */
+const SITE_UPDATED = new Date("2026-10-09");
+const SHOPIFY_UPDATED = new Date("2026-10-09");
+const DEVELOPMENT_UPDATED = new Date("2026-10-12");
+const DIGITAL_MARKETING_UPDATED = new Date("2026-10-12");
+const AI_UPDATED = new Date("2026-10-12");
+const DESIGN_UPDATED = new Date("2026-10-12");
 const WORK_UPDATED = new Date("2026-08-11");
-const VOICE_UPDATED = new Date("2026-09-28");
+const VOICE_UPDATED = new Date("2026-10-12");
+const LEGAL_UPDATED = new Date("2026-10-12");
+const ABOUT_UPDATED = new Date("2026-10-12");
+const CONTACT_UPDATED = new Date("2026-10-12");
+
+function isDigitalMarketingService(id: string) {
+  return id === "digital-marketing" || id.startsWith("dm-");
+}
+
+function isAiService(id: string) {
+  return id === "ai" || id.startsWith("ai-");
+}
+
+function isDesignService(id: string) {
+  return id === "design" || id.startsWith("design-");
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -31,13 +50,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...services.map((service) => ({
       url: `${site.url}${getServicePath(service)}`,
       lastModified:
-        service.id === "shopify" ? SHOPIFY_UPDATED : SITE_UPDATED,
+        service.id === "shopify"
+          ? SHOPIFY_UPDATED
+          : service.id === "development"
+            ? DEVELOPMENT_UPDATED
+            : isDigitalMarketingService(service.id)
+              ? DIGITAL_MARKETING_UPDATED
+              : isAiService(service.id)
+                ? service.id === "ai-voice"
+                  ? VOICE_UPDATED
+                  : AI_UPDATED
+                : isDesignService(service.id)
+                  ? DESIGN_UPDATED
+                  : SITE_UPDATED,
       changeFrequency: "monthly" as const,
-      priority: service.id === "shopify" ? 0.95 : 0.85,
+      priority:
+        service.id === "shopify"
+          ? 0.95
+          : service.id === "development" ||
+              service.id === "digital-marketing" ||
+              service.id === "ai" ||
+              service.id === "ai-voice" ||
+              service.id === "design"
+            ? 0.9
+            : 0.85,
     })),
+    // `/voice-agent` is registered via the `ai-voice` service entry above.
     {
-      url: `${site.url}${voiceAgent.path}`,
-      lastModified: VOICE_UPDATED,
+      url: `${site.url}/about`,
+      lastModified: ABOUT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${site.url}/contact`,
+      lastModified: CONTACT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.9,
     },
@@ -53,5 +100,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
+    {
+      url: `${site.url}/privacy-policy`,
+      lastModified: LEGAL_UPDATED,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${site.url}/terms-of-use`,
+      lastModified: LEGAL_UPDATED,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${site.url}/cookie-policy`,
+      lastModified: LEGAL_UPDATED,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 }

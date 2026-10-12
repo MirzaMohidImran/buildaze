@@ -133,17 +133,24 @@ export function ShopifyWorkVisual({
   visual,
   image,
   imageAlt,
+  className,
 }: {
   visual: ServiceSelectedCase["visual"];
   image?: string;
   imageAlt?: string;
+  className?: string;
 }) {
   const [imageFailed, setImageFailed] = useState(false);
   const { component: Visual, chrome } = visuals[visual];
   const showImage = Boolean(image) && !imageFailed;
 
   return (
-    <div className="relative aspect-[16/11] overflow-hidden border border-line bg-ink-2 md:aspect-[16/10]">
+    <div
+      className={
+        className ??
+        "media-frame relative aspect-[16/11] border border-line bg-ink-2 md:aspect-[16/10]"
+      }
+    >
       {showImage ? (
         <>
           <Image

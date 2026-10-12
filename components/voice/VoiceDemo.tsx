@@ -261,7 +261,7 @@ export function VoiceDemo({ className = "" }: { className?: string }) {
   return (
     <div
       id="demo"
-      className={`scroll-mt-28 border border-line bg-ink-2 ${className}`}
+      className={`scroll-mt-28 rounded-panel border border-line bg-ink-2 ${className}`}
     >
       <div className="build-grid relative overflow-hidden">
         <div
@@ -282,7 +282,7 @@ export function VoiceDemo({ className = "" }: { className?: string }) {
               </h2>
             </div>
             <p
-              className="t-label inline-flex items-center gap-2.5 border border-line px-3.5 py-2 text-mist"
+              className="t-label inline-flex items-center gap-2.5 rounded-full border border-line px-3.5 py-2 text-mist"
               aria-live="polite"
             >
               <span
@@ -311,7 +311,7 @@ export function VoiceDemo({ className = "" }: { className?: string }) {
             <div className="flex w-full max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
               {phase === "unavailable" ? (
                 <Link
-                  href="/#contact"
+                  href="/contact?service=ai&capability=AI%20Voice%20Agents"
                   data-analytics="voice-demo-unavailable-contact"
                   className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-accent px-6 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-accent-bright"
                 >

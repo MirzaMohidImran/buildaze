@@ -10,25 +10,25 @@ export const team: TeamMember[] = [
   {
     name: "Mohid Imran",
     role: "Senior Web & Ecommerce Developer",
-    bio: "Builds custom web applications and Shopify storefronts — including Liquid theme development, headless commerce on Next.js, and performance-minded ecommerce experiences.",
+    bio: "Leads custom web applications and Shopify storefront work, from themes to performance-minded ecommerce builds.",
     initials: "MI",
   },
   {
     name: "M Ahsan",
     role: "AI & LLM Lead",
-    bio: "Builds custom AI agents and RAG systems on OpenAI, Claude, LangChain and vector databases.",
+    bio: "Leads custom AI agents and RAG systems grounded in client business information.",
     initials: "MA",
   },
   {
     name: "Saalik Khan",
     role: "Design Lead",
-    bio: "The best builds are the ones where the engineering is invisible and the product just works.",
+    bio: "Shapes product and interface design so engineering stays clear and usable.",
     initials: "SK",
   },
   {
     name: "M Hamza",
     role: "Lead & Social Media Manager",
-    bio: "Keeps launches sharp and client communication clear, from kickoff to handoff.",
+    bio: "Keeps client communication and launches organised from kickoff through handover.",
     initials: "MH",
   },
 ];
@@ -40,7 +40,10 @@ export interface Testimonial {
   context: string;
 }
 
-/** Testimonials from the existing Buildaze site. */
+/**
+ * Testimonials carried from the existing site.
+ * Owner follow-up: verify attribution and metrics with clients before wider claims.
+ */
 export const testimonials: Testimonial[] = [
   {
     quote:

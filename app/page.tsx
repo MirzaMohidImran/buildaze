@@ -1,51 +1,91 @@
-import { AiNative } from "@/components/sections/AiNative";
-import { Comparison } from "@/components/sections/Comparison";
-import { ContactCTA } from "@/components/sections/ContactCTA";
+import type { Metadata } from "next";
+import { ContactInvite } from "@/components/contact/ContactInvite";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { FeaturedWork } from "@/components/sections/FeaturedWork";
 import { Footer } from "@/components/sections/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { Industries } from "@/components/sections/Industries";
-import { Manifesto } from "@/components/sections/Manifesto";
 import { Navbar } from "@/components/sections/Navbar";
-import { Outcomes } from "@/components/sections/Outcomes";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
-import { Results } from "@/components/sections/Results";
-import { SecurityOwnership } from "@/components/sections/SecurityOwnership";
 import { ServiceExperience } from "@/components/sections/ServiceExperience";
-import { TeamShowcase } from "@/components/sections/TeamShowcase";
-import { TechEcosystem } from "@/components/sections/TechEcosystem";
-import { Testimonials } from "@/components/sections/Testimonials";
+import { TeamAndProof } from "@/components/sections/TeamAndProof";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { VoiceAgentSection } from "@/components/sections/VoiceAgentSection";
 import { WhyBuildaze } from "@/components/sections/WhyBuildaze";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { site } from "@/lib/data/site";
+import { ORGANIZATION_ID, WEBSITE_ID } from "@/lib/seo/jsonld";
 
+const HOME_TITLE = "Buildaze | Design, Development & Digital Growth Agency";
+const HOME_DESCRIPTION =
+  "Buildaze brings design, development, AI, digital marketing and Shopify services together to help businesses launch, improve and grow. Discuss your project.";
+
+export const metadata: Metadata = {
+  title: { absolute: HOME_TITLE },
+  description: HOME_DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    url: site.url,
+    siteName: site.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+  },
+  robots: { index: true, follow: true },
+};
+
+const pageId = `${site.url}/#webpage`;
+
+/** Homepage WebPage only — Organization + WebSite live in root layout. */
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": pageId,
+      url: site.url,
+      name: HOME_TITLE,
+      description: HOME_DESCRIPTION,
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": ORGANIZATION_ID },
+      primaryEntityOfPage: { "@id": ORGANIZATION_ID },
+      inLanguage: "en",
+    },
+  ],
+};
+
+/**
+ * Homepage brand rhythm (site-wide theme on <html>):
+ * ink hero → blue trust → soft services → ink work → soft process/why →
+ * ink voice → soft team/FAQ → ink contact/footer.
+ */
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <Navbar tone="dark" />
       <main id="main">
-        <Hero />
+        <Hero tone="dark" />
         <TrustStrip />
-        <Manifesto />
-        <ServiceExperience />
-        <Outcomes />
-        <FeaturedWork />
-        <Results />
-        <WhyBuildaze />
-        <Comparison />
-        <ProcessTimeline />
-        <AiNative />
-        <VoiceAgentSection />
-        <SecurityOwnership />
-        <TechEcosystem />
-        <Industries />
-        <TeamShowcase />
-        <Testimonials />
-        <FaqSection />
-        <ContactCTA />
+        <ServiceExperience tone="light" />
+        <FeaturedWork tone="dark" />
+        <ProcessTimeline tone="light" />
+        <WhyBuildaze tone="light" />
+        <VoiceAgentSection tone="dark" />
+        <TeamAndProof tone="light" />
+        <FaqSection tone="light" />
+        <ContactInvite
+          tone="dark"
+          source="homepage"
+          heading="Tell us what you need to build or improve."
+          intro="Share a few project details on the contact page. You do not need a finished specification to start."
+        />
       </main>
-      <Footer />
+      <Footer tone="dark" />
+      <JsonLd data={structuredData} />
     </>
   );
 }

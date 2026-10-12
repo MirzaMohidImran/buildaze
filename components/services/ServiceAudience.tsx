@@ -26,7 +26,7 @@ export function ServiceAudience({
   return (
     <section
       aria-labelledby="service-audience-heading"
-      className="relative border-y border-line py-24 md:py-32"
+      className="surface-page relative border-y border-line py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index={sectionIndex} label="Who we work with" />
@@ -165,7 +165,7 @@ export function ServiceAudience({
             id="audience-panel"
             role="tabpanel"
             aria-labelledby={`audience-tab-${active.id}`}
-            className="build-grid relative min-h-[520px] overflow-hidden border border-line p-10 xl:p-12"
+            className="media-frame build-grid relative min-h-[520px] border border-line p-10 xl:p-12"
           >
             <div
               aria-hidden
@@ -337,7 +337,7 @@ export function ServiceAudience({
           })}
         </div>
 
-        <Reveal y={28} className="relative mt-20 overflow-hidden border border-line p-8 md:p-12">
+        <Reveal y={28} className="relative mt-20 overflow-hidden rounded-panel border border-line p-8 md:p-12">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"

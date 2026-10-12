@@ -3,14 +3,14 @@ import { ServicesHub } from "@/components/services/ServicesHub";
 import { site } from "@/lib/data/site";
 
 export const metadata: Metadata = {
-  title: "Services | AI, SaaS, Web & Ecommerce Development",
+  title: "Services | Design, Development, AI, Marketing & Shopify",
   description:
-    "Buildaze services: AI development, SaaS platforms, custom web applications and ecommerce experiences — fixed-scope sprints, weekly demos, 100% code ownership.",
+    "Buildaze services: design, development, artificial intelligence, digital marketing and Shopify — clear scope and practical next steps.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Services — Buildaze",
     description:
-      "Four disciplines. One production standard. AI, SaaS, Web and Ecommerce development.",
+      "Five categories. Clear scope. Design, Development, Artificial Intelligence, Digital Marketing and Shopify.",
     url: `${site.url}/services`,
     siteName: site.name,
     type: "website",

@@ -23,8 +23,9 @@ export function ServiceFaq({
 
   return (
     <section
+      id={service.id === "shopify" ? "shopify-faq" : undefined}
       aria-labelledby="service-faq-heading"
-      className="relative border-y border-line py-24 md:py-32"
+      className="surface-soft relative scroll-mt-20 border-y border-line py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12">
@@ -137,7 +138,7 @@ export function ServiceFaq({
         {page.faqClosingTitle && (
           <Reveal
             y={28}
-            className="relative mt-20 overflow-hidden border border-line p-8 md:p-12"
+            className="relative mt-20 overflow-hidden rounded-panel border border-line p-8 md:p-12"
           >
             <div
               aria-hidden

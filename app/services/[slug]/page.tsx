@@ -25,8 +25,11 @@ export async function generateMetadata({
 
   const path = getServicePath(service);
   const url = getServiceUrl(service, site.url);
+  const title = service.page.metaTitle.includes("Buildaze")
+    ? { absolute: service.page.metaTitle }
+    : service.page.metaTitle;
   return {
-    title: service.page.metaTitle,
+    title,
     description: service.page.metaDescription,
     alternates: { canonical: path },
     openGraph: {
@@ -59,6 +62,71 @@ export default async function ServiceDetailPage({
   const pageId = `${url}#webpage`;
   const serviceId = `${url}#service`;
 
+  const offerCatalogNames =
+    service.id === "development"
+      ? [
+          "Web Development",
+          "App Development",
+          "Ecommerce Development",
+          "Software Development",
+          "Dashboards",
+          "Web Applications",
+          "Management Systems",
+        ]
+      : service.id === "digital-marketing"
+        ? [
+            "Search Engine Optimization",
+            "Meta Ads",
+            "Google Ads",
+            "Social Media Marketing",
+            "Web Analytics & Data Tracking",
+            "Ecommerce Growth Marketing",
+          ]
+        : service.id === "ai"
+          ? [
+              "AI Applications",
+              "AI Chatbots",
+              "AI Voice Agents",
+              "Custom AI Solutions",
+              "Business Automation",
+            ]
+          : service.id === "design"
+            ? [
+                "Graphic Design",
+                "Illustration",
+                "App Design",
+                "UI/UX Design",
+                "Branding",
+              ]
+            : null;
+
+  const offerCatalogLabel =
+    service.id === "development"
+      ? "Development service groups"
+      : service.id === "digital-marketing"
+        ? "Digital Marketing service groups"
+        : service.id === "ai"
+          ? "AI service groups"
+          : service.id === "design"
+            ? "Design service groups"
+            : "";
+
+  const offerCatalog = offerCatalogNames
+    ? {
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: offerCatalogLabel,
+          itemListElement: offerCatalogNames.map((name) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name,
+            },
+          })),
+        },
+      }
+    : {};
+
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -76,11 +144,37 @@ export default async function ServiceDetailPage({
       {
         "@type": "Service",
         "@id": serviceId,
-        name: service.name,
+        name:
+          service.id === "development"
+            ? "Web, App & Software Development"
+            : service.id === "digital-marketing"
+              ? "Digital Marketing Services"
+              : service.id === "ai"
+                ? "AI Development Services"
+                : service.id === "design"
+                  ? "Design Services"
+                  : service.name,
         description: service.page.metaDescription,
         provider: { "@id": ORGANIZATION_ID },
         url,
-        serviceType: service.name,
+        serviceType:
+          service.id === "development"
+            ? "Web, App and Software Development Agency Services"
+            : service.id === "digital-marketing"
+              ? "Digital Marketing Agency Services"
+              : service.id === "ai"
+                ? "Artificial Intelligence Development Services"
+                : service.id === "design"
+                  ? "Graphic, Brand and UI/UX Design Services"
+                  : service.name,
+        areaServed:
+          service.id === "development" ||
+          service.id === "digital-marketing" ||
+          service.id === "ai" ||
+          service.id === "design"
+            ? { "@type": "Place", name: "Worldwide" }
+            : undefined,
+        ...offerCatalog,
         mainEntityOfPage: { "@id": pageId },
       },
       breadcrumbList([

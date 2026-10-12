@@ -83,7 +83,9 @@ const structuredData = {
     },
     breadcrumbList([
       { name: "Home", path: "/" },
-      { name: "Voice Agent", path },
+      { name: "Services", path: "/services" },
+      { name: "Artificial Intelligence", path: "/services/ai-development" },
+      { name: "AI Voice Agents", path },
     ]),
   ],
 };

@@ -6,11 +6,12 @@ import Link from "next/link";
 import { useState } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
-import { ContactCTA } from "@/components/sections/ContactCTA";
+import { ContactInvite } from "@/components/contact/ContactInvite";
 import { Footer } from "@/components/sections/Footer";
 import { Navbar } from "@/components/sections/Navbar";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { buildContactHref } from "@/lib/contact/paths";
 import { voiceAgent } from "@/lib/data/voice-agent";
 
 const VoiceDemo = dynamic(
@@ -48,7 +49,15 @@ export function VoiceAgentPage() {
         <UseCases />
         <Faq />
         <Related />
-        <ContactCTA defaultProjectType="Voice Agent" sectionIndex="07" />
+        <ContactInvite
+          sectionIndex="07"
+          heading="Tell us what callers need handled"
+          intro="Share the routine questions, intake fields and handoff rules you need. Do not send confidential credentials through the form."
+          ctaLabel="Discuss Your Project"
+          service="ai"
+          capability="AI Voice Agents"
+          source="voice-agent-page"
+        />
       </main>
       <Footer />
     </>
@@ -59,7 +68,7 @@ function Hero() {
   return (
     <section
       aria-labelledby="voice-hero-heading"
-      className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20"
+      className="surface-ink relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20"
     >
       <div aria-hidden className="build-grid fade-edges absolute inset-0" />
       <div
@@ -80,8 +89,26 @@ function Hero() {
               </Link>
             </li>
             <li aria-hidden>/</li>
+            <li>
+              <Link
+                href="/services"
+                className="transition-colors hover:text-white"
+              >
+                Services
+              </Link>
+            </li>
+            <li aria-hidden>/</li>
+            <li>
+              <Link
+                href="/services/ai-development"
+                className="transition-colors hover:text-white"
+              >
+                Artificial Intelligence
+              </Link>
+            </li>
+            <li aria-hidden>/</li>
             <li className="text-accent-soft" aria-current="page">
-              Voice Agent
+              Voice Agents
             </li>
           </ol>
         </nav>
@@ -106,15 +133,21 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={0.3} className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <MagneticButton href="#demo" analytics="voice-page-try-demo">
-            Try the live demo
-          </MagneticButton>
           <MagneticButton
-            href="#contact"
-            variant="ghost"
+            href={buildContactHref({
+              service: "ai",
+              capability: "AI Voice Agents",
+            })}
             analytics="voice-page-start-project"
           >
-            Discuss your use case
+            Discuss Your Voice Agent
+          </MagneticButton>
+          <MagneticButton
+            href="#demo"
+            variant="ghost"
+            analytics="voice-page-try-demo"
+          >
+            Try the Voice Demo
           </MagneticButton>
         </Reveal>
       </div>
@@ -126,7 +159,7 @@ function Intro() {
   return (
     <section
       aria-labelledby="voice-intro-heading"
-      className="relative border-t border-line py-16 md:py-20"
+      className="surface-page relative border-t border-line py-16 md:py-20"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <div className="mx-auto max-w-[720px] text-center">
@@ -150,7 +183,7 @@ function Intro() {
 
 function DemoSection() {
   return (
-    <section aria-labelledby="voice-demo-heading" className="relative pb-20 md:pb-28">
+    <section aria-labelledby="voice-demo-heading" className="surface-ink relative pb-20 md:pb-28">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <h2 id="voice-demo-heading" className="sr-only">
           Interactive voice agent demo
@@ -165,7 +198,7 @@ function Benefits() {
   return (
     <section
       aria-labelledby="voice-benefits-heading"
-      className="relative overflow-hidden border-y border-line py-24 md:py-36"
+      className="surface-soft relative overflow-hidden border-y border-line py-24 md:py-36"
     >
       <div aria-hidden className="build-grid fade-edges absolute inset-0 opacity-40" />
       <div
@@ -265,7 +298,7 @@ function CapabilityMark({ index }: { index: number }) {
   return (
     <span
       aria-hidden
-      className="inline-flex h-10 w-10 items-center justify-center border border-line-strong text-mist-2 transition-colors duration-500 group-hover:border-accent/60 group-hover:bg-accent-dim group-hover:text-accent-soft"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-strong text-mist-2 transition-colors duration-500 group-hover:border-accent/60 group-hover:bg-accent-dim group-hover:text-accent-soft"
     >
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         {CAPABILITY_MARKS[index] ?? CAPABILITY_MARKS[0]}
@@ -315,7 +348,7 @@ function HowItWorks() {
   return (
     <section
       aria-labelledby="voice-how-heading"
-      className="relative overflow-hidden border-y border-line py-24 md:py-36"
+      className="surface-page relative overflow-hidden border-y border-line py-24 md:py-36"
     >
       <div
         aria-hidden
@@ -384,7 +417,7 @@ function UseCases() {
   return (
     <section
       aria-labelledby="voice-use-heading"
-      className="relative overflow-hidden py-24 md:py-36"
+      className="surface-ink relative overflow-hidden py-24 md:py-36"
     >
       <div
         aria-hidden
@@ -497,10 +530,11 @@ function UseCases() {
 
 function Related() {
   const { related } = voiceAgent;
+  const items = [related.ai, related.chatbots, related.automation];
   return (
     <section
       aria-labelledby="voice-related-heading"
-      className="relative border-t border-line py-24 md:py-32"
+      className="surface-page relative border-t border-line py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index="06" label="Related" />
@@ -510,40 +544,44 @@ function Related() {
           text={related.title}
           className="text-h2 mt-10 max-w-[640px] font-semibold text-white"
         />
-        <Reveal delay={0.15} className="mt-10">
-          <Link
-            href={related.ai.href}
-            data-analytics="voice-related-ai-development"
-            className="group block max-w-[640px] border border-line bg-ink-2 p-7 transition-colors hover:border-accent/45 md:p-9"
-          >
-            <p className="t-label text-accent-soft">Service</p>
-            <h3 className="mt-3 text-[22px] font-semibold tracking-tight text-white transition-colors group-hover:text-accent-soft">
-              {related.ai.label}
-            </h3>
-            <p className="mt-3 text-[14.5px] leading-relaxed text-mist">
-              {related.ai.description}
-            </p>
-            <span className="mt-6 inline-flex items-center gap-2 text-[14px] font-medium text-mist transition-colors group-hover:text-white">
-              Explore AI Development
-              <svg
-                aria-hidden
-                width="12"
-                height="12"
-                viewBox="0 0 14 14"
-                fill="none"
-                className="text-accent transition-transform group-hover:translate-x-0.5"
+        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
+          {items.map((item, i) => (
+            <Reveal key={item.href} delay={0.1 + i * 0.05} className="surface-card rounded-card border border-line bg-white">
+              <Link
+                href={item.href}
+                data-analytics={`voice-related-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
+                className="group flex h-full flex-col rounded-card p-7 transition-colors hover:border-line-strong md:p-9"
               >
-                <path
-                  d="M1 7h11M8 2.5 12.5 7 8 11.5"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
-          </Link>
-        </Reveal>
+                <p className="t-label text-accent-soft">Service</p>
+                <h3 className="mt-3 text-[20px] font-semibold tracking-tight text-white transition-colors group-hover:text-accent-soft">
+                  {item.label}
+                </h3>
+                <p className="mt-3 flex-1 text-[14.5px] leading-relaxed text-mist">
+                  {item.description}
+                </p>
+                <span className="mt-6 inline-flex items-center gap-2 text-[14px] font-medium text-mist transition-colors group-hover:text-white">
+                  Explore
+                  <svg
+                    aria-hidden
+                    width="12"
+                    height="12"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    className="text-accent transition-transform group-hover:translate-x-0.5"
+                  >
+                    <path
+                      d="M1 7h11M8 2.5 12.5 7 8 11.5"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -556,7 +594,7 @@ function Faq() {
     <section
       id="faq"
       aria-labelledby="voice-faq-heading"
-      className="relative scroll-mt-20 border-t border-line py-24 md:py-36"
+      className="surface-soft relative scroll-mt-20 border-t border-line py-24 md:py-36"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12">

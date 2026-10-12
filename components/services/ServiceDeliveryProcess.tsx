@@ -24,8 +24,9 @@ export function ServiceDeliveryProcess({
 
   return (
     <section
+      id="shopify-process"
       aria-labelledby="service-delivery-heading"
-      className="relative border-y border-line py-24 md:py-32"
+      className="surface-soft relative scroll-mt-20 border-y border-line py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index={sectionIndex} label="How we work" />
@@ -128,7 +129,7 @@ export function ServiceDeliveryProcess({
             id="delivery-panel"
             role="tabpanel"
             aria-labelledby={`delivery-tab-${active.id}`}
-            className="build-grid relative mt-14 min-h-[420px] overflow-hidden border border-line p-10 xl:p-14"
+            className="media-frame build-grid relative mt-14 min-h-[420px] border border-line p-10 xl:p-14"
           >
             <div
               aria-hidden
@@ -282,7 +283,7 @@ export function ServiceDeliveryProcess({
           })}
         </div>
 
-        <Reveal y={28} className="relative mt-20 overflow-hidden border border-line p-8 md:p-12">
+        <Reveal y={28} className="relative mt-20 overflow-hidden rounded-panel border border-line p-8 md:p-12">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"

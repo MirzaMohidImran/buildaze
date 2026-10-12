@@ -27,7 +27,7 @@ export function organizationNode() {
     description: site.description,
     logo: {
       "@type": "ImageObject",
-      url: `${site.url}/icon.svg`,
+      url: `${site.url}/Logo/favicon.svg`,
     },
     sameAs,
   };

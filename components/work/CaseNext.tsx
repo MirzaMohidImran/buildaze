@@ -11,7 +11,7 @@ export function CaseNext({ next }: { next: CaseStudy }) {
   return (
     <section
       aria-labelledby="case-next-heading"
-      className="relative py-24 md:py-32"
+      className="surface-page relative py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index="05" label="Next project" />
@@ -26,7 +26,7 @@ export function CaseNext({ next }: { next: CaseStudy }) {
           <Link
             href={`/work/${next.slug}`}
             data-analytics={`case-next-${next.id}`}
-            className="group grid grid-cols-1 overflow-hidden border border-line transition-colors hover:border-line-strong lg:grid-cols-12"
+            className="group grid grid-cols-1 overflow-hidden rounded-panel border border-line transition-colors hover:border-line-strong lg:grid-cols-12"
           >
             <div className="border-b border-line lg:col-span-7 lg:border-r lg:border-b-0">
               <CaseVisual study={next} />

@@ -1,3 +1,10 @@
+import { aiLeaves } from "./ai-leaves";
+import { aiPageContent } from "./ai-page";
+import { categoryOverviews } from "./category-overviews";
+import { designLeaves } from "./design-leaves";
+import { digitalMarketingLeaves } from "./digital-marketing-leaves";
+import { shopifyPageContent } from "./shopify-page";
+
 export interface ServiceFaq {
   question: string;
   answer: string;
@@ -21,12 +28,36 @@ export interface ServiceTrustLogo {
   src: string;
 }
 
+/** Post-hero logo strip — clients and platforms Buildaze works with. */
+export interface ServiceLogoStripItem {
+  name: string;
+  /**
+   * Authentic logo asset under /public (official / Simple Icons path).
+   * Prefer real brand files — do not invent marks in code.
+   */
+  src?: string;
+  /**
+   * `icon` = brand mark + name label.
+   * `wordmark` = full logo artwork (no extra text).
+   */
+  mark?: "icon" | "wordmark";
+  /** Optional link (e.g. case study or partner page). */
+  href?: string;
+}
+
+export interface ServiceLogoStripContent {
+  label: string;
+  items: ServiceLogoStripItem[];
+}
+
 export interface ServiceSelectedCase {
   id: string;
   index: string;
   category: string;
   title: string;
   description: string;
+  /** One-line relevance, e.g. "This project involved performance optimization." */
+  relevance?: string;
   /** Optional large metric callout, e.g. performance score. */
   outcome?: { value: string; label: string };
   tags: string[];
@@ -52,9 +83,15 @@ export interface ServiceSelectedWork {
 
 export interface ServiceProblem {
   index: string;
+  /** Stable id for analytics and enquiry deep links. */
+  id?: string;
   name: string;
   title: string;
   description: string;
+  /** Buyer-facing service group label(s). */
+  serviceLabel?: string;
+  /** Deep link into the Shopify enquiry with problem context. */
+  enquiryHref?: string;
 }
 
 export interface ServiceProblemsContent {
@@ -74,9 +111,16 @@ export interface ServiceCapability {
   name: string;
   title: string;
   description: string;
+  /** Who this service group is for. */
+  bestFor?: string;
+  /** Important scope boundaries (honest limitations). */
+  boundaries?: string;
   items: string[];
   cta: string;
   href: string;
+  /** Optional specialist-page link shown beside the primary CTA. */
+  detailHref?: string;
+  detailLabel?: string;
 }
 
 export interface ServiceCapabilitiesContent {
@@ -252,6 +296,8 @@ export interface ServicePageContent {
   /** Hero */
   headline: string;
   subheadline: string;
+  /** Optional client / collaborator logos shown directly after the hero. */
+  logoStrip?: ServiceLogoStripContent;
   /** Optional trust / proof section rendered after the hero. */
   trust?: ServiceTrustContent;
   /** Optional selected work section (e.g. Shopify case studies). */
@@ -296,6 +342,8 @@ export interface ServicePageContent {
   faqCtaHref?: string;
 }
 
+export type ServiceRole = "category" | "detail";
+
 export interface Service {
   id: string;
   slug: string;
@@ -306,6 +354,11 @@ export interface Service {
   path?: string;
   /** Legacy paths that should permanently redirect to `path` (or `/services/${slug}`). */
   redirectsFrom?: string[];
+  /**
+   * Primary nav/hub/homepage categories vs preserved detail pages.
+   * Defaults to category when omitted on new records.
+   */
+  role?: ServiceRole;
   index: string;
   name: string;
   shortName: string;
@@ -317,10 +370,13 @@ export interface Service {
   /** Optional label above the flow diagram. Defaults to "How it flows". */
   flowLabel?: string;
   cta: string;
+  /** Optional related service ids for the related-services section. */
+  relatedServiceIds?: string[];
   page: ServicePageContent;
 }
 
-export const services: Service[] = [
+/** Preserved specialist + detail records (AI, Shopify, Web, SaaS, Ecommerce). */
+const legacyServices: Service[] = [
   {
     id: "ai",
     slug: "ai-development",
@@ -458,6 +514,7 @@ export const services: Service[] = [
     ],
     flow: ["User", "Product", "Billing", "Analytics", "Infrastructure"],
     cta: "Explore SaaS Development",
+    relatedServiceIds: ["development", "web", "ai", "ecommerce"],
     page: {
       metaTitle: "SaaS Development Services | Multi-Tenant SaaS Products",
       metaDescription:
@@ -567,6 +624,7 @@ export const services: Service[] = [
     ],
     flow: ["Brand", "UX", "Frontend", "Backend", "Deployment"],
     cta: "Explore Web Development",
+    relatedServiceIds: ["development", "saas", "ecommerce", "shopify"],
     page: {
       metaTitle: "Web Development Services | Fast, SEO-Ready Websites & Apps",
       metaDescription:
@@ -676,6 +734,7 @@ export const services: Service[] = [
     ],
     flow: ["Discovery", "PDP", "Checkout", "Retention"],
     cta: "Explore Ecommerce Development",
+    relatedServiceIds: ["development", "shopify", "web", "saas"],
     page: {
       metaTitle: "Ecommerce Development Services | Fast, Conversion-Ready Stores",
       metaDescription:
@@ -687,16 +746,16 @@ export const services: Service[] = [
       overview: [
         "We build, redesign, optimize and migrate ecommerce stores with a practical focus on technical performance, product-page UX, checkout clarity, analytics and SEO preservation.",
         "The strongest ecommerce builds don't rely on a theme alone — they connect storefront speed, merchandising, platform constraints, integrations and migration planning into one launch-ready system.",
-        "We scope platform choices carefully: standard storefront when speed and operational simplicity matter most; headless when you need custom frontends, advanced content or tighter performance control. Looking specifically for Shopify development? See our Shopify Growth Agency page for Shopify-focused builds, CRO, performance, migrations and Plus support.",
+        "We scope platform choices carefully: standard storefront when speed and operational simplicity matter most; headless when you need custom frontends, advanced content or tighter performance control. Looking specifically for Shopify design, development, migrations, apps or ongoing support? Explore Buildaze’s dedicated Shopify service hub.",
       ],
       solutionsTitle: "What we build",
       solutions: [
         "Custom Shopify storefronts",
-        "Shopify Plus & enterprise workflows",
+        "Shopify Plus-aware enterprise workflows where plan-appropriate",
         "Headless commerce (Hydrogen / Next.js / Medusa)",
-        "Platform migrations with SEO preservation",
+        "Platform migrations with SEO risk management",
         "Custom Shopify apps & integrations",
-        "CRO & Core Web Vitals optimization",
+        "CRO and storefront performance improvements",
       ],
       deliverables: [
         "Storefront performance targets defined and tested before launch",
@@ -777,947 +836,104 @@ export const services: Service[] = [
       "/services/shopify-growth-agency",
     ],
     index: "05",
-    name: "Shopify Growth Agency",
+    name: "Shopify",
     shortName: "Shopify",
     oneLiner:
-      "Custom Shopify development, redesigns, CRO, performance, migrations, and ongoing growth.",
+      "Shopify design, development, migrations, apps, integrations and ongoing support.",
     description:
-      "Buildaze is a Shopify development and growth agency helping ecommerce brands design, build, redesign, migrate, and optimize high-performing Shopify stores — combining custom development, conversion strategy, performance, integrations, and ongoing support.",
+      "Store design and development, migrations, integrations, advanced commerce and ongoing Shopify support.",
     capabilities: [
-      "Custom Shopify & theme development",
-      "Redesign, CRO & performance",
-      "Migrations with SEO planning",
-      "Shopify Plus & ongoing support",
+      "Store Design & Development",
+      "Migrations & Replatforming",
+      "App Development & System Integrations",
+      "Headless Commerce & Enterprise B2B",
+      "Retainers & Ongoing Support",
     ],
-    flow: ["Audit", "Build", "Convert", "Grow"],
-    flowLabel:
-      "No-obligation consultation · Clear project scope · Built around your growth goals",
+    flow: ["Understand", "Scope", "Build", "Launch", "Support"],
+    flowLabel: "Clear scope · Progress reviews · Practical handover",
     cta: "Explore Shopify Services",
-    page: {
-      metaTitle: "Shopify Development & Growth Agency | Buildaze",
-      metaDescription:
-        "Buildaze is a Shopify development and growth agency for custom stores, redesigns, CRO, performance optimization, migrations, Shopify Plus, and ongoing support.",
-      ogImage: "/og/shopify-growth-agency-og.png",
-      entityLabel: "Shopify Development & Growth Agency",
-      entityDefinition:
-        "Buildaze is a Shopify development and growth agency helping ecommerce brands design, build, redesign, migrate, and optimize high-performing Shopify stores. Our work combines custom Shopify development, conversion strategy, performance optimization, integrations, and ongoing ecommerce support.",
-      headline: "Shopify stores built to convert, scale, and stay fast.",
-      subheadline:
-        "Buildaze is a Shopify development agency for brands that have outgrown templates, slow storefronts, and conversion leaks — combining custom development with CRO, performance, migrations, and ongoing growth support.",
-      trust: {
-        eyebrow: "Trusted Shopify expertise",
-        headline: "Built for brands that take ecommerce seriously.",
-        body: "From new storefronts to complex redesigns, migrations, CRO, and custom Shopify development, we help ecommerce brands build faster, stronger, and more conversion-focused shopping experiences.",
-        stats: [
-          { value: "50+", label: "Projects shipped across Buildaze" },
-          { value: "CRO + Dev", label: "One growth-focused team" },
-          { value: "Liquid", label: "Custom theme development" },
-          { value: "Shopify Plus", label: "Scalable development support" },
-        ],
-        closing:
-          "Trusted by ecommerce brands for Shopify development, redesigns, optimization, migrations, and ongoing growth.",
-        trustedBy: [
-          "Shopify store builds",
-          "Shopify Plus development",
-          "Theme redesigns",
-          "Platform migrations",
-          "CRO & conversion work",
-          "Custom Liquid & apps",
-          "Headless Hydrogen",
-          "Ongoing growth retainers scoped fixed",
-        ],
-      },
-      selectedWork: {
-        eyebrow: "Shopify case studies",
-        headline: "Selected Shopify work",
-        intro: [
-          "Every Shopify project starts with a different business problem — slow performance, poor conversion, an outdated storefront, limited functionality, or a platform that no longer supports growth.",
-          "Here are selected examples of how we turn those problems into stronger ecommerce experiences. Metrics shown are verified project outcomes only.",
-        ],
-        cases: [
-          {
-            id: "shopify-performance",
-            index: "01",
-            category: "Shopify Performance + CRO",
-            title: "From a slow storefront to a performance-focused shopping experience.",
-            description:
-              "We optimized the storefront architecture, theme code, assets, and front-end experience to improve speed without compromising the brand experience. Verified outcome: performance score moved from 28 to 91.",
-            outcome: { value: "28 → 91", label: "Performance score" },
-            tags: [
-              "Performance Optimization",
-              "Theme Cleanup",
-              "Mobile Experience",
-              "Conversion-Focused Improvements",
-            ],
-            cta: "View Case Study",
-            href: "/work/shopify-performance-optimization",
-            visual: "performance",
-            image: "/work/shopify-performance/cover.webp",
-            imageAlt: "Shopify performance optimization storefront cover",
-          },
-          {
-            id: "shopify-full-build",
-            index: "02",
-            category: "Custom Shopify Development",
-            title: "A stronger ecommerce foundation built around the brand.",
-            description:
-              "We developed a complete Shopify storefront with a focus on usability, product discovery, mobile shopping, performance, and a cleaner purchase journey.",
-            tags: [
-              "Custom Shopify Build",
-              "Storefront Development",
-              "Product Page Experience",
-              "Custom Sections",
-              "Mobile Optimization",
-              "Performance Improvements",
-            ],
-            cta: "Discuss a Similar Build",
-            href: "#contact",
-            visual: "build",
-            image: "/work/shopify-full-build/cover.webp",
-            imageAlt: "Custom Shopify storefront build cover",
-          },
-          {
-            id: "shopify-redesign",
-            index: "03",
-            category: "Shopify Redesign + CRO",
-            title: "Turning an outdated storefront into a clearer buying experience.",
-            description:
-              "We reworked the storefront around customer behavior — improving visual hierarchy, product discovery, trust, mobile usability, and the path from landing page to checkout.",
-            outcome: { value: "Before → After", label: "Store transformation" },
-            tags: [
-              "Store Redesign",
-              "UX Improvements",
-              "Conversion Strategy",
-              "Product Page Optimization",
-              "Responsive Development",
-            ],
-            cta: "Discuss a Redesign",
-            href: "#contact",
-            visual: "redesign",
-            image: "/work/shopify-redesign/cover.png",
-            imageAlt: "Shopify store redesign cover",
-          },
-        ],
-      },
-      problems: {
-        eyebrow: "Shopify problems we solve",
-        headline: "Shopify problems we solve when the store holds growth back.",
-        intro: [
-          "A Shopify store can look good and still lose revenue through slow performance, weak product pages, poor mobile UX, limited functionality, or unnecessary friction across the buying journey.",
-          "We help identify what is getting in the way — then design and build the right solution around your customers, operations, and growth goals.",
-        ],
-        problems: [
-          {
-            index: "01",
-            name: "Low conversion rate",
-            title: "Traffic is coming in, but too few visitors are buying.",
-            description:
-              "We improve the customer journey across landing pages, collections, product pages, cart, and checkout to reduce friction and make purchasing easier.",
-          },
-          {
-            index: "02",
-            name: "Outdated storefront",
-            title: "Your brand has grown, but your Shopify store has not.",
-            description:
-              "We redesign outdated storefronts into stronger ecommerce experiences that better reflect the quality of the brand and make products easier to discover and buy.",
-          },
-          {
-            index: "03",
-            name: "Slow Shopify store",
-            title:
-              "Apps, theme code, and unnecessary complexity are hurting performance.",
-            description:
-              "We identify performance bottlenecks and improve theme architecture, scripts, media, and front-end delivery without stripping away the experience your brand needs.",
-          },
-          {
-            index: "04",
-            name: "Poor mobile experience",
-            title:
-              "Your customers shop on mobile, but your store still feels desktop-first.",
-            description:
-              "We optimize navigation, product discovery, page hierarchy, interactions, cart behavior, and responsive layouts around how customers actually shop on smaller screens.",
-          },
-          {
-            index: "05",
-            name: "Limited Shopify functionality",
-            title:
-              "Your theme or app stack cannot support what the business needs next.",
-            description:
-              "We build custom Shopify functionality, Liquid components, integrations, and tailored storefront experiences when off-the-shelf solutions are no longer enough.",
-          },
-          {
-            index: "06",
-            name: "Difficult migration or replatform",
-            title:
-              "You need to move to Shopify without creating new business problems.",
-            description:
-              "We plan migrations around products, customers, content, SEO, redirects, analytics, integrations, and launch QA so the transition is controlled rather than disruptive.",
-          },
-        ],
-        closingTitle:
-          "Not sure whether you need a redesign, CRO work, custom development, or a full rebuild?",
-        closingBody:
-          "We start by identifying the problem before recommending the solution.",
-        ctaLabel: "Discuss Your Shopify Store",
-        ctaHref: "#contact",
-      },
-      capabilities: {
-        eyebrow: "Shopify development & growth services",
-        headline:
-          "Shopify development & growth services for stores that need to convert and scale.",
-        intro: [
-          "A Shopify development agency should do more than install a theme. Buildaze designs, develops, redesigns, migrates, and optimizes Shopify stores — including custom Liquid development, CRO, performance, integrations, Shopify Plus work, and ongoing support.",
-          "Choose the capability you need today — without limiting what your store can become tomorrow.",
-        ],
-        capabilities: [
-          {
-            id: "store-development",
-            index: "01",
-            name: "Shopify Store Development",
-            title: "Build the right foundation from day one.",
-            description:
-              "Custom Shopify store development designed around your brand, products, customers, and operational requirements — not forced into a generic template. Includes theme architecture, product and collection structure, responsive UX, and integrations.",
-            items: [
-              "Custom Storefront Development",
-              "Theme Setup & Customization",
-              "Product & Collection Architecture",
-              "Responsive Development",
-              "App & Third-Party Integrations",
-            ],
-            cta: "Explore Shopify Development",
-            href: "#contact",
-          },
-          {
-            id: "redesign",
-            index: "02",
-            name: "Shopify Store Redesign",
-            title: "When the business has evolved but the storefront has not.",
-            description:
-              "Shopify store redesign focused on stronger visual hierarchy, easier product discovery, better mobile usability, clearer trust signals, and a more intentional purchase journey — without redesigning for aesthetics alone.",
-            items: [
-              "UX & UI Redesign",
-              "Navigation Improvements",
-              "Product Page Redesign",
-              "Mobile Optimization",
-              "Custom Theme Development",
-            ],
-            cta: "Explore Store Redesign",
-            href: "#contact",
-          },
-          {
-            id: "cro",
-            index: "03",
-            name: "Shopify CRO",
-            title: "Turn more of your existing traffic into customers.",
-            description:
-              "Shopify conversion rate optimization analyzes the purchase journey to identify friction across landing pages, collections, product pages, cart, navigation, trust, and mobile experience — then prioritizes changes that make buying clearer.",
-            items: [
-              "Conversion Audits",
-              "Customer Journey Analysis",
-              "PDP Optimization",
-              "Cart & Checkout Friction",
-              "A/B Test Recommendations",
-            ],
-            cta: "Explore Shopify CRO",
-            href: "#contact",
-          },
-          {
-            id: "performance",
-            index: "04",
-            name: "Shopify Performance Optimization",
-            title: "A faster storefront without stripping away the experience.",
-            description:
-              "Shopify speed and performance optimization addresses heavy theme code, scripts, apps, media, rendering, and front-end bottlenecks that slow Core Web Vitals and the shopping experience.",
-            items: [
-              "Theme Performance Audit",
-              "JavaScript & Asset Optimization",
-              "App Impact Review",
-              "Image Optimization",
-              "Core Web Vitals Improvements",
-            ],
-            cta: "Improve Store Performance",
-            href: "#contact",
-          },
-          {
-            id: "custom-dev",
-            index: "05",
-            name: "Custom Shopify Development",
-            title: "When your store needs more than an off-the-shelf theme or app.",
-            description:
-              "Custom Shopify development using Liquid, custom sections, Admin and Storefront APIs, integrations, and app development when native features or existing apps cannot support the business requirement.",
-            items: [
-              "Custom Liquid Development",
-              "Reusable Shopify Sections",
-              "Custom Product Experiences",
-              "API Integrations",
-              "Custom Shopify Apps",
-            ],
-            cta: "Discuss Custom Development",
-            href: "#contact",
-          },
-          {
-            id: "migration",
-            index: "06",
-            name: "Shopify Migration",
-            title: "Move to Shopify without leaving critical business assets behind.",
-            description:
-              "Structured Shopify migration from platforms such as WooCommerce, BigCommerce, Magento, and other ecommerce systems — planning products, customers, content, redirects, SEO, analytics, and launch QA.",
-            items: [
-              "Product & Customer Migration",
-              "Content Migration",
-              "URL & Redirect Mapping",
-              "SEO Preservation",
-              "Analytics & Integration Setup",
-            ],
-            cta: "Explore Shopify Migration",
-            href: "#contact",
-          },
-          {
-            id: "plus",
-            index: "07",
-            name: "Shopify Plus Development",
-            title:
-              "Advanced Shopify development for stores operating at greater scale.",
-            description:
-              "Shopify Plus development support for larger ecommerce teams — tailored storefront experiences, integrations, automation, international commerce (Markets), checkout extensibility, and scalable architecture.",
-            items: [
-              "Shopify Plus Development",
-              "Advanced Integrations",
-              "International Commerce",
-              "Automation & Workflows",
-              "Scalable Storefront Architecture",
-            ],
-            cta: "Explore Shopify Plus",
-            href: "#contact",
-          },
-          {
-            id: "support",
-            index: "08",
-            name: "Ongoing Shopify Support",
-            title: "Your Shopify store should keep improving after launch.",
-            description:
-              "Ongoing Shopify development and support for ecommerce teams that need continued optimization, testing, maintenance, and new functionality as customer needs and business priorities evolve.",
-            items: [
-              "Ongoing Development",
-              "CRO Improvements",
-              "Performance Monitoring",
-              "Feature Development",
-              "Technical Support",
-            ],
-            cta: "Discuss Ongoing Support",
-            href: "#contact",
-          },
-        ],
-        closingTitle: "Not sure which Shopify service you need?",
-        closingBody:
-          "Tell us what is happening with your store. We will help identify the right starting point.",
-        ctaLabel: "Talk to a Shopify Expert",
-        ctaHref: "#contact",
-      },
-      deliveryProcess: {
-        eyebrow: "Our Shopify development process",
-        headline:
-          "Our Shopify development process — from first conversation to launch and beyond.",
-        intro: [
-          "Great Shopify projects are not built by jumping straight into development.",
-          "We start by understanding the business, customers, current challenges, and growth goals — then move through strategy, design, development, testing, and launch with a clear plan at every stage.",
-        ],
-        steps: [
-          {
-            id: "discover",
-            index: "01",
-            shortName: "Discover",
-            name: "Discovery & Audit",
-            title: "Understand the business before touching the store.",
-            description:
-              "We review your current Shopify setup, customer journey, storefront experience, analytics, theme, apps, technical limitations, and business priorities.",
-            itemsLabel: "What we look at",
-            items: [
-              "Business & Growth Goals",
-              "Storefront & UX",
-              "Conversion Friction",
-              "Theme & App Stack",
-              "Performance",
-              "Analytics & Tracking",
-              "Competitor Landscape",
-            ],
-            outcome:
-              "A clear understanding of what needs to change — and why.",
-          },
-          {
-            id: "strategy",
-            index: "02",
-            shortName: "Strategy",
-            name: "Strategy & Scope",
-            title: "Define the right solution before development begins.",
-            description:
-              "We translate the audit into a practical roadmap covering priorities, functionality, user journeys, technical requirements, deliverables, and project milestones.",
-            itemsLabel: "What we define",
-            items: [
-              "Project Scope",
-              "Customer Journey",
-              "Feature Requirements",
-              "Technical Approach",
-              "Integrations",
-              "Milestones & Deliverables",
-            ],
-            outcome:
-              "Everyone knows what is being built, how it will work, and what success looks like.",
-          },
-          {
-            id: "design",
-            index: "03",
-            shortName: "Design",
-            name: "UX & Design",
-            title: "Design around how customers actually shop.",
-            description:
-              "We shape the storefront experience around product discovery, buying intent, mobile behavior, trust, usability, and conversion — while staying aligned with the brand.",
-            itemsLabel: "What we work on",
-            items: [
-              "Information Architecture",
-              "Navigation",
-              "Collection Experience",
-              "Product Pages",
-              "Cart Experience",
-              "Mobile UX",
-              "Visual Design",
-            ],
-            outcome:
-              "A storefront direction that balances brand, usability, and ecommerce performance.",
-          },
-          {
-            id: "build",
-            index: "04",
-            shortName: "Build",
-            name: "Shopify Development",
-            title:
-              "Turn the approved direction into a fast, scalable Shopify experience.",
-            description:
-              "Our developers build the storefront using clean, maintainable Shopify architecture — including custom Liquid, reusable sections, integrations, and functionality where required.",
-            itemsLabel: "What we build",
-            items: [
-              "Theme Development",
-              "Custom Liquid",
-              "Reusable Sections",
-              "App Integrations",
-              "Custom Functionality",
-              "Responsive Front-End",
-              "Tracking Implementation",
-            ],
-            outcome:
-              "A production-ready Shopify store built around the requirements of the business.",
-          },
-          {
-            id: "validate",
-            index: "05",
-            shortName: "QA",
-            name: "QA & Validation",
-            title: "Test the experience before customers do.",
-            description:
-              "Before launch, we test the storefront across devices, browsers, customer journeys, integrations, analytics, performance, and critical ecommerce functionality.",
-            itemsLabel: "What we validate",
-            items: [
-              "Responsive Experience",
-              "Product & Variant Logic",
-              "Cart & Checkout Flow",
-              "Forms & Integrations",
-              "Analytics & Tracking",
-              "Performance",
-              "Browser Compatibility",
-            ],
-            outcome: "A thoroughly tested storefront ready for launch.",
-          },
-          {
-            id: "launch",
-            index: "06",
-            shortName: "Launch",
-            name: "Launch & Optimize",
-            title: "Launch is the beginning, not the finish line.",
-            description:
-              "We manage the final deployment, migration requirements, redirects, tracking checks, and post-launch validation — then support ongoing improvements as the store grows.",
-            itemsLabel: "What happens next",
-            items: [
-              "Launch Support",
-              "Redirect Validation",
-              "Analytics Checks",
-              "Performance Monitoring",
-              "CRO Improvements",
-              "New Features",
-              "Ongoing Shopify Support",
-            ],
-            outcome:
-              "A stable launch with a clear path for continued improvement.",
-          },
-        ],
-        closingTitle: "Already have a Shopify store?",
-        closingBody:
-          "You do not need to know whether the answer is a redesign, CRO project, performance fix, or complete rebuild. Start with the problem. We will help determine the right path.",
-        ctaLabel: "Start a Shopify Conversation",
-        ctaHref: "#contact",
-      },
-      why: {
-        eyebrow: "Why ecommerce brands choose Buildaze",
-        headline:
-          "Why ecommerce brands choose Buildaze for Shopify development and growth.",
-        intro: [
-          "A storefront can be technically correct and still underperform.",
-          "That is why Buildaze brings ecommerce strategy, conversion thinking, design, and development into the same process — so decisions are made around the business, not just the build.",
-        ],
-        differentiators: [
-          {
-            id: "ecommerce-thinking",
-            index: "01",
-            name: "Ecommerce Thinking",
-            summary: "We think beyond the development ticket.",
-            title: "We think beyond the development ticket.",
-            description:
-              "Every design and development decision is considered in the context of product discovery, buying behavior, conversion friction, mobile experience, and the wider customer journey. We are not simply asking “Can we build this?” We are also asking “Should we build it this way?”",
-            panelStatement:
-              "The right question is not only whether we can build it — but whether this is the right way to help customers buy.",
-            panelNote:
-              "Product discovery, buying behavior, friction, and mobile — before the ticket.",
-          },
-          {
-            id: "custom-simple",
-            index: "02",
-            name: "Custom Without Unnecessary Complexity",
-            summary: "Custom where it creates value. Simple where it should stay simple.",
-            title:
-              "Custom where it creates value. Simple where it should stay simple.",
-            description:
-              "Not every problem needs another app, complicated architecture, or complete rebuild. We use Shopify's native capabilities wherever they make sense and introduce custom development when the business genuinely requires it. The result is a storefront that is easier to manage, maintain, and evolve.",
-            panelStatement:
-              "Custom code should create leverage — not another layer of debt your team has to live with.",
-            panelNote:
-              "Native Shopify first. Custom only when the business truly needs it.",
-          },
-          {
-            id: "cro-dev",
-            index: "03",
-            name: "CRO + Development Together",
-            summary: "Performance is considered before the store goes live.",
-            title: "Performance is considered before the store goes live.",
-            description:
-              "Conversion optimization is not treated as something that gets added after development. Navigation, page hierarchy, product information, trust, mobile UX, cart behavior, and performance are considered throughout the project. The goal is not simply to launch a better-looking store. It is to build a better buying experience.",
-            panelStatement:
-              "A beautiful storefront means very little if customers struggle to buy from it.",
-            panelNote:
-              "Conversion is designed into the build — not bolted on after launch.",
-          },
-          {
-            id: "clean-builds",
-            index: "04",
-            name: "Clean, Maintainable Builds",
-            summary:
-              "Your Shopify store should not become harder to manage every time it grows.",
-            title:
-              "Your Shopify store should not become harder to manage every time it grows.",
-            description:
-              "We build reusable sections, structured theme components, and maintainable functionality so your internal team can operate the storefront without depending on a developer for every small change. When custom code is required, it should solve a problem — not create another one.",
-            panelStatement:
-              "A store that grows should stay operable — not become a maze only one developer understands.",
-            panelNote:
-              "Reusable sections. Structured components. Changes your team can own.",
-          },
-          {
-            id: "communication",
-            index: "05",
-            name: "Clear Communication",
-            summary: "You should always know what is happening with your project.",
-            title: "You should always know what is happening with your project.",
-            description:
-              "We define scope, responsibilities, milestones, and deliverables before development begins and keep communication clear throughout the project. No disappearing developers. No unclear handoffs. No surprise functionality decisions at launch.",
-            panelStatement:
-              "Clarity is part of the deliverable — scope, milestones, and ownership, not radio silence.",
-            panelNote:
-              "No disappearing developers. No surprise decisions at launch.",
-          },
-          {
-            id: "what-comes-next",
-            index: "06",
-            name: "Built for What Comes Next",
-            summary: "We do not treat launch as the end of the relationship.",
-            title: "We do not treat launch as the end of the relationship.",
-            description:
-              "Ecommerce businesses change. New products launch. Campaigns evolve. Integrations change. Conversion opportunities appear. Buildaze can continue supporting development, optimization, testing, and new functionality as your Shopify business grows.",
-            panelStatement:
-              "Launch is a milestone — not the moment we stop caring about the business behind the store.",
-            panelNote:
-              "Ongoing development, CRO, testing, and new features as you grow.",
-          },
-        ],
-        closingTitle:
-          "The difference is not simply how we build Shopify stores.",
-        closingBody:
-          "It is how we think about the business they are being built for.",
-        pillars: [
-          "Strategy",
-          "Conversion",
-          "Design",
-          "Development",
-          "Performance",
-        ],
-        closingNote: "One Shopify-focused team.",
-        ctaLabel: "Work With Buildaze",
-        ctaHref: "#contact",
-      },
-      clientProof: {
-        eyebrow: "Client reviews",
-        headline: "Client reviews from Shopify and ecommerce work.",
-        intro: [
-          "The strongest proof of our work comes from the businesses we have helped build, improve, and grow.",
-          "Below is feedback tied to real project contexts from Buildaze’s existing client communications. Additional third-party review URLs (Clutch, Upwork, LinkedIn) should be linked as they are verified.",
-        ],
-        featured: {
-          id: "featured-northway",
-          quote:
-            "Our Shopify store was outdated and slow. Buildaze rebuilt it headless in 7 weeks. Conversion rate went up 18% in the first month — and communication stayed clear the entire way.",
-          name: "David Kim",
-          role: "Ecommerce Director",
-          brand: "Northway",
-          project: "Headless Shopify rebuild",
-          source: "direct",
-          href: "#contact",
-        },
-        reviews: [],
-        categoriesLabel: "Project types reflected in client feedback",
-        categories: [
-          "Shopify Development",
-          "Store Redesigns",
-          "Custom Functionality",
-          "Performance Optimization",
-          "CRO",
-          "Ongoing Support",
-        ],
-        closingTitle: "Have a Shopify project in mind?",
-        closingBody:
-          "Tell us what you are trying to improve and we will help you identify the clearest next step.",
-        ctaLabel: "Discuss Your Shopify Project",
-        ctaHref: "#contact",
-      },
-      ecosystem: {
-        eyebrow: "Shopify technologies & integrations",
-        headline:
-          "Shopify technologies & integrations your ecommerce business already depends on.",
-        intro: [
-          "A Shopify store rarely operates alone.",
-          "We connect storefronts with the marketing, analytics, customer experience, subscription, operations, and growth tools that keep ecommerce businesses moving.",
-          "From native Shopify capabilities — Liquid, metafields, metaobjects, Functions, Markets, Checkout Extensibility, and Storefront APIs — to custom integrations, we build the technical connections around how your business actually works.",
-        ],
-        groups: [
-          {
-            id: "shopify-core",
-            index: "01",
-            name: "Shopify Core",
-            shortName: "Core",
-            items: [
-              "Shopify",
-              "Shopify Plus",
-              "Liquid",
-              "Shopify Functions",
-              "Metafields & Metaobjects",
-              "Shopify Markets",
-              "Checkout Extensibility",
-              "Storefront APIs",
-              "Shopify Apps",
-            ],
-          },
-          {
-            id: "marketing",
-            index: "02",
-            name: "Marketing & Retention",
-            shortName: "Marketing",
-            items: [
-              "Klaviyo",
-              "Meta",
-              "Google Ads",
-              "Email & SMS Integrations",
-              "Customer Segmentation",
-              "Lifecycle Marketing Integrations",
-            ],
-          },
-          {
-            id: "analytics",
-            index: "03",
-            name: "Analytics & Tracking",
-            shortName: "Analytics",
-            items: [
-              "Google Analytics 4",
-              "Google Tag Manager",
-              "Meta Pixel",
-              "Conversion Tracking",
-              "Event Tracking",
-              "Ecommerce Measurement",
-            ],
-          },
-          {
-            id: "cx",
-            index: "04",
-            name: "Customer Experience",
-            shortName: "CX",
-            items: [
-              "Gorgias",
-              "Judge.me",
-              "Recharge",
-              "Subscriptions",
-              "Reviews & Loyalty",
-              "Customer Account Experiences",
-            ],
-          },
-          {
-            id: "custom",
-            index: "05",
-            name: "Custom Integrations",
-            shortName: "Custom",
-            items: [
-              "Third-Party APIs",
-              "ERP Connections",
-              "CRM Integrations",
-              "Inventory Systems",
-              "Custom Shopify Apps",
-              "Private Business Workflows",
-            ],
-          },
-        ],
-        closingTitle: "Already using a complex app stack?",
-        closingBody:
-          "We can work with your existing Shopify ecosystem, simplify unnecessary dependencies, and build custom integrations where off-the-shelf tools are not enough.",
-        ctaLabel: "Discuss an Integration",
-        ctaHref: "#contact",
-      },
-      audience: {
-        eyebrow: "Who we work with",
-        headline:
-          "Who we work with — Shopify brands at every growth stage.",
-        intro: [
-          "Buildaze works with launching brands, growing DTC companies, established ecommerce businesses, and teams with more advanced Shopify requirements.",
-          "A new brand may need the right storefront from day one. A growing store may need better conversion and performance. An established business may need custom functionality, integrations, or a platform that can support significantly more complexity.",
-          "Buildaze adapts the approach around where your business is now — and where it needs to go next.",
-        ],
-        stages: [
-          {
-            id: "launch",
-            index: "01",
-            stage: "Launch",
-            name: "Launching & Emerging Brands",
-            title:
-              "Start with a store you will not need to replace six months later.",
-            description:
-              "For brands building their first serious Shopify storefront, we create a scalable foundation around the brand, customer journey, merchandising, performance, and the systems needed to operate effectively.",
-            itemsLabel: "Best fit when you need",
-            items: [
-              "Brand-led Shopify Store Design",
-              "Custom Theme Development",
-              "Product & Collection Architecture",
-              "Conversion-Focused UX",
-              "Analytics & Tracking Setup",
-              "Essential Integrations",
-            ],
-            goalLabel: "Typical goal",
-            goal: "Launch professionally with a storefront built for growth rather than a temporary template.",
-          },
-          {
-            id: "grow",
-            index: "02",
-            stage: "Grow",
-            name: "Growing DTC Brands",
-            title:
-              "When more traffic exposes the weaknesses in your storefront.",
-            description:
-              "As acquisition grows, small UX, performance, and conversion problems become expensive. We help growing ecommerce brands improve the buying experience, reduce friction, strengthen product pages, increase storefront performance, and build functionality around the next stage of growth.",
-            itemsLabel: "Best fit when you need",
-            items: [
-              "Shopify CRO",
-              "Store Redesign",
-              "PDP & Collection Optimization",
-              "Mobile UX Improvements",
-              "Performance Optimization",
-              "Custom Features",
-            ],
-            goalLabel: "Typical goal",
-            goal: "Get more value from the traffic and customer demand you already have.",
-          },
-          {
-            id: "scale",
-            index: "03",
-            stage: "Scale",
-            name: "Established Ecommerce Businesses",
-            title:
-              "Your storefront now has to support a more complex business.",
-            description:
-              "Established stores often outgrow the theme, app stack, architecture, or workflows that worked at an earlier stage. We help restructure and extend Shopify around larger catalogs, integrations, custom functionality, operational requirements, and evolving customer journeys.",
-            itemsLabel: "Best fit when you need",
-            items: [
-              "Complex Shopify Development",
-              "Custom Integrations",
-              "Theme Architecture Improvements",
-              "Advanced Merchandising",
-              "Platform Migration",
-              "Ongoing Development",
-            ],
-            goalLabel: "Typical goal",
-            goal: "Remove technical limitations without disrupting a business that is already operating at scale.",
-          },
-          {
-            id: "extend",
-            index: "04",
-            stage: "Extend",
-            name: "Shopify Plus & Ecommerce Teams",
-            title:
-              "More scale creates different technical and operational requirements.",
-            description:
-              "We support ecommerce teams that need advanced Shopify development, custom storefront experiences, integrations, international commerce capabilities, automation, and an experienced development partner that can work alongside internal stakeholders.",
-            itemsLabel: "Best fit when you need",
-            items: [
-              "Shopify Plus Development",
-              "Advanced Integrations",
-              "Checkout Extensibility",
-              "International Commerce",
-              "Custom Workflows",
-              "Ongoing Technical Partnership",
-            ],
-            goalLabel: "Typical goal",
-            goal: "Create a more flexible Shopify ecosystem capable of supporting continued scale.",
-          },
-        ],
-        closingTitle: "Not sure which category you fit into?",
-        closingBody:
-          "That is completely fine. The first conversation is about understanding where your Shopify business is today, what is limiting the next stage of growth, and whether Buildaze is the right partner to help solve it.",
-        ctaLabel: "Tell Us About Your Store",
-        ctaHref: "#contact",
-      },
-      overviewTitle: "What Shopify growth & development includes",
-      overview: [
-        "Shopify is the fastest path to a working store — but growth stalls when the theme is fragile, checkout is confusing, or the catalog and apps fight each other. We treat Shopify as a production commerce system, not a template install.",
-        "We build and extend stores with maintainable theme code or Hydrogen storefronts, clean app architecture, Plus-ready planning where required, and migrations that protect search equity.",
-        "Every engagement is fixed-scope with weekly demos. You leave with the storefront, integrations, documentation and ownership — ready to grow without lock-in.",
-      ],
-      solutionsTitle: "Shopify services we ship",
-      solutions: [
-        "Custom Shopify theme development",
-        "Shopify Plus & enterprise storefronts",
-        "Headless Shopify (Hydrogen / Next.js)",
-        "Migrations from WooCommerce, Magento & more",
-        "Custom Shopify apps & ERP / CRM integrations",
-        "CRO, performance and post-launch growth",
-      ],
-      deliverables: [
-        "Launch-ready Shopify or Plus storefront with tested Core Web Vitals",
-        "Product, collection and checkout UX built for conversion",
-        "Migration plan with redirects, metadata and data integrity checks",
-        "App, payment and ops integrations wired into how your team works",
-      ],
-      included: [
-        "Shopify / Shopify Plus storefront build",
-        "Theme or Hydrogen / Next.js frontend",
-        "Shopify Payments / Stripe & checkout flows",
-        "Migration, SEO redirects & analytics setup",
-      ],
-      stackTags: [
-        "Shopify",
-        "Shopify Plus",
-        "Hydrogen",
-        "Liquid",
-        "Next.js",
-        "Stripe",
-        "Klaviyo",
-      ],
-      ctaLabel: "Book a Shopify Strategy Call",
-      secondaryCtaLabel: "View Shopify Work",
-      process: [
-        {
-          index: "01",
-          name: "Audit & Scope",
-          duration: "3–5 days",
-          description:
-            "Review catalog, theme debt, apps and conversion bottlenecks. Output: fixed scope, performance targets and growth priorities.",
-        },
-        {
-          index: "02",
-          name: "Build & Optimize",
-          duration: "4–8 weeks",
-          description:
-            "Weekly demos of working storefront features. Performance and checkout flows tested against agreed targets each sprint.",
-        },
-        {
-          index: "03",
-          name: "Launch & Hand Off",
-          duration: "3–5 days",
-          description:
-            "Staged launch with DNS plan, redirect verification, analytics checks and full storefront handover.",
-        },
-      ],
-      relatedWorkIds: ["shopify-performance", "catalog-intelligence"],
-      faqEyebrow: "Shopify development FAQs",
-      faqHeadline: "Shopify development FAQs",
-      faqIntro: [
-        "Every Shopify project is different, but the questions businesses ask before choosing a development partner are often similar.",
-        "Here are straightforward answers about scope, timelines, existing stores, migrations, custom development, ownership, and what working with Buildaze looks like.",
-      ],
-      faqs: [
-        {
-          question: "How much does a Shopify project with Buildaze cost?",
-          answer:
-            "There is no one-size-fits-all Shopify project price because the scope can vary significantly between a focused optimization project, a storefront redesign, a migration, and a completely custom build. We first understand what needs to be solved, define the required deliverables, and then provide a clear project scope and cost. You will know what is included before development begins.",
-        },
-        {
-          question: "How long does a Shopify project take?",
-          answer:
-            "The timeline depends on the size and complexity of the project. A focused development or optimization project may take considerably less time than a complete redesign, migration, or custom Shopify build. Once the scope is defined, we establish clear milestones and a realistic delivery timeline before work begins.",
-        },
-        {
-          question: "Can you work with our existing Shopify theme?",
-          answer:
-            "Yes. A complete rebuild is not always necessary. We can review your existing theme, architecture, apps, performance, and current limitations to determine whether it makes more sense to improve what you already have or build a stronger foundation. We recommend the approach based on the problem — not because a rebuild is easier to sell.",
-        },
-        {
-          question:
-            "Can you improve conversions without redesigning the entire store?",
-          answer:
-            "Yes. Conversion problems do not automatically mean the entire storefront needs to be replaced. Depending on what the data and customer journey reveal, improvements may focus on areas such as product pages, navigation, merchandising, trust signals, mobile UX, cart behavior, performance, or specific landing pages. We identify the friction first and recommend changes from there.",
-        },
-        {
-          question:
-            "Can you build custom Shopify functionality if an app cannot do what we need?",
-          answer:
-            "Yes. When Shopify's native functionality or an existing app does not meet the requirement, we can develop tailored solutions using Liquid, Shopify APIs, custom theme components, integrations, and custom app development where appropriate. We also avoid custom development when a simpler, maintainable solution already solves the problem.",
-        },
-        {
-          question:
-            "Can you migrate our existing store to Shopify without damaging SEO?",
-          answer:
-            "SEO preservation is an important part of a structured ecommerce migration. We plan around existing URLs, redirects, page content, metadata, products, collections, analytics, tracking, and other migration requirements so important search and business assets are not ignored during the move. No migration can responsibly promise zero ranking fluctuation, but it can be planned carefully to reduce avoidable risk.",
-        },
-        {
-          question: "Do you work with Shopify Plus?",
-          answer:
-            "Yes. Buildaze can support Shopify Plus requirements including advanced storefront development, integrations, international commerce, checkout extensibility, automation, and ongoing technical development. The exact approach depends on your existing setup, business requirements, and Shopify architecture.",
-        },
-        {
-          question:
-            "Will we own the Shopify store and custom work you build?",
-          answer:
-            "Yes. The store, approved custom theme work, and project deliverables created for your business remain under your control according to the agreed project scope. We build with maintainability in mind so your team is not intentionally locked into Buildaze for everyday storefront management.",
-        },
-        {
-          question: "Can Buildaze support our Shopify store after launch?",
-          answer:
-            "Yes. Many ecommerce businesses continue evolving after launch. We can support ongoing development, CRO improvements, performance work, new functionality, integrations, storefront updates, and technical maintenance based on the needs of the business.",
-        },
-        {
-          question: "What happens after we contact Buildaze?",
-          answer:
-            "We start with a conversation about your store, business goals, current challenges, and what you are trying to improve. From there, we determine whether the right next step is an audit, focused development work, redesign, migration, custom build, or another approach. If there is a good fit, we define the scope, deliverables, timeline, and next steps before development begins.",
-        },
-      ],
-      faqClosingTitle: "Still have a question?",
-      faqClosingBody:
-        "Tell us what is happening with your Shopify store and we will give you a straightforward answer.",
-      faqCtaLabel: "Ask Buildaze About Your Store",
-      faqCtaHref: "#contact",
-    },
+    page: shopifyPageContent,
   },
 ];
+
+/** Primary category order: Design → Development → AI → Digital Marketing → Shopify. */
+export const CATEGORY_IDS = [
+  "design",
+  "development",
+  "ai",
+  "digital-marketing",
+  "shopify",
+] as const;
+
+function normalizeLegacyService(service: Service): Service {
+  if (service.id === "ai") {
+    return {
+      ...service,
+      role: "category",
+      index: "03",
+      name: "Artificial Intelligence",
+      shortName: "AI",
+      oneLiner:
+        "AI applications, conversational agents and automation for enquiries, workflows and repetitive work.",
+      description:
+        "AI applications, chatbots, voice agents, custom solutions and automation designed around practical business workflows.",
+      capabilities: [
+        "AI Applications",
+        "AI Chatbots",
+        "AI Voice Agents",
+        "Custom AI Solutions",
+        "Business Automation",
+      ],
+      flow: ["Discover", "Scope", "Build", "Evaluate"],
+      flowLabel: "Choose a service · Scope clearly · Evaluate honestly",
+      cta: "Explore AI Solutions",
+      relatedServiceIds: [
+        "ai-applications",
+        "ai-chatbots",
+        "ai-voice",
+        "ai-solutions",
+        "ai-automation",
+      ],
+      page: aiPageContent,
+    };
+  }
+
+  if (service.id === "shopify") {
+    return {
+      ...service,
+      role: "category",
+      index: "05",
+      name: "Shopify",
+      shortName: "Shopify",
+    };
+  }
+
+  if (service.id === "web" || service.id === "saas" || service.id === "ecommerce") {
+    return { ...service, role: "detail" };
+  }
+
+  return service;
+}
+
+const normalizedLegacy = legacyServices.map(normalizeLegacyService);
+
+/** All routable services: primary categories + preserved detail pages. */
+export const services: Service[] = [
+  ...categoryOverviews,
+  ...normalizedLegacy,
+  ...digitalMarketingLeaves,
+  ...aiLeaves,
+  ...designLeaves,
+];
+
+/** Primary five categories for nav, hub, homepage and footer. */
+export const serviceCategories: Service[] = CATEGORY_IDS.map((id) => {
+  const found = services.find((s) => s.id === id);
+  if (!found) {
+    throw new Error(`Missing service category: ${id}`);
+  }
+  return found;
+});
 
 export function getServiceBySlug(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug);

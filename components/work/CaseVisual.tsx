@@ -195,7 +195,7 @@ function PerformanceVisual() {
   return (
     <div className="flex h-full flex-col p-5">
       <div className="mb-4 flex items-center justify-between border border-line px-4 py-2.5">
-        <span className="t-label text-[10px] text-mist-2">Core Web Vitals</span>
+        <span className="t-label text-[10px] text-mist-2">Lighthouse</span>
         <span className="t-label text-[10px] text-accent-soft">28 → 91</span>
       </div>
       <div className="grid flex-1 grid-cols-2 gap-3">
@@ -243,7 +243,7 @@ const visuals = {
 export function CaseVisual({ study }: { study: CaseStudy }) {
   const { component: Visual, chrome } = visuals[study.visual];
   return (
-    <div className="build-grid relative aspect-[16/11] overflow-hidden border border-line bg-ink-2 md:aspect-[16/10]">
+    <div className="media-frame build-grid relative aspect-[16/11] border border-line bg-ink-2 md:aspect-[16/10]">
       <div
         aria-hidden
         className="absolute inset-0"

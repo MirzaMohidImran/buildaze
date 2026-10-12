@@ -200,7 +200,7 @@ export const caseStudies: CaseStudy[] = [
       "A Shopify storefront was slow enough that performance itself became a conversion and trust risk.",
     solution:
       "Theme architecture cleanup, asset and script optimization, and front-end delivery improvements without stripping the brand experience.",
-    outcome: { value: "28 → 91", label: "performance score" },
+    outcome: { value: "28 → 91", label: "Lighthouse Performance (lab)" },
     deliverables: [
       "Theme performance audit",
       "Asset & script optimization",
@@ -208,15 +208,15 @@ export const caseStudies: CaseStudy[] = [
     ],
     visual: "performance",
     page: {
-      metaTitle: "Shopify Performance Optimization — Case Study | Buildaze",
+      metaTitle: "Shopify Performance Optimization — Case Study",
       metaDescription:
-        "How Buildaze improved a Shopify storefront performance score from 28 to 91 through theme cleanup, asset optimization, and conversion-focused front-end work.",
+        "How Buildaze improved a Shopify storefront Lighthouse Performance score from 28 to 91 through theme cleanup, asset optimization, and front-end delivery work.",
       headline: "A Shopify storefront that stopped feeling slow.",
       summary:
-        "Buildaze optimized Shopify theme code, assets, and front-end delivery — moving a verified performance score from 28 to 91.",
+        "Buildaze optimized Shopify theme code, assets, and front-end delivery — moving a documented Lighthouse Performance score from 28 to 91 (lab metric).",
       challengeDetail: [
         "The storefront looked presentable but felt heavy: theme debt, scripts, apps, and media were competing with the shopping experience.",
-        "Performance had become a business problem — not only a Lighthouse score — because slow product and collection pages undermine conversion confidence on mobile.",
+        "Performance had become a business problem — not only a lab score — because slow product and collection pages undermine shopping confidence on mobile.",
       ],
       approach: [
         "We audited theme architecture, JavaScript weight, app impact, image delivery, and critical rendering paths before recommending changes.",
@@ -224,11 +224,11 @@ export const caseStudies: CaseStudy[] = [
         "Mobile shopping paths were reviewed alongside performance so speed gains would support conversion clarity, not just lab metrics.",
       ],
       results: [
-        "Verified performance score improved from 28 to 91.",
+        "Documented Lighthouse Performance score improved from 28 to 91 (lab score — not a Core Web Vitals field claim or revenue outcome). Exact tool version, device profile and test date should be confirmed by the owner where recorded.",
         "Storefront architecture became easier to maintain for ongoing Shopify development.",
-        "The engagement stayed scoped to performance and experience — no invented revenue claims beyond the verified score.",
+        "The engagement stayed scoped to performance and experience — no invented revenue claims beyond the documented lab score.",
       ],
-      stack: ["Shopify", "Liquid", "Theme architecture", "Core Web Vitals"],
+      stack: ["Shopify", "Liquid", "Theme architecture", "Lighthouse Performance"],
       timeline: "Scoped performance engagement",
       relatedServiceIds: ["shopify", "ecommerce"],
     },

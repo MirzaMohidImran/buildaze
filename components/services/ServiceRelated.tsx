@@ -4,7 +4,11 @@ import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { services, type Service } from "@/lib/data/services";
+import {
+  getServiceById,
+  serviceCategories,
+  type Service,
+} from "@/lib/data/services";
 import { getServicePath } from "@/lib/seo/paths";
 
 export function ServiceRelated({
@@ -14,23 +18,55 @@ export function ServiceRelated({
   service: Service;
   sectionIndex?: string;
 }) {
-  const others = services.filter((s) => s.id !== service.id);
+  const others =
+    service.relatedServiceIds && service.relatedServiceIds.length > 0
+      ? service.relatedServiceIds
+          .map((id) => getServiceById(id))
+          .filter((item): item is Service => Boolean(item))
+      : serviceCategories.filter((s) => s.id !== service.id);
+
+  if (others.length === 0) return null;
+
+  const gridCols =
+    others.length >= 4
+      ? "lg:grid-cols-4"
+      : others.length === 3
+        ? "lg:grid-cols-3"
+        : "lg:grid-cols-2";
 
   return (
     <section
       aria-labelledby="service-related-heading"
-      className="relative border-t border-line py-24 md:py-32"
+      className="surface-page relative border-t border-line py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index={sectionIndex} label="Related services" />
         <RevealText
           as="h2"
           id="service-related-heading"
-          text="Often paired with this build."
+          text={
+            service.id === "development"
+              ? "Specialist development paths."
+              : service.id === "digital-marketing"
+                ? "Digital marketing service pages."
+                : service.id.startsWith("dm-")
+                  ? "Related marketing and delivery paths."
+                  : service.id === "ai"
+                    ? "AI service destinations."
+                    : service.id.startsWith("ai-")
+                      ? "Related AI and delivery paths."
+                      : service.id === "design"
+                        ? "Design service destinations."
+                        : service.id.startsWith("design-")
+                          ? "Related design and delivery paths."
+                          : "Often paired with this work."
+          }
           className="text-h2 mt-10 max-w-[640px] font-semibold text-white"
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          className={`mt-14 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 ${gridCols}`}
+        >
           {others.map((item, i) => (
             <Reveal key={item.id} delay={i * 0.06} y={24} className="bg-ink">
               <Link

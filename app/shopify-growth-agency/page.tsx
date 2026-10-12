@@ -32,7 +32,7 @@ export const metadata: Metadata = {
             url: ogImage,
             width: 1200,
             height: 630,
-            alt: "Buildaze Shopify Development & Growth Agency",
+            alt: "Buildaze Shopify design, development and support",
           },
         ]
       : undefined,
@@ -66,8 +66,8 @@ const structuredData = {
     {
       "@type": "Service",
       "@id": serviceId,
-      name: "Shopify Development & Growth",
-      serviceType: "Shopify Development Agency",
+      name: "Shopify Design & Development",
+      serviceType: "Shopify Design and Development Agency Services",
       description: service.page.metaDescription,
       provider: { "@id": ORGANIZATION_ID },
       url,
@@ -76,12 +76,53 @@ const structuredData = {
         "@type": "Place",
         name: "Worldwide",
       },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Shopify service groups",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Store Design & Development",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Migrations & Replatforming",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "App Development & System Integrations",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Headless Commerce & Enterprise B2B",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Retainers & Ongoing Support",
+            },
+          },
+        ],
+      },
       mainEntityOfPage: { "@id": pageId },
     },
     breadcrumbList([
       { name: "Home", path: "/" },
       { name: "Services", path: "/services" },
-      { name: "Shopify Growth Agency", path },
+      { name: "Shopify Design & Development", path },
     ]),
   ],
 };

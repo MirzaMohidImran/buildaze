@@ -16,7 +16,7 @@ export function CaseMeta({ study }: { study: CaseStudy }) {
   return (
     <section
       aria-labelledby="case-meta-heading"
-      className="relative border-y border-line py-24 md:py-32"
+      className="surface-soft relative border-y border-line py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index="04" label="Project details" />
@@ -27,8 +27,8 @@ export function CaseMeta({ study }: { study: CaseStudy }) {
           className="text-h2 mt-10 max-w-[640px] font-semibold text-white"
         />
 
-        <div className="mt-16 grid grid-cols-1 gap-px border border-line bg-line md:grid-cols-3">
-          <Reveal y={28} className="bg-ink p-8 md:p-10">
+        <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
+          <Reveal y={28} className="surface-card rounded-card border border-line bg-white p-8 md:p-10">
             <p className="t-label text-accent-soft">Deliverables</p>
             <ul className="mt-8 space-y-3.5">
               {study.deliverables.map((item) => (
@@ -40,13 +40,13 @@ export function CaseMeta({ study }: { study: CaseStudy }) {
             </ul>
           </Reveal>
 
-          <Reveal y={28} delay={0.06} className="bg-ink p-8 md:p-10">
+          <Reveal y={28} delay={0.06} className="surface-card rounded-card border border-line bg-white p-8 md:p-10">
             <p className="t-label text-accent-soft">Stack</p>
             <ul className="mt-8 flex flex-wrap gap-2">
               {study.page.stack.map((item) => (
                 <li
                   key={item}
-                  className="t-label border border-line px-3 py-1.5 text-[10px] text-mist-2"
+                  className="t-label rounded-control border border-line px-3 py-1.5 text-[10px] text-mist-2"
                 >
                   {item}
                 </li>
@@ -64,7 +64,7 @@ export function CaseMeta({ study }: { study: CaseStudy }) {
             </dl>
           </Reveal>
 
-          <Reveal y={28} delay={0.12} className="bg-ink p-8 md:p-10">
+          <Reveal y={28} delay={0.12} className="surface-card rounded-card border border-line bg-white p-8 md:p-10">
             <p className="t-label text-accent-soft">Related services</p>
             <ul className="mt-8 space-y-5">
               {related.map((service) => (

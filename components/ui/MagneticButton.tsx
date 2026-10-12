@@ -8,6 +8,8 @@ interface MagneticButtonProps {
   href: string;
   children: ReactNode;
   variant?: "primary" | "ghost";
+  /** Light homepage surfaces: ghost uses black text + visible border. */
+  tone?: "dark" | "light";
   className?: string;
   analytics?: string;
   arrow?: boolean;
@@ -21,6 +23,7 @@ export function MagneticButton({
   href,
   children,
   variant = "primary",
+  tone = "dark",
   className = "",
   analytics,
   arrow = true,
@@ -49,12 +52,16 @@ export function MagneticButton({
   }, [mx, my]);
 
   const base =
-    "group relative inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-[15px] font-medium transition-colors duration-300 select-none";
+    "group relative inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-base font-semibold transition-colors duration-300 select-none";
   const variants = {
     primary:
-      "bg-accent text-white hover:bg-accent-bright shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_0_0_1px_rgba(37,99,235,0.4),0_8px_32px_-8px_rgba(37,99,235,0.5)]",
+      tone === "light"
+        ? "bg-accent text-white hover:bg-accent-bright shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_1px_2px_rgba(12,16,23,0.06),0_8px_24px_-10px_rgba(37,99,235,0.35)]"
+        : "bg-accent text-white hover:bg-accent-bright shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_0_0_1px_rgba(37,99,235,0.4),0_8px_32px_-8px_rgba(37,99,235,0.5)]",
     ghost:
-      "border border-line-strong text-white hover:border-white/40 hover:bg-white/[0.04]",
+      tone === "light"
+        ? "border border-[var(--border-on-light,#E2E8F0)] bg-white text-[var(--text-on-light,#0a0a0a)] hover:border-[var(--border-on-light-hover,#CBD5E1)] hover:bg-[var(--section-blue-soft,#EFF5FF)]"
+        : "border border-line-strong text-white hover:border-white/40 hover:bg-white/[0.04]",
   };
 
   return (

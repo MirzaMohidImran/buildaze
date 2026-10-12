@@ -1,16 +1,47 @@
-/** Buildaze wordmark with the Build Grid node mark. */
-export function Logo({ className = "" }: { className?: string }) {
+/** Official Buildaze marks from /public/Logo. */
+export function Logo({
+  className = "",
+  variant = "default",
+  tone = "dark",
+}: {
+  className?: string;
+  /** `mark` = favicon icon; `default` = footer/full wordmark; `horizontal` = light-bg wordmark. */
+  variant?: "default" | "mark" | "horizontal";
+  /** `light` surfaces use dark mark / light-background wordmarks. */
+  tone?: "dark" | "light";
+}) {
+  if (variant === "mark") {
+    return (
+      <img
+        src={tone === "light" ? "/Logo/logo-1-dark.svg" : "/Logo/logo-1.svg"}
+        alt="Buildaze"
+        width={56}
+        height={56}
+        className={`h-12 w-12 shrink-0 object-contain md:h-14 md:w-14 ${className}`}
+      />
+    );
+  }
+
+  if (variant === "horizontal" || tone === "light") {
+    return (
+      <img
+        src="/Logo/buildaze-logo-horizontal.svg"
+        alt="Buildaze"
+        width={200}
+        height={56}
+        className={`h-11 w-auto max-h-11 max-w-[200px] object-contain object-left md:h-12 md:max-h-12 md:max-w-[220px] ${className}`}
+      />
+    );
+  }
+
+  // Horizontal wordmark for dark backgrounds (white + blue)
   return (
-    <span className={`flex items-center gap-2.5 ${className}`}>
-      <svg aria-hidden width="24" height="24" viewBox="0 0 24 24" fill="none">
-        {/* modular build mark: three stacked blocks, top one active */}
-        <rect x="3" y="15" width="18" height="5" stroke="rgba(255,255,255,0.5)" strokeWidth="1.4" />
-        <rect x="5.5" y="9" width="13" height="5" stroke="rgba(255,255,255,0.8)" strokeWidth="1.4" />
-        <rect x="8" y="3" width="8" height="5" fill="#2563EB" />
-      </svg>
-      <span className="text-[17px] font-semibold tracking-tight text-white">
-        Buildaze
-      </span>
-    </span>
+    <img
+      src="/Logo/buildaze-logo-footer.svg"
+      alt="Buildaze"
+      width={200}
+      height={56}
+      className={`h-11 w-auto max-h-11 max-w-[200px] object-contain object-left md:h-12 md:max-h-12 md:max-w-[220px] ${className}`}
+    />
   );
 }

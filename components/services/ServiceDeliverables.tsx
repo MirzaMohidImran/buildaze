@@ -17,7 +17,7 @@ export function ServiceDeliverables({
   return (
     <section
       aria-labelledby="service-deliverables-heading"
-      className="relative border-y border-line py-24 md:py-32"
+      className="surface-soft relative border-y border-line py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index={sectionIndex} label="What we ship" />

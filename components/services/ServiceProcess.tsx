@@ -15,7 +15,7 @@ export function ServiceProcess({
   const { page } = service;
 
   return (
-    <section aria-labelledby="service-process-heading" className="relative py-24 md:py-32">
+    <section aria-labelledby="service-process-heading" className="surface-page relative py-24 md:py-32">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index={sectionIndex} label="Process" />
         <RevealText

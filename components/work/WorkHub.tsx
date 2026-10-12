@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
-import { ContactCTA } from "@/components/sections/ContactCTA";
+import { ContactInvite } from "@/components/contact/ContactInvite";
 import { Footer } from "@/components/sections/Footer";
 import { Navbar } from "@/components/sections/Navbar";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -18,7 +18,7 @@ export function WorkHub() {
       <main id="main">
         <section
           aria-labelledby="work-hub-heading"
-          className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
+          className="surface-ink relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
         >
           <div aria-hidden className="build-grid fade-edges absolute inset-0" />
           <div
@@ -59,14 +59,14 @@ export function WorkHub() {
               </p>
             </Reveal>
             <Reveal delay={0.3} className="mt-10">
-              <MagneticButton href="#contact" analytics="work-hub-cta">
+              <MagneticButton href="/contact" analytics="work-hub-cta">
                 Start a Project
               </MagneticButton>
             </Reveal>
           </div>
         </section>
 
-        <section aria-label="All case studies" className="relative pb-28 md:pb-40">
+        <section aria-label="All case studies" className="surface-page relative pb-28 md:pb-40 pt-16 md:pt-20">
           <div className="mx-auto max-w-[1600px] space-y-16 px-5 md:space-y-24 md:px-10">
             {caseStudies.map((study, i) => {
               const flip = i % 2 === 1;
@@ -78,7 +78,7 @@ export function WorkHub() {
                     className="group grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14"
                   >
                     <div className={`lg:col-span-7 ${flip ? "lg:order-2" : ""}`}>
-                      <div className="overflow-hidden border border-line transition-colors group-hover:border-line-strong">
+                      <div className="rounded-panel transition-colors group-hover:[&_.media-frame]:border-line-strong">
                         <CaseVisual study={study} />
                       </div>
                     </div>
@@ -129,7 +129,7 @@ export function WorkHub() {
           </div>
         </section>
 
-        <ContactCTA sectionIndex="01" />
+        <ContactInvite sectionIndex="01" source="work-hub" />
       </main>
       <Footer />
     </>

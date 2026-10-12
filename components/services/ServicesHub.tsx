@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
-import { ContactCTA } from "@/components/sections/ContactCTA";
+import { ContactInvite } from "@/components/contact/ContactInvite";
 import { Footer } from "@/components/sections/Footer";
 import { Navbar } from "@/components/sections/Navbar";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { services } from "@/lib/data/services";
+import { serviceCategories } from "@/lib/data/services";
 import { getServicePath } from "@/lib/seo/paths";
 
 export function ServicesHub() {
@@ -18,7 +18,7 @@ export function ServicesHub() {
       <main id="main">
         <section
           aria-labelledby="services-hub-heading"
-          className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
+          className="surface-ink relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
         >
           <div aria-hidden className="build-grid fade-edges absolute inset-0" />
           <div
@@ -49,32 +49,33 @@ export function ServicesHub() {
             <RevealText
               as="h1"
               id="services-hub-heading"
-              text="Five disciplines. One production standard."
+              text="Five categories. Clear scope around your goals."
               className="text-display mt-10 max-w-[920px] font-semibold text-white"
             />
             <Reveal delay={0.2} className="mt-8">
               <p className="max-w-[540px] text-lead text-mist">
-                Custom software from scratch — no templates, no lock-in. Pick one
-                discipline or combine them under a single fixed scope.
+                Design, Development, Artificial Intelligence, Digital Marketing
+                and Shopify. Pick the area you need — or tell us the goal and we
+                will help identify the right starting point.
               </p>
             </Reveal>
             <Reveal delay={0.3} className="mt-10">
-              <MagneticButton href="#contact" analytics="services-hub-cta">
+              <MagneticButton href="/contact" analytics="services-hub-cta">
                 Start a Project
               </MagneticButton>
             </Reveal>
           </div>
         </section>
 
-        <section aria-label="All services" className="relative pb-28 md:pb-40">
+        <section aria-label="All services" className="surface-soft relative pb-28 md:pb-40 pt-8">
           <div className="mx-auto max-w-[1600px] px-5 md:px-10">
-            <div className="grid grid-cols-1 gap-px border border-line bg-line md:grid-cols-2">
-              {services.map((service, i) => (
-                <Reveal key={service.id} delay={i * 0.05} y={28} className="bg-ink">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {serviceCategories.map((service, i) => (
+                <Reveal key={service.id} delay={i * 0.05} y={28} className="surface-card rounded-card border border-line bg-white">
                   <Link
                     href={getServicePath(service)}
                     data-analytics={`services-hub-${service.id}`}
-                    className="group relative flex h-full flex-col p-9 transition-colors hover:bg-ink-2 md:p-12"
+                    className="group relative flex h-full flex-col p-9 transition-colors hover:bg-[var(--section-blue-soft,#EFF5FF)] md:p-12"
                   >
                     <div
                       aria-hidden
@@ -129,7 +130,7 @@ export function ServicesHub() {
           </div>
         </section>
 
-        <ContactCTA sectionIndex="01" />
+        <ContactInvite sectionIndex="01" source="services-hub" />
       </main>
       <Footer />
     </>

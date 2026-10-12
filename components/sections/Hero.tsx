@@ -4,7 +4,6 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { heroProof } from "@/lib/data/site";
 
 const BuildSystemScene = dynamic(() => import("@/components/webgl/BuildSystemScene"), {
   ssr: false,
@@ -12,8 +11,15 @@ const BuildSystemScene = dynamic(() => import("@/components/webgl/BuildSystemSce
 
 const LAYER_LABELS = ["Idea", "Architecture", "Code", "Product", "Scale"];
 
+type SectionTone = "dark" | "light";
+
 /** Static Build System fallback for reduced motion / WebGL unavailable. */
-function StaticBuildSystem() {
+function StaticBuildSystem({ tone = "dark" }: { tone?: SectionTone }) {
+  const isLight = tone === "light";
+  const strokeLayer = isLight ? "rgba(12,16,23,0.22)" : "rgba(255,255,255,0.22)";
+  const strokeCross = isLight ? "rgba(12,16,23,0.12)" : "rgba(255,255,255,0.1)";
+  const fillNode = isLight ? "rgba(12,16,23,0.45)" : "rgba(255,255,255,0.5)";
+
   return (
     <svg viewBox="0 0 400 400" fill="none" aria-hidden className="h-full w-full opacity-80">
       {[0, 1, 2, 3, 4].map((i) => {
@@ -23,18 +29,18 @@ function StaticBuildSystem() {
           <g key={i} transform={`translate(200 ${y})`}>
             <path
               d={`M ${-w} 0 L 0 ${-w * 0.42} L ${w} 0 L 0 ${w * 0.42} Z`}
-              stroke={i === 2 ? "#2563EB" : "rgba(255,255,255,0.22)"}
+              stroke={i === 2 ? "#2563EB" : strokeLayer}
               strokeWidth={i === 2 ? 1.5 : 1}
             />
             <path
               d={`M ${-w * 0.5} ${-w * 0.21} L ${w * 0.5} ${w * 0.21} M ${-w * 0.5} ${w * 0.21} L ${w * 0.5} ${-w * 0.21}`}
-              stroke="rgba(255,255,255,0.1)"
+              stroke={strokeCross}
               strokeWidth="1"
             />
             {i < 4 && (
               <line x1="0" y1="-8" x2="0" y2="-46" stroke="rgba(37,99,235,0.5)" strokeWidth="1" strokeDasharray="2 4" />
             )}
-            <rect x="-3" y="-3" width="6" height="6" fill={i % 2 === 0 ? "#2563EB" : "rgba(255,255,255,0.5)"} />
+            <rect x="-3" y="-3" width="6" height="6" fill={i % 2 === 0 ? "#2563EB" : fillNode} />
           </g>
         );
       })}
@@ -42,14 +48,22 @@ function StaticBuildSystem() {
   );
 }
 
-export function Hero() {
+export function Hero({ tone = "dark" }: { tone?: SectionTone }) {
+  const isLight = tone === "light";
   const ref = useRef<HTMLElement>(null);
-  const reduced = useReducedMotion();
+  const prefersReduced = useReducedMotion();
+  /** Defer reduced-motion until after mount so SSR HTML matches hydration. */
+  const [mounted, setMounted] = useState(false);
+  const reduced = mounted && prefersReduced === true;
   const [renderWebGL, setRenderWebGL] = useState(false);
 
   useEffect(() => {
-    // Same WebGL build system on mobile and desktop; skip only for reduced motion.
-    if (reduced) return;
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    // Light homepage uses the static scene — WebGL palette is tuned for dark canvas.
+    if (!mounted || reduced || isLight) return;
     const canWebGL = (() => {
       try {
         const canvas = document.createElement("canvas");
@@ -61,7 +75,7 @@ export function Hero() {
       }
     })();
     if (canWebGL) setRenderWebGL(true);
-  }, [reduced]);
+  }, [mounted, reduced, isLight]);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -71,28 +85,38 @@ export function Hero() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
   const sceneOpacity = useTransform(scrollYProgress, [0, 0.9], [1, 0]);
 
-  const scene = renderWebGL ? <BuildSystemScene /> : <StaticBuildSystem />;
+  const scene =
+    renderWebGL && !isLight ? (
+      <BuildSystemScene />
+    ) : (
+      <StaticBuildSystem tone={tone} />
+    );
+
+  const headlineLines = [
+    "Design, build and grow",
+    "your business.",
+  ];
 
   return (
     <section
       ref={ref}
       id="top"
       aria-label="Introduction"
-      className="relative flex min-h-svh flex-col overflow-hidden lg:block"
+      className={`relative flex min-h-svh flex-col overflow-hidden lg:block${
+        isLight ? " surface-page" : " surface-ink"
+      }`}
     >
-      {/* Build Grid canvas */}
       <div aria-hidden className="build-grid fade-edges absolute inset-0" />
-      {/* Blue atmospheric depth, derived only from the accent */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
-          background:
-            "radial-gradient(ellipse 55% 45% at 72% 42%, rgba(37,99,235,0.13), transparent 70%)",
+          background: isLight
+            ? "radial-gradient(ellipse 55% 45% at 72% 42%, rgba(37,99,235,0.06), transparent 70%)"
+            : "radial-gradient(ellipse 55% 45% at 72% 42%, rgba(37,99,235,0.13), transparent 70%)",
         }}
       />
 
-      {/* Layer captions — desktop legend only */}
       <div aria-hidden className="absolute top-1/2 right-10 z-[1] hidden -translate-y-1/2 flex-col gap-5 xl:flex">
         {LAYER_LABELS.map((label, i) => (
           <motion.div
@@ -108,7 +132,6 @@ export function Hero() {
         ))}
       </div>
 
-      {/* Content first — then canvas on mobile; side-by-side on desktop */}
       <motion.div
         style={reduced ? undefined : { y: contentY, opacity: contentOpacity }}
         className="relative z-[1] order-1 mx-auto flex w-full max-w-[1600px] flex-1 flex-col justify-center px-5 pt-28 pb-8 md:px-10 lg:min-h-svh lg:pb-24"
@@ -121,11 +144,11 @@ export function Hero() {
             className="t-label flex items-center gap-3 text-mist"
           >
             <span aria-hidden className="inline-block h-1.5 w-1.5 animate-pulse bg-accent" />
-            AI-native product &amp; software studio
+            Design, development and digital growth
           </motion.p>
 
           <h1 className="text-display mt-7 font-semibold text-white">
-            {["We build software", "that ships."].map((line, i) => (
+            {headlineLines.map((line, i) => (
               <span key={line} className="block overflow-hidden pb-[0.09em] -mb-[0.05em]">
                 <motion.span
                   className="block"
@@ -133,12 +156,13 @@ export function Hero() {
                   animate={reduced ? { opacity: 1 } : { y: 0 }}
                   transition={{ delay: 0.3 + i * 0.12, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  {i === 1 ? (
+                  {i === headlineLines.length - 1 ? (
                     <>
-                      that <span className="text-accent-soft">ships.</span>
+                      your <span className="text-accent-soft">business.</span>
                     </>
                   ) : (
-                    line
+                    // Trailing space keeps accessible name readable across block lines.
+                    `${line} `
                   )}
                 </motion.span>
               </span>
@@ -151,9 +175,9 @@ export function Hero() {
             transition={{ delay: 0.65, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-lead mt-7 max-w-[560px] text-mist"
           >
-            Custom AI products, SaaS platforms, web applications and ecommerce —
-            scoped, designed and engineered by one senior team. Fixed-scope
-            sprints, weekly demos, and you own every line of code.
+            Buildaze is a digital agency bringing branding, design, websites,
+            applications, AI automation, digital marketing and Shopify together
+            around your business goals.
           </motion.p>
 
           <motion.div
@@ -162,31 +186,16 @@ export function Hero() {
             transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <MagneticButton href="#contact" analytics="hero-start-project">
-              Start a Project
+            <MagneticButton href="/contact" analytics="hero-start-project" tone={tone}>
+              Discuss Your Project
             </MagneticButton>
-            <MagneticButton href="/work" variant="ghost" analytics="hero-view-work">
+            <MagneticButton href="#work" variant="ghost" analytics="hero-view-work" tone={tone}>
               Explore Our Work
             </MagneticButton>
           </motion.div>
-
-          <motion.ul
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.05, duration: 0.9 }}
-            className="mt-14 flex flex-wrap gap-x-8 gap-y-3"
-          >
-            {heroProof.map((item) => (
-              <li key={item} className="t-label flex items-center gap-2.5 text-mist-2">
-                <span aria-hidden className="inline-block h-1 w-1 bg-accent" />
-                {item}
-              </li>
-            ))}
-          </motion.ul>
         </div>
       </motion.div>
 
-      {/* Same build-system canvas: below content on mobile, right rail on desktop */}
       <motion.div
         aria-hidden
         style={reduced ? undefined : { opacity: sceneOpacity }}
@@ -195,7 +204,6 @@ export function Hero() {
         {scene}
       </motion.div>
 
-      {/* Scroll cue */}
       <motion.div
         aria-hidden
         initial={{ opacity: 0 }}

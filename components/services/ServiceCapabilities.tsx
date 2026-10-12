@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, type KeyboardEvent } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -12,9 +12,13 @@ import type { ServiceCapabilitiesContent } from "@/lib/data/services";
 export function ServiceCapabilities({
   capabilities,
   sectionIndex = "05",
+  sectionId = "service-capabilities",
+  sectionLabel = "Services",
 }: {
   capabilities: ServiceCapabilitiesContent;
   sectionIndex?: string;
+  sectionId?: string;
+  sectionLabel?: string;
 }) {
   const items = capabilities.capabilities;
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
@@ -22,13 +26,30 @@ export function ServiceCapabilities({
 
   if (!active) return null;
 
+  const onTabKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    const idx = items.findIndex((s) => s.id === activeId);
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      e.preventDefault();
+      const next = items[(idx + 1) % items.length];
+      setActiveId(next.id);
+      document.getElementById(`capability-tab-${next.id}`)?.focus();
+    }
+    if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      const prev = items[(idx - 1 + items.length) % items.length];
+      setActiveId(prev.id);
+      document.getElementById(`capability-tab-${prev.id}`)?.focus();
+    }
+  };
+
   return (
     <section
+      id={sectionId}
       aria-labelledby="service-capabilities-heading"
-      className="relative py-24 md:py-32"
+      className="surface-page relative scroll-mt-20 py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
-        <SectionLabel index={sectionIndex} label="Shopify capabilities" />
+        <SectionLabel index={sectionIndex} label={sectionLabel} />
         <p className="t-label mt-8 text-accent-soft">{capabilities.eyebrow}</p>
         <div className="mt-5 flex flex-wrap items-end justify-between gap-10">
           <RevealText
@@ -48,11 +69,10 @@ export function ServiceCapabilities({
           </Reveal>
         </div>
 
-        {/* Desktop: interactive capability directory */}
         <div className="mt-16 hidden gap-12 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
           <div
             role="tablist"
-            aria-label="Shopify capabilities"
+            aria-label={sectionLabel}
             className="flex flex-col"
           >
             {items.map((item) => {
@@ -65,9 +85,10 @@ export function ServiceCapabilities({
                   id={`capability-tab-${item.id}`}
                   aria-selected={isActive}
                   aria-controls="capability-panel"
+                  tabIndex={isActive ? 0 : -1}
                   onClick={() => setActiveId(item.id)}
-                  onMouseEnter={() => setActiveId(item.id)}
-                  data-analytics={`shopify-capability-${item.id}`}
+                  onKeyDown={onTabKeyDown}
+                  data-analytics={`service-capability-${item.id}`}
                   className={`group relative flex w-full items-center gap-5 border-b border-line py-5 text-left transition-colors ${
                     isActive ? "text-white" : "text-mist-2 hover:text-mist"
                   }`}
@@ -88,14 +109,6 @@ export function ServiceCapabilities({
                   <span className="flex-1 text-[17px] font-medium tracking-tight md:text-[18px]">
                     {item.name}
                   </span>
-                  <span
-                    aria-hidden
-                    className={`pr-1 transition-transform duration-300 ${
-                      isActive ? "translate-x-0 text-accent" : "-translate-x-1 text-mist-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
-                    }`}
-                  >
-                    →
-                  </span>
                 </button>
               );
             })}
@@ -105,7 +118,7 @@ export function ServiceCapabilities({
             id="capability-panel"
             role="tabpanel"
             aria-labelledby={`capability-tab-${active.id}`}
-            className="build-grid relative min-h-[420px] overflow-hidden border border-line p-10 xl:p-12"
+            className="media-frame build-grid relative min-h-[420px] border border-line p-10 xl:p-12"
           >
             <div
               aria-hidden
@@ -115,17 +128,10 @@ export function ServiceCapabilities({
                   "radial-gradient(ellipse 70% 60% at 20% 15%, rgba(37,99,235,0.1), transparent 70%)",
               }}
             />
-            {/* All capabilities remain in the DOM for crawlability; inactive panels are visually hidden. */}
             {items.map((item) => {
               const isActivePanel = item.id === active.id;
               return (
-                <div
-                  key={item.id}
-                  hidden={!isActivePanel}
-                  className={`relative flex h-full flex-col ${
-                    isActivePanel ? "" : ""
-                  }`}
-                >
+                <div key={item.id} hidden={!isActivePanel} className="relative">
                   {isActivePanel ? (
                     <motion.div
                       key={item.id}
@@ -143,21 +149,34 @@ export function ServiceCapabilities({
                       <p className="mt-5 max-w-[480px] text-[15.5px] leading-relaxed text-mist">
                         {item.description}
                       </p>
-                      <ul className="mt-8 space-y-3">
+                      {item.bestFor && (
+                        <p className="mt-5 max-w-[480px] text-[14px] leading-relaxed text-mist-2">
+                          <span className="text-white">Best fit: </span>
+                          {item.bestFor}
+                        </p>
+                      )}
+                      <p className="t-label mt-8 mb-4 text-mist-2">Typical deliverables</p>
+                      <ul className="space-y-3">
                         {item.items.map((line) => (
                           <li
                             key={line}
-                            className="flex items-center gap-3 text-[14.5px] text-mist"
+                            className="flex items-start gap-3 text-[14.5px] text-mist"
                           >
-                            <span aria-hidden className="h-1 w-1 shrink-0 bg-accent" />
+                            <span aria-hidden className="mt-2 h-1 w-1 shrink-0 bg-accent" />
                             {line}
                           </li>
                         ))}
                       </ul>
-                      <div className="mt-auto pt-10">
+                      {item.boundaries && (
+                        <p className="mt-6 max-w-[480px] text-[13.5px] leading-relaxed text-mist-2">
+                          <span className="text-mist">Scope note: </span>
+                          {item.boundaries}
+                        </p>
+                      )}
+                      <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-10">
                         <Link
                           href={item.href}
-                          data-analytics={`shopify-capability-cta-${item.id}`}
+                          data-analytics={`service-capability-cta-${item.id}`}
                           className="group inline-flex items-center gap-2.5 text-[15px] font-medium text-white"
                         >
                           <span className="border-b border-accent pb-0.5 transition-colors group-hover:text-accent-soft">
@@ -180,17 +199,32 @@ export function ServiceCapabilities({
                             />
                           </svg>
                         </Link>
+                        {item.detailHref && item.detailLabel && (
+                          <Link
+                            href={item.detailHref}
+                            data-analytics={`service-capability-detail-${item.id}`}
+                            className="text-[14.5px] text-mist transition-colors hover:text-white"
+                          >
+                            {item.detailLabel}
+                          </Link>
+                        )}
                       </div>
                     </motion.div>
                   ) : (
                     <div className="sr-only">
                       <h3>{item.name}</h3>
                       <p>{item.description}</p>
+                      {item.bestFor && <p>Best fit: {item.bestFor}</p>}
                       <ul>
                         {item.items.map((line) => (
                           <li key={line}>{line}</li>
                         ))}
                       </ul>
+                      {item.boundaries && <p>{item.boundaries}</p>}
+                      <a href={item.href}>{item.cta}</a>
+                      {item.detailHref && item.detailLabel && (
+                        <a href={item.detailHref}>{item.detailLabel}</a>
+                      )}
                     </div>
                   )}
                 </div>
@@ -199,7 +233,6 @@ export function ServiceCapabilities({
           </div>
         </div>
 
-        {/* Mobile: all capability content stays in HTML; closed rows use CSS collapse. */}
         <div className="mt-12 lg:hidden">
           {items.map((item) => {
             const isOpen = item.id === activeId;
@@ -209,6 +242,7 @@ export function ServiceCapabilities({
                   type="button"
                   aria-expanded={isOpen}
                   onClick={() => setActiveId(isOpen ? "" : item.id)}
+                  data-analytics={`service-capability-${item.id}`}
                   className="flex w-full items-center gap-4 py-5 text-left"
                 >
                   <span
@@ -223,13 +257,10 @@ export function ServiceCapabilities({
                   >
                     {item.name}
                   </span>
-                  <span aria-hidden className="text-accent">
-                    →
-                  </span>
                 </button>
                 <div
                   className={`overflow-hidden transition-[max-height,opacity] duration-350 ${
-                    isOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
+                    isOpen ? "max-h-[1200px] opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
                   <div className="pb-7">
@@ -237,24 +268,47 @@ export function ServiceCapabilities({
                     <p className="mt-3 text-[15px] leading-relaxed text-mist">
                       {item.description}
                     </p>
+                    {item.bestFor && (
+                      <p className="mt-4 text-[14px] leading-relaxed text-mist-2">
+                        <span className="text-white">Best fit: </span>
+                        {item.bestFor}
+                      </p>
+                    )}
                     <ul className="mt-5 space-y-2.5">
                       {item.items.map((line) => (
                         <li
                           key={line}
-                          className="flex items-center gap-3 text-[14px] text-mist"
+                          className="flex items-start gap-3 text-[14px] text-mist"
                         >
-                          <span aria-hidden className="h-1 w-1 shrink-0 bg-accent" />
+                          <span aria-hidden className="mt-2 h-1 w-1 shrink-0 bg-accent" />
                           {line}
                         </li>
                       ))}
                     </ul>
-                    <Link
-                      href={item.href}
-                      className="mt-6 inline-flex items-center gap-2 text-[15px] font-medium text-accent-soft"
-                    >
-                      {item.cta}
-                      <span aria-hidden>→</span>
-                    </Link>
+                    {item.boundaries && (
+                      <p className="mt-4 text-[13px] leading-relaxed text-mist-2">
+                        {item.boundaries}
+                      </p>
+                    )}
+                    <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+                      <Link
+                        href={item.href}
+                        data-analytics={`service-capability-cta-${item.id}`}
+                        className="inline-flex items-center gap-2 text-[15px] font-medium text-accent-soft"
+                      >
+                        {item.cta}
+                        <span aria-hidden>→</span>
+                      </Link>
+                      {item.detailHref && item.detailLabel && (
+                        <Link
+                          href={item.detailHref}
+                          data-analytics={`service-capability-detail-${item.id}`}
+                          className="text-[14px] text-mist transition-colors hover:text-white"
+                        >
+                          {item.detailLabel}
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -262,7 +316,7 @@ export function ServiceCapabilities({
           })}
         </div>
 
-        <Reveal y={28} className="relative mt-20 overflow-hidden border border-line p-8 md:p-12">
+        <Reveal y={28} className="relative mt-20 overflow-hidden rounded-panel border border-line p-8 md:p-12">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
@@ -283,7 +337,7 @@ export function ServiceCapabilities({
             <div className="lg:col-span-4 lg:justify-self-end">
               <MagneticButton
                 href={capabilities.ctaHref}
-                analytics="shopify-capabilities-cta"
+                analytics="service-capabilities-cta"
               >
                 {capabilities.ctaLabel}
               </MagneticButton>

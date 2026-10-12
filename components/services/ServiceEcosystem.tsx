@@ -147,7 +147,7 @@ export function ServiceEcosystem({
   return (
     <section
       aria-labelledby="service-ecosystem-heading"
-      className="relative py-24 md:py-32"
+      className="surface-soft relative py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index={sectionIndex} label="Shopify ecosystem" />
@@ -185,7 +185,7 @@ export function ServiceEcosystem({
             id="ecosystem-panel"
             role="tabpanel"
             aria-labelledby={`ecosystem-tab-${active.id}`}
-            className="build-grid relative min-h-[420px] overflow-hidden border border-line p-10 xl:p-12"
+            className="media-frame build-grid relative min-h-[420px] border border-line p-10 xl:p-12"
           >
             <div
               aria-hidden
@@ -330,7 +330,7 @@ export function ServiceEcosystem({
           })}
         </div>
 
-        <Reveal y={28} className="relative mt-20 overflow-hidden border border-line p-8 md:p-12">
+        <Reveal y={28} className="relative mt-20 overflow-hidden rounded-panel border border-line p-8 md:p-12">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"

@@ -1,0 +1,234 @@
+/**
+ * Buildaze site-wide brand system.
+ * Activated via data-theme="buildaze" on <html> (layout).
+ * Legacy homepage aliases: buildaze-home, buildaze-light.
+ *
+ * Brand ink: #0a0a0a
+ * Brand blue: #2563EB
+ * Brand white: #FFFFFF
+ * Soft: #F7F8FA
+ *
+ * Radius:
+ * --radius-control: 12px
+ * --radius-card: 14px
+ * --radius-panel: 14px
+ */
+
+:root,
+[data-theme="buildaze"],
+[data-theme="buildaze-home"],
+[data-theme="buildaze-light"] {
+  --brand-ink: #0a0a0a;
+  --brand-ink-elevated: #0e0e10;
+  --brand-blue: #2563eb;
+  --brand-blue-hover: #1d4ed8;
+  --brand-white: #ffffff;
+
+  --page-bg: #ffffff;
+  --section-soft: #f7f8fa;
+  --section-blue-soft: #eff5ff;
+  --card-bg: #ffffff;
+
+  --text-on-light: #0a0a0a;
+  --text-on-light-secondary: #475569;
+  --text-on-light-muted: #64748b;
+  --border-on-light: #e2e8f0;
+  --border-on-light-hover: #cbd5e1;
+
+  --text-on-ink: #ffffff;
+  --text-on-ink-secondary: rgba(255, 255, 255, 0.6);
+  --text-on-ink-muted: rgba(255, 255, 255, 0.42);
+  --border-on-ink: rgba(255, 255, 255, 0.09);
+  --border-on-ink-strong: rgba(255, 255, 255, 0.16);
+
+  --radius-control: 12px;
+  --radius-card: 14px;
+  --radius-panel: 14px;
+}
+
+[data-theme="buildaze"],
+[data-theme="buildaze-home"],
+[data-theme="buildaze-light"] {
+  --color-ink: var(--brand-ink);
+  --color-ink-2: var(--brand-ink-elevated);
+  --color-ink-3: #131316;
+  --color-paper: var(--brand-white);
+  --color-accent: var(--brand-blue);
+  --color-accent-bright: var(--brand-blue-hover);
+  --color-accent-soft: #7fa6f5;
+  --color-accent-dim: rgb(37 99 235 / 0.14);
+  --color-line: var(--border-on-ink);
+  --color-line-strong: var(--border-on-ink-strong);
+  --color-mist: var(--text-on-ink-secondary);
+  --color-mist-2: var(--text-on-ink-muted);
+
+  background: var(--brand-ink);
+  color: var(--text-on-ink);
+}
+
+/* ── Surfaces (site-wide; home-surface-* kept as aliases) ─────────────────── */
+
+.surface-ink,
+.home-surface-ink {
+  background-color: var(--brand-ink);
+  color: var(--text-on-ink);
+  --color-line: var(--border-on-ink);
+  --color-line-strong: var(--border-on-ink-strong);
+  --color-mist: var(--text-on-ink-secondary);
+  --color-mist-2: var(--text-on-ink-muted);
+  --color-accent-soft: #7fa6f5;
+  --color-ink: var(--brand-ink);
+  --color-ink-2: var(--brand-ink-elevated);
+}
+
+.surface-blue,
+.home-surface-blue {
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+  --color-line: rgb(255 255 255 / 0.22);
+  --color-line-strong: rgb(255 255 255 / 0.35);
+  --color-mist: rgb(255 255 255 / 0.88);
+  --color-mist-2: rgb(255 255 255 / 0.75);
+  --color-accent: var(--brand-white);
+  --color-accent-soft: var(--brand-white);
+  --color-accent-dim: rgb(255 255 255 / 0.12);
+}
+
+.surface-page,
+.home-surface-page,
+.surface-soft,
+.home-surface-soft {
+  --color-ink: var(--page-bg);
+  --color-ink-2: var(--section-soft);
+  --color-ink-3: var(--section-blue-soft);
+  --color-paper: var(--brand-white);
+  --color-accent: var(--brand-blue);
+  --color-accent-bright: var(--brand-blue-hover);
+  --color-accent-soft: var(--brand-blue);
+  --color-accent-dim: rgb(37 99 235 / 0.1);
+  --color-line: var(--border-on-light);
+  --color-line-strong: var(--border-on-light-hover);
+  --color-mist: var(--text-on-light-secondary);
+  --color-mist-2: var(--text-on-light-muted);
+  color: var(--text-on-light);
+}
+
+.surface-page,
+.home-surface-page {
+  background-color: var(--page-bg);
+}
+
+.surface-soft,
+.home-surface-soft {
+  background-color: var(--section-soft);
+}
+
+.surface-card,
+.home-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-on-light);
+  border-radius: var(--radius-card);
+}
+
+/* Light surfaces: authored text-white → ink headings */
+.surface-page .text-white,
+.home-surface-page .text-white,
+.surface-soft .text-white,
+.home-surface-soft .text-white {
+  color: var(--text-on-light);
+}
+
+.surface-page .bg-accent.text-white,
+.home-surface-page .bg-accent.text-white,
+.surface-soft .bg-accent.text-white,
+.home-surface-soft .bg-accent.text-white,
+.surface-page a.bg-accent,
+.home-surface-page a.bg-accent,
+.surface-soft a.bg-accent,
+.home-surface-soft a.bg-accent,
+.surface-page button.bg-accent,
+.home-surface-page button.bg-accent,
+.surface-soft button.bg-accent,
+.home-surface-soft button.bg-accent {
+  color: var(--brand-white) !important;
+}
+
+.surface-page .hover\:text-white:hover,
+.home-surface-page .hover\:text-white:hover,
+.surface-soft .hover\:text-white:hover,
+.home-surface-soft .hover\:text-white:hover,
+.surface-page .group:hover .group-hover\:text-white,
+.home-surface-page .group:hover .group-hover\:text-white,
+.surface-soft .group:hover .group-hover\:text-white,
+.home-surface-soft .group:hover .group-hover\:text-white {
+  color: var(--brand-blue);
+}
+
+.surface-page .text-white\/20,
+.home-surface-page .text-white\/20,
+.surface-soft .text-white\/20,
+.home-surface-soft .text-white\/20 {
+  color: rgb(10 10 10 / 0.2);
+}
+
+.surface-page .build-grid,
+.home-surface-page .build-grid,
+.surface-soft .build-grid,
+.home-surface-soft .build-grid {
+  background-image:
+    linear-gradient(to right, rgb(37 99 235 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(37 99 235 / 0.06) 1px, transparent 1px);
+}
+
+.surface-ink .text-white,
+.home-surface-ink .text-white,
+.surface-blue .text-white,
+.home-surface-blue .text-white {
+  color: var(--brand-white);
+}
+
+.surface-ink .bg-accent.text-white,
+.home-surface-ink .bg-accent.text-white,
+.surface-blue .bg-accent.text-white,
+.home-surface-blue .bg-accent.text-white,
+.surface-ink a.bg-accent,
+.home-surface-ink a.bg-accent,
+.surface-ink button.bg-accent,
+.home-surface-ink button.bg-accent {
+  color: var(--brand-white) !important;
+}
+
+.surface-ink .build-grid,
+.home-surface-ink .build-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+}
+
+.surface-blue .build-grid,
+.home-surface-blue .build-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.12) 1px, transparent 1px);
+}
+
+/* ── Radius utilities ────────────────────────────────────────────────────── */
+/* Buttons / CTAs use Tailwind rounded-full (capsule). Controls keep 12px. */
+
+.rounded-control {
+  border-radius: var(--radius-control);
+}
+
+.rounded-card {
+  border-radius: var(--radius-card);
+}
+
+.rounded-panel {
+  border-radius: var(--radius-panel);
+}
+
+/* Media frames: clip content, not focus rings */
+.media-frame {
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+}

@@ -128,7 +128,7 @@ export function ServiceWhy({
   return (
     <section
       aria-labelledby="service-why-heading"
-      className="relative py-24 md:py-32"
+      className="surface-page relative py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
         <SectionLabel index={sectionIndex} label="Why Buildaze" />
@@ -211,7 +211,7 @@ export function ServiceWhy({
             id="why-panel"
             role="tabpanel"
             aria-labelledby={`why-tab-${active.id}`}
-            className="build-grid relative min-h-[560px] overflow-hidden border border-line"
+            className="media-frame build-grid relative min-h-[560px] border border-line"
           >
             <div
               aria-hidden
@@ -314,7 +314,7 @@ export function ServiceWhy({
         </div>
 
         {/* Closing manifesto */}
-        <Reveal y={28} className="relative mt-20 overflow-hidden border border-line p-8 md:p-12">
+        <Reveal y={28} className="relative mt-20 overflow-hidden rounded-panel border border-line p-8 md:p-12">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"

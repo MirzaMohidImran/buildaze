@@ -8,15 +8,19 @@ export const linkedIn = {
 
 export const site = {
   name: "Buildaze",
-  tagline: "AI-Native Software Development Studio",
+  tagline: "Design, Development & Digital Growth Agency",
   description:
-    "Buildaze is an AI-native software development studio. Custom AI products, SaaS platforms, web applications and ecommerce experiences — designed, engineered and shipped by one senior team. Fixed-scope sprints, weekly demos, 100% code ownership.",
+    "Buildaze is a digital agency bringing design, development, AI, digital marketing and Shopify services together to help businesses launch, improve and grow — with clear scope, practical handover and optional ongoing support.",
   url: "https://www.buildaze.com",
   email: "team@buildaze.com",
   socials: [
-    { label: "Twitter (X)", href: "https://x.com/buildaze" },
-    { label: "Dribbble", href: "https://dribbble.com/buildaze" },
     { label: "LinkedIn", href: linkedIn.company },
+    { label: "Instagram", href: "https://www.instagram.com/buildaze" },
+    {
+      label: "Facebook",
+      href: "https://www.facebook.com/people/Buildaze/61590512365408/",
+    },
+    { label: "Clutch", href: "https://clutch.co/profile/buildaze" },
   ],
 } as const;
 
@@ -37,20 +41,8 @@ export const nav = {
     { label: "Our Products", href: "/voice-agent", menu: "products" as const },
     { label: "Work", href: "/work" },
     { label: "Process", href: "/#process" },
-    { label: "About", href: "/#team" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
   ],
-  cta: { label: "Start a Project", href: "/#contact" },
+  cta: { label: "Start a Project", href: "/contact" },
 } as const;
-
-/** Verified numbers from the existing Buildaze site. Do not add unverified metrics. */
-export const stats = [
-  { value: 50, suffix: "+", label: "Projects shipped" },
-  { value: 99, suffix: "%", label: "On-time delivery" },
-  { value: 95, suffix: "%", label: "Uptime for key flows" },
-] as const;
-
-export const heroProof = [
-  "50+ projects shipped",
-  "Weekly live demos",
-  "100% code ownership",
-] as const;

@@ -1,6 +1,7 @@
-import { ContactCTA } from "@/components/sections/ContactCTA";
+import { ContactInvite } from "@/components/contact/ContactInvite";
 import { Footer } from "@/components/sections/Footer";
 import { Navbar } from "@/components/sections/Navbar";
+import { contactServiceParamForId } from "@/lib/contact/paths";
 import { ServiceAudience } from "@/components/services/ServiceAudience";
 import { ServiceCapabilities } from "@/components/services/ServiceCapabilities";
 import { ServiceClientProof } from "@/components/services/ServiceClientProof";
@@ -15,7 +16,6 @@ import { ServiceProcess } from "@/components/services/ServiceProcess";
 import { ServiceRelated } from "@/components/services/ServiceRelated";
 import { ServiceRelatedWork } from "@/components/services/ServiceRelatedWork";
 import { ServiceSelectedWorkSection } from "@/components/services/ServiceSelectedWork";
-import { ServiceShopifyContact } from "@/components/services/ServiceShopifyContact";
 import { ServiceTrust } from "@/components/services/ServiceTrust";
 import { ServiceWhy } from "@/components/services/ServiceWhy";
 import type { Service } from "@/lib/data/services";
@@ -28,159 +28,115 @@ function padIndex(n: number) {
 }
 
 export function ServicePage({ service }: { service: Service }) {
-  const hasTrust = Boolean(service.page.trust);
-  const hasSelectedWork = Boolean(service.page.selectedWork);
-  const hasProblems = Boolean(service.page.problems);
-  const hasCapabilities = Boolean(service.page.capabilities);
-  const hasDeliveryProcess = Boolean(service.page.deliveryProcess);
-  const hasWhy = Boolean(service.page.why);
-  const hasClientProof = Boolean(service.page.clientProof);
-  const hasEcosystem = Boolean(service.page.ecosystem);
-  const hasAudience = Boolean(service.page.audience);
+  /**
+   * Specialist layout (Shopify + Development + Digital Marketing + AI + Design):
+   * skip generic overview / deliverables / process / related work in favour of
+   * problems → work → capabilities → delivery process → why.
+   * Shopify keeps its dedicated contact. Voice Agents stay on `/voice-agent`.
+   */
+  const isDevelopment = service.id === "development";
+  const isMarketingHub = service.id === "digital-marketing";
+  const isMarketingLeaf = service.id.startsWith("dm-");
+  const isMarketingFamily = isMarketingHub || isMarketingLeaf;
+  const isAiHub = service.id === "ai";
+  const isAiLeaf =
+    service.id.startsWith("ai-") && service.id !== "ai-voice";
+  const isAiFamily = isAiHub || isAiLeaf;
+  const isDesignHub = service.id === "design";
+  const isDesignLeaf = service.id.startsWith("design-");
+  const isDesignFamily = isDesignHub || isDesignLeaf;
+  const skipGenericCore =
+    service.id === "shopify" ||
+    isDevelopment ||
+    isMarketingFamily ||
+    isAiFamily ||
+    isDesignFamily;
+  const workSectionId =
+    service.id === "shopify"
+      ? "shopify-work"
+      : isDevelopment
+        ? "development-work"
+        : isMarketingFamily
+          ? "marketing-work"
+          : isAiFamily
+            ? "ai-work"
+            : isDesignFamily
+              ? "design-work"
+              : "selected-work";
+  const problemsSectionId =
+    service.id === "shopify"
+      ? "shopify-starting-points"
+      : isDevelopment
+        ? "development-starting-points"
+        : isMarketingFamily
+          ? "marketing-starting-points"
+          : isAiFamily
+            ? "ai-starting-points"
+            : isDesignFamily
+              ? "design-starting-points"
+              : "starting-points";
+  const capabilitiesSectionId =
+    service.id === "shopify"
+      ? "shopify-services"
+      : isDevelopment
+        ? "development-services"
+        : isMarketingFamily
+          ? "marketing-services"
+          : isAiFamily
+            ? "ai-services"
+            : isDesignFamily
+              ? "design-services"
+              : "service-capabilities";
+  const capabilitiesSectionLabel = isDevelopment
+    ? "Development services"
+    : isMarketingFamily
+      ? "Marketing services"
+      : isAiFamily
+        ? "AI services"
+        : isDesignFamily
+          ? "Design services"
+          : service.id === "shopify"
+            ? "Shopify services"
+            : "Services";
 
-  // Full Shopify page: skip generic overview / deliverables / process / related work
-  const skipGenericCore = hasAudience;
+  let section = 1;
+  const take = () => padIndex(section++);
 
-  // Shopify early sections: 02 trust … 09 ecosystem, 10 audience
-  let next = 1;
-  if (hasTrust) next = 3;
-  if (hasSelectedWork) next = Math.max(next, hasTrust ? 4 : 2);
-  if (hasProblems) next = Math.max(next, hasTrust && hasSelectedWork ? 5 : next + 1);
-  if (hasCapabilities) {
-    next = Math.max(
-      next,
-      hasTrust && hasSelectedWork && hasProblems ? 6 : next + 1,
-    );
-  }
-  if (hasDeliveryProcess) {
-    next = Math.max(
-      next,
-      hasTrust && hasSelectedWork && hasProblems && hasCapabilities
-        ? 7
-        : next + 1,
-    );
-  }
-  if (hasWhy) {
-    next = Math.max(
-      next,
-      hasTrust &&
-        hasSelectedWork &&
-        hasProblems &&
-        hasCapabilities &&
-        hasDeliveryProcess
-        ? 8
-        : next + 1,
-    );
-  }
-  if (hasClientProof) {
-    next = Math.max(
-      next,
-      hasTrust &&
-        hasSelectedWork &&
-        hasProblems &&
-        hasCapabilities &&
-        hasDeliveryProcess &&
-        hasWhy
-        ? 9
-        : next + 1,
-    );
-  }
-  if (hasEcosystem) {
-    next = Math.max(
-      next,
-      hasTrust &&
-        hasSelectedWork &&
-        hasProblems &&
-        hasCapabilities &&
-        hasDeliveryProcess &&
-        hasWhy &&
-        hasClientProof
-        ? 10
-        : next + 1,
-    );
-  }
-  if (hasAudience) {
-    next = Math.max(
-      next,
-      hasTrust &&
-        hasSelectedWork &&
-        hasProblems &&
-        hasCapabilities &&
-        hasDeliveryProcess &&
-        hasWhy &&
-        hasClientProof &&
-        hasEcosystem
-        ? 11
-        : next + 1,
-    );
-  }
+  const problemsIndex = service.page.problems ? take() : "";
+  const selectedWorkIndex = service.page.selectedWork ? take() : "";
+  const capabilitiesIndex = service.page.capabilities ? take() : "";
+  const deliveryProcessIndex = service.page.deliveryProcess ? take() : "";
+  const whyIndex = service.page.why ? take() : "";
+  const clientProofIndex = service.page.clientProof ? take() : "";
+  const trustIndex = service.page.trust ? take() : "";
+  const ecosystemIndex = service.page.ecosystem ? take() : "";
+  const audienceIndex = service.page.audience ? take() : "";
 
-  const overviewIndex = skipGenericCore ? "" : padIndex(next++);
-  const deliverablesIndex = skipGenericCore ? "" : padIndex(next++);
-  const processIndex = skipGenericCore ? "" : padIndex(next++);
-  const relatedWorkIndex = skipGenericCore ? "" : padIndex(next++);
-  const faqIndex = padIndex(next++);
-  const relatedIndex = skipGenericCore ? "" : padIndex(next++);
-  const contactIndex = padIndex(next++);
-
-  const problemsIndex =
-    hasTrust && hasSelectedWork ? "04" : padIndex(hasTrust || hasSelectedWork ? 3 : 1);
-  const capabilitiesIndex =
-    hasTrust && hasSelectedWork && hasProblems
-      ? "05"
-      : padIndex(Number(problemsIndex) + 1);
-  const deliveryProcessIndex =
-    hasTrust && hasSelectedWork && hasProblems && hasCapabilities
-      ? "06"
-      : padIndex(Number(capabilitiesIndex) + 1);
-  const whyIndex =
-    hasTrust &&
-    hasSelectedWork &&
-    hasProblems &&
-    hasCapabilities &&
-    hasDeliveryProcess
-      ? "07"
-      : padIndex(Number(deliveryProcessIndex) + 1);
-  const clientProofIndex =
-    hasTrust &&
-    hasSelectedWork &&
-    hasProblems &&
-    hasCapabilities &&
-    hasDeliveryProcess &&
-    hasWhy
-      ? "08"
-      : padIndex(Number(whyIndex) + 1);
-  const ecosystemIndex =
-    hasTrust &&
-    hasSelectedWork &&
-    hasProblems &&
-    hasCapabilities &&
-    hasDeliveryProcess &&
-    hasWhy &&
-    hasClientProof
-      ? "09"
-      : padIndex(Number(clientProofIndex) + 1);
-  const audienceIndex =
-    hasTrust &&
-    hasSelectedWork &&
-    hasProblems &&
-    hasCapabilities &&
-    hasDeliveryProcess &&
-    hasWhy &&
-    hasClientProof &&
-    hasEcosystem
-      ? "10"
-      : padIndex(Number(ecosystemIndex) + 1);
+  const overviewIndex = skipGenericCore ? "" : take();
+  const deliverablesIndex = skipGenericCore ? "" : take();
+  const processIndex = skipGenericCore ? "" : take();
+  const relatedWorkIndex = skipGenericCore ? "" : take();
+  const faqIndex = take();
+  /** Specialist hubs/leaves keep related paths where configured. */
+  const relatedIndex =
+    skipGenericCore &&
+    !isDevelopment &&
+    !isMarketingFamily &&
+    !isAiFamily &&
+    !isDesignFamily
+      ? ""
+      : take();
+  const contactIndex = take();
 
   return (
     <>
-      <Navbar />
+      <Navbar showShopifyPartnerBadge={service.id === "shopify"} />
       <main id="main">
         <ServiceHero service={service} />
         {service.id === "ecommerce" && (
           <section
             aria-label="Shopify specialist path"
-            className="relative border-b border-line py-10 md:py-12"
+            className="surface-page relative border-b border-line py-10 md:py-12"
           >
             <div className="mx-auto max-w-[1600px] px-5 md:px-10">
               <p className="max-w-[720px] text-[15.5px] leading-relaxed text-mist">
@@ -190,7 +146,7 @@ export function ServicePage({ service }: { service: Service }) {
                   className="text-accent-soft underline-offset-2 hover:underline"
                   data-analytics="ecommerce-to-shopify"
                 >
-                  Shopify development
+                  Shopify design and development
                 </Link>
                 ? Explore Buildaze&apos;s{" "}
                 <Link
@@ -198,80 +154,200 @@ export function ServicePage({ service }: { service: Service }) {
                   className="text-white underline-offset-2 hover:underline"
                   data-analytics="ecommerce-to-shopify-agency"
                 >
-                  Shopify Growth Agency
+                  Shopify service hub
                 </Link>{" "}
-                page for custom Shopify stores, redesigns, CRO, performance,
-                migrations, and Shopify Plus support.
+                for store design, migrations, apps, integrations, headless/B2B,
+                and ongoing support.
               </p>
             </div>
           </section>
         )}
-        {service.page.trust && (
-          <ServiceTrust trust={service.page.trust} sectionIndex="02" />
-        )}
-        {service.page.selectedWork && (
-          <ServiceSelectedWorkSection
-            selectedWork={service.page.selectedWork}
-            sectionIndex={hasTrust ? "03" : "01"}
-          />
-        )}
-        {service.page.problems && (
-          <ServiceProblems
-            problems={service.page.problems}
-            sectionIndex={problemsIndex}
-          />
-        )}
-        {service.page.capabilities && (
-          <ServiceCapabilities
-            capabilities={service.page.capabilities}
-            sectionIndex={capabilitiesIndex}
-          />
-        )}
-        {service.page.deliveryProcess && (
-          <ServiceDeliveryProcess
-            deliveryProcess={service.page.deliveryProcess}
-            sectionIndex={deliveryProcessIndex}
-          />
-        )}
-        {service.page.why && (
-          <ServiceWhy why={service.page.why} sectionIndex={whyIndex} />
-        )}
-        {service.page.clientProof && (
-          <ServiceClientProof
-            clientProof={service.page.clientProof}
-            sectionIndex={clientProofIndex}
-          />
-        )}
-        {service.page.ecosystem && (
-          <ServiceEcosystem
-            ecosystem={service.page.ecosystem}
-            sectionIndex={ecosystemIndex}
-          />
-        )}
-        {service.page.audience && (
-          <ServiceAudience
-            audience={service.page.audience}
-            sectionIndex={audienceIndex}
-          />
-        )}
-        {!skipGenericCore && (
+
+        {skipGenericCore ? (
           <>
+            {service.page.problems && (
+              <ServiceProblems
+                problems={service.page.problems}
+                sectionIndex={problemsIndex}
+                sectionId={problemsSectionId}
+              />
+            )}
+            {service.page.selectedWork && (
+              <ServiceSelectedWorkSection
+                selectedWork={service.page.selectedWork}
+                sectionIndex={selectedWorkIndex}
+                sectionId={workSectionId}
+              />
+            )}
+            {service.page.capabilities && (
+              <ServiceCapabilities
+                capabilities={service.page.capabilities}
+                sectionIndex={capabilitiesIndex}
+                sectionId={capabilitiesSectionId}
+                sectionLabel={capabilitiesSectionLabel}
+              />
+            )}
+            {service.page.deliveryProcess && (
+              <ServiceDeliveryProcess
+                deliveryProcess={service.page.deliveryProcess}
+                sectionIndex={deliveryProcessIndex}
+              />
+            )}
+            {service.page.why && (
+              <ServiceWhy why={service.page.why} sectionIndex={whyIndex} />
+            )}
+            {service.page.clientProof && (
+              <ServiceClientProof
+                clientProof={service.page.clientProof}
+                sectionIndex={clientProofIndex}
+              />
+            )}
+            {service.page.trust && (
+              <ServiceTrust trust={service.page.trust} sectionIndex={trustIndex} />
+            )}
+            {service.page.ecosystem && (
+              <ServiceEcosystem
+                ecosystem={service.page.ecosystem}
+                sectionIndex={ecosystemIndex}
+              />
+            )}
+            {service.page.audience && (
+              <ServiceAudience
+                audience={service.page.audience}
+                sectionIndex={audienceIndex}
+              />
+            )}
+          </>
+        ) : (
+          <>
+            {service.page.trust && (
+              <ServiceTrust trust={service.page.trust} sectionIndex={trustIndex} />
+            )}
+            {service.page.selectedWork && (
+              <ServiceSelectedWorkSection
+                selectedWork={service.page.selectedWork}
+                sectionIndex={selectedWorkIndex}
+                sectionId={workSectionId}
+              />
+            )}
+            {service.page.problems && (
+              <ServiceProblems
+                problems={service.page.problems}
+                sectionIndex={problemsIndex}
+                sectionId={problemsSectionId}
+              />
+            )}
+            {service.page.capabilities && (
+              <ServiceCapabilities
+                capabilities={service.page.capabilities}
+                sectionIndex={capabilitiesIndex}
+                sectionId={capabilitiesSectionId}
+                sectionLabel={capabilitiesSectionLabel}
+              />
+            )}
+            {service.page.deliveryProcess && (
+              <ServiceDeliveryProcess
+                deliveryProcess={service.page.deliveryProcess}
+                sectionIndex={deliveryProcessIndex}
+              />
+            )}
+            {service.page.why && (
+              <ServiceWhy why={service.page.why} sectionIndex={whyIndex} />
+            )}
+            {service.page.clientProof && (
+              <ServiceClientProof
+                clientProof={service.page.clientProof}
+                sectionIndex={clientProofIndex}
+              />
+            )}
+            {service.page.ecosystem && (
+              <ServiceEcosystem
+                ecosystem={service.page.ecosystem}
+                sectionIndex={ecosystemIndex}
+              />
+            )}
+            {service.page.audience && (
+              <ServiceAudience
+                audience={service.page.audience}
+                sectionIndex={audienceIndex}
+              />
+            )}
             <ServiceOverview service={service} sectionIndex={overviewIndex} />
-            <ServiceDeliverables service={service} sectionIndex={deliverablesIndex} />
+            <ServiceDeliverables
+              service={service}
+              sectionIndex={deliverablesIndex}
+            />
             <ServiceProcess service={service} sectionIndex={processIndex} />
-            <ServiceRelatedWork service={service} sectionIndex={relatedWorkIndex} />
+            <ServiceRelatedWork
+              service={service}
+              sectionIndex={relatedWorkIndex}
+            />
           </>
         )}
+
         <ServiceFaq service={service} sectionIndex={faqIndex} />
-        {!skipGenericCore && (
+        {(!skipGenericCore ||
+          isDevelopment ||
+          isMarketingFamily ||
+          isAiFamily ||
+          isDesignFamily) && (
           <ServiceRelated service={service} sectionIndex={relatedIndex} />
         )}
-        {skipGenericCore ? (
-          <ServiceShopifyContact sectionIndex={contactIndex} />
-        ) : (
-          <ContactCTA
-            defaultProjectType={service.name}
+        {service.id === "shopify" ? (
+          <ContactInvite
             sectionIndex={contactIndex}
+            heading="Tell us about your Shopify store"
+            intro="Share what is happening with the store and the outcome you want. Continue on the contact page to send a project inquiry."
+            ctaLabel="Discuss Your Project"
+            service="shopify"
+            source="shopify-page"
+          />
+        ) : isDevelopment ? (
+          <ContactInvite
+            sectionIndex={contactIndex}
+            heading="Tell us what you want to build or improve"
+            intro="Share who will use the solution, what your current setup cannot do and what needs to change. You do not need a finished technical specification to start."
+            ctaLabel="Discuss Your Project"
+            service="development"
+            source="development-page"
+          />
+        ) : isMarketingFamily ? (
+          <ContactInvite
+            sectionIndex={contactIndex}
+            heading="Tell us what you want to grow or measure"
+            intro="Share your business goal, current channels and what is unclear in the data. Continue on the contact page to send an inquiry."
+            ctaLabel="Discuss Your Project"
+            service="digital-marketing"
+            capability={isMarketingLeaf ? service.name : undefined}
+            source={
+              isMarketingHub ? "digital-marketing-hub" : "digital-marketing-leaf"
+            }
+          />
+        ) : isAiFamily ? (
+          <ContactInvite
+            sectionIndex={contactIndex}
+            heading="Tell us what you want AI to help with"
+            intro="Share who will use the solution, the task they need to complete and which systems or documents are involved. Do not send confidential credentials through the form."
+            ctaLabel="Discuss Your Project"
+            service="ai"
+            capability={isAiLeaf ? service.name : undefined}
+            source={isAiHub ? "ai-hub" : "ai-leaf"}
+          />
+        ) : isDesignFamily ? (
+          <ContactInvite
+            sectionIndex={contactIndex}
+            heading="Tell us what you need designed"
+            intro="Share the problem, audience, intended channels, required outputs and any existing brand assets. Continue on the contact page to send an inquiry."
+            ctaLabel="Discuss Your Project"
+            service="design"
+            capability={isDesignLeaf ? service.name : undefined}
+            source={isDesignHub ? "design-hub" : "design-leaf"}
+          />
+        ) : (
+          <ContactInvite
+            sectionIndex={contactIndex}
+            service={contactServiceParamForId(service.id) || service.name}
+            source={`service-${service.id}`}
           />
         )}
       </main>

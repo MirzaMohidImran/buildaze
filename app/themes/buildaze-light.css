@@ -1,0 +1,5 @@
+/**
+ * Legacy import path — site-wide brand system lives in buildaze.css.
+ * Kept so older @import "./themes/buildaze-light.css" references still resolve.
+ */
+@import "./buildaze.css";

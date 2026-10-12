@@ -1,13 +1,14 @@
 @import "tailwindcss";
+@import "./themes/buildaze.css";
 
 @theme {
-  /* ── Buildaze color system: near-black canvas, white type, electric blue action ── */
+  /* ── Buildaze color system: brand ink, white type, electric blue action ── */
   --color-ink: #0a0a0a;
   --color-ink-2: #0e0e10;
   --color-ink-3: #131316;
   --color-paper: #ffffff;
   --color-accent: #2563eb;
-  --color-accent-bright: #3b76f6;
+  --color-accent-bright: #1d4ed8;
   --color-accent-soft: #7fa6f5; /* tint of #2563EB for readable blue text on dark */
   --color-accent-dim: rgba(37, 99, 235, 0.14);
   --color-line: rgba(255, 255, 255, 0.09);
@@ -15,24 +16,43 @@
   --color-mist: rgba(255, 255, 255, 0.6);
   --color-mist-2: rgba(255, 255, 255, 0.42);
 
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  --radius-control: 12px;
+  --radius-card: 14px;
+  --radius-panel: 14px;
+}
 
-  /* type scale */
-  --text-display: clamp(2.75rem, 1rem + 6.2vw, 5.5rem); /* 44 → 88 */
-  --text-display--line-height: 1.02;
+/* inline = keep next/font CSS variables runtime-resolved (not baked empty at build) */
+@theme inline {
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+}
+
+@theme {
+
+  /* type scale — mobile → desktop */
+  --text-display: clamp(2.375rem, 1.65rem + 3.1vw, 4rem); /* H1: 38 → 64 */
+  --text-display--line-height: 1.05;
   --text-display--letter-spacing: -0.035em;
-  --text-h2: clamp(2.125rem, 1.1rem + 3.4vw, 4rem); /* 34 → 64 */
-  --text-h2--line-height: 1.06;
+  --text-display--font-weight: 700;
+  --text-h2: clamp(1.875rem, 1.4rem + 2vw, 2.75rem); /* H2: 30 → 44 */
+  --text-h2--line-height: 1.1;
   --text-h2--letter-spacing: -0.03em;
-  --text-h3: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem); /* 24 → 36 */
-  --text-h3--line-height: 1.15;
+  --text-h2--font-weight: 700;
+  --text-h3: clamp(1.375rem, 1.3rem + 0.3vw, 1.5rem); /* H3: 22 → 24 */
+  --text-h3--line-height: 1.25;
   --text-h3--letter-spacing: -0.02em;
-  --text-lead: clamp(1.125rem, 1rem + 0.4vw, 1.3125rem); /* 18 → 21 */
+  --text-h3--font-weight: 600;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem); /* hero desc: 18 → 20 */
   --text-lead--line-height: 1.55;
-  --text-label: 0.75rem;
+  --text-lead--font-weight: 400;
+  --text-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem); /* paragraph: 16 → 18 */
+  --text-body--line-height: 1.65;
+  --text-ui: 1rem; /* nav + buttons: 16 */
+  --text-ui--font-weight: 600;
+  --text-label: 0.875rem; /* captions: 14 */
   --text-label--line-height: 1.4;
-  --text-label--letter-spacing: 0.14em;
+  --text-label--letter-spacing: 0.12em;
+  --text-label--font-weight: 500;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -67,10 +87,49 @@ html {
 body {
   background: var(--color-ink);
   color: var(--color-paper);
-  font-family: var(--font-sans);
+  /* next/font className on <body> sets Space Grotesk; keep stack as fallback */
+  font-family: var(--font-space-grotesk), var(--font-sans), ui-sans-serif, system-ui,
+    sans-serif;
+  font-size: 1rem; /* 16px mobile */
+  font-weight: 400;
+  line-height: var(--text-body--line-height);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 1.125rem; /* 18px desktop paragraph */
+  }
+}
+
+/* Type utilities — Space Grotesk for headings + descriptions */
+.text-display,
+.text-h2,
+.text-h3,
+.text-lead,
+.text-body {
+  font-family: var(--font-space-grotesk), var(--font-sans), ui-sans-serif, system-ui,
+    sans-serif;
+}
+
+.text-display {
+  font-weight: 700;
+}
+.text-h2 {
+  font-weight: 700;
+}
+.text-h3 {
+  font-weight: 600;
+}
+.text-lead {
+  font-weight: 400;
+}
+.text-body {
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  font-weight: 400;
 }
 
 /* Visible focus for keyboard users, on-brand */
@@ -100,10 +159,11 @@ body {
   mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, black 40%, transparent 100%);
 }
 
-/* mono technical label */
+/* mono technical label / caption — 14px / 500 */
 .t-label {
   font-family: var(--font-mono);
   font-size: var(--text-label);
+  font-weight: 500;
   letter-spacing: var(--text-label--letter-spacing);
   line-height: var(--text-label--line-height);
   text-transform: uppercase;

@@ -2,34 +2,34 @@
 
 export const voiceAgent = {
   path: "/voice-agent",
-  /** Unique title — product + demo intent; distinct from AI Development services title. */
-  metaTitle: "Custom AI Voice Agent for Business | Live Demo — Buildaze",
+  /** Preserved route — AI Voice Agents destination (not duplicated under AI hub). */
+  metaTitle: "Custom AI Voice Agent Development | Buildaze",
   metaDescription:
-    "Buildaze designs custom AI voice agents for routine inquiries, lead qualification, appointment requests and human handoff. Try the browser demo when available, or start a scoped build with our team.",
+    "Explore custom AI voice agents for routine calls, lead intake and appointment requests. Review the demo and discuss integrations and handoff with Buildaze.",
   ogImage: "/og/voice-agent.svg",
   hero: {
-    eyebrow: "Our Products",
-    headline: "Custom AI voice agent for your business.",
+    eyebrow: "AI Voice Agents",
+    headline: "Custom AI Voice Agents for Your Business",
     subheadline:
-      "Buildaze designs and ships voice agents trained on your knowledge, tone and escalation rules — so routine calls get consistent answers, and your team only joins when a person is needed. Hear a live demo in the browser when it is connected, then talk to us about your use case.",
+      "Build a voice experience around the questions callers ask, the information your business approves and the situations that need a person. Start with a scoped use case before promising phone, calendar or CRM integrations.",
   },
   homepage: {
-    index: "10",
+    index: "05",
     label: "Voice agent",
-    heading: "Answer the call without putting a person on every line.",
-    body: "A Buildaze custom AI voice agent handles routine questions, qualifies leads, takes appointment requests and routes to a human when the conversation needs one — configured on your information, not a generic script.",
+    heading: "Handle routine calls with a clear path to a person.",
+    body: "A Buildaze voice agent can cover routine enquiries, lead qualification and appointment requests, then hand off to your team when a human is needed. Appointment requests are collected for your team — they are not automatic confirmed bookings unless that integration is scoped separately.",
   },
   demo: {
     title: "Try the AI voice agent demo",
     instructions:
       "When the demo is available, allow the microphone when prompted and speak naturally. Headphones help keep the agent from hearing its own voice. End the conversation whenever you are done.",
-    tip: "Microphone access is requested only when you start a conversation — never on page load. If the demo is unavailable on this deployment, contact us for a live walkthrough.",
+    tip: "Microphone access is requested only when you start a conversation — never on page load. If the demo is unavailable on this deployment, use the enquiry form for a walkthrough. The browser demo does not by itself prove telephone transfer or calendar booking.",
   },
   intro: {
     title: "What this product is — and is not",
     paragraphs: [
       "Buildaze’s voice agent is a custom-built conversational system for businesses that need callers answered with approved information, clear boundaries and a path to a human. It is not a one-click SaaS template with fixed pricing or pre-claimed integrations.",
-      "The page below explains what you can test in the browser demo when credentials are connected, which problems a production agent can address, and how a Buildaze engagement moves from configuration to deployment.",
+      "The page below explains what you can test in the browser demo when credentials are connected, which problems a production agent can address, and how a Buildaze engagement moves from configuration to deployment. Browser microphone access does not establish phone-line capability.",
     ],
   },
   benefits: [
@@ -46,34 +46,39 @@ export const voiceAgent = {
     {
       title: "Appointment requests",
       description:
-        "Collect preferred times and details, then hand structured requests to your team or a scheduling workflow you already run. Calendar write-back is scoped per project when you need it.",
+        "Collect preferred times and details, then hand structured requests to your team or a scheduling workflow you already run. Collecting appointment requests and writing confirmed bookings into a calendar are different capabilities.",
     },
     {
       title: "Consistent answers",
       description:
-        "The same approved facts and escalation rules every call — useful when staffing, language coverage or after-hours volume varies.",
+        "The same approved facts and escalation rules every call — useful when staffing or after-hours volume varies. Multilingual coverage and concurrency are scoped per project when measured.",
     },
     {
       title: "Human handoff",
       description:
-        "When a caller asks for a person, or the question sits outside configured knowledge, the agent can transfer or take a message instead of guessing. Live queue transfer is configured in a production build.",
+        "When a caller asks for a person, or the question sits outside configured knowledge, the agent can transfer or take a message instead of guessing. A summary or message is different from a successful live transfer — production handoff is configured in a custom build.",
     },
   ],
   steps: [
     {
-      title: "Configure business information",
+      title: "Configure approved information",
       description:
         "We load hours, offerings, FAQs, tone and the situations that must go to a human — from documents and systems you already maintain.",
     },
     {
-      title: "Test the conversation",
+      title: "Test realistic conversations",
       description:
         "You call the agent yourself: interrupt it, ask edge cases, and tighten prompts until answers match how your business actually speaks.",
     },
     {
-      title: "Deploy where callers already are",
+      title: "Implement agreed channel and integrations",
       description:
-        "Browser widget, phone number or both — wired into the channels and handoff paths your team uses today. Telephony and CRM connections are implemented when they are in scope, not assumed on the public demo.",
+        "Browser widget, phone number or both — wired into the channels and handoff paths your team uses today. Telephony, CRM and calendar connections are implemented when they are in scope, not assumed on the public demo.",
+    },
+    {
+      title: "Monitor and hand over",
+      description:
+        "You receive the agreed configuration, documentation and access. Deployment support is described only where offered — without invented uptime or 24/7 staffing promises.",
     },
   ],
   useCases: [
@@ -85,7 +90,7 @@ export const voiceAgent = {
     {
       title: "Sales intake",
       description:
-        "Qualify inbound interest, collect essentials and book a callback — without inventing pricing or commitments.",
+        "Qualify inbound interest, collect essentials and request a callback — without inventing pricing or commitments.",
     },
     {
       title: "Service businesses",
@@ -100,14 +105,19 @@ export const voiceAgent = {
   ],
   faqs: [
     {
-      question: "What is a custom AI voice agent from Buildaze?",
+      question: "Is the browser demo already customized for us?",
       answer:
-        "A conversational voice system configured on your business information, tone and escalation rules, then integrated into the channels you need — often a browser experience, a phone line, or both. Buildaze builds and hands over the implementation; you own the code and infrastructure.",
+        "No. It demonstrates the available interaction. A business deployment needs its own approved information, conversation scope and integrations.",
     },
     {
-      question: "Is the browser demo a finished product for my business?",
+      question: "Can it book appointments?",
       answer:
-        "No. The demo lets you hear a Buildaze-configured agent in the browser when credentials are connected. A production agent for your company is a custom engagement: your knowledge, channels, handoff rules and integrations.",
+        "Collecting appointment requests and writing confirmed bookings into a calendar are different capabilities. Calendar access and booking rules must be included in the project scope.",
+    },
+    {
+      question: "Can it transfer to a person?",
+      answer:
+        "A production handoff can be designed for your phone or support setup. The public browser demo does not by itself prove live telephone transfer.",
     },
     {
       question: "What works in the demo today?",
@@ -115,38 +125,40 @@ export const voiceAgent = {
         "When the demo is available, you get a live two-way voice session in a supported browser over HTTPS, with start/end controls, connection status and a transcript when the provider sends one. Phone numbers, CRM writes and calendar booking are part of a custom build — not claimed as live here unless we have wired them for you.",
     },
     {
-      question: "How is this different from Buildaze AI Development?",
+      question: "How is this different from Buildaze AI development services?",
       answer:
-        "AI Development covers broader production AI — LLM workflows, RAG, copilots and agents inside products. This Voice Agent page is specifically about spoken conversation for callers and the live browser demo. Many voice projects still start from an AI Development engagement when retrieval, evals or product integration are required.",
-    },
-    {
-      question: "Can the agent hand off to a human?",
-      answer:
-        "Yes in a production setup. We define transfer or messaging rules during configuration. The public demo may not connect to a live queue; ask us if you need to see handoff in a scoped pilot.",
-    },
-    {
-      question: "How is the agent customized?",
-      answer:
-        "From your documents, FAQs, product catalog and the tone you approve. We also set boundaries: what it must not invent, and when it must stop and escalate.",
+        "The AI hub covers applications, chatbots, custom solutions and automation. This Voice Agent page is the spoken-conversation destination, including the browser demo. Many voice projects still start from an AI engagement when retrieval, evals or product integration are required.",
     },
     {
       question: "What do I need to try the demo?",
       answer:
-        "A modern browser (Chrome or Edge work best), HTTPS, and microphone permission when you tap Start Conversation. If the demo shows as unavailable, the agent credentials are not configured on this deployment — contact us and we will set up a live session.",
+        "A modern browser (Chrome or Edge work best), HTTPS, and microphone permission when you tap Start Conversation. If the demo shows as unavailable, the agent credentials are not configured on this deployment — use the enquiry form and we will arrange a live session.",
     },
     {
       question: "Who owns the implementation?",
       answer:
-        "Same as every Buildaze engagement: you own the code, configuration and infrastructure we ship. No proprietary lock-in required to keep the agent running.",
+        "Custom deliverables follow the agreement. You receive agreed code, configuration and access. Model providers and third-party platforms retain their own terms.",
     },
   ],
   related: {
-    title: "Related Buildaze work",
+    title: "Related Buildaze AI services",
     ai: {
-      label: "AI Development",
+      label: "AI Development hub",
       href: "/services/ai-development",
       description:
-        "LLM workflows, RAG systems and production agents when your voice agent needs grounded answers, evals or product integration.",
+        "AI applications, chatbots, custom solutions and automation when your voice agent needs grounded answers, evals or product integration.",
+    },
+    chatbots: {
+      label: "AI Chatbots",
+      href: "/services/ai-development/ai-chatbots",
+      description:
+        "Text conversations for customers or teams when spoken interaction is not required.",
+    },
+    automation: {
+      label: "Business Automation",
+      href: "/services/ai-development/business-automation",
+      description:
+        "Workflow actions after intake — task creation, routing and authorized record updates.",
     },
   },
 } as const;

@@ -11,7 +11,7 @@ export function CaseHero({ study }: { study: CaseStudy }) {
   return (
     <section
       aria-labelledby="case-hero-heading"
-      className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24"
+      className="surface-ink relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24"
     >
       <div aria-hidden className="build-grid fade-edges absolute inset-0" />
       <div
@@ -65,7 +65,7 @@ export function CaseHero({ study }: { study: CaseStudy }) {
             </Reveal>
 
             <Reveal delay={0.3} className="mt-10 flex flex-wrap items-center gap-4">
-              <MagneticButton href="#contact" analytics={`case-hero-cta-${study.id}`}>
+              <MagneticButton href="/contact" analytics={`case-hero-cta-${study.id}`}>
                 Discuss a build like this
               </MagneticButton>
               <MagneticButton
