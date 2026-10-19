@@ -1,46 +1,52 @@
 # Contact / project inquiry form coverage
 
-Canonical destination (server-enforced): **team@buildaze.com**  
-Handler: `POST /api/contact` → `lib/contact/send.ts` (Resend, or `CONTACT_EMAIL_TRANSPORT=mock`)
+Canonical destination: email inbox linked to the Web3Forms access key  
+Primary path: shared `ContactInquiryForm` → `POST https://api.web3forms.com/submit` (browser)
 
-| Surface | Component | Submits via | Recipient |
+| Surface | Component | Submits via | Notes |
 | --- | --- | --- | --- |
-| `/contact` — Project inquiry form | `components/contact/ContactInquiryForm.tsx` | `POST /api/contact` (`source: contact-page`) | `team@buildaze.com` |
+| `/contact` | `ContactInquiryForm` via `ContactPage` | Web3Forms (`source: contact-page`) | Dedicated contact page |
+| Hubs / service / work / about / voice-agent | `ContactInvite` → embeds `ContactInquiryForm` | Web3Forms (`source` per invite) | One form component, reused |
 
-Legacy embedded forms (`ContactCTA`, `ServiceShopifyContact`) were removed after verification that every journey routes to `/contact` via `ContactInvite` / enquiry links.
+There is a single form implementation (`components/contact/ContactInquiryForm.tsx`). Pages call it either on `/contact` or through `ContactInvite` — no duplicated form markup.
 
-## CTA surfaces that route to `/contact` (no separate submit handler)
-
-These use `ContactInvite` or `MagneticButton` / enquiry links to `/contact` (optional `?service=` / `?capability=`). Submission happens only on the Contact page form.
+## CTA surfaces that embed the shared form
 
 | Surface | Component / data |
 | --- | --- |
-| Homepage | `ContactInvite` in `app/page.tsx`, Hero CTA → `/contact` |
+| Homepage | `ContactInvite` in `app/page.tsx` |
 | About | `ContactInvite` in `components/about/AboutPage.tsx` |
 | Services hub | `ContactInvite` in `components/services/ServicesHub.tsx` |
-| Service / subservice pages | `ContactInvite` in `components/services/ServicePage.tsx`; hero CTAs via `ServiceHero` |
-| Shopify growth page | Enquiry hrefs in `lib/data/shopify-page.ts` → `/contact?service=shopify…` |
+| Service / subservice pages | `ContactInvite` in `components/services/ServicePage.tsx` |
 | Work hub / case studies | `ContactInvite` in `WorkHub` / `CaseStudyPage` |
-| Voice Agent | `ContactInvite` in `VoiceAgentPage`; demo CTAs → `/contact?service=ai…` |
-| Footer / nav | `site.nav.cta`, footer company links → `/contact` |
+| Voice Agent | `ContactInvite` in `VoiceAgentPage` |
+| Contact page | `ContactInquiryForm` in `ContactPage` |
+
+Hero / nav CTAs may still deep-link to `/contact?service=…` (or `#contact` on the same page). Submission always goes through `ContactInquiryForm`.
 
 ## Mailto (not submission delivery)
 
-Visible `mailto:team@buildaze.com` links and “Open email draft” fallbacks are human alternatives when the API is unconfigured or after a provider failure. They are **not** treated as successful form delivery.
+Visible `mailto:team@buildaze.com` links and “Open email draft” fallbacks are human alternatives when Web3Forms is unconfigured or after a provider failure. They are **not** treated as successful form delivery.
 
 ## Configuration required for real delivery
 
 | Variable | Purpose |
 | --- | --- |
-| `RESEND_API_KEY` | Resend API key (server-only) |
-| `CONTACT_FROM_EMAIL` | Authenticated / verified Resend sender (e.g. `Buildaze <hello@your-verified-domain>`) |
-| `CONTACT_TO_EMAIL` | Must be `team@buildaze.com` (documented). Other values are **ignored**; mail always goes to `team@buildaze.com`. |
-| `CONTACT_EMAIL_TRANSPORT=mock` | Optional. Accepts submissions into an in-memory sink for tests — no real email. |
+| `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` | Web3Forms access key from https://web3forms.com (safe in the browser; Web3Forms documents client-side submit) |
 
-## Email shape
+Optional legacy Resend path (`POST /api/contact` + `RESEND_API_KEY` / `CONTACT_FROM_EMAIL`) remains in the codebase for mock verification (`npm run verify:contact`) but is **not** used by the live form.
 
-- Subject: `Buildaze Inquiry — [Selected Service]` (capability, else service, else `General`)
-- `From`: `CONTACT_FROM_EMAIL` (never the visitor)
-- `To`: `team@buildaze.com`
-- `Reply-To`: visitor’s validated email
-- Body: fields, source page/form, UTC timestamp
+## Email shape (Web3Forms)
+
+- Subject: `Buildaze Inquiry — [Selected Service / Capability]`
+- `from_name`: `Buildaze Website`
+- Reply-To: visitor’s `email` field
+- Body fields: name, email, message (project details), plus company / service / capability / timeline / source when set
+
+## Form fields (no budget / price chips)
+
+- Name, email (required)
+- Service chips (required)
+- Company / website (optional)
+- Preferred timeline (optional)
+- Project details (required)

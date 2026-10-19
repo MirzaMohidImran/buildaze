@@ -49,7 +49,6 @@ async function main() {
     company: "Example Co",
     service: "Shopify",
     capability: "Store Design & Development",
-    budget: "Not sure yet",
     timeline: "Flexible",
     details: "We need a Shopify storefront improvement for checkout friction.",
     source: "verify-script",
@@ -72,6 +71,7 @@ async function main() {
   assert.match(built.text, /Submitted at \(UTC\):/);
   assert.match(built.text, /Source page \/ form: verify-script/);
   assert.match(built.text, /Service: Shopify/);
+  assert.doesNotMatch(built.text, /Budget:/);
 
   const sent = await sendContactEmail(valid.data);
   assert.equal(sent.ok, true);
@@ -80,7 +80,7 @@ async function main() {
   assert.equal(getMockInbox()[0]?.to, "team@buildaze.com");
   assert.equal(getMockInbox()[0]?.replyTo, "visitor@example.com");
 
-  // Honeypot-shaped fields still validate; route ignores send when website set.
+  // Honeypot-shaped fields still validate; live form ignores send when website set.
   const honeypot = validateContactPayload({
     name: "Bot",
     email: "bot@example.com",
@@ -88,6 +88,26 @@ async function main() {
     website: "https://spam.example",
   });
   assert.equal(honeypot.ok, true);
+
+  // Web3Forms payload shape (client submit — not sent here)
+  const { buildWeb3FormsPayload } = await import("../lib/contact/web3forms");
+  const w3 = buildWeb3FormsPayload(
+    {
+      name: valid.data.name,
+      email: valid.data.email,
+      details: valid.data.details,
+      service: valid.data.service,
+      capability: valid.data.capability,
+      timeline: valid.data.timeline,
+      source: valid.data.source,
+    },
+    "test-access-key",
+  );
+  assert.equal(w3.access_key, "test-access-key");
+  assert.equal(w3.botcheck, false);
+  assert.match(String(w3.subject), /^Buildaze Inquiry — /);
+  assert.equal(w3.message, valid.data.details);
+  assert.equal(Object.prototype.hasOwnProperty.call(w3, "budget"), false);
 
   // Service preselection from service/subservice CTAs
   assert.equal(resolveContactPageService("development"), "Development");
@@ -104,6 +124,7 @@ async function main() {
   console.log("verify-contact-delivery: all checks passed");
   console.log(`destination: ${CONTACT_TO_EMAIL}`);
   console.log("transport: mock (no real email sent)");
+  console.log("live form: Web3Forms (NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY)");
   console.log("real inbox delivery: unverified");
 }
 

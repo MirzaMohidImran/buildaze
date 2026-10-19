@@ -48,26 +48,22 @@ testimonials.
 
 ## Contact / project enquiry
 
-The Contact page form (`ContactInquiryForm`) and shared enquiry components
-submit to `POST /api/contact`, which delivers to **team@buildaze.com** through
-[Resend](https://resend.com). Subject format: `Buildaze Inquiry — [Service]`.
-Reply-To is the visitor’s email; From is the verified Resend sender.
+One shared form (`ContactInquiryForm`) is used on `/contact` and embedded via
+`ContactInvite` on other pages. Submissions go to
+[Web3Forms](https://web3forms.com) (`POST https://api.web3forms.com/submit`)
+from the browser. Subject format: `Buildaze Inquiry — [Service]`.
 
 1. Copy `.env.example` to `.env.local`.
-2. Set `RESEND_API_KEY` and `CONTACT_FROM_EMAIL` (verified sender domain).
-3. Set `CONTACT_TO_EMAIL=team@buildaze.com` (other values are ignored server-side).
-4. Restart `npm run dev`.
+2. Set `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` from your Web3Forms dashboard.
+3. Restart `npm run dev`.
 
-When Resend is not configured, the API returns an honest unconfigured error.
+When the access key is missing, the form shows an honest unconfigured error.
 Mailto drafts are a human fallback only — never counted as received enquiries.
-Success appears only after the provider accepts the message.
+Success appears only after Web3Forms accepts the message.
 
-Safe mock check (no real email): `npm run verify:contact`
+Safe schema/mock check (no real email): `npm run verify:contact`
 
 See `docs/contact-forms-coverage.md` for the full form inventory.
-
-The route validates input, ignores honeypot submissions, rate-limits by IP, and
-deduplicates retries via an `Idempotency-Key` header.
 
 ## Voice Agent demo
 

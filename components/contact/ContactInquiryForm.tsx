@@ -5,12 +5,15 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import {
   buildMailtoDraft,
-  CONTACT_BUDGETS,
   CONTACT_PAGE_SERVICES,
   CONTACT_TIMELINES,
   mapContactPageServiceToPayload,
   resolveContactPageService,
 } from "@/lib/contact/schema";
+import {
+  isWeb3FormsConfigured,
+  submitWeb3FormsInquiry,
+} from "@/lib/contact/web3forms";
 import { contactPage } from "@/lib/data/contact-page";
 import { site } from "@/lib/data/site";
 
@@ -196,13 +199,17 @@ function TextField({
 
 export function ContactInquiryForm({
   initialService = "",
+  initialCapability = "",
+  source = "contact-page",
 }: {
   initialService?: string;
+  initialCapability?: string;
+  /** Label included in the notification email (which page/form submitted). */
+  source?: string;
 }) {
   const honeypotId = useId();
   const searchParams = useSearchParams();
   const startedRef = useRef(false);
-  const idempotencyKey = useRef("");
   const formRef = useRef<HTMLFormElement>(null);
 
   const [name, setName] = useState("");
@@ -211,9 +218,10 @@ export function ContactInquiryForm({
   const [service, setService] = useState(() =>
     resolveContactPageService(initialService),
   );
-  const [capability, setCapability] = useState("");
+  const [capability, setCapability] = useState(() =>
+    initialCapability.trim().slice(0, 80),
+  );
   const [problemContext, setProblemContext] = useState("");
-  const [budget, setBudget] = useState("");
   const [timeline, setTimeline] = useState("");
   const [details, setDetails] = useState("");
   const [honeypot, setHoneypot] = useState("");
@@ -233,11 +241,19 @@ export function ContactInquiryForm({
     }
     if (capabilityQuery) {
       setCapability(capabilityQuery.trim().slice(0, 80));
+    } else if (initialCapability) {
+      setCapability(initialCapability.trim().slice(0, 80));
     }
     if (problemQuery) {
       setProblemContext(problemQuery.trim().slice(0, 200));
     }
-  }, [initialService, serviceQuery, capabilityQuery, problemQuery]);
+  }, [
+    initialService,
+    initialCapability,
+    serviceQuery,
+    capabilityQuery,
+    problemQuery,
+  ]);
 
   const markStarted = () => {
     if (startedRef.current) return;
@@ -270,16 +286,6 @@ export function ContactInquiryForm({
     return true;
   };
 
-  const ensureIdempotencyKey = () => {
-    if (!idempotencyKey.current) {
-      idempotencyKey.current =
-        typeof crypto !== "undefined" && "randomUUID" in crypto
-          ? crypto.randomUUID()
-          : `enquiry-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    }
-    return idempotencyKey.current;
-  };
-
   const mapped = mapContactPageServiceToPayload(service);
   const detailsWithContext = [
     problemContext && `Problem context: ${problemContext}`,
@@ -298,7 +304,6 @@ export function ContactInquiryForm({
       details: detailsWithContext,
       service: mapped.service,
       capability: mapped.capability || capability || undefined,
-      budget: budget || undefined,
       timeline: timeline || undefined,
       to: site.email,
       subjectPrefix: "Project enquiry",
@@ -310,65 +315,49 @@ export function ContactInquiryForm({
     if (status === "pending") return;
     if (!validate()) return;
 
+    // Honeypot filled — pretend success without calling the provider.
+    if (honeypot.trim()) {
+      track("contact-form-submit");
+      setStatus("success");
+      setStatusMessage(contactPage.form.successMessage);
+      return;
+    }
+
+    if (!isWeb3FormsConfigured()) {
+      track("enquiry-unconfigured");
+      setStatus("unconfigured");
+      setStatusMessage(
+        "Enquiry delivery is not configured on this deployment. Retry later, or email team@buildaze.com — a draft is not a received inquiry.",
+      );
+      return;
+    }
+
     setStatus("pending");
     setStatusMessage("");
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Idempotency-Key": ensureIdempotencyKey(),
-        },
-        body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          company: company.trim() || undefined,
-          details: detailsWithContext,
-          service: mapped.service,
-          capability: mapped.capability || capability || undefined,
-          budget: budget || undefined,
-          timeline: timeline || undefined,
-          source: "contact-page",
-          website: honeypot,
-        }),
+      const result = await submitWeb3FormsInquiry({
+        name: name.trim(),
+        email: email.trim(),
+        company: company.trim() || undefined,
+        details: detailsWithContext,
+        service: mapped.service,
+        capability: mapped.capability || capability || undefined,
+        timeline: timeline || undefined,
+        source,
       });
 
-      const body = (await res.json().catch(() => ({}))) as {
-        ok?: boolean;
-        error?: string;
-        message?: string;
-        errors?: FieldErrors;
-      };
-
-      if (res.ok && body.ok) {
+      if (result.ok) {
         track("contact-form-submit");
         setStatus("success");
         setStatusMessage(contactPage.form.successMessage);
         return;
       }
 
-      if (res.status === 503 || body.error === "unconfigured") {
-        track("enquiry-unconfigured");
-        setStatus("unconfigured");
-        setStatusMessage(
-          body.message ||
-            "Enquiry delivery is not configured on this deployment. Retry later, or email team@buildaze.com — a draft is not a received inquiry.",
-        );
-        return;
-      }
-
-      if (res.status === 400 && body.errors) {
-        setErrors(body.errors);
-        track("enquiry-validation-failure");
-        setStatus("idle");
-        return;
-      }
-
       track("enquiry-submission-failure");
       setStatus("error");
       setStatusMessage(
-        body.message ||
+        result.message ||
           "We could not accept the inquiry. Please try again. Your details are still on the form.",
       );
     } catch {
@@ -422,11 +411,10 @@ export function ContactInquiryForm({
             setEmail("");
             setCompany("");
             setService("");
-            setBudget("");
+            setCapability("");
             setTimeline("");
             setDetails("");
             setErrors({});
-            idempotencyKey.current = "";
           }}
           className="t-label mt-10 border-b border-[var(--border-on-light,#E2E8F0)] pb-1 text-[var(--text-on-light-muted,#64748b)] transition-colors hover:text-accent"
         >
@@ -513,20 +501,12 @@ export function ContactInquiryForm({
         </p>
       ) : null}
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <ChipGroup
-          legend="Estimated budget"
-          options={CONTACT_BUDGETS}
-          value={budget}
-          onChange={setBudget}
-        />
-        <ChipGroup
-          legend="Preferred timeline"
-          options={CONTACT_TIMELINES}
-          value={timeline}
-          onChange={setTimeline}
-        />
-      </div>
+      <ChipGroup
+        legend="Preferred timeline"
+        options={CONTACT_TIMELINES}
+        value={timeline}
+        onChange={setTimeline}
+      />
 
       <TextField
         id="details"

@@ -297,7 +297,7 @@ export function ServicePage({ service }: { service: Service }) {
           <ContactInvite
             sectionIndex={contactIndex}
             heading="Tell us about your Shopify store"
-            intro="Share what is happening with the store and the outcome you want. Continue on the contact page to send a project inquiry."
+            intro="Share what is happening with the store and the outcome you want. You do not need a finished brief to start."
             ctaLabel="Discuss Your Project"
             service="shopify"
             source="shopify-page"
@@ -315,7 +315,7 @@ export function ServicePage({ service }: { service: Service }) {
           <ContactInvite
             sectionIndex={contactIndex}
             heading="Tell us what you want to grow or measure"
-            intro="Share your business goal, current channels and what is unclear in the data. Continue on the contact page to send an inquiry."
+            intro="Share your business goal, current channels and what is unclear in the data. You do not need a finished brief to start."
             ctaLabel="Discuss Your Project"
             service="digital-marketing"
             capability={isMarketingLeaf ? service.name : undefined}
@@ -337,7 +337,7 @@ export function ServicePage({ service }: { service: Service }) {
           <ContactInvite
             sectionIndex={contactIndex}
             heading="Tell us what you need designed"
-            intro="Share the problem, audience, intended channels, required outputs and any existing brand assets. Continue on the contact page to send an inquiry."
+            intro="Share the problem, audience, intended channels, required outputs and any existing brand assets. You do not need a finished brief to start."
             ctaLabel="Discuss Your Project"
             service="design"
             capability={isDesignLeaf ? service.name : undefined}

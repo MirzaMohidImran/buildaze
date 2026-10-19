@@ -37,7 +37,7 @@ export const privacyPolicyContent: LegalPageContent = {
       id: "information-we-collect",
       heading: "Information we collect",
       paragraphs: [
-        "When you contact us through website enquiry forms, we receive the information you choose to provide. Depending on the form, that can include your name, email address, company name, selected service or capability, optional budget or timeline, and a description of your project or challenge.",
+        "When you contact us through website enquiry forms, we receive the information you choose to provide. Depending on the form, that can include your name, email address, company name, selected service or capability, optional timeline, and a description of your project or challenge.",
         "Our website and server infrastructure may also process technical information needed to operate the site and protect it from misuse, such as IP address, request headers, browser details and similar connection data.",
         "If you use the optional Voice Agent browser demo, microphone access is requested in your browser and audio is processed through the configured conversational AI provider for that demo. You can decline microphone permission.",
       ],

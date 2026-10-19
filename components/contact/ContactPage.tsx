@@ -71,7 +71,10 @@ export function ContactPage({
                 Project inquiry form
               </h2>
               <Suspense fallback={<ContactFormFallback />}>
-                <ContactInquiryForm initialService={initialService} />
+                <ContactInquiryForm
+                  initialService={initialService}
+                  source="contact-page"
+                />
               </Suspense>
             </div>
 

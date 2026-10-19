@@ -82,14 +82,6 @@ export const DESIGN_CONTACT_SERVICES = [
 
 export type DesignContactService = (typeof DESIGN_CONTACT_SERVICES)[number];
 
-export const CONTACT_BUDGETS = [
-  "Under $10k",
-  "$10k – $25k",
-  "$25k – $50k",
-  "$50k+",
-  "Not sure yet",
-] as const;
-
 export const CONTACT_TIMELINES = [
   "As soon as possible",
   "Within 1–3 months",
@@ -104,7 +96,6 @@ export const FIELD_LIMITS = {
   details: 4000,
   service: 80,
   capability: 80,
-  budget: 40,
   timeline: 60,
   source: 80,
   honeypot: 200,
@@ -119,7 +110,6 @@ export interface ContactPayload {
   service?: string;
   /** Optional capability context (e.g. Voice Agent under Artificial Intelligence). */
   capability?: string;
-  budget?: string;
   timeline?: string;
   /** Optional form origin label for the internal notification. */
   source?: string;
@@ -148,7 +138,6 @@ export function validateContactPayload(input: unknown): ContactValidationResult 
   const details = trim(body.details, FIELD_LIMITS.details);
   const service = trim(body.service, FIELD_LIMITS.service);
   const capability = trim(body.capability, FIELD_LIMITS.capability);
-  const budget = trim(body.budget, FIELD_LIMITS.budget);
   const timeline = trim(body.timeline, FIELD_LIMITS.timeline);
   const source = trim(body.source, FIELD_LIMITS.source);
   const website = trim(body.website, FIELD_LIMITS.honeypot);
@@ -174,9 +163,6 @@ export function validateContactPayload(input: unknown): ContactValidationResult 
       errors.service = "Invalid service selection.";
     }
   }
-  if (budget && !(CONTACT_BUDGETS as readonly string[]).includes(budget)) {
-    errors.budget = "Invalid budget selection.";
-  }
   if (timeline && !(CONTACT_TIMELINES as readonly string[]).includes(timeline)) {
     errors.timeline = "Invalid timeline selection.";
   }
@@ -194,7 +180,6 @@ export function validateContactPayload(input: unknown): ContactValidationResult 
       company: company || undefined,
       service: service || undefined,
       capability: capability || undefined,
-      budget: budget || undefined,
       timeline: timeline || undefined,
       source: source || undefined,
       website: website || undefined,
@@ -363,7 +348,6 @@ export function buildMailtoDraft(payload: {
   details: string;
   service?: string;
   capability?: string;
-  budget?: string;
   timeline?: string;
   to: string;
   subjectPrefix?: string;
@@ -377,7 +361,6 @@ export function buildMailtoDraft(payload: {
     payload.company && `Company / website: ${payload.company}`,
     payload.service && `Service: ${payload.service}`,
     payload.capability && `Capability: ${payload.capability}`,
-    payload.budget && `Budget: ${payload.budget}`,
     payload.timeline && `Timeline: ${payload.timeline}`,
     "",
     payload.details,

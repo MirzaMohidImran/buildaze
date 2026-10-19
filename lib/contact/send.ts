@@ -62,7 +62,6 @@ export function buildContactEmail(
     data.company && `Company / website: ${data.company}`,
     data.service && `Service: ${data.service}`,
     data.capability && `Capability: ${data.capability}`,
-    data.budget && `Budget: ${data.budget}`,
     data.timeline && `Timeline: ${data.timeline}`,
     data.source && `Source page / form: ${data.source}`,
     "",
@@ -79,7 +78,6 @@ export function buildContactEmail(
     ${data.company ? `<p><strong>Company / website:</strong> ${escapeHtml(data.company)}</p>` : ""}
     ${data.service ? `<p><strong>Service:</strong> ${escapeHtml(data.service)}</p>` : ""}
     ${data.capability ? `<p><strong>Capability:</strong> ${escapeHtml(data.capability)}</p>` : ""}
-    ${data.budget ? `<p><strong>Budget:</strong> ${escapeHtml(data.budget)}</p>` : ""}
     ${data.timeline ? `<p><strong>Timeline:</strong> ${escapeHtml(data.timeline)}</p>` : ""}
     ${data.source ? `<p><strong>Source page / form:</strong> ${escapeHtml(data.source)}</p>` : ""}
     <p><strong>Project details:</strong></p>

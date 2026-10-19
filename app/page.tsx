@@ -84,7 +84,7 @@ export default function Home() {
           tone="dark"
           source="homepage"
           heading="Tell us what you need to build or improve."
-          intro="Share a few project details on the contact page. You do not need a finished specification to start."
+          intro="Share a few project details. You do not need a finished specification to start."
         />
       </main>
       <Footer tone="dark" />
