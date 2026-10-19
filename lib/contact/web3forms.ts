@@ -2,12 +2,23 @@
  * Web3Forms client helpers.
  * Submissions must run in the browser — server-side submit needs a paid plan
  * and IP allowlisting (see https://docs.web3forms.com/getting-started/api-reference).
+ *
+ * Access keys are documented as safe for client/browser use.
  */
 
 export const WEB3FORMS_SUBMIT_URL = "https://api.web3forms.com/submit";
 
+/**
+ * Public Buildaze Web3Forms access key (safe in the browser).
+ * Prefer NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY when set so the key can be rotated
+ * without a code change.
+ */
+const WEB3FORMS_ACCESS_KEY_FALLBACK =
+  "2ac61a41-d28a-4059-8eb5-9f25bfd8ba2f";
+
 export function getWeb3FormsAccessKey(): string {
-  return process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
+  const fromEnv = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
+  return fromEnv || WEB3FORMS_ACCESS_KEY_FALLBACK;
 }
 
 export function isWeb3FormsConfigured(): boolean {

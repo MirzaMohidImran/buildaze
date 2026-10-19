@@ -11,7 +11,7 @@ import { site } from "@/lib/data/site";
 function ContactFormFallback() {
   return (
     <div
-      className="surface-card min-h-[360px] rounded-panel border border-line bg-white p-7 md:p-10"
+      className="min-h-[280px] rounded-panel border border-white/15 bg-gradient-to-b from-white/[0.12] to-white/[0.04] backdrop-blur-2xl"
       aria-hidden
     />
   );
@@ -60,12 +60,13 @@ export function ContactPage({
           </div>
         </section>
 
-        {/* B. Form + supporting info — soft / white form panel */}
+        {/* B. Form + supporting info — ink + glass form */}
         <section
           aria-labelledby="contact-form-heading"
-          className="surface-soft relative border-t border-line py-16 md:py-24"
+          className="surface-ink relative border-t border-line py-16 md:py-24"
         >
-          <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-14 px-5 md:px-10 lg:grid-cols-12 lg:gap-12">
+          <div aria-hidden className="build-grid fade-edges absolute inset-0 opacity-40" />
+          <div className="relative mx-auto grid max-w-[1600px] grid-cols-1 gap-14 px-5 md:px-10 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-7">
               <h2 id="contact-form-heading" className="sr-only">
                 Project inquiry form

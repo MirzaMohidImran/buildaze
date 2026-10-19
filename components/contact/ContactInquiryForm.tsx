@@ -38,67 +38,18 @@ interface FieldErrors {
   form?: string;
 }
 
-function ChipGroup({
-  legend,
-  options,
-  value,
-  onChange,
-  required,
-  error,
-  errorId,
-}: {
-  legend: string;
-  options: readonly string[];
-  value: string;
-  onChange: (v: string) => void;
-  required?: boolean;
-  error?: string;
-  errorId?: string;
-}) {
-  return (
-    <fieldset aria-required={required} aria-describedby={error ? errorId : undefined}>
-      <legend className="mb-3.5 text-[14px] font-medium text-[var(--text-on-light,#0a0a0a)]">
-        {legend}
-        {required ? (
-          <span className="t-label ml-2 font-normal text-[var(--text-on-light-muted,#64748b)]">
-            Required
-          </span>
-        ) : (
-          <span className="t-label ml-2 font-normal text-[var(--text-on-light-muted,#64748b)]">
-            Optional
-          </span>
-        )}
-      </legend>
-      <div className="flex flex-wrap gap-2" role="group">
-        {options.map((option) => {
-          const selected = value === option;
-          return (
-            <button
-              key={option}
-              type="button"
-              aria-pressed={selected}
-              onClick={() => onChange(selected && !required ? "" : option)}
-              className={`min-h-11 rounded-full border px-4 py-2.5 text-[13.5px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 ${
-                selected
-                  ? "border-accent bg-accent-dim text-[var(--text-on-light,#0a0a0a)]"
-                  : "border-[var(--border-on-light,#E2E8F0)] text-mist hover:border-accent hover:text-[var(--text-on-light,#0a0a0a)]"
-              }`}
-            >
-              {option}
-            </button>
-          );
-        })}
-      </div>
-      {error ? (
-        <p id={errorId} role="alert" className="mt-2 text-[12.5px] text-red-300">
-          {error}
-        </p>
-      ) : null}
-    </fieldset>
-  );
-}
+const glassShell =
+  "relative overflow-hidden rounded-panel border border-white/15 bg-gradient-to-b from-white/[0.12] to-white/[0.04] p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_0_0_1px_rgba(37,99,235,0.12),0_28px_70px_-32px_rgba(0,0,0,0.65)] backdrop-blur-2xl md:p-8";
 
-function TextField({
+const fieldLabel =
+  "mb-1.5 block text-[13px] font-medium tracking-wide text-white/80";
+
+const fieldControl =
+  "w-full rounded-control border border-white/12 bg-white/[0.06] px-3.5 py-2.5 text-[15px] text-white placeholder:text-white/35 transition-colors focus:border-accent/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/35";
+
+const fieldError = "mt-1.5 text-[12px] text-red-300";
+
+function GlassField({
   id,
   label,
   type = "text",
@@ -107,10 +58,8 @@ function TextField({
   error,
   autoComplete,
   required,
-  optional,
   textarea,
   placeholder,
-  hint,
 }: {
   id: string;
   label: string;
@@ -120,54 +69,27 @@ function TextField({
   error?: string;
   autoComplete?: string;
   required?: boolean;
-  optional?: boolean;
   textarea?: boolean;
   placeholder?: string;
-  hint?: string;
 }) {
-  const describedBy = [
-    error ? `${id}-error` : null,
-    hint ? `${id}-hint` : null,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
-  const shared =
-    "mt-2 w-full rounded-control border bg-white px-4 py-3 text-[16px] text-[var(--text-on-light,#0a0a0a)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40";
-  const border = error
-    ? "border-red-400/70"
-    : "border-[var(--border-on-light,#E2E8F0)] focus:border-accent";
-
   return (
     <div>
-      <label
-        htmlFor={id}
-        className="text-[14px] font-medium text-[var(--text-on-light,#0a0a0a)]"
-      >
+      <label htmlFor={id} className={fieldLabel}>
         {label}
-        {required ? (
-          <span className="t-label ml-2 font-normal text-[var(--text-on-light-muted,#64748b)]">
-            Required
-          </span>
-        ) : null}
-        {optional ? (
-          <span className="t-label ml-2 font-normal text-[var(--text-on-light-muted,#64748b)]">
-            Optional
-          </span>
-        ) : null}
+        {required ? <span className="sr-only"> (required)</span> : null}
       </label>
       {textarea ? (
         <textarea
           id={id}
           name={id}
-          rows={5}
+          rows={4}
           value={value}
           placeholder={placeholder}
           required={required}
           aria-invalid={!!error}
-          aria-describedby={describedBy || undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
           onChange={(e) => onChange(e.target.value)}
-          className={`${shared} ${border} resize-y`}
+          className={`${fieldControl} resize-y ${error ? "border-red-400/60" : ""}`}
         />
       ) : (
         <input
@@ -178,18 +100,80 @@ function TextField({
           autoComplete={autoComplete}
           required={required}
           aria-invalid={!!error}
-          aria-describedby={describedBy || undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
           onChange={(e) => onChange(e.target.value)}
-          className={`${shared} ${border}`}
+          className={`${fieldControl} ${error ? "border-red-400/60" : ""}`}
         />
       )}
-      {hint ? (
-        <p id={`${id}-hint`} className="mt-2 text-[12.5px] text-mist-2">
-          {hint}
+      {error ? (
+        <p id={`${id}-error`} role="alert" className={fieldError}>
+          {error}
         </p>
       ) : null}
+    </div>
+  );
+}
+
+function GlassSelect({
+  id,
+  label,
+  value,
+  onChange,
+  options,
+  placeholder,
+  required,
+  error,
+  optional,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: readonly string[];
+  placeholder: string;
+  required?: boolean;
+  error?: string;
+  optional?: boolean;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className={fieldLabel}>
+        {label}
+        {optional ? (
+          <span className="ml-1.5 font-normal text-white/40">Optional</span>
+        ) : null}
+        {required ? <span className="sr-only"> (required)</span> : null}
+      </label>
+      <select
+        id={id}
+        name={id}
+        value={value}
+        required={required}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
+        onChange={(e) => onChange(e.target.value)}
+        className={`${fieldControl} appearance-none bg-[length:12px] bg-[right_14px_center] bg-no-repeat pr-10 ${
+          error ? "border-red-400/60" : ""
+        } ${!value ? "text-white/40" : ""}`}
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' stroke='%23ffffff99' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
+        }}
+      >
+        <option value="" disabled={required} className="bg-[#0a0a0a] text-white">
+          {placeholder}
+        </option>
+        {options.map((option) => (
+          <option
+            key={option}
+            value={option}
+            className="bg-[#0a0a0a] text-white"
+          >
+            {option}
+          </option>
+        ))}
+      </select>
       {error ? (
-        <p id={`${id}-error`} role="alert" className="mt-2 text-[12.5px] text-red-300">
+        <p id={`${id}-error`} role="alert" className={fieldError}>
           {error}
         </p>
       ) : null}
@@ -214,7 +198,6 @@ export function ContactInquiryForm({
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [company, setCompany] = useState("");
   const [service, setService] = useState(() =>
     resolveContactPageService(initialService),
   );
@@ -277,9 +260,7 @@ export function ContactInquiryForm({
     if (Object.keys(next).length) {
       track("enquiry-validation-failure");
       const firstKey = Object.keys(next)[0];
-      const el = formRef.current?.querySelector<HTMLElement>(
-        firstKey === "service" ? "#service-group button" : `#${firstKey}`,
-      );
+      const el = formRef.current?.querySelector<HTMLElement>(`#${firstKey}`);
       el?.focus?.();
       return false;
     }
@@ -300,7 +281,6 @@ export function ContactInquiryForm({
     window.location.href = buildMailtoDraft({
       name: name.trim(),
       email: email.trim(),
-      company: company.trim() || undefined,
       details: detailsWithContext,
       service: mapped.service,
       capability: mapped.capability || capability || undefined,
@@ -310,12 +290,23 @@ export function ContactInquiryForm({
     });
   };
 
+  const resetForm = () => {
+    setStatus("idle");
+    setStatusMessage("");
+    setName("");
+    setEmail("");
+    setService("");
+    setCapability("");
+    setTimeline("");
+    setDetails("");
+    setErrors({});
+  };
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (status === "pending") return;
     if (!validate()) return;
 
-    // Honeypot filled — pretend success without calling the provider.
     if (honeypot.trim()) {
       track("contact-form-submit");
       setStatus("success");
@@ -339,7 +330,6 @@ export function ContactInquiryForm({
       const result = await submitWeb3FormsInquiry({
         name: name.trim(),
         email: email.trim(),
-        company: company.trim() || undefined,
         details: detailsWithContext,
         service: mapped.service,
         capability: mapped.capability || capability || undefined,
@@ -374,15 +364,15 @@ export function ContactInquiryForm({
       <div
         role="status"
         aria-live="polite"
-        className="flex min-h-[360px] flex-col justify-center rounded-panel border border-[var(--border-on-light,#E2E8F0)] bg-white p-7 md:p-10 text-[var(--text-on-light,#0a0a0a)]"
+        className={`${glassShell} flex min-h-[220px] flex-col justify-center`}
       >
         <span
           aria-hidden
-          className="flex h-14 w-14 items-center justify-center rounded-control border border-accent bg-accent-dim"
+          className="flex h-11 w-11 items-center justify-center rounded-control border border-accent/40 bg-accent-dim"
         >
           <svg
-            width="22"
-            height="22"
+            width="18"
+            height="18"
             viewBox="0 0 14 14"
             fill="none"
             className="text-accent-soft"
@@ -396,27 +386,16 @@ export function ContactInquiryForm({
             />
           </svg>
         </span>
-        <h3 className="text-h3 mt-8 font-semibold text-[var(--text-on-light,#0a0a0a)]">
+        <h3 className="mt-5 text-[22px] font-semibold tracking-tight text-white">
           Inquiry received.
         </h3>
-        <p className="mt-4 max-w-[480px] text-[15.5px] leading-relaxed text-[var(--text-on-light-secondary,#475569)]">
+        <p className="mt-2 max-w-[440px] text-[14.5px] leading-relaxed text-mist">
           {statusMessage || contactPage.form.successMessage}
         </p>
         <button
           type="button"
-          onClick={() => {
-            setStatus("idle");
-            setStatusMessage("");
-            setName("");
-            setEmail("");
-            setCompany("");
-            setService("");
-            setCapability("");
-            setTimeline("");
-            setDetails("");
-            setErrors({});
-          }}
-          className="t-label mt-10 border-b border-[var(--border-on-light,#E2E8F0)] pb-1 text-[var(--text-on-light-muted,#64748b)] transition-colors hover:text-accent"
+          onClick={resetForm}
+          className="t-label mt-6 self-start border-b border-white/20 pb-0.5 text-mist-2 transition-colors hover:text-accent-soft"
         >
           Send another inquiry
         </button>
@@ -430,9 +409,13 @@ export function ContactInquiryForm({
       onSubmit={onSubmit}
       noValidate
       onFocus={markStarted}
-      className="surface-card relative space-y-8 rounded-panel border border-line bg-white p-7 md:p-10"
+      className={`${glassShell} space-y-5`}
       aria-busy={status === "pending"}
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
@@ -447,19 +430,19 @@ export function ContactInquiryForm({
         />
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <TextField
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <GlassField
           id="name"
-          label="Your name"
+          label="Name"
           value={name}
           onChange={setName}
           error={errors.name}
           autoComplete="name"
           required
         />
-        <TextField
+        <GlassField
           id="email"
-          label="Email address"
+          label="Email"
           type="email"
           value={email}
           onChange={setEmail}
@@ -469,10 +452,10 @@ export function ContactInquiryForm({
         />
       </div>
 
-      <div id="service-group">
-        <ChipGroup
-          legend="What do you need help with?"
-          options={CONTACT_PAGE_SERVICES}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <GlassSelect
+          id="service"
+          label="Service"
           value={service}
           onChange={(v) => {
             setService(v);
@@ -480,35 +463,29 @@ export function ContactInquiryForm({
               setErrors((prev) => ({ ...prev, service: undefined }));
             }
           }}
+          options={CONTACT_PAGE_SERVICES}
+          placeholder="What do you need?"
           required
           error={errors.service}
-          errorId="service-error"
+        />
+        <GlassSelect
+          id="timeline"
+          label="Timeline"
+          value={timeline}
+          onChange={setTimeline}
+          options={CONTACT_TIMELINES}
+          placeholder="Prefer a timeline?"
+          optional
         />
       </div>
 
-      <TextField
-        id="company"
-        label="Company or website"
-        value={company}
-        onChange={setCompany}
-        autoComplete="organization"
-        optional
-      />
-
       {problemContext ? (
-        <p className="text-[13.5px] text-mist-2">
-          Problem context: <span className="text-mist">{problemContext}</span>
+        <p className="text-[12.5px] text-mist-2">
+          Context: <span className="text-mist">{problemContext}</span>
         </p>
       ) : null}
 
-      <ChipGroup
-        legend="Preferred timeline"
-        options={CONTACT_TIMELINES}
-        value={timeline}
-        onChange={setTimeline}
-      />
-
-      <TextField
+      <GlassField
         id="details"
         label="Project details"
         value={details}
@@ -519,31 +496,18 @@ export function ContactInquiryForm({
         placeholder={contactPage.form.detailsPlaceholder}
       />
 
-      <p className="text-[13px] leading-relaxed text-[var(--text-on-light-muted,#64748b)]">
-        {contactPage.form.privacyNote}{" "}
-        <Link
-          href="/privacy-policy"
-          className="text-accent underline-offset-2 hover:underline"
-        >
-          Privacy Policy
-        </Link>
-        .
-      </p>
-
       {(status === "error" || status === "unconfigured") && (
         <div
           role="alert"
           aria-live="assertive"
-          className="space-y-4 border border-line bg-ink-2/80 p-5"
+          className="space-y-3 rounded-control border border-red-400/25 bg-red-500/10 px-4 py-3"
         >
-          <p className="text-[14.5px] leading-relaxed text-mist">
-            {statusMessage}
-          </p>
-          <div className="flex flex-wrap gap-3">
+          <p className="text-[13.5px] leading-relaxed text-mist">{statusMessage}</p>
+          <div className="flex flex-wrap gap-2">
             {status === "error" && (
               <button
                 type="submit"
-                className="min-h-11 rounded-full border border-line-strong px-4 py-2.5 text-[13.5px] text-white transition-colors hover:border-accent"
+                className="min-h-10 rounded-full border border-white/15 px-4 py-2 text-[13px] text-white transition-colors hover:border-accent"
               >
                 Retry
               </button>
@@ -551,25 +515,33 @@ export function ContactInquiryForm({
             <button
               type="button"
               onClick={openEmailDraft}
-              className="min-h-11 rounded-full border border-accent bg-accent-dim px-4 py-2.5 text-[13.5px] text-white transition-colors hover:bg-accent"
+              className="min-h-10 rounded-full border border-accent/50 bg-accent-dim px-4 py-2 text-[13px] text-white transition-colors hover:bg-accent"
             >
-              Open email draft to {site.email}
+              Email {site.email}
             </button>
           </div>
-          <p className="text-[12.5px] text-mist-2">
-            Opening an email draft is not a received inquiry — you still need to
-            send it from your mail client.
-          </p>
         </div>
       )}
 
-      <button
-        type="submit"
-        disabled={status === "pending"}
-        className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full bg-accent px-8 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-accent-bright focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 disabled:cursor-wait disabled:opacity-70"
-      >
-        {status === "pending" ? "Sending…" : contactPage.form.submitLabel}
-      </button>
+      <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">
+        <button
+          type="submit"
+          disabled={status === "pending"}
+          className="inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-7 py-2.5 text-[14.5px] font-medium text-white transition-colors hover:bg-accent-bright focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 disabled:cursor-wait disabled:opacity-70"
+        >
+          {status === "pending" ? "Sending…" : contactPage.form.submitLabel}
+        </button>
+        <p className="text-[12px] leading-relaxed text-white/40 sm:max-w-[280px] sm:text-right">
+          {contactPage.form.privacyNote}{" "}
+          <Link
+            href="/privacy-policy"
+            className="text-accent-soft underline-offset-2 hover:underline"
+          >
+            Privacy Policy
+          </Link>
+          .
+        </p>
+      </div>
     </form>
   );
 }

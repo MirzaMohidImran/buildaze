@@ -9,7 +9,7 @@ type SectionTone = "dark" | "light";
 function ContactFormFallback() {
   return (
     <div
-      className="surface-card min-h-[360px] rounded-panel border border-line bg-white p-7 md:p-10"
+      className="min-h-[280px] rounded-panel border border-white/15 bg-gradient-to-b from-white/[0.12] to-white/[0.04] backdrop-blur-2xl"
       aria-hidden
     />
   );
