@@ -38,11 +38,11 @@
 
 Suggested order after deploy review:
 
-1. Expand `/work` case meta (softened until metrics approved) + og:images  
-2. AI hub + Custom AI Solutions RAG visibility  
-3. Design portfolio proof pages (no NEW UX audit until confirmed)  
+1. ~~Expand `/work` case meta (softened until metrics approved) + og:images~~ — **B1 done**  
+2. ~~AI hub + Custom AI Solutions RAG visibility~~ — **B2 done**  
+3. Design portfolio proof pages (no NEW UX audit until confirmed) — **B3 next**  
 4. Analytics page Shopify funnel QA section depth  
-5. P2 NEW pages only after capability confirmation  
+5. P2 NEW pages only after capability confirmation — **B4**  
 
 ## Files touched (implementation)
 

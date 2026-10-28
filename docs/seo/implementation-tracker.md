@@ -122,8 +122,8 @@
 | **Canonical** | https://www.buildaze.com/services/ai-development |
 | **Findings** | Verification-instruction residue; needs evaluated deployment evidence. |
 | **Proposed action** | Remove verification copy; preserve child URL ownership; add original eval evidence. |
-| **Status** | `needs evidence` |
-| **Validation result** | AI hub data reviewed for residue in session (with design/dev/shopify/marketing pass). Deployment case evidence not supplied. |
+| **Status** | `expanded` (Batch B2 — 28 Oct 2026) |
+| **Validation result** | RAG/knowledge routing + evaluation language strengthened; hub selected-work outcome chips softened (aligned with B1). Deployment case evidence still gated. |
 
 ### 07. `/services/saas-development` — SaaS specialist
 
@@ -317,8 +317,8 @@
 | **Canonical** | https://www.buildaze.com/services/ai-development/custom-ai-solutions |
 | **Findings** | Owns RAG/knowledge work; needs architecture and eval dataset detail. |
 | **Proposed action** | Ingestion/retrieval architecture, access controls, failure handling. |
-| **Status** | `needs evidence` |
-| **Validation result** | No RAG depth expansion in session. |
+| **Status** | `expanded` (Batch B2 — 28 Oct 2026) |
+| **Validation result** | RAG visibility + evaluation language expanded on Custom AI Solutions and AI hub; Phase 4 meta/H1 applied. Live retrieval sample / metric packs still evidence-gated. |
 
 ### 20. `/services/ai-development/business-automation` — Automation
 

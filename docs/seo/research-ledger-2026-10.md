@@ -17,6 +17,7 @@
 | 5A | [`phase5-batch-a-ledger.md`](./phase5-batch-a-ledger.md) | Complete — five NEW pages + hub wiring in repo |
 | Blog 01 | [`blog-01-shopify-traffic-not-converting.md`](./blog-01-shopify-traffic-not-converting.md) | Complete — `/resources` hub + first article in repo |
 | Batch B1 | Work meta/proof | Complete — softened case-study + work-hub meta; OG images on `/work/*` |
+| Batch B2 | AI/RAG depth | Complete — AI hub routing + Custom AI Solutions RAG/eval expand (Phase 4 meta/H1) |
 
 **Supporting extracts (working files)**
 
@@ -61,7 +62,7 @@
 
 | Item | Gate |
 |------|------|
-| Phase 5 Batch B (work meta, AI/RAG expand, design proof, P2 NEW) | Deploy review + P2 capability |
+| Phase 5 Batch B3–B4 (design proof, P2 NEW) | B3 design samples; B4 after capability confirm |
 | Phase 6 formal handoff doc (30/60/90, schema checklist, tracking defs) | After Batch A deploy or on request |
 | Blog Prompt 2 | After commercial map established |
 | Country/language URL variants + hreflang | Material content difference + capability |
@@ -71,10 +72,10 @@
 
 ## Next concrete batch
 
-1. **Batch B2 — AI/RAG depth:** expand Custom AI Solutions + AI hub (RAG visibility, evaluation language).  
-2. Batch B3 — Design proof samples on design leaves.  
-3. Batch B4 — P2 NEW pages only after delivery confirmation.  
-4. Deploy pending routes; GSC sitemap resubmit.
+1. **Batch B3 — Design proof samples** on design leaves.  
+2. Batch B4 — P2 NEW pages only after delivery confirmation (incl. evaluation-monitoring).  
+3. Deploy pending routes; GSC sitemap resubmit.  
+4. Optional: Blog 02 / Phase 6 handoff.
 
 ---
 

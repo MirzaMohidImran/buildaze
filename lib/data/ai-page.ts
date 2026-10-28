@@ -25,11 +25,11 @@ function enquiry(service: string, problem?: string) {
 export const aiPageContent: ServicePageContent = {
   metaTitle: "AI Development Services & Business Solutions | Buildaze",
   metaDescription:
-    "Explore AI applications, chatbots, voice agents, custom AI solutions and business automation. Find the right starting point for your business with Buildaze.",
+    "AI applications, chatbots, voice agents, knowledge retrieval (RAG) and automation — scoped, evaluated and owned with Buildaze.",
   eyebrow: "Applications, conversations, knowledge and automation",
-  headline: "AI Development Services Built Around Your Business",
+  headline: "AI development services built around your business.",
   subheadline:
-    "Have a product idea, repetitive work or too many routine customer questions? Buildaze helps you identify where AI can be useful, choose the right service and define a practical build around your business needs.",
+    "Have a product idea, buried documents, repetitive work or too many routine questions? Identify where AI can help, choose the right owner — including RAG and knowledge systems under Custom AI Solutions — and define a build you can evaluate.",
   ctaLabel: "Discuss Your AI Use Case",
   secondaryCtaLabel: "Explore AI Services",
 
@@ -80,9 +80,9 @@ export const aiPageContent: ServicePageContent = {
         id: "buried-knowledge",
         index: "04",
         name: "Useful knowledge is buried in documents",
-        title: "A solution around your knowledge and documents.",
+        title: "Grounded retrieval over approved sources — with evaluation.",
         description:
-          "RAG, document intelligence and internal copilots belong here when the core problem is retrieval, summarization or decision support — not only a chat UI.",
+          "RAG (retrieval-augmented generation) uses your approved documents and systems to answer or draft — it is not automatic model training and not a guarantee of accuracy. Custom AI Solutions owns source design, permissions, citations, freshness and evaluation for that job.",
         serviceLabel: "Custom AI Solutions",
         enquiryHref: enquiry(
           "Custom AI Solutions",
@@ -127,7 +127,7 @@ export const aiPageContent: ServicePageContent = {
     eyebrow: "Portfolio",
     headline: "Selected AI-related work",
     intro: [
-      "Genuine projects where Buildaze contributed AI product features, retrieval or operational tooling. Outcome figures below match the published case studies and should be read with each project's baseline and measurement notes.",
+      "Projects where Buildaze contributed AI product features, retrieval or operational tooling. Read each case study for measurement notes — outcome figures are published when evidence is approved.",
     ],
     cases: [
       {
@@ -140,8 +140,8 @@ export const aiPageContent: ServicePageContent = {
         description:
           "A SaaS support team needed drafted replies with account context. Buildaze delivered a production web application feature that uses retrieval and live integrations — agents review before send.",
         outcome: {
-          value: "-38%",
-          label: "first-response time (case study — verify context)",
+          value: "RAG",
+          label: "grounded drafts + human review (see case study)",
         },
         tags: ["AI Applications", "Custom AI Solutions", "RAG"],
         cta: "View case study",
@@ -156,10 +156,10 @@ export const aiPageContent: ServicePageContent = {
         relevance:
           "Relevant to Custom AI Solutions, document intelligence and decision-support interfaces.",
         description:
-          "Underwriters spent hours summarizing claims. Buildaze built operational software that summarizes claims and surfaces risk signals for day-to-day use.",
+          "Underwriters spent hours summarizing claims. Buildaze built operational software that summarizes claims and surfaces risk signals for day-to-day use — with human review in the loop.",
         outcome: {
-          value: "-42%",
-          label: "manual review time (case study — verify context)",
+          value: "Docs",
+          label: "document intelligence + review (see case study)",
         },
         tags: ["Custom AI Solutions", "Document intelligence"],
         cta: "View case study",
@@ -176,8 +176,8 @@ export const aiPageContent: ServicePageContent = {
         description:
           "Shoppers could not find products when search ignored attributes. Buildaze cleaned catalogue data, built a retrieval layer and shipped a shopping experience integration.",
         outcome: {
-          value: "+12%",
-          label: "add-to-cart rate (case study — verify context)",
+          value: "Search",
+          label: "attribute-aware retrieval (see case study)",
         },
         tags: ["AI Applications", "Retrieval"],
         cta: "View case study",
@@ -267,19 +267,19 @@ export const aiPageContent: ServicePageContent = {
         id: "custom-ai-solutions",
         index: "04",
         name: "Custom AI Solutions",
-        title: "Knowledge, documents and problem-specific AI systems.",
+        title: "RAG, documents and problem-specific knowledge systems.",
         bestFor:
-          "Teams whose core problem is retrieval, document workflows, internal copilots or LLM systems tied to a specific business task.",
+          "Teams whose core problem is grounded retrieval, document workflows, internal copilots or LLM systems tied to a specific business task — not only a chat skin.",
         boundaries:
-          "This is not a second five-service hub. Application UI delivery may still need AI Applications. Fine-tuning, computer vision and compliance certifications are not assumed.",
+          "RAG is not model training and not guaranteed accuracy. Chat UI alone may sit on AI Chatbots or Applications. Fine-tuning, computer vision and compliance certifications are not assumed. Dedicated evaluation-only consulting is a future specialist only when capability is confirmed.",
         description:
-          "Define the output your team needs, then design retrieval or document workflows — including RAG explained as using approved information to answer, not as automatic model training or guaranteed accuracy.",
+          "Define the output, inventory approved sources, design retrieval with permissions and citations where useful, then evaluate on representative hard cases before treating a demo as production-ready.",
         items: [
-          "Problem and data assessment",
-          "RAG / knowledge retrieval",
-          "Document intelligence",
-          "LLM integration",
-          "Evaluation and handover",
+          "Source and permission assessment",
+          "RAG / knowledge retrieval design",
+          "Citations and freshness controls",
+          "Document intelligence workflows",
+          "Task evaluation and handover",
         ],
         cta: "Discuss Your Custom AI Solution",
         href: enquiry("Custom AI Solutions"),
@@ -464,7 +464,8 @@ export const aiPageContent: ServicePageContent = {
   overviewTitle: "What AI development includes",
   overview: [
     "AI development covers applications, chatbots, voice agents, custom knowledge/document solutions and business automation.",
-    "RAG, LLM integrations, document intelligence, internal copilots and scoped AI agents are capabilities under those services — not separate thin pages.",
+    "RAG and knowledge systems are owned by Custom AI Solutions: approved sources, permissions, retrieval, citations where useful, evaluation and known limits — not a promise that every answer is correct.",
+    "LLM integrations, document intelligence, internal copilots and scoped AI workflow agents appear under the owner that matches the deliverable — not as thin synonym pages.",
   ],
   solutionsTitle: "AI services",
   solutions: [
@@ -527,7 +528,7 @@ export const aiPageContent: ServicePageContent = {
     {
       question: "Which AI service do I need?",
       answer:
-        "Start with the problem and the person using the solution. An application, chatbot, voice agent or workflow may be the right fit; discovery helps define the simplest useful scope.",
+        "Start with the problem and the person using the solution. An application, chatbot, voice agent, knowledge/RAG system or workflow may be the right fit; discovery helps define the simplest useful scope.",
     },
     {
       question: "Can AI be added to our existing systems?",
@@ -542,7 +543,12 @@ export const aiPageContent: ServicePageContent = {
     {
       question: "Where do RAG and internal copilots fit?",
       answer:
-        "Detailed RAG and document-intelligence systems are covered under Custom AI Solutions. Product interfaces and copilots may also involve AI Applications. Chatbots can retrieve approved documents when that is in scope.",
+        "RAG (retrieval over approved sources — not automatic model training) and document-intelligence systems are owned by Custom AI Solutions, including permissions, citations where useful and evaluation. Product interfaces may also involve AI Applications. Chatbots can retrieve approved documents when that is in scope, but deep knowledge-pipeline work still belongs on Custom AI Solutions.",
+    },
+    {
+      question: "Is a chatbot the same as a custom AI solution?",
+      answer:
+        "No. A chatbot is a conversation channel with routing and handoff. A custom AI solution designs the knowledge system behind answers or drafts — sources, retrieval, permissions and evaluation. Some projects need both.",
     },
   ],
   faqClosingTitle: "Still choosing a starting point?",

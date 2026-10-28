@@ -734,7 +734,12 @@ export const aiLeaves: Service[] = [
         {
           question: "Can the chatbot use our documents?",
           answer:
-            "A chatbot can be designed to retrieve from approved documents where the scope supports it. Permissions, document quality and updating responsibilities need to be defined.",
+            "A chatbot can retrieve from approved documents where the scope supports it. Permissions, document quality and updating responsibilities need to be defined. Deep RAG pipelines — ingestion, citations, evaluation sets — are owned on Custom AI Solutions when that is the primary deliverable.",
+        },
+        {
+          question: "Is a document-grounded chatbot the same as Custom AI Solutions?",
+          answer:
+            "Not always. Chatbots own conversation UX, routing and handoff. Custom AI Solutions owns the knowledge system design when retrieval architecture and evaluation are the hard part. Many briefs need both.",
         },
         {
           question: "Can it pass a conversation to a person?",
@@ -760,14 +765,14 @@ export const aiLeaves: Service[] = [
     name: "Custom AI Solutions",
     shortName: "Solutions",
     oneLiner:
-      "Problem-specific AI for knowledge retrieval, documents and decision support.",
+      "RAG, document intelligence and problem-specific knowledge systems — evaluated before release.",
     description:
-      "Custom AI solutions including RAG systems, document intelligence, LLM integration and internal copilots for a defined business task.",
+      "Custom AI solutions including RAG (retrieval-augmented generation), document intelligence, LLM integration and internal copilots for a defined business task.",
     capabilities: [
-      "RAG systems",
+      "RAG / knowledge retrieval",
       "Document intelligence",
       "LLM integration",
-      "Internal copilots",
+      "Evaluation & handover",
     ],
     flow: ["Task", "Prototype", "Evaluate", "Handover"],
     cta: "Explore Custom AI Solutions",
@@ -775,18 +780,18 @@ export const aiLeaves: Service[] = [
     page: base({
       metaTitle: "Custom AI Solutions for Business | Buildaze",
       metaDescription:
-        "Turn a specific business problem into a scoped AI solution. Explore knowledge retrieval, document workflows, integrations and evaluation with Buildaze.",
-      eyebrow: "Knowledge, documents and decision support",
-      headline: "Custom AI Solutions for Your Knowledge and Workflows",
+        "Knowledge retrieval, document workflows and integrations for a specific business problem — evaluated with Buildaze.",
+      eyebrow: "RAG, documents and decision support",
+      headline: "Custom AI for your knowledge, documents and workflows.",
       subheadline:
-        "When the problem does not fit an off-the-shelf tool, start with your knowledge, documents and existing systems. Define the output your team needs and build a solution around that specific task.",
+        "When the hard part is retrieving approved information — not only a chat skin — define the output, design RAG or document workflows with permissions and citations where useful, then evaluate on representative hard cases before treating a demo as production-ready.",
       ctaLabel: "Discuss Your Custom AI Solution",
       secondaryCtaLabel: "Back to AI Services",
       problems: {
         eyebrow: "Common solutions problems",
         headline: "When the hard part is the knowledge system",
         intro: [
-          "Custom Solutions own RAG, document intelligence and problem-specific AI systems. This page is not another five-service hub.",
+          "Custom AI Solutions own RAG, document intelligence and problem-specific AI systems. This page is not another five-service hub — and RAG is not the same as training a model or shipping a chatbot UI alone.",
         ],
         problems: [
           {
@@ -795,7 +800,7 @@ export const aiLeaves: Service[] = [
             name: "Useful knowledge is buried in documents",
             title: "Information people cannot find quickly.",
             description:
-              "RAG retrieves relevant approved information for an answer — it is not automatic model training or a guarantee of accuracy.",
+              "RAG retrieves relevant chunks from approved sources to ground an answer or draft. It is not automatic model training and not a guarantee that every answer is correct.",
             enquiryHref: leafEnquiry(
               solutionsPath,
               "Custom AI Solutions",
@@ -808,7 +813,7 @@ export const aiLeaves: Service[] = [
             name: "Staff repeatedly search or summarize information",
             title: "Manual review of the same document piles.",
             description:
-              "Document extraction and summarization can be scoped with evaluation examples and review paths.",
+              "Document extraction and summarization can be scoped with evaluation examples, human review paths and clear limits when sources conflict or are incomplete.",
             enquiryHref: leafEnquiry(
               solutionsPath,
               "Custom AI Solutions",
@@ -816,12 +821,25 @@ export const aiLeaves: Service[] = [
             ),
           },
           {
-            id: "generic",
+            id: "permissions",
             index: "03",
+            name: "Answers ignore who should see what",
+            title: "Retrieval without permission boundaries.",
+            description:
+              "A useful knowledge system respects role and document access — not every user should retrieve every source. Permission design belongs in scope from the start.",
+            enquiryHref: leafEnquiry(
+              solutionsPath,
+              "Custom AI Solutions",
+              "Permissions and access boundaries",
+            ),
+          },
+          {
+            id: "generic",
+            index: "04",
             name: "Generic assistants lack business context",
             title: "Tools that do not know your information.",
             description:
-              "Business-specific context, permissions and retrieval design matter more than a generic chat UI alone.",
+              "Business-specific sources, freshness and retrieval design matter more than a generic chat UI alone. Chatbots can surface retrieval; deep pipeline work still lives here.",
             enquiryHref: leafEnquiry(
               solutionsPath,
               "Custom AI Solutions",
@@ -830,11 +848,11 @@ export const aiLeaves: Service[] = [
           },
           {
             id: "no-eval",
-            index: "04",
+            index: "05",
             name: "Prototype has no evaluation criteria",
             title: "A demo without a definition of correct.",
             description:
-              "Agree task-specific evaluation and acceptable performance before treating a prototype as production-ready.",
+              "Agree task-specific evaluation — including hard and adversarial examples — and acceptable performance before treating a prototype as production-ready.",
             enquiryHref: leafEnquiry(
               solutionsPath,
               "Custom AI Solutions",
@@ -842,9 +860,9 @@ export const aiLeaves: Service[] = [
             ),
           },
         ],
-        closingTitle: "Need the product interface too?",
+        closingTitle: "Need the product interface or a chat channel too?",
         closingBody:
-          "AI Applications own the usable product surface. A project may include both, with separate deliverables.",
+          "AI Applications own the usable product surface. AI Chatbots own conversation UX and handoff. A project may include those with Custom AI Solutions when the knowledge system is the primary deliverable.",
         ctaLabel: "Discuss custom AI solution",
         ctaHref: leafEnquiry(solutionsPath, "Custom AI Solutions"),
       },
@@ -852,21 +870,21 @@ export const aiLeaves: Service[] = [
         eyebrow: "Solutions scope",
         headline: "What custom AI solution work can include",
         intro: [
-          "Supported examples may include RAG, internal copilots, document extraction/summarization and LLM integration. Prediction models, computer vision, fine-tuning, on-premise deployment and compliance certifications are omitted unless confirmed.",
+          "Supported work includes RAG (source inventory, ingestion, retrieval, citations where useful, freshness and failure handling), document intelligence, internal copilots, LLM integration and task evaluation. Prediction models, computer vision, fine-tuning, on-premise deployment and compliance certifications are omitted unless confirmed. A dedicated evaluation-only consulting page stays P2 until capability is confirmed.",
         ],
         capabilities: [
           {
             id: "assess",
             index: "01",
-            name: "Problem and data assessment",
+            name: "Problem, sources and permissions",
             title: "What the system must produce — and from what.",
             description:
-              "Assess documents, systems, permissions and whether information is complete enough for the task.",
+              "Assess the job to be done, document and system inventory, who may see which sources, and whether information is complete enough for the task.",
             items: [
-              "Task definition",
-              "Data inventory",
-              "Permission boundaries",
-              "Gap and risk notes",
+              "Task and output definition",
+              "Source inventory (docs, systems, APIs)",
+              "Permission and role boundaries",
+              "Gap, conflict and risk notes",
             ],
             cta: "Discuss assessment",
             href: leafEnquiry(
@@ -878,35 +896,56 @@ export const aiLeaves: Service[] = [
           {
             id: "rag",
             index: "02",
-            name: "Knowledge retrieval and document workflows",
-            title: "RAG and document intelligence in plain language.",
+            name: "RAG and knowledge retrieval",
+            title: "Grounded answers from approved information.",
             description:
-              "Design how approved information is retrieved or processed for the specific output your team needs.",
+              "Design how approved content is ingested, chunked, retrieved and composed into answers or drafts — with citations where useful, freshness controls and explicit behaviour when nothing relevant is found.",
             items: [
-              "Retrieval design",
-              "Document workflows",
-              "Freshness considerations",
-              "Fallback when info is missing",
+              "Ingestion and chunking approach",
+              "Retrieval design (query → sources)",
+              "Citations / source links where useful",
+              "Freshness and update ownership",
+              "Fallback when information is missing",
             ],
-            cta: "Discuss RAG / documents",
+            cta: "Discuss RAG design",
             href: leafEnquiry(
               solutionsPath,
               "Custom AI Solutions",
-              "RAG and document workflows",
+              "RAG and knowledge retrieval",
+            ),
+          },
+          {
+            id: "documents",
+            index: "03",
+            name: "Document intelligence workflows",
+            title: "Extract, summarize and route documents.",
+            description:
+              "Scope extraction, summarization or classification pipelines with review steps — separate from a full conversational product when that is not the primary need.",
+            items: [
+              "Extraction / summarization scope",
+              "Review and escalation paths",
+              "Conflict and quality handling",
+              "Operating cost awareness",
+            ],
+            cta: "Discuss document workflows",
+            href: leafEnquiry(
+              solutionsPath,
+              "Custom AI Solutions",
+              "Document intelligence workflows",
             ),
           },
           {
             id: "integrate",
-            index: "03",
+            index: "04",
             name: "Model and system integration",
             title: "LLM integration with your systems.",
             description:
-              "Connect models and tools with access controls and auditability appropriate to the task.",
+              "Connect models and tools with access controls and auditability appropriate to the task — without promising every third-party API or plan feature.",
             items: [
-              "LLM integration",
+              "LLM / provider selection for the task",
               "System connections in scope",
-              "Access controls",
-              "Logging as agreed",
+              "Access controls and logging as agreed",
+              "Human review hooks where required",
             ],
             cta: "Discuss LLM integration",
             href: leafEnquiry(
@@ -917,16 +956,17 @@ export const aiLeaves: Service[] = [
           },
           {
             id: "evaluate",
-            index: "04",
-            name: "Evaluation and handover",
-            title: "Representative examples before release.",
+            index: "05",
+            name: "Evaluation, monitoring and handover",
+            title: "Representative hard cases before release.",
             description:
-              "Evaluate retrieval quality, exception handling, usefulness and operating cost for the scoped task.",
+              "Build a small evaluation set for the task — including failures you care about — then review retrieval quality, refusals, usefulness, latency/cost and known limits before handover.",
             items: [
-              "Evaluation examples",
-              "Exception handling",
-              "Monitoring scope",
-              "Handover docs",
+              "Task evaluation examples (incl. hard cases)",
+              "Retrieval / answer quality review",
+              "Exception and refusal behaviour",
+              "Monitoring scope after go-live",
+              "Handover docs and known limits",
             ],
             cta: "Discuss evaluation",
             href: leafEnquiry(
@@ -936,29 +976,34 @@ export const aiLeaves: Service[] = [
             ),
           },
         ],
-        closingTitle: "Internal copilots",
+        closingTitle: "Internal copilots and chat surfaces",
         closingBody:
-          "Internal copilots may be delivered as a Custom Solution, an Application interface, or both — depending on whether the primary deliverable is the knowledge system or the product UI.",
+          "Internal copilots may be delivered as a Custom Solution, an Application interface, a Chatbot channel, or a combination — depending on whether the primary deliverable is the knowledge system, the product UI or the conversation path.",
         ctaLabel: "Discuss custom AI solution",
         ctaHref: leafEnquiry(solutionsPath, "Custom AI Solutions"),
       },
       deliveryProcess: {
         eyebrow: "Solutions process",
-        headline: "From task and data to evaluated system",
+        headline: "From task and sources to an evaluated system",
         intro: [
-          "Define task and data → prototype a specific approach → evaluate and integrate → validate and hand over.",
+          "Define task, sources and permissions → prototype retrieval or document approach → evaluate on hard cases and integrate → validate and hand over with known limits.",
         ],
         steps: [
           {
             id: "define",
             index: "01",
             shortName: "Define",
-            name: "Define task and data",
-            title: "Output, sources and permissions.",
+            name: "Define task, sources and permissions",
+            title: "Output, approved corpus and who can see it.",
             description:
-              "Write down the job to be done and what information is allowed.",
+              "Write down the job, allowed sources, access rules and what “good enough” means for this task — including when the system should refuse.",
             itemsLabel: "Define",
-            items: ["Task", "Sources", "Permissions", "Success criteria"],
+            items: [
+              "Task / output",
+              "Sources",
+              "Permissions",
+              "Success + refusal criteria",
+            ],
             outcome: "A problem statement ready for design.",
           },
           {
@@ -966,12 +1011,17 @@ export const aiLeaves: Service[] = [
             index: "02",
             shortName: "Prototype",
             name: "Prototype the approach",
-            title: "A bounded approach you can test.",
+            title: "A bounded retrieval or document pipeline you can test.",
             description:
-              "Try the retrieval or document approach on representative examples before scaling.",
+              "Try ingestion, retrieval and composition on a representative sample before scaling corpus size or wiring every system.",
             itemsLabel: "Prototype",
-            items: ["Approach choice", "Sample corpus", "Early tests"],
-            outcome: "Evidence the approach can work.",
+            items: [
+              "Approach choice",
+              "Sample corpus",
+              "Early retrieval tests",
+              "Citation / fallback sketch",
+            ],
+            outcome: "Evidence the approach can work on real material.",
           },
           {
             id: "evaluate",
@@ -980,35 +1030,46 @@ export const aiLeaves: Service[] = [
             name: "Evaluate and integrate",
             title: "Quality, exceptions and system fit.",
             description:
-              "Measure task-specific quality and wire integrations required for real use.",
+              "Run the evaluation set (including hard cases), fix retrieval or prompt issues, then wire integrations required for real use.",
             itemsLabel: "Evaluate",
-            items: ["Quality review", "Exceptions", "Integrations in scope"],
-            outcome: "A system ready for validation.",
+            items: [
+              "Eval set review",
+              "Exceptions / refusals",
+              "Integrations in scope",
+              "Cost / latency notes",
+            ],
+            outcome: "A system ready for validation with known gaps listed.",
           },
           {
             id: "handover",
             index: "04",
             shortName: "Handover",
             name: "Validate and hand over",
-            title: "Documentation and operating notes.",
+            title: "Documentation, ownership and operating notes.",
             description:
-              "Hand over agreed work with known limitations. Incomplete documents need fallback behaviour — better retrieval cannot invent missing facts.",
+              "Hand over agreed work with source-update ownership, monitoring scope and known limitations. Better retrieval cannot invent missing or unauthorized facts.",
             itemsLabel: "Handover",
-            items: ["Docs", "Access", "Known limits", "Support options"],
-            outcome: "An operable custom solution.",
+            items: [
+              "Docs",
+              "Access",
+              "Known limits",
+              "Update ownership",
+              "Support options",
+            ],
+            outcome: "An operable custom solution with explicit boundaries.",
           },
         ],
         closingTitle: "No general accuracy guarantee",
         closingBody:
-          "Agree task-specific evaluation instead of promising every output is correct.",
+          "Agree task-specific evaluation and review needs instead of promising every output is correct.",
         ctaLabel: "Discuss custom AI solution",
         ctaHref: "/contact?service=ai",
       },
       why: {
         eyebrow: "How success is assessed",
-        headline: "Measurement for custom AI solutions",
+        headline: "Measurement for custom AI and RAG systems",
         intro: [
-          "Success depends on task-specific quality, relevant retrieval and useful exception handling.",
+          "Success depends on relevant retrieval from approved sources, task-specific output quality, correct refusals and useful exception handling — not a blanket accuracy claim.",
         ],
         differentiators: [
           {
@@ -1018,20 +1079,20 @@ export const aiLeaves: Service[] = [
             summary: "Right sources for the answer.",
             title: "Retrieval that matches approved information.",
             description:
-              "When RAG is in scope, review whether answers draw on the right material — and refuse when they should not.",
+              "When RAG is in scope, review whether answers draw on the right material, respect permissions and refuse when they should not.",
             panelStatement: "RAG is not automatic truth.",
-            panelNote: "Permissions matter.",
+            panelNote: "Permissions and citations matter.",
           },
           {
             id: "task-quality",
             index: "02",
             name: "Task quality",
             summary: "Outputs people can use.",
-            title: "Quality on representative examples.",
+            title: "Quality on representative — and hard — examples.",
             description:
-              "Summaries, extractions or recommendations are judged against agreed examples and review needs.",
+              "Summaries, extractions or recommendations are judged against agreed examples, including edge cases, with human review where the risk warrants it.",
             panelStatement: "Evaluation replaces vague accuracy claims.",
-            panelNote: "Include hard cases.",
+            panelNote: "Include adversarial cases.",
           },
           {
             id: "exceptions",
@@ -1040,69 +1101,88 @@ export const aiLeaves: Service[] = [
             summary: "Missing or unauthorized info.",
             title: "Correct behaviour when information is absent.",
             description:
-              "The system should handle gaps without inventing unauthorized answers.",
+              "The system should handle gaps, stale sources and unauthorized asks without inventing answers.",
             panelStatement: "Fallback is part of quality.",
             panelNote: "Document the limits.",
+          },
+          {
+            id: "boundaries",
+            index: "04",
+            name: "Clear boundaries",
+            summary: "Not chatbots-only, not training-by-default.",
+            title: "Chat UI vs RAG vs model training.",
+            description:
+              "A chatbot channel is not a knowledge pipeline. RAG grounds generation in approved sources; it is not the same as fine-tuning or training a custom model unless that is separately scoped and confirmed.",
+            panelStatement: "Own the right layer.",
+            panelNote: "Split deliverables when needed.",
           },
         ],
         closingTitle: "Ready to discuss a custom AI solution?",
         closingBody:
-          "Share the task, document types and systems involved — not confidential credentials in the form.",
-        pillars: ["Task", "Retrieve", "Evaluate", "Handover"],
-        closingNote: "Not a second AI hub.",
+          "Share the task, document types, systems and who should access what — not confidential credentials in the form.",
+        pillars: ["Sources", "Retrieve", "Evaluate", "Handover"],
+        closingNote: "Not a second AI hub. Not a chatbot synonym page.",
         ctaLabel: "Discuss Your Custom AI Solution",
         ctaHref: "/contact?service=ai",
       },
       overviewTitle: "What custom AI solutions include",
       overview: [
-        "Custom AI solutions focus on knowledge retrieval, document workflows, LLM integration and evaluation for a specific business problem.",
-        "Applications own product UI delivery; Automation owns multi-tool workflow actions.",
+        "Custom AI solutions focus on RAG and knowledge retrieval, document workflows, LLM integration and evaluation for a specific business problem — with permissions, citations where useful and known limits.",
+        "RAG uses approved information to ground answers; it is not automatic model training and not a guarantee of accuracy.",
+        "Applications own product UI delivery; Chatbots own conversation UX and handoff; Automation owns multi-tool workflow actions.",
       ],
       solutionsTitle: "Solutions focus areas",
       solutions: [
-        "RAG systems",
+        "RAG / knowledge retrieval",
         "Document intelligence",
+        "Permissions and freshness",
         "LLM integration",
         "Internal copilots",
-        "Evaluation frameworks",
+        "Task evaluation",
       ],
       deliverables: [
-        "Problem and data assessment",
-        "Retrieval or document workflow design",
-        "Integration and evaluation in scope",
-        "Handover documentation",
+        "Problem, source and permission assessment",
+        "RAG or document workflow design",
+        "Integration and evaluation set in scope",
+        "Handover documentation with known limits",
       ],
       included: [
         "Task discovery",
         "Written approach and evaluation plan",
         "Build and review cycles",
-        "Known-limits documentation",
+        "Known-limits and update-ownership notes",
       ],
-      stackTags: ["RAG", "Document intelligence", "LLM integration", "Evaluation"],
+      stackTags: [
+        "RAG",
+        "Citations",
+        "Document intelligence",
+        "LLM integration",
+        "Evaluation",
+      ],
       process: [
         {
           index: "01",
           name: "Define",
           duration: "Scoped",
-          description: "Task, data and permissions.",
+          description: "Task, sources and permissions.",
         },
         {
           index: "02",
           name: "Prototype",
           duration: "Scoped",
-          description: "Test a bounded approach.",
+          description: "Test a bounded retrieval approach.",
         },
         {
           index: "03",
           name: "Evaluate",
           duration: "Scoped",
-          description: "Quality, exceptions and integrations.",
+          description: "Hard cases, exceptions and integrations.",
         },
         {
           index: "04",
           name: "Handover",
           duration: "Scoped",
-          description: "Docs, access and limits.",
+          description: "Docs, ownership and limits.",
         },
       ],
       relatedWorkIds: [
@@ -1112,19 +1192,44 @@ export const aiLeaves: Service[] = [
       ],
       faqs: [
         {
-          question: "How is this different from AI Applications?",
+          question: "What is RAG, in plain language?",
           answer:
-            "Applications focus on the usable product or feature. Custom Solutions focus on the underlying knowledge, document or business-specific AI system. A project may include both, with separate deliverables.",
+            "RAG (retrieval-augmented generation) finds relevant passages from your approved documents or systems and uses them to ground an answer or draft. It is not automatically training a custom model, and it does not guarantee every answer is correct — evaluation and review still matter.",
         },
         {
-          question: "What if our documents are incomplete?",
+          question: "How is this different from an AI chatbot?",
           answer:
-            "The scope should account for missing or outdated information and define fallback behaviour. Better retrieval cannot compensate for information that is absent or unauthorized.",
+            "A chatbot is a conversation channel with routing and handoff. Custom AI Solutions designs the knowledge system behind grounded answers — sources, ingestion, retrieval, permissions, citations where useful and evaluation. Some projects need both; chat-only UI without a knowledge pipeline is usually a Chatbots or Applications brief.",
+        },
+        {
+          question: "How is this different from AI Applications?",
+          answer:
+            "Applications focus on the usable product or feature surface. Custom Solutions focus on the underlying knowledge, document or business-specific AI system. A project may include both, with separate deliverables.",
+        },
+        {
+          question: "Is RAG the same as training or fine-tuning a model?",
+          answer:
+            "No. RAG retrieves approved information at answer time. Fine-tuning or custom training changes model behaviour and is a separate, capability-gated scope — not assumed on this page.",
+        },
+        {
+          question: "Do answers include citations?",
+          answer:
+            "Citations or source links can be designed where they help users verify drafts. They are useful, not magic — retrieved passages can still be incomplete or mis-ranked, so evaluation and review remain part of quality.",
+        },
+        {
+          question: "What if our documents are incomplete or outdated?",
+          answer:
+            "The scope should account for missing, conflicting or stale information, define fallback or refusal behaviour, and name who owns source updates. Better retrieval cannot invent absent or unauthorized facts.",
         },
         {
           question: "Do you guarantee accuracy?",
           answer:
-            "Agree a task-specific evaluation and acceptable performance before release. No general guarantee that every output is correct should replace testing and appropriate review.",
+            "Agree a task-specific evaluation set — including hard cases — and acceptable performance before release. No general guarantee that every output is correct should replace testing and appropriate human review.",
+        },
+        {
+          question: "Will you monitor the system after go-live?",
+          answer:
+            "Monitoring scope (quality sampling, failure alerts, cost/latency checks) can be included in the agreement. Ongoing evaluation-as-a-service is not assumed unless confirmed — evaluation language on this page covers build-time and agreed post-launch checks.",
         },
       ],
       faqCtaLabel: "Discuss custom AI solution",

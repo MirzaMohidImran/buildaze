@@ -5,6 +5,8 @@
 
 **Batch B1 (28 Oct 2026):** Case-study **meta titles/descriptions**, work-hub copy, and page **summaries** were softened so SERP/social snippets do not assert unverified lifts. On-page `results` / `outcome` figures remain until evidence packs are attached or you approve removal. OG images are wired on `/work/*` via `/og/default-og.png` (replace per case when branded assets exist).
 
+**Batch B2 (28 Oct 2026):** AI hub + Custom AI Solutions expanded for RAG visibility and evaluation language. Hub portfolio chips no longer show unverified % lifts. Dedicated evaluation-monitoring page and live retrieval samples remain capability/evidence-gated.
+
 **Important:** Items in this document are **not completed**. They were moved out of public copy where the audit found editorial/owner-instruction residue, or they depend on accounts and facts only the owner can supply. **Do not mark these done in the tracker until proof is attached.**
 
 ---
