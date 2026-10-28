@@ -109,7 +109,7 @@ export default async function ResourceArticleRoute({
       },
       breadcrumbList([
         { name: "Home", path: "/" },
-        { name: "Resources", path: "/resources" },
+        { name: "Blog", path: "/resources" },
         { name: article.h1, path: `/resources/${article.slug}` },
       ]),
     ],

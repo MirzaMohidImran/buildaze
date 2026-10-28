@@ -26,6 +26,17 @@ const nextConfig: NextConfig = {
         destination: "/shopify-growth-agency",
         permanent: true,
       },
+      // Blog alias → canonical Resources URLs (no duplicate content)
+      {
+        source: "/blog",
+        destination: "/resources",
+        permanent: true,
+      },
+      {
+        source: "/blog/:slug",
+        destination: "/resources/:slug",
+        permanent: true,
+      },
     ];
   },
   async headers() {

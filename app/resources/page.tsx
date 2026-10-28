@@ -6,9 +6,9 @@ import { resourceArticles } from "@/lib/data/resources";
 import { ORGANIZATION_ID, breadcrumbList } from "@/lib/seo/jsonld";
 import { DEFAULT_OG_IMAGE, ogImages, twitterImages } from "@/lib/seo/social";
 
-const title = "Resources | Shopify Growth Guides — Buildaze";
+const title = "Blog | Shopify Growth Guides — Buildaze";
 const description =
-  "Practical Buildaze guides on Shopify conversion, checkout and digital delivery — problem-led articles linked to clear service owners.";
+  "Buildaze blog: practical guides on Shopify conversion, checkout and digital delivery — problem-led articles linked to clear service owners.";
 
 export const metadata: Metadata = {
   title: { absolute: title },
@@ -56,7 +56,7 @@ export default function ResourcesPage() {
       },
       breadcrumbList([
         { name: "Home", path: "/" },
-        { name: "Resources", path: "/resources" },
+        { name: "Blog", path: "/resources" },
       ]),
     ],
   };

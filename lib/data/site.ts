@@ -40,6 +40,7 @@ export const nav = {
     { label: "Services", href: "/services", menu: "services" as const },
     { label: "Our Products", href: "/voice-agent", menu: "products" as const },
     { label: "Work", href: "/work" },
+    { label: "Blog", href: "/resources" },
     { label: "Process", href: "/#process" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },

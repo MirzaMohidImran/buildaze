@@ -110,25 +110,61 @@ export function ResourceArticlePage({ article }: { article: ResourceArticle }) {
       <main id="main" className="surface-ink">
         <article className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20">
           <div aria-hidden className="build-grid fade-edges absolute inset-0" />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 55% 50% at 50% 30%, rgba(37,99,235,0.12), transparent 70%)",
+            }}
+          />
           <div className="relative mx-auto max-w-[760px] px-5 md:px-10">
-            <p className="t-label text-accent-soft">{article.cluster}</p>
-            <h1
-              id="article-heading"
-              className="text-h2 mt-4 tracking-tight text-white"
-            >
-              {article.h1}
-            </h1>
-            <p className="mt-5 text-[16.5px] leading-relaxed text-mist md:text-[17.5px]">
-              {article.excerpt}
-            </p>
-            <p className="mt-6 text-[13.5px] text-mist-2">
-              By {article.authorName} · Published {article.publishedAt}
-              {article.updatedAt !== article.publishedAt
-                ? ` · Updated ${article.updatedAt}`
-                : ""}
-            </p>
+            <header className="flex flex-col items-center text-center">
+              <nav aria-label="Breadcrumb" className="mb-10 w-full">
+                <ol className="t-label flex flex-wrap items-center justify-center gap-2 text-mist-2">
+                  <li>
+                    <Link
+                      href="/"
+                      className="transition-colors hover:text-white"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li aria-hidden>/</li>
+                  <li>
+                    <Link
+                      href="/resources"
+                      className="transition-colors hover:text-white"
+                    >
+                      Blog
+                    </Link>
+                  </li>
+                  <li aria-hidden>/</li>
+                  <li className="max-w-[280px] truncate text-accent-soft sm:max-w-none">
+                    {article.h1}
+                  </li>
+                </ol>
+              </nav>
 
-            <div className="mt-12 space-y-14 md:mt-16 md:space-y-16">
+              <p className="t-label text-accent-soft">{article.cluster}</p>
+              <h1
+                id="article-heading"
+                className="text-h2 mt-4 tracking-tight text-white"
+              >
+                {article.h1}
+              </h1>
+              <p className="mt-5 max-w-[640px] text-[16.5px] leading-relaxed text-mist md:text-[17.5px]">
+                {article.excerpt}
+              </p>
+              <p className="mt-6 text-[13.5px] text-mist-2">
+                By {article.authorName} · Published {article.publishedAt}
+                {article.updatedAt !== article.publishedAt
+                  ? ` · Updated ${article.updatedAt}`
+                  : ""}
+              </p>
+            </header>
+
+            <div className="mt-12 space-y-14 text-left md:mt-16 md:space-y-16">
               {article.sections.map((section) => (
                 <section
                   key={section.id}
