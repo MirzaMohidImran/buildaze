@@ -137,62 +137,45 @@ export function Hero({ tone = "dark" }: { tone?: SectionTone }) {
         className="relative z-[1] order-1 mx-auto flex w-full max-w-[1600px] flex-1 flex-col justify-center px-5 pt-28 pb-8 md:px-10 lg:min-h-svh lg:pb-24"
       >
         <div className="max-w-[780px]">
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="t-label flex items-center gap-3 text-mist"
-          >
+          {/*
+            LCP is this hero copy — keep it visible in first paint.
+            Do not gate H1/lead behind Framer opacity/transform (that delayed LCP ~5–10s).
+            Decorative chrome may still motion; WebGL path is unchanged.
+          */}
+          <p className="t-label flex items-center gap-3 text-mist">
             <span aria-hidden className="inline-block h-1.5 w-1.5 animate-pulse bg-accent" />
             Design, development and digital growth
-          </motion.p>
+          </p>
 
           <h1 className="text-display mt-7 font-semibold text-white">
             {headlineLines.map((line, i) => (
-              <span key={line} className="block overflow-hidden pb-[0.09em] -mb-[0.05em]">
-                <motion.span
-                  className="block"
-                  initial={reduced ? { opacity: 0 } : { y: "108%" }}
-                  animate={reduced ? { opacity: 1 } : { y: 0 }}
-                  transition={{ delay: 0.3 + i * 0.12, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  {i === headlineLines.length - 1 ? (
-                    <>
-                      your <span className="text-accent-soft">business.</span>
-                    </>
-                  ) : (
-                    // Trailing space keeps accessible name readable across block lines.
-                    `${line} `
-                  )}
-                </motion.span>
+              <span key={line} className="block pb-[0.09em] -mb-[0.05em]">
+                {i === headlineLines.length - 1 ? (
+                  <>
+                    your <span className="text-accent-soft">business.</span>
+                  </>
+                ) : (
+                  // Trailing space keeps accessible name readable across block lines.
+                  `${line} `
+                )}
               </span>
             ))}
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.65, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lead mt-7 max-w-[560px] text-mist"
-          >
+          <p className="text-lead mt-7 max-w-[560px] text-mist">
             Buildaze is a digital agency bringing branding, design, websites,
             applications, AI automation, digital marketing and Shopify together
             around your business goals.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-10 flex flex-wrap items-center gap-4"
-          >
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <MagneticButton href="/contact" analytics="hero-start-project" tone={tone}>
               Discuss Your Project
             </MagneticButton>
             <MagneticButton href="#work" variant="ghost" analytics="hero-view-work" tone={tone}>
               Explore Our Work
             </MagneticButton>
-          </motion.div>
+          </div>
         </div>
       </motion.div>
 

@@ -1,0 +1,45 @@
+{
+  "baseUrl": "http://127.0.0.1:3001",
+  "generatedAt": "2026-10-28T11:40:18.200Z",
+  "before": {
+    "mobilePerf": 29,
+    "desktopPerf": 26,
+    "mobileLcp": "10.1 s",
+    "desktopLcp": "9.6 s"
+  },
+  "after": {
+    "mobile": {
+      "formFactor": "mobile",
+      "scores": {
+        "performance": 67,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "audits": {
+        "FCP": "1.6 s",
+        "LCP": "1.6 s",
+        "TBT": "14,190 ms",
+        "CLS": "0",
+        "SI": "4.0 s",
+        "color-contrast": 1
+      }
+    },
+    "desktop": {
+      "formFactor": "desktop",
+      "scores": {
+        "performance": 32,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "audits": {
+        "FCP": "3.4 s",
+        "LCP": "3.4 s",
+        "TBT": "8,350 ms",
+        "CLS": "0.002",
+        "SI": "6.7 s"
+      }
+    }
+  }
+}

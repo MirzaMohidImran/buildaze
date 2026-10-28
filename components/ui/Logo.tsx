@@ -1,22 +1,29 @@
+import Image from "next/image";
+
 /** Official Buildaze marks from /public/Logo. */
 export function Logo({
   className = "",
   variant = "default",
   tone = "dark",
+  priority = false,
 }: {
   className?: string;
   /** `mark` = favicon icon; `default` = footer/full wordmark; `horizontal` = light-bg wordmark. */
   variant?: "default" | "mark" | "horizontal";
   /** `light` surfaces use dark mark / light-background wordmarks. */
   tone?: "dark" | "light";
+  /** Set on the primary nav mark for LCP-adjacent branding. */
+  priority?: boolean;
 }) {
   if (variant === "mark") {
     return (
-      <img
+      <Image
         src={tone === "light" ? "/Logo/logo-1-dark.svg" : "/Logo/logo-1.svg"}
         alt="Buildaze"
         width={56}
         height={56}
+        priority={priority}
+        unoptimized
         className={`h-12 w-12 shrink-0 object-contain md:h-14 md:w-14 ${className}`}
       />
     );
@@ -24,11 +31,13 @@ export function Logo({
 
   if (variant === "horizontal" || tone === "light") {
     return (
-      <img
+      <Image
         src="/Logo/buildaze-logo-horizontal.svg"
         alt="Buildaze"
         width={200}
         height={56}
+        priority={priority}
+        unoptimized
         className={`h-11 w-auto max-h-11 max-w-[200px] object-contain object-left md:h-12 md:max-h-12 md:max-w-[220px] ${className}`}
       />
     );
@@ -36,11 +45,13 @@ export function Logo({
 
   // Horizontal wordmark for dark backgrounds (white + blue)
   return (
-    <img
+    <Image
       src="/Logo/buildaze-logo-footer.svg"
       alt="Buildaze"
       width={200}
       height={56}
+      priority={priority}
+      unoptimized
       className={`h-11 w-auto max-h-11 max-w-[200px] object-contain object-left md:h-12 md:max-h-12 md:max-w-[220px] ${className}`}
     />
   );

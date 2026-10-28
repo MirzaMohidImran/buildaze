@@ -1,20 +1,57 @@
 import type { Metadata } from "next";
-import { ContactInvite } from "@/components/contact/ContactInvite";
-import { FaqSection } from "@/components/sections/FaqSection";
-import { FeaturedWork } from "@/components/sections/FeaturedWork";
-import { Footer } from "@/components/sections/Footer";
+import dynamic from "next/dynamic";
 import { Hero } from "@/components/sections/Hero";
 import { Navbar } from "@/components/sections/Navbar";
-import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
-import { ServiceExperience } from "@/components/sections/ServiceExperience";
-import { TeamAndProof } from "@/components/sections/TeamAndProof";
 import { TrustStrip } from "@/components/sections/TrustStrip";
-import { VoiceAgentSection } from "@/components/sections/VoiceAgentSection";
-import { WhyBuildaze } from "@/components/sections/WhyBuildaze";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/lib/data/site";
 import { ORGANIZATION_ID, WEBSITE_ID } from "@/lib/seo/jsonld";
 import { DEFAULT_OG_IMAGE, ogImages, twitterImages } from "@/lib/seo/social";
+
+/**
+ * Below-fold homepage sections: keep SSR for SEO/content, split JS so the
+ * hero LCP path is not competing with every section's client bundle.
+ * WebGL remains owned exclusively by Hero (untouched here).
+ */
+const ServiceExperience = dynamic(
+  () =>
+    import("@/components/sections/ServiceExperience").then((m) => m.ServiceExperience),
+  { ssr: true },
+);
+const FeaturedWork = dynamic(
+  () => import("@/components/sections/FeaturedWork").then((m) => m.FeaturedWork),
+  { ssr: true },
+);
+const ProcessTimeline = dynamic(
+  () =>
+    import("@/components/sections/ProcessTimeline").then((m) => m.ProcessTimeline),
+  { ssr: true },
+);
+const WhyBuildaze = dynamic(
+  () => import("@/components/sections/WhyBuildaze").then((m) => m.WhyBuildaze),
+  { ssr: true },
+);
+const VoiceAgentSection = dynamic(
+  () =>
+    import("@/components/sections/VoiceAgentSection").then((m) => m.VoiceAgentSection),
+  { ssr: true },
+);
+const TeamAndProof = dynamic(
+  () => import("@/components/sections/TeamAndProof").then((m) => m.TeamAndProof),
+  { ssr: true },
+);
+const FaqSection = dynamic(
+  () => import("@/components/sections/FaqSection").then((m) => m.FaqSection),
+  { ssr: true },
+);
+const ContactInvite = dynamic(
+  () => import("@/components/contact/ContactInvite").then((m) => m.ContactInvite),
+  { ssr: true },
+);
+const Footer = dynamic(
+  () => import("@/components/sections/Footer").then((m) => m.Footer),
+  { ssr: true },
+);
 
 const HOME_TITLE = "Buildaze | Design, Development & Digital Growth Agency";
 const HOME_DESCRIPTION =

@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { nav, products } from "@/lib/data/site";
@@ -209,7 +210,7 @@ export function Navbar({
                 closeMobile();
               }}
             >
-              <Logo variant="mark" tone={tone} />
+              <Logo variant="mark" tone={tone} priority />
             </Link>
 
             {showShopifyPartnerBadge && (
@@ -226,7 +227,7 @@ export function Navbar({
                   aria-label="Shopify Partners"
                   className="shrink-0 transition-opacity hover:opacity-85"
                 >
-                  <img
+                  <Image
                     src="/brands/shopify-partners.png"
                     alt="Shopify Partners"
                     width={180}

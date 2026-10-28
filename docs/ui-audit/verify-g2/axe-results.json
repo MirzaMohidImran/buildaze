@@ -1,0 +1,62 @@
+{
+  "groupId": "g2",
+  "baseUrl": "http://127.0.0.1:3001",
+  "generatedAt": "2026-10-28T11:38:03.659Z",
+  "pages": [
+    {
+      "slug": "home",
+      "path": "/",
+      "byWidth": {
+        "375": {
+          "violations": [
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".hover\\:border-line-strong"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+                }
+              ]
+            },
+            {
+              "id": "scrollable-region-focusable",
+              "impact": "serious",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".snap-x"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+                }
+              ]
+            }
+          ],
+          "passes": 32
+        },
+        "1280": {
+          "violations": [
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".hover\\:border-line-strong"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+                }
+              ]
+            }
+          ],
+          "passes": 32
+        }
+      }
+    }
+  ]
+}

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Space_Grotesk } from "next/font/google";
+import { DeferredChrome } from "@/components/motion/DeferredChrome";
 import { Analytics } from "@/components/seo/Analytics";
 import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { CursorFollower } from "@/components/motion/CursorFollower";
-import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { organizationNode, websiteNode } from "@/lib/seo/jsonld";
 import { DEFAULT_OG_IMAGE, ogImages, twitterImages } from "@/lib/seo/social";
 import { site } from "@/lib/data/site";
@@ -15,12 +14,16 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -78,8 +81,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SmoothScroll />
-        <CursorFollower />
+        <DeferredChrome />
         <GoogleAnalytics />
         <Analytics />
         {children}
