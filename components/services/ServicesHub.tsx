@@ -26,13 +26,13 @@ export function ServicesHub() {
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 55% 50% at 65% 35%, rgba(37,99,235,0.13), transparent 70%)",
+                "radial-gradient(ellipse 55% 50% at 50% 35%, rgba(37,99,235,0.13), transparent 70%)",
             }}
           />
 
-          <div className="relative mx-auto max-w-[1600px] px-5 md:px-10">
-            <nav aria-label="Breadcrumb" className="mb-10">
-              <ol className="t-label flex flex-wrap items-center gap-2 text-mist-2">
+          <div className="relative mx-auto flex max-w-[1600px] flex-col items-center px-5 text-center md:px-10">
+            <nav aria-label="Breadcrumb" className="mb-10 w-full">
+              <ol className="t-label flex flex-wrap items-center justify-center gap-2 text-mist-2">
                 <li>
                   <Link href="/" className="transition-colors hover:text-white">
                     Home
@@ -45,21 +45,21 @@ export function ServicesHub() {
               </ol>
             </nav>
 
-            <SectionLabel index="00" label="Services" />
+            <SectionLabel index="00" label="Services" className="justify-center" />
             <RevealText
               as="h1"
               id="services-hub-heading"
               text="Five categories. Clear scope around your goals."
-              className="text-display mt-10 max-w-[920px] font-semibold text-white"
+              className="text-display mx-auto mt-10 max-w-[920px] text-center font-semibold text-white"
             />
-            <Reveal delay={0.2} className="mt-8">
-              <p className="max-w-[540px] text-lead text-mist">
+            <Reveal delay={0.2} className="mt-8 w-full">
+              <p className="mx-auto max-w-[540px] text-lead text-mist">
                 Design, Development, Artificial Intelligence, Digital Marketing
                 and Shopify. Pick the area you need — or tell us the goal and we
                 will help identify the right starting point.
               </p>
             </Reveal>
-            <Reveal delay={0.3} className="mt-10">
+            <Reveal delay={0.3} className="mt-10 flex justify-center">
               <MagneticButton href="/contact" analytics="services-hub-cta">
                 Start a Project
               </MagneticButton>

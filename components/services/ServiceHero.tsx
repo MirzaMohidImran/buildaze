@@ -14,7 +14,6 @@ import { getServiceById } from "@/lib/data/services";
 import { getServicePath } from "@/lib/seo/paths";
 
 export function ServiceHero({ service }: { service: Service }) {
-  const centered = service.id === "shopify";
   const isMarketingLeaf = service.id.startsWith("dm-");
   const isAiLeaf = service.id.startsWith("ai-") && service.id !== "ai-voice";
   const isDesignLeaf = service.id.startsWith("design-");
@@ -55,26 +54,14 @@ export function ServiceHero({ service }: { service: Service }) {
         aria-hidden
         className="absolute inset-0"
         style={{
-          background: centered
-            ? "radial-gradient(ellipse 55% 50% at 50% 35%, rgba(37,99,235,0.14), transparent 70%)"
-            : "radial-gradient(ellipse 55% 50% at 70% 30%, rgba(37,99,235,0.14), transparent 70%)",
+          background:
+            "radial-gradient(ellipse 55% 50% at 50% 35%, rgba(37,99,235,0.14), transparent 70%)",
         }}
       />
 
-      <div
-        className={`relative mx-auto max-w-[1600px] px-5 md:px-10 ${
-          centered ? "flex flex-col items-center text-center" : ""
-        }`}
-      >
-        <nav
-          aria-label="Breadcrumb"
-          className={`mb-10 ${centered ? "w-full" : ""}`}
-        >
-          <ol
-            className={`t-label flex flex-wrap items-center gap-2 text-mist-2 ${
-              centered ? "justify-center" : ""
-            }`}
-          >
+      <div className="relative mx-auto flex max-w-[1600px] flex-col items-center px-5 text-center md:px-10">
+        <nav aria-label="Breadcrumb" className="mb-10 w-full">
+          <ol className="t-label flex flex-wrap items-center justify-center gap-2 text-mist-2">
             <li>
               <Link href="/" className="transition-colors hover:text-white">
                 Home
@@ -141,7 +128,7 @@ export function ServiceHero({ service }: { service: Service }) {
         </nav>
 
         {service.page.eyebrow && (
-          <Reveal className={`mb-6 ${centered ? "flex justify-center" : ""}`}>
+          <Reveal className="mb-6 flex justify-center">
             <p className="t-label inline-flex items-center gap-2.5 border border-accent/40 bg-accent-dim px-3.5 py-2 text-accent-soft">
               <span aria-hidden className="h-1.5 w-1.5 bg-accent" />
               {service.page.eyebrow}
@@ -153,27 +140,19 @@ export function ServiceHero({ service }: { service: Service }) {
           as="h1"
           id="service-hero-heading"
           text={service.page.headline}
-          className={`text-display mt-8 text-white ${
-            centered ? "mx-auto max-w-[920px] text-center" : "max-w-[920px]"
-          }`}
+          className="text-display mx-auto mt-8 max-w-[920px] text-center text-white"
           stagger={0.04}
         />
 
-        <Reveal delay={0.2} className={`mt-8 ${centered ? "w-full" : ""}`}>
-          <p
-            className={`text-lead text-mist ${
-              centered ? "mx-auto max-w-[560px]" : "max-w-[560px]"
-            }`}
-          >
+        <Reveal delay={0.2} className="mt-8 w-full">
+          <p className="text-lead mx-auto max-w-[560px] text-mist">
             {service.page.subheadline}
           </p>
         </Reveal>
 
         <Reveal
           delay={0.3}
-          className={`mt-10 flex flex-wrap items-center gap-4 ${
-            centered ? "justify-center" : ""
-          }`}
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <MagneticButton
             href={buildContactHref({
@@ -199,8 +178,8 @@ export function ServiceHero({ service }: { service: Service }) {
         </Reveal>
 
         {service.id === "digital-marketing" && (
-          <Reveal delay={0.35} className="mt-6">
-            <p className="max-w-[640px] text-[14px] leading-relaxed text-mist-2">
+          <Reveal delay={0.35} className="mt-6 w-full">
+            <p className="mx-auto max-w-[640px] text-[14px] leading-relaxed text-mist-2">
               Prefer a specialist page? Explore{" "}
               <Link
                 href={getServicePath(getServiceById("dm-seo")!)}
@@ -263,8 +242,8 @@ export function ServiceHero({ service }: { service: Service }) {
         )}
 
         {service.id === "ai" && (
-          <Reveal delay={0.35} className="mt-6">
-            <p className="max-w-[640px] text-[14px] leading-relaxed text-mist-2">
+          <Reveal delay={0.35} className="mt-6 w-full">
+            <p className="mx-auto max-w-[640px] text-[14px] leading-relaxed text-mist-2">
               Prefer a specialist page? Explore{" "}
               <Link
                 href={getServicePath(getServiceById("ai-applications")!)}
@@ -306,8 +285,8 @@ export function ServiceHero({ service }: { service: Service }) {
         )}
 
         {service.id === "design" && (
-          <Reveal delay={0.35} className="mt-6">
-            <p className="max-w-[640px] text-[14px] leading-relaxed text-mist-2">
+          <Reveal delay={0.35} className="mt-6 w-full">
+            <p className="mx-auto max-w-[640px] text-[14px] leading-relaxed text-mist-2">
               Prefer a specialist page? Explore{" "}
               <Link
                 href={getServicePath(getServiceById("design-graphic")!)}
@@ -349,8 +328,8 @@ export function ServiceHero({ service }: { service: Service }) {
         )}
 
         {service.id === "development" && (
-          <Reveal delay={0.35} className="mt-6">
-            <p className="max-w-[640px] text-[14px] leading-relaxed text-mist-2">
+          <Reveal delay={0.35} className="mt-6 w-full">
+            <p className="mx-auto max-w-[640px] text-[14px] leading-relaxed text-mist-2">
               Prefer a specialist page? Explore{" "}
               <Link
                 href={getServicePath(getServiceById("web")!)}
@@ -404,8 +383,8 @@ export function ServiceHero({ service }: { service: Service }) {
         )}
 
         {service.id === "ai" && (
-          <Reveal delay={0.35} className="mt-6">
-            <p className="max-w-[560px] text-[14px] leading-relaxed text-mist-2">
+          <Reveal delay={0.35} className="mt-6 w-full">
+            <p className="mx-auto max-w-[560px] text-[14px] leading-relaxed text-mist-2">
               Looking for a spoken conversation agent?{" "}
               <Link
                 href="/voice-agent"
@@ -420,8 +399,8 @@ export function ServiceHero({ service }: { service: Service }) {
         )}
 
         {service.id === "development" && (
-          <Reveal delay={0.35} className="mt-6">
-            <p className="max-w-[640px] text-[14px] leading-relaxed text-mist-2">
+          <Reveal delay={0.35} className="mt-6 w-full">
+            <p className="mx-auto max-w-[640px] text-[14px] leading-relaxed text-mist-2">
               Specialist paths:{" "}
               <Link
                 href={getServicePath(getServiceById("web")!)}
