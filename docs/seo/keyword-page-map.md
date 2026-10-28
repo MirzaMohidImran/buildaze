@@ -1,5 +1,7 @@
 # Buildaze keyword → page map
 
+> **Superseded for planning (28 October 2026):** use [`phase3-keyword-page-map-2026-10.md`](./phase3-keyword-page-map-2026-10.md). This file is retained as archive.
+
 **Date:** 12 October 2026  
 **Source:** [Buildaze SEO Audit 2026-10-12](../Buildaze-SEO-Audit-2026-10-12.md)  
 **Research note:** Keyword targets below are **candidates** only. Search volume, difficulty, and current Google positions were **not verified** in the audit (Semrush/API and GSC exports unavailable). Do not treat this file as rank or traffic forecasting.

@@ -18,9 +18,12 @@ export function ServiceHero({ service }: { service: Service }) {
   const isMarketingLeaf = service.id.startsWith("dm-");
   const isAiLeaf = service.id.startsWith("ai-") && service.id !== "ai-voice";
   const isDesignLeaf = service.id.startsWith("design-");
+  const isShopifyLeaf =
+    service.id.startsWith("shopify-") && service.id !== "shopify";
   const marketingHub = getServiceById("digital-marketing");
   const aiHub = getServiceById("ai");
   const designHub = getServiceById("design");
+  const shopifyHub = getServiceById("shopify");
   const secondaryHref =
     service.id === "shopify"
       ? "#shopify-work"
@@ -38,7 +41,9 @@ export function ServiceHero({ service }: { service: Service }) {
                   ? getServicePath(aiHub!)
                   : isDesignLeaf
                     ? getServicePath(designHub!)
-                    : "/work";
+                    : isShopifyLeaf
+                      ? getServicePath(shopifyHub!)
+                      : "/work";
 
   return (
     <section
@@ -231,12 +236,26 @@ export function ServiceHero({ service }: { service: Service }) {
               >
                 Analytics
               </Link>
-              , or{" "}
+              ,{" "}
               <Link
                 href={getServicePath(getServiceById("dm-ecommerce-growth")!)}
                 className="text-accent-soft underline-offset-2 transition-colors hover:text-white hover:underline"
               >
                 Ecommerce Growth
+              </Link>
+              ,{" "}
+              <Link
+                href={getServicePath(getServiceById("dm-email-sms")!)}
+                className="text-accent-soft underline-offset-2 transition-colors hover:text-white hover:underline"
+              >
+                Email &amp; SMS
+              </Link>
+              , or{" "}
+              <Link
+                href={getServicePath(getServiceById("dm-content-strategy")!)}
+                className="text-accent-soft underline-offset-2 transition-colors hover:text-white hover:underline"
+              >
+                Content Strategy
               </Link>
               .
             </p>

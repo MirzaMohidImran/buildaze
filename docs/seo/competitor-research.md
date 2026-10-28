@@ -1,4 +1,7 @@
 # Competitor research — Development & Shopify
+
+> **Superseded for market panel (28 October 2026):** use [`phase2-competitors-markets-2026-10.md`](./phase2-competitors-markets-2026-10.md). This file is retained as archive.
+
 Research date: 12 October 2026. Market assumption: global English commercial intent (no fabricated local offices).
 
 Sources were read from official service pages. This is qualitative positioning research, not a ranking study. Search volume / KD / CPC: unavailable (not invented).

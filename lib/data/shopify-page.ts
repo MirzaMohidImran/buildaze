@@ -4,13 +4,13 @@ import type { ServicePageContent } from "./services";
 export const shopifyPageContent: ServicePageContent = {
   metaTitle: "Shopify Design & Development Agency | Buildaze",
   metaDescription:
-    "Shopify store design, development, migrations, apps, integrations and ongoing support. Tell Buildaze what your store needs and discuss the right next step.",
+    "Store design, migrations, apps, performance and support — plus clear routes when conversion, checkout or SEO is the real problem.",
   ogImage: "/og/shopify-growth-agency-og.png",
   eyebrow: "Shopify design and development",
   entityLabel: "Shopify",
-  headline: "Shopify design and development for your next stage of growth.",
+  headline: "Shopify services mapped to the problem your store has now.",
   subheadline:
-    "Launch a new store, redesign an existing storefront or connect the systems behind it — with a scope that matches the problem.",
+    "Launch, redesign, migrate or connect systems — and route conversion, checkout, performance and SEO work to the specialist that owns that job.",
   ctaLabel: "Discuss Your Shopify Store",
   secondaryCtaLabel: "View Shopify Work",
 
@@ -97,30 +97,52 @@ export const shopifyPageContent: ServicePageContent = {
       {
         id: "friction",
         index: "03",
-        name: "Visitors struggle to find products or complete a purchase",
+        name: "Visitors browse but do not buy",
         title:
-          "Review product discovery, mobile UX, product pages, cart behavior and measurable conversion friction.",
+          "Diagnose funnel friction before prescribing a redesign, app or discount.",
         description:
-          "We investigate where the journey breaks down and prioritize changes. Conversion outcomes depend on more than development alone — we do not promise a specific lift.",
-        serviceLabel: "Store Design & Development; Retainers where ongoing",
+          "Product pages, cart behaviour and checkout can fail for different reasons. Shopify CRO owns journey diagnosis — we do not promise a specific conversion lift.",
+        serviceLabel: "Shopify Conversion Rate Optimization",
         enquiryHref:
-          "/contact?service=shopify&problem=Purchase%20journey%20friction&capability=Store%20Design%20%26%20Development",
+          "/contact?service=shopify&problem=Traffic%20without%20purchases&capability=Shopify%20Conversion%20Rate%20Optimization",
+      },
+      {
+        id: "checkout",
+        index: "04",
+        name: "Carts start but payments do not complete",
+        title: "Separate cart friction from checkout and payment-stage failure.",
+        description:
+          "Plan-aware checkout work, including Shopify Plus limits on checkout UI extensions. Eligible recovery is coordinated with Email & SMS.",
+        serviceLabel: "Shopify Checkout Optimization",
+        enquiryHref:
+          "/contact?service=shopify&problem=Checkout%20drop-off&capability=Shopify%20Checkout%20Optimization",
       },
       {
         id: "slow",
-        index: "04",
+        index: "05",
         name: "The storefront feels slow",
         title:
           "Identify theme, app, media and rendering bottlenecks before choosing changes.",
         description:
-          "We diagnose likely causes and recommend focused performance work — as a project or as part of ongoing support.",
-        serviceLabel: "Store Design & Development or Retainers & Ongoing Support",
+          "Focused performance work with lab scores kept distinct from field Core Web Vitals.",
+        serviceLabel: "Shopify Performance",
         enquiryHref:
           "/contact?service=shopify&problem=Slow%20storefront&capability=Store%20Design%20%26%20Development",
       },
       {
+        id: "organic",
+        index: "06",
+        name: "Products and collections get little organic demand",
+        title: "Shopify SEO for catalogue intent and technical store constraints.",
+        description:
+          "Distinct from general website SEO. Rankings are not guaranteed.",
+        serviceLabel: "Shopify SEO",
+        enquiryHref:
+          "/contact?service=shopify&problem=Shopify%20organic%20discovery&capability=Shopify%20SEO",
+      },
+      {
         id: "migration",
-        index: "05",
+        index: "07",
         name: "Moving from another platform",
         title: "Plan data, content, redirects, integrations and launch verification.",
         description:
@@ -131,7 +153,7 @@ export const shopifyPageContent: ServicePageContent = {
       },
       {
         id: "integrations",
-        index: "06",
+        index: "08",
         name: "The store needs functionality or connected systems",
         title:
           "Custom features, app development or integrations supporting actual operations.",
@@ -143,7 +165,7 @@ export const shopifyPageContent: ServicePageContent = {
       },
       {
         id: "headless",
-        index: "07",
+        index: "09",
         name: "Advanced storefront or B2B requirements",
         title:
           "Assess headless, enterprise and B2B options against complexity, budget and platform constraints.",
@@ -155,7 +177,7 @@ export const shopifyPageContent: ServicePageContent = {
       },
       {
         id: "retainer",
-        index: "08",
+        index: "10",
         name: "Need a reliable team after launch",
         title: "Continued development, maintenance and prioritized improvements.",
         description:
@@ -231,7 +253,7 @@ export const shopifyPageContent: ServicePageContent = {
     eyebrow: "Shopify services",
     headline: "Shopify services built around your business needs",
     intro: [
-      "Six specialist destinations cover Shopify storefront, migration, apps, headless/B2B, support and performance work. Use the dedicated pages for detail; enquire when you already know the next step.",
+      "Specialist destinations cover storefront builds, migrations, apps, headless/B2B, support, performance, CRO, checkout and Shopify SEO. Use the dedicated pages for detail; enquire when you already know the next step.",
     ],
     capabilities: [
       {
@@ -244,15 +266,13 @@ export const shopifyPageContent: ServicePageContent = {
         boundaries:
           "An existing theme can often be improved before a full rebuild. Custom or headless is not always the better option. Conversion outcomes depend on more than development — we do not promise a specific lift.",
         description:
-          "For a new store, an outdated storefront or a journey that needs improvement, we scope Shopify store design, theme customization, custom sections and responsive development around your products and customers. For existing stores, we assess whether targeted changes can solve the problem before recommending a rebuild.",
+          "For a new store, an outdated storefront or a journey that needs improvement, we scope Shopify store design, theme customization, custom sections and responsive development around your products and customers.",
         items: [
           "New store builds",
           "Existing-store redesign",
           "Theme customization and custom sections",
           "Navigation, collections and product pages",
           "Responsive development and mobile UX",
-          "Conversion-focused storefront improvements",
-          "Appropriate app setup within storefront scope",
         ],
         cta: "Discuss store design & development",
         href: "/contact?service=shopify&capability=Store%20Design%20%26%20Development",
@@ -260,25 +280,87 @@ export const shopifyPageContent: ServicePageContent = {
         detailLabel: "Explore store design & development",
       },
       {
-        id: "migrations-replatforming",
+        id: "shopify-cro",
         index: "02",
+        name: "Conversion Rate Optimization",
+        title: "Diagnose why traffic does not purchase — then prioritize fixes.",
+        bestFor:
+          "Stores with traffic that fails to convert across product, cart or broader journey stages.",
+        boundaries:
+          "No guaranteed lift. A/B testing only when traffic and measurement support a fair test.",
+        description:
+          "Funnel diagnosis, UX and offer review, prioritized hypotheses and an implementation backlog. Checkout-stage detail and recovery hand off to Checkout Optimization and Email & SMS.",
+        items: [
+          "Funnel diagnosis",
+          "PDP and cart friction review",
+          "Hypothesis backlog",
+          "Suitable experimentation",
+        ],
+        cta: "Discuss Shopify CRO",
+        href: "/contact?service=shopify&capability=Shopify%20Conversion%20Rate%20Optimization",
+        detailHref: "/shopify-growth-agency/conversion-rate-optimization",
+        detailLabel: "Explore Shopify CRO",
+      },
+      {
+        id: "shopify-checkout",
+        index: "03",
+        name: "Checkout Optimization",
+        title: "Cart-to-checkout and payment-stage diagnosis — plan-aware.",
+        bestFor:
+          "Merchants losing orders after add-to-cart or during checkout and payment.",
+        boundaries:
+          "Checkout UI extensions on information, shipping and payment steps require Shopify Plus. Anonymous carts cannot all be emailed.",
+        description:
+          "Clarify cart totals, inspect checkout errors, apply supported fixes and define eligible recovery requirements.",
+        items: [
+          "Cart clarity",
+          "Payment and shipping checks",
+          "Plus-aware extensions when eligible",
+          "Recovery handoff",
+        ],
+        cta: "Discuss checkout issues",
+        href: "/contact?service=shopify&capability=Shopify%20Checkout%20Optimization",
+        detailHref: "/shopify-growth-agency/checkout-optimization",
+        detailLabel: "Explore checkout optimization",
+      },
+      {
+        id: "shopify-seo",
+        index: "04",
+        name: "Shopify SEO",
+        title: "Organic discovery for products and collections.",
+        bestFor:
+          "Stores that need catalogue SEO and Shopify technical constraints handled explicitly.",
+        boundaries:
+          "No ranking guarantees. General website SEO remains on the Digital Marketing SEO page.",
+        description:
+          "Intent mapping, indexation decisions, on-page improvements and measurement of organic landing pages.",
+        items: [
+          "Technical store review",
+          "Collection and product intent",
+          "Schema and internal links",
+          "Organic measurement",
+        ],
+        cta: "Discuss Shopify SEO",
+        href: "/contact?service=shopify&capability=Shopify%20SEO",
+        detailHref: "/shopify-growth-agency/seo",
+        detailLabel: "Explore Shopify SEO",
+      },
+      {
+        id: "migrations-replatforming",
+        index: "05",
         name: "Migrations & Replatforming",
         title: "Move to Shopify with a controlled cutover plan.",
         bestFor:
           "Businesses moving from another ecommerce platform to Shopify, or changing their commerce setup.",
         boundaries:
-          "Not every record, password, order or subscription can migrate unchanged. SEO continuity is risk management — ranking fluctuations cannot be ruled out. We do not promise zero downtime or guaranteed preservation of all data.",
+          "Not every record, password, order or subscription can migrate unchanged. Ranking fluctuations cannot be ruled out.",
         description:
-          "We assess catalogue, content, workflows and integrations, then plan data mapping, URL redirects, important metadata, tracking and launch checks around the agreed scope. Confirm which data can move and which features need rebuilding before cutover.",
+          "We assess catalogue, content, workflows and integrations, then plan data mapping, URL redirects, tracking and launch checks.",
         items: [
-          "Discovery and migration requirements",
-          "Product, customer and content mapping",
-          "Supported data and functionality review",
+          "Migration requirements",
           "URL and redirect planning",
-          "Important metadata and tracking",
-          "Integration dependencies",
-          "Testing and launch checks",
-          "Postlaunch validation",
+          "Catalogue mapping",
+          "Launch verification",
         ],
         cta: "Discuss a migration",
         href: "/contact?service=shopify&capability=Migrations%20%26%20Replatforming",
@@ -287,23 +369,20 @@ export const shopifyPageContent: ServicePageContent = {
       },
       {
         id: "apps-integrations",
-        index: "03",
+        index: "06",
         name: "App Development & System Integrations",
         title: "Functionality and connections that match real operations.",
         bestFor:
           "Stores whose workflows need more than native Shopify features or existing apps provide.",
         boundaries:
-          "Native features and maintainable tools may be preferable when they solve the need. Custom apps do not eliminate every ongoing cost — hosting, access, third-party fees and maintenance stay in scope discussions.",
+          "Native features and maintainable tools may be preferable when they solve the need.",
         description:
-          "We evaluate the requirement before recommending a custom app, integration or middleware. The aim is to connect the store with your business systems and reduce avoidable manual work — not to build custom software by default.",
+          "Evaluate the requirement before recommending a custom app, integration or middleware.",
         items: [
-          "Requirement review vs native features and existing apps",
-          "Custom Shopify apps where justified",
-          "Storefront functionality",
-          "ERP, CRM, fulfilment or inventory connections where supported",
-          "APIs, webhooks and data flows",
-          "Error handling and monitoring where scoped",
-          "Maintenance and dependency planning",
+          "Native vs custom assessment",
+          "Custom Shopify apps",
+          "API and webhook connections",
+          "Maintenance planning",
         ],
         cta: "Discuss apps & integrations",
         href: "/contact?service=shopify&capability=App%20Development%20%26%20System%20Integrations",
@@ -312,23 +391,20 @@ export const shopifyPageContent: ServicePageContent = {
       },
       {
         id: "headless-b2b",
-        index: "04",
+        index: "07",
         name: "Headless Commerce & Enterprise B2B",
         title: "Architecture for requirements that justify the complexity.",
         bestFor:
           "Teams with advanced storefront, wholesale/B2B or content needs that a conventional theme cannot support well.",
         boundaries:
-          "Headless adds cost, complexity and maintenance load. It is not an automatic performance or conversion guarantee. Plan-dependent Shopify features and integrations need feasibility checks. Shopify Plus may matter for some project scopes — it is not a separate service group.",
+          "Headless adds cost and maintenance load. It is not an automatic performance or conversion guarantee.",
         description:
-          "We assess whether a conventional Shopify theme, supported B2B features or a headless architecture best fits your goals, operating model and maintenance capacity — then plan only when requirements justify the work.",
+          "Assess theme vs headless vs B2B features against goals, budget and operating capacity.",
         items: [
-          "Theme vs headless trade-off assessment",
-          "Headless feasibility and architecture",
-          "Custom storefront development where justified",
-          "Wholesale and B2B buying workflows",
-          "Enterprise integrations",
-          "Complex content or commerce experiences",
-          "Plan-dependent limitation checks",
+          "Feasibility assessment",
+          "Headless architecture",
+          "B2B buying workflows",
+          "Plan-dependent checks",
         ],
         cta: "Discuss headless or B2B",
         href: "/contact?service=shopify&capability=Headless%20Commerce%20%26%20Enterprise%20B2B",
@@ -337,22 +413,20 @@ export const shopifyPageContent: ServicePageContent = {
       },
       {
         id: "ongoing-support",
-        index: "05",
+        index: "08",
         name: "Retainers & Ongoing Support",
         title: "Continued Shopify development after launch.",
         bestFor:
-          "Ecommerce teams that need a prioritized backlog of theme changes, fixes, features, integrations and performance or UX work.",
+          "Ecommerce teams that need a prioritized backlog of theme changes, fixes, features and improvements.",
         boundaries:
-          "Included work, exclusions, capacity and communication are agreed in writing. Monthly hours, prices, 24/7 coverage, SLAs and unlimited tasks are not published as universal defaults.",
+          "Capacity and exclusions are agreed in writing. Unlimited SLAs are not assumed.",
         description:
-          "Agree a prioritized backlog covering theme changes, bug fixes, new features, integrations and performance or UX improvements, with clear release checks and communication. Ongoing support is optional — not required to keep agreed custom work after handover.",
+          "Prioritized backlog with clear release checks. Ongoing support is optional after handover.",
         items: [
-          "Request and prioritization process",
-          "Development backlog",
-          "Theme changes and bug fixes",
-          "Feature and integration improvements",
-          "Performance and UX work",
-          "Release checks and communication",
+          "Prioritized backlog",
+          "Theme fixes and features",
+          "Release checks",
+          "Agreed capacity",
         ],
         cta: "Discuss ongoing support",
         href: "/contact?service=shopify&capability=Retainers%20%26%20Ongoing%20Support",
@@ -361,7 +435,7 @@ export const shopifyPageContent: ServicePageContent = {
       },
       {
         id: "performance",
-        index: "06",
+        index: "09",
         name: "Shopify Performance",
         title: "Theme and front-end speed work with honest measurement.",
         bestFor:
@@ -369,7 +443,7 @@ export const shopifyPageContent: ServicePageContent = {
         boundaries:
           "Lab Lighthouse scores are diagnostics — not Core Web Vitals field claims or revenue promises.",
         description:
-          "Audit bottlenecks, prioritize maintainable front-end changes and record comparable lab notes where measured. See the dedicated performance page and case study for detail.",
+          "Audit bottlenecks, prioritize maintainable front-end changes and record comparable lab notes where measured.",
         items: [
           "Theme performance audits",
           "Asset and script optimization",

@@ -1,7 +1,7 @@
 # Buildaze SEO — evidence and owner verification
 
-**Date:** 12 October 2026  
-**Related:** [Buildaze SEO Audit 2026-10-12](../Buildaze-SEO-Audit-2026-10-12.md) · [implementation-tracker.md](./implementation-tracker.md)
+**Date:** 12 October 2026 · **Still active** (evidence gates unchanged as of 28 October 2026 research)  
+**Related:** [Buildaze SEO Audit 2026-10-12](../Buildaze-SEO-Audit-2026-10-12.md) · [implementation-tracker.md](./implementation-tracker.md) · [research-ledger-2026-10.md](./research-ledger-2026-10.md)
 
 **Important:** Items in this document are **not completed**. They were moved out of public copy where the audit found editorial/owner-instruction residue, or they depend on accounts and facts only the owner can supply. **Do not mark these done in the tracker until proof is attached.**
 

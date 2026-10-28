@@ -3,6 +3,9 @@ BUILDAZE
 SEO & AI Search Audit
 Public-site assessment • 12 October 2026
 37 discovered pages | 10 competitor benchmarks | Page-by-page keyword ownership | Prioritized implementation roadmap
+
+> **Historical baseline.** Current research (26 Oct brief + 28 Oct Phases 1–4): [`seo/research-ledger-2026-10.md`](./seo/research-ledger-2026-10.md). Live site now has 46 sitemap URLs.
+
 Executive decision
 Buildaze has a sound public crawl foundation. All 37 sitemap pages returned HTTP 200, and every audited page has a unique title, unique meta description and self-referencing canonical. The strongest opportunity is to turn broad service coverage into clear search-intent ownership, deepen original project evidence and align the current website with external company profiles. Metadata maintenance alone will not make every service page rank second.
 Treat top-10 and top-2 organic placement as keyword-, country- and device-specific objectives. Rankings cannot be guaranteed. Start with services for which Buildaze has demonstrable delivery evidence, then expand through measured results. The candidate keyword map below is a research starting point; search volumes, keyword difficulty and current Google positions remain unverified.

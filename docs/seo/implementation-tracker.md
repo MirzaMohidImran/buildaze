@@ -1,5 +1,7 @@
 # Buildaze SEO implementation tracker
 
+> **Research decisions (28 October 2026):** see [`research-ledger-2026-10.md`](./research-ledger-2026-10.md) and Phases 1–4. This tracker remains the Oct 12 **repo change** history.
+
 **Audit baseline:** [Buildaze SEO Audit 2026-10-12](../Buildaze-SEO-Audit-2026-10-12.md)  
 **Tracker date:** 12 October 2026 (repo implementation session)  
 **Scope:** 37 sitemap URLs from audit + 9 new specialist routes added in session  

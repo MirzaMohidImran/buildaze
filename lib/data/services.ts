@@ -841,15 +841,19 @@ const legacyServices: Service[] = [
     name: "Shopify",
     shortName: "Shopify",
     oneLiner:
-      "Shopify design, development, migrations, apps, integrations and ongoing support.",
+      "Shopify design, development, CRO, checkout, SEO, migrations, apps and ongoing support.",
     description:
-      "Store design and development, migrations, integrations, advanced commerce and ongoing Shopify support.",
+      "Store design and development, conversion and checkout work, Shopify SEO, migrations, integrations, advanced commerce and ongoing support.",
     capabilities: [
       "Store Design & Development",
       "Migrations & Replatforming",
       "App Development & System Integrations",
       "Headless Commerce & Enterprise B2B",
       "Retainers & Ongoing Support",
+      "Performance Optimization",
+      "Conversion Rate Optimization",
+      "Checkout Optimization",
+      "Shopify SEO",
     ],
     flow: ["Understand", "Scope", "Build", "Launch", "Support"],
     flowLabel: "Clear scope · Progress reviews · Practical handover",
@@ -914,6 +918,20 @@ function normalizeLegacyService(service: Service): Service {
         "shopify-headless",
         "shopify-support",
         "shopify-performance",
+        "shopify-cro",
+        "shopify-checkout",
+        "shopify-seo",
+      ],
+      capabilities: [
+        "Store Design & Development",
+        "Migrations & Replatforming",
+        "App Development & System Integrations",
+        "Headless Commerce & Enterprise B2B",
+        "Retainers & Ongoing Support",
+        "Performance Optimization",
+        "Conversion Rate Optimization",
+        "Checkout Optimization",
+        "Shopify SEO",
       ],
     };
   }

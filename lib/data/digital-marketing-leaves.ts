@@ -1,5 +1,6 @@
 import { buildContactHref } from "../contact/paths";
 import type { Service, ServicePageContent } from "./services";
+import { digitalMarketingPriorityLeaves } from "./digital-marketing-priority-leaves";
 
 const HUB = "/services/digital-marketing";
 
@@ -47,8 +48,8 @@ const socialPath = `${HUB}/social-media-marketing`;
 const analyticsPath = `${HUB}/web-analytics-data-tracking`;
 const ecommercePath = `${HUB}/ecommerce-growth-marketing`;
 
-/** Six Digital Marketing leaf services — nested under the hub. */
-export const digitalMarketingLeaves: Service[] = [
+/** Digital Marketing leaf services — nested under the hub (core + Phase 5 priority). */
+const digitalMarketingCoreLeaves: Service[] = [
   {
     id: "dm-seo",
     slug: "seo",
@@ -75,13 +76,15 @@ export const digitalMarketingLeaves: Service[] = [
       "dm-analytics",
       "dm-google-ads",
       "dm-ecommerce-growth",
+      "dm-content-strategy",
+      "shopify-seo",
     ],
     page: baseFields({
       metaTitle: "SEO Services & Search Strategy | Buildaze",
       metaDescription:
-        "Build an SEO plan around your customers, website and business goals. Explore technical audits, on-page improvements, content priorities and reporting.",
+        "Technical audits, on-page work, content priorities and reporting tied to business goals — without ranking guarantees.",
       eyebrow: "Organic search",
-      headline: "SEO Services That Connect Search Visibility to Business Goals",
+      headline: "SEO that connects search visibility to business goals.",
       subheadline:
         "Organic traffic is useful when it brings the right people to the right pages. We shape SEO work around what your customers search for, what your website needs and which enquiries or sales matter to your business.",
       ctaLabel: "Discuss Your SEO Priorities",
@@ -147,9 +150,9 @@ export const digitalMarketingLeaves: Service[] = [
             ),
           },
         ],
-        closingTitle: "Need paid search instead?",
+        closingTitle: "Need Shopify catalogue SEO or paid search?",
         closingBody:
-          "Google Ads covers paid search campaigns. SEO and Google Ads can support the same goals with different work and budgets.",
+          "Shopify product and collection SEO sits on the Shopify SEO page. Google Ads covers paid search. Content briefs and commercial copy can be scoped under Content Strategy.",
         ctaLabel: "Discuss SEO priorities",
         ctaHref: leafEnquiry(seoPath, "Search Engine Optimization"),
       },
@@ -157,7 +160,7 @@ export const digitalMarketingLeaves: Service[] = [
         eyebrow: "SEO scope",
         headline: "What an SEO engagement can include",
         intro: [
-          "Confirm whether the engagement includes implementation or recommendations only before work starts. Link-building packages and fixed content volumes are not assumed.",
+          "Confirm whether the engagement includes implementation or recommendations only before work starts. Link-building packages and fixed content volumes are not assumed. Shopify Online Store catalogue SEO is owned by the Shopify SEO specialist page.",
         ],
         capabilities: [
           {
@@ -2395,6 +2398,11 @@ export const digitalMarketingLeaves: Service[] = [
       faqCtaHref: "/contact?service=digital-marketing",
     }),
   },
+];
+
+export const digitalMarketingLeaves: Service[] = [
+  ...digitalMarketingCoreLeaves,
+  ...digitalMarketingPriorityLeaves,
 ];
 
 export const DIGITAL_MARKETING_LEAF_IDS = digitalMarketingLeaves.map((s) => s.id);

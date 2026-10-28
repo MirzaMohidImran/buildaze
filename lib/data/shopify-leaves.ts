@@ -1,5 +1,6 @@
 import { buildContactHref } from "../contact/paths";
 import type { Service, ServicePageContent } from "./services";
+import { shopifyPriorityLeaves } from "./shopify-priority-leaves";
 
 const HUB = "/shopify-growth-agency";
 
@@ -26,8 +27,9 @@ const performancePath = `${HUB}/performance`;
  * Shopify specialist destinations under `/shopify-growth-agency/*`.
  * Distinct buyer intents with delivery evidence from the Shopify hub and case studies.
  * Candidate keyword targets — volumes/difficulty unverified.
+ * Priority CRO / Checkout / Shopify SEO leaves are appended from shopify-priority-leaves.
  */
-export const shopifyLeaves: Service[] = [
+const shopifyCoreLeaves: Service[] = [
   {
     id: "shopify-store-design",
     slug: "store-design-development",
@@ -51,6 +53,8 @@ export const shopifyLeaves: Service[] = [
     relatedServiceIds: [
       "shopify",
       "shopify-performance",
+      "shopify-cro",
+      "shopify-checkout",
       "shopify-migrations",
       "shopify-support",
       "ecommerce",
@@ -58,11 +62,11 @@ export const shopifyLeaves: Service[] = [
     page: base({
       metaTitle: "Shopify Store Design & Development | Buildaze",
       metaDescription:
-        "Launch or redesign a Shopify store with Buildaze. Theme development, product journeys and mobile UX scoped around how your customers buy.",
+        "Launch or redesign a Shopify storefront around catalogue structure, product discovery and mobile buying clarity.",
       eyebrow: "Shopify storefronts",
-      headline: "Shopify store design and development for your next stage of growth.",
+      headline: "Shopify store design built around how customers buy.",
       subheadline:
-        "Whether you are launching on Shopify or improving an existing theme, we scope design and development around product discovery, mobile clarity and a practical handover — not a template swap without a plan.",
+        "Whether you are launching on Shopify or improving an existing theme, we scope design and development around product discovery, mobile clarity and a practical handover — not a template swap without a plan. Journey-wide CRO and checkout diagnosis have their own specialist pages.",
       ctaLabel: "Discuss Your Shopify Store",
       secondaryCtaLabel: "Back to Shopify services",
       problems: {
@@ -894,24 +898,25 @@ export const shopifyLeaves: Service[] = [
     relatedServiceIds: [
       "shopify",
       "shopify-store-design",
+      "shopify-cro",
       "shopify-support",
       "dm-analytics",
     ],
     page: base({
       metaTitle: "Shopify Performance Optimization | Buildaze",
       metaDescription:
-        "Improve Shopify storefront performance with Buildaze. Theme cleanup, asset optimization and front-end delivery — lab scores kept distinct from field Core Web Vitals.",
+        "Theme cleanup and front-end delivery work that targets real bottlenecks — lab scores kept distinct from field CWV.",
       eyebrow: "Speed engineering",
       headline: "Shopify performance work that targets real bottlenecks.",
       subheadline:
         "We diagnose theme, app, media and rendering issues before choosing changes. Lab Lighthouse scores are useful diagnostics — they are not Core Web Vitals field claims or revenue promises.",
       ctaLabel: "Discuss Performance Work",
-      secondaryCtaLabel: "View performance case study",
+      secondaryCtaLabel: "Back to Shopify services",
       problems: {
         eyebrow: "Performance starting points",
         headline: "When the storefront feels slow",
         intro: [
-          "Use this service when speed and front-end delivery are the primary engagement — not a full redesign or migration.",
+          "Use this service when speed and front-end delivery are the primary engagement — not a full redesign, CRO programme or migration.",
         ],
         problems: [
           {
@@ -953,7 +958,7 @@ export const shopifyLeaves: Service[] = [
         ],
         closingTitle: "Conversion research beyond speed?",
         closingBody:
-          "Broader CRO research that depends on analytics experiments can be discussed inside store design or marketing measurement — we do not invent guaranteed conversion lifts from speed work alone.",
+          "Broader funnel diagnosis sits on Shopify CRO. Checkout and payment-stage issues sit on Checkout Optimization. Speed work alone is not sold as a guaranteed conversion lift.",
         ctaLabel: "Discuss performance",
         ctaHref: enquiry("Store Design & Development", "Shopify performance"),
       },
@@ -961,7 +966,7 @@ export const shopifyLeaves: Service[] = [
       overview: [
         "Performance engagements focus on theme architecture cleanup, asset and script optimization, and front-end delivery improvements without stripping the brand experience.",
         "A documented Buildaze case study reports a Lighthouse Performance lab score moving from 28 to 91. That is a lab metric — not a Core Web Vitals field claim or revenue outcome. Exact tool version, device profile and test date remain owner-verified where recorded.",
-        "CRO experimentation that needs analytics tooling and traffic may be nested with store or marketing work when evidence supports it.",
+        "Journey-wide CRO and checkout diagnosis are separate specialist pages when buying friction — not speed — is the primary problem.",
       ],
       solutionsTitle: "Performance work we deliver",
       solutions: [
@@ -1040,6 +1045,11 @@ export const shopifyLeaves: Service[] = [
       faqCtaHref: enquiry("Store Design & Development", "Shopify performance"),
     }),
   },
+];
+
+export const shopifyLeaves: Service[] = [
+  ...shopifyCoreLeaves,
+  ...shopifyPriorityLeaves,
 ];
 
 export const SHOPIFY_LEAF_IDS = shopifyLeaves.map((s) => s.id);

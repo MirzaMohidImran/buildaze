@@ -11,6 +11,8 @@ const LEAF = {
   social: `${HUB_PATH}/social-media-marketing`,
   analytics: `${HUB_PATH}/web-analytics-data-tracking`,
   ecommerce: `${HUB_PATH}/ecommerce-growth-marketing`,
+  email: `${HUB_PATH}/email-sms-marketing`,
+  content: `${HUB_PATH}/content-strategy`,
 } as const;
 
 function enquiry(service: string, problem?: string) {
@@ -24,16 +26,16 @@ function enquiry(service: string, problem?: string) {
 /**
  * Digital Marketing hub body for `/services/digital-marketing`.
  * Copy direction from Buildaze Digital Marketing SEO research (11 Oct 2026).
- * Leaf commercial intents live on the six nested service routes.
+ * Leaf commercial intents live on nested service routes (including Email/SMS and Content Strategy).
  */
 export const digitalMarketingPageContent: ServicePageContent = {
   metaTitle: "Digital Marketing Services & Strategy | Buildaze",
   metaDescription:
-    "Explore SEO, Meta Ads, Google Ads, social media management, analytics and ecommerce growth marketing. Find the right starting point with Buildaze.",
+    "SEO, paid social, Google Ads, organic social, analytics, ecommerce growth, email/SMS and content strategy — pick the channel problem to solve first.",
   eyebrow: "SEO, paid media, social and measurement",
-  headline: "Digital Marketing Services for Your Next Stage of Growth",
+  headline: "Digital marketing services for your next stage of growth.",
   subheadline:
-    "Not sure whether you need more visibility, better campaigns or clearer reporting? Buildaze helps you identify the right starting point across SEO, paid media, social media and ecommerce marketing—then connect the work to your business goals.",
+    "Not sure whether you need more visibility, better campaigns, clearer reporting or stronger lifecycle messaging? Identify the right starting point, then connect the work to business goals.",
   ctaLabel: "Discuss Your Marketing Goals",
   secondaryCtaLabel: "Explore Marketing Services",
 
@@ -134,7 +136,7 @@ export const digitalMarketingPageContent: ServicePageContent = {
     eyebrow: "Marketing services",
     headline: "Choose the digital marketing service that fits",
     intro: [
-      "Six focused engagements. Start with one, or combine them when the work genuinely connects — without repeating every leaf-page detail here.",
+      "Focused engagements across search, paid, social, analytics, ecommerce growth, email/SMS and content. Start with one, or combine them when the work genuinely connects.",
     ],
     capabilities: [
       {
@@ -256,7 +258,7 @@ export const digitalMarketingPageContent: ServicePageContent = {
         bestFor:
           "Stores that need coordinated marketing priorities — not a Shopify rebuild sold as growth.",
         boundaries:
-          "Store design, migrations and custom builds belong on Shopify or Development pages. Email/SMS, influencer and unapproved channels are not automatic inclusions.",
+          "Store design, migrations and custom builds belong on Shopify pages. Platform CRO and checkout diagnosis sit on Shopify specialists. Lifecycle flows sit on Email & SMS.",
         description:
           "Assess the store and channels, prioritize bottlenecks, align campaigns and landing pages, and report using agreed revenue and cost definitions.",
         items: [
@@ -269,6 +271,50 @@ export const digitalMarketingPageContent: ServicePageContent = {
         href: enquiry("Ecommerce Growth Marketing"),
         detailHref: LEAF.ecommerce,
         detailLabel: "Explore ecommerce growth marketing",
+      },
+      {
+        id: "email-sms",
+        index: "07",
+        name: "Email & SMS Marketing",
+        title: "Lifecycle messaging for eligible customers — welcome to win-back.",
+        bestFor:
+          "Ecommerce teams missing recovery, post-purchase or retention flows, or running non-compliant recovery.",
+        boundaries:
+          "Anonymous cart visitors cannot all be emailed. SMS only when lawful and operationally ready. No guaranteed email revenue.",
+        description:
+          "Design and build core flows with consent, suppression and deliverability considered upfront — especially for Shopify stores.",
+        items: [
+          "Lifecycle audit",
+          "Core flow design",
+          "Campaigns and segmentation",
+          "Measurement and deliverability",
+        ],
+        cta: "Discuss Email & SMS",
+        href: enquiry("Email & SMS Marketing"),
+        detailHref: LEAF.email,
+        detailLabel: "Explore Email & SMS marketing",
+      },
+      {
+        id: "content-strategy",
+        index: "08",
+        name: "Content Strategy",
+        title: "Intent research, briefs and original commercial copy.",
+        bestFor:
+          "Teams whose service pages overlap, stay generic or lack research-backed rewrites.",
+        boundaries:
+          "No ranking guarantees. Case metrics are never invented. Technical SEO and Shopify catalogue SEO stay on their specialist pages.",
+        description:
+          "Map buyer intent to page owners, brief distinct jobs and write original commercial copy with natural internal links.",
+        items: [
+          "Intent research",
+          "Content briefs",
+          "Commercial page copy",
+          "Maintenance priorities",
+        ],
+        cta: "Discuss Content Strategy",
+        href: enquiry("Content Strategy"),
+        detailHref: LEAF.content,
+        detailLabel: "Explore content strategy",
       },
     ],
     closingTitle: "Need more than one service?",
