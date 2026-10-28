@@ -1,0 +1,370 @@
+{
+  "baseUrl": "http://127.0.0.1:3001",
+  "generatedAt": "2026-10-28T10:13:33.769Z",
+  "pages": [
+    {
+      "slug": "home",
+      "path": "/",
+      "byWidth": {
+        "375": {
+          "violations": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+              "help": "Elements must meet minimum color contrast ratio thresholds",
+              "nodes": 21,
+              "samples": [
+                {
+                  "target": [
+                    "#services > .max-w-\\[1600px\\].md\\:px-10.mx-auto > .text-mist-2"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #64748b, background color: #f7f8fa, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "target": [
+                    "button[aria-controls=\"service-mobile-development\"] > .text-mist-2.t-label"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #64748b, background color: #f7f8fa, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "target": [
+                    "button[aria-controls=\"service-mobile-ai\"] > .text-mist-2.t-label"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #64748b, background color: #f7f8fa, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            },
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+              "help": "Elements must have their visible text as part of their accessible name",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".hover\\:border-line-strong"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+                }
+              ]
+            },
+            {
+              "id": "scrollable-region-focusable",
+              "impact": "serious",
+              "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
+              "help": "Scrollable region must have keyboard access",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".snap-x"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+                }
+              ]
+            }
+          ],
+          "passes": 32,
+          "incomplete": 2
+        },
+        "1280": {
+          "violations": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+              "help": "Elements must meet minimum color contrast ratio thresholds",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+              "nodes": 20,
+              "samples": [
+                {
+                  "target": [
+                    "#services > .max-w-\\[1600px\\].md\\:px-10.mx-auto > .text-mist-2"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #64748b, background color: #f7f8fa, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "target": [
+                    "#service-tab-development > .pl-6.t-label"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #64748b, background color: #f7f8fa, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "target": [
+                    "#service-tab-ai > .pl-6.t-label"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #64748b, background color: #f7f8fa, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            },
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+              "help": "Elements must have their visible text as part of their accessible name",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=playwright",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".hover\\:border-line-strong"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+                }
+              ]
+            }
+          ],
+          "passes": 32,
+          "incomplete": 3
+        }
+      }
+    },
+    {
+      "slug": "services",
+      "path": "/services",
+      "byWidth": {
+        "1280": {
+          "violations": [],
+          "passes": 28,
+          "incomplete": 3
+        }
+      }
+    },
+    {
+      "slug": "work",
+      "path": "/work",
+      "byWidth": {
+        "1280": {
+          "violations": [],
+          "passes": 28,
+          "incomplete": 3
+        }
+      }
+    },
+    {
+      "slug": "about",
+      "path": "/about",
+      "byWidth": {
+        "1280": {
+          "violations": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+              "help": "Elements must meet minimum color contrast ratio thresholds",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+              "nodes": 15,
+              "samples": [
+                {
+                  "target": [
+                    "#team > .max-w-\\[1600px\\].md\\:px-10.mx-auto > .gap-3.text-mist-2.flex"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #64748b, background color: #f7f8fa, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "target": [
+                    "section[aria-labelledby=\"about-journey-heading\"] > .max-w-\\[1600px\\].md\\:px-10.mx-auto > .gap-3.text-mist-2.flex"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #64748b, background color: #f7f8fa, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "target": [
+                    ".py-10.gap-6.md\\:gap-8:nth-child(1) > .space-y-4.md\\:col-span-7.md\\:col-start-6 > p:nth-child(1) > .text-mist-2.t-label"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #64748b, background color: #f7f8fa, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            },
+            {
+              "id": "link-in-text-block",
+              "impact": "serious",
+              "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+              "help": "Links must be distinguishable without relying on color",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/link-in-text-block?application=playwright",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".underline-offset-2[target=\"_blank\"][rel=\"noopener noreferrer\"]"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.46:1 with the surrounding text. (Minimum contrast is 3:1, link text: #2563eb, surrounding text: #475569)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+                }
+              ]
+            }
+          ],
+          "passes": 28,
+          "incomplete": 3
+        }
+      }
+    },
+    {
+      "slug": "contact",
+      "path": "/contact",
+      "byWidth": {
+        "375": {
+          "violations": [],
+          "passes": 28,
+          "incomplete": 2
+        },
+        "1280": {
+          "violations": [],
+          "passes": 28,
+          "incomplete": 3
+        }
+      }
+    },
+    {
+      "slug": "resources",
+      "path": "/resources",
+      "byWidth": {
+        "1280": {
+          "violations": [],
+          "passes": 24,
+          "incomplete": 2
+        }
+      }
+    },
+    {
+      "slug": "voice-agent",
+      "path": "/voice-agent",
+      "byWidth": {
+        "1280": {
+          "violations": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+              "help": "Elements must meet minimum color contrast ratio thresholds",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".gap-14 > .lg\\:col-span-4 > .lg\\:sticky.lg\\:top-32 > .gap-3.text-mist-2"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #64748b, background color: #f7f8fa, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            },
+            {
+              "id": "list",
+              "impact": "serious",
+              "description": "Ensure that lists are structured correctly",
+              "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/list?application=playwright",
+              "nodes": 2,
+              "samples": [
+                {
+                  "target": [
+                    ".lg\\:col-span-8 > ul"
+                  ],
+                  "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed: div"
+                },
+                {
+                  "target": [
+                    ".space-y-0"
+                  ],
+                  "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed: div"
+                }
+              ]
+            },
+            {
+              "id": "listitem",
+              "impact": "serious",
+              "description": "Ensure <li> elements are used semantically",
+              "help": "<li> elements must be contained in a <ul> or <ol>",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/listitem?application=playwright",
+              "nodes": 9,
+              "samples": [
+                {
+                  "target": [
+                    "div:nth-child(1) > .last\\:border-b.border-t"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  List item does not have a <ul> or <ol> parent element. Ensure the <li> is a direct child of a <ul> or <ol>, or that the parent has role=\"list\"."
+                },
+                {
+                  "target": [
+                    "div:nth-child(2) > .last\\:border-b.border-t"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  List item does not have a <ul> or <ol> parent element. Ensure the <li> is a direct child of a <ul> or <ol>, or that the parent has role=\"list\"."
+                },
+                {
+                  "target": [
+                    "div:nth-child(3) > .last\\:border-b.border-t"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  List item does not have a <ul> or <ol> parent element. Ensure the <li> is a direct child of a <ul> or <ol>, or that the parent has role=\"list\"."
+                }
+              ]
+            }
+          ],
+          "passes": 28,
+          "incomplete": 3
+        }
+      }
+    },
+    {
+      "slug": "shopify",
+      "path": "/shopify-growth-agency",
+      "byWidth": {
+        "1280": {
+          "violations": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+              "help": "Elements must meet minimum color contrast ratio thresholds",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+              "nodes": 25,
+              "samples": [
+                {
+                  "target": [
+                    "#shopify-starting-points > .max-w-\\[1600px\\].md\\:px-10.px-5 > .gap-3.t-label.text-mist-2"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #64748b, background color: #f7f8fa, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "target": [
+                    "#shopify-work > .max-w-\\[1600px\\].md\\:px-10.px-5 > .gap-3.t-label.text-mist-2"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #717171, background color: #0a0a0a, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "target": [
+                    "article:nth-child(1) > .lg\\:gap-12.gap-8.lg\\:grid-cols-12 > .lg\\:col-span-5.min-h-0 > .gap-3.t-label.text-mist-2"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #717171, background color: #0a0a0a, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            },
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+              "help": "Elements must have their visible text as part of their accessible name",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=playwright",
+              "nodes": 2,
+              "samples": [
+                {
+                  "target": [
+                    "article:nth-child(1) > .lg\\:gap-12.gap-8.lg\\:grid-cols-12 > .lg\\:col-span-7.min-h-0 > .hover\\:border-line-strong.border-transparent.rounded-panel"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+                },
+                {
+                  "target": [
+                    "article:nth-child(2) > .lg\\:gap-12.gap-8.lg\\:grid-cols-12 > .lg\\:col-span-7.min-h-0 > .hover\\:border-line-strong.border-transparent.rounded-panel"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+                }
+              ]
+            }
+          ],
+          "passes": 30,
+          "incomplete": 4
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+---
+description: Buildaze brand system, palette, fonts, and hard constraints for all UI work
+alwaysApply: true
+---
+
+# Buildaze Brand
+
+## Business
+- **Name:** Buildaze
+- **Tagline:** Design, Development & Digital Growth Agency
+- **Audience:** Businesses needing design, development, AI, digital marketing, and Shopify growth
+- **Goal:** Clear scope, practical handover, optional ongoing support; convert visitors to project enquiries
+- **Live URL:** https://www.buildaze.com
+- **Local:** `npm run dev` → http://localhost:3000
+- **Tone:** Practical, specific, confident; English; no invented stats/testimonials/clients
+- **Logo:** `/public/Logo/` (`buildaze-logo-footer.svg`, `buildaze-logo-horizontal.svg`, `logo-1.svg`, favicon)
+
+## Stack
+Next.js 15 App Router, React 19, TypeScript, Tailwind CSS 4, Framer Motion, Three.js/R3F, Lenis. No component UI library. Custom SVGs for icons (lucide-react allowed when a consistent set is needed).
+
+## Palette (do not invent new brand hues)
+| Token | Value | Role |
+|-------|-------|------|
+| Primary / ink | `#0a0a0a` | Page canvas (dark), text on light |
+| Ink elevated | `#0e0e10` | Elevated dark surfaces |
+| Ink-3 | `#131316` | Dark tertiary |
+| Accent / blue | `#2563eb` | Primary action |
+| Accent hover | `#1d4ed8` | Hover / pressed blue |
+| Accent soft | `#7fa6f5` | Readable blue text on dark |
+| Accent dim | `rgba(37,99,235,0.14)` | Soft blue fill |
+| Paper / white | `#ffffff` | Type on dark; light page bg |
+| Soft | `#F7F8FA` | Light section bg |
+| Blue soft | `#eff5ff` | Light blue wash |
+| Text secondary (light) | `#475569` | Body on light |
+| Text muted (light) | `#5c6678` | Captions on light (AA on soft) |
+| Border light | `#e2e8f0` / hover `#cbd5e1` | Light borders |
+| Mist (dark) | `rgba(255,255,255,0.6)` / `0.48` | Secondary / muted on dark (AA) |
+| Line (dark) | `rgba(255,255,255,0.09)` / `0.16` | Borders on dark |
+
+Only tints/shades derived from this palette. Source of truth: `app/themes/buildaze.css` + `app/globals.css` `@theme`.
+
+## Typography
+- **Sans / UI:** Space Grotesk (`--font-space-grotesk`) — headings + body
+- **Mono / labels:** Geist Mono (`--font-geist-mono`) — technical labels (`.t-label`)
+- Scale tokens: `--text-display`, `--text-h2`, `--text-h3`, `--text-lead`, `--text-body`, `--text-ui`, `--text-label`
+
+## Radius / spacing / elevation
+- Control: `12px` (`--radius-control`)
+- Card / panel: `14px` (`--radius-card`, `--radius-panel`)
+- Buttons/CTAs: capsule (`--radius-pill` / `.rounded-pill`; `rounded-full` still OK)
+- Shadows: `--shadow-cta`, `--shadow-cta-light`, `--shadow-panel`, `--shadow-nav`, `--shadow-nav-light`
+- Prefer existing Tailwind spacing rhythm; keep section padding consistent with current patterns
+- Extra type tokens: `text-body-sm`, `text-ui-sm`, `text-caption` (migrate one-offs over time)
+
+## Surfaces
+Use theme classes: `.surface-ink`, `.surface-blue`, `.surface-page`, `.surface-soft`, `.surface-card` (and legacy `home-surface-*` aliases). Motif: `.build-grid` / `.build-grid-blue`.
+
+## Hard constraints
+1. Keep existing color scheme. No new brand colors. Only derived tints/shades as tokens.
+2. Keep logo, fonts, tone, and copy meaning unchanged unless explicitly approved.
+3. Do not break functionality, routes, forms, or SEO (meta, heading hierarchy, alt text).
+4. Never invent facts, stats, testimonials, or client names. Flag copy that needs input.
+5. No Figma tooling or suggestions.
+6. Do-not-touch without approval: contact/form delivery, voice-agent API routes, CSP/security headers, SEO redirects in `next.config.ts`, factual content in `lib/data/` (structure OK; claims need approval).

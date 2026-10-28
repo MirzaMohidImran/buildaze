@@ -1,0 +1,27 @@
+---
+description: Senior design-quality bar for Buildaze UI work
+alwaysApply: true
+---
+
+# Design Quality Principles
+
+Apply on every UI change:
+
+1. **Clear visual hierarchy** — One primary signal per viewport/section; brand and intent read before decoration.
+2. **Defined type scale** — Use project tokens (`text-display`, `text-h2`, `text-h3`, `text-lead`, `text-body`, `text-ui`, `text-label`). Do not invent one-off sizes without a token.
+3. **Consistent spacing rhythm** — Prefer a shared scale; align edges; avoid arbitrary gaps that break the grid.
+4. **Varied section layouts** — Avoid identical centered 3-card grids repeating down the page. Mix asymmetry, lists, timelines, and editorial layouts when content allows.
+5. **Purposeful, restrained motion** — Motion for hierarchy and presence, not noise. Always respect `prefers-reduced-motion`.
+6. **Real icons** — Use SVG / lucide-react consistently. Never use emojis as icons.
+7. **Specific human copy** — Concrete outcomes over buzzwords. Do not invent claims. Flag needed rewrites instead of fabricating.
+8. **Accessible contrast** — WCAG AA minimum for text and interactive states.
+9. **Visible focus states** — Keep `:focus-visible` on-brand and obvious; never remove outlines without a stronger replacement.
+10. **Tap targets ≥ 44px** — Especially nav, CTAs, form controls, and carousel controls.
+11. **Mobile-first** — Design and verify from 375px up; no desktop-only assumptions.
+
+## Anti–AI-slop (reject these patterns)
+- Generic purple/indigo gradients, glowing blobs, heavy glassmorphism
+- Emoji-as-icon, identical 3-card feature grids, hover-scale on everything
+- Rounded-everything, excessive multi-layer shadows, meaningless animation loops
+- Buzzwords: Elevate, Unlock, Seamless, Revolutionize, Empower (and vague filler headlines)
+- Fake stats, testimonials, or client logos not already in `lib/data/`
