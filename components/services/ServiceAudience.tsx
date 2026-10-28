@@ -146,10 +146,8 @@ export function ServiceAudience({
                         {stage.name}
                       </p>
                       <p
-                        className={`mt-2 max-w-[360px] text-[14px] leading-snug transition-opacity ${
-                          isActive
-                            ? "text-mist opacity-100"
-                            : "text-mist-2 opacity-70"
+                        className={`mt-2 max-w-[360px] text-[14px] leading-snug transition-colors ${
+                          isActive ? "text-mist" : "text-mist-2"
                         }`}
                       >
                         {stage.goal}

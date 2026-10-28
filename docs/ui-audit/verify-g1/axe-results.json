@@ -1,0 +1,126 @@
+{
+  "groupId": "g1",
+  "baseUrl": "http://127.0.0.1:3001",
+  "generatedAt": "2026-10-28T11:22:34.000Z",
+  "pages": [
+    {
+      "slug": "home",
+      "path": "/",
+      "byWidth": {
+        "375": {
+          "violations": [
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".hover\\:border-line-strong"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+                }
+              ]
+            },
+            {
+              "id": "scrollable-region-focusable",
+              "impact": "serious",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".snap-x"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+                }
+              ]
+            }
+          ],
+          "passes": 32
+        },
+        "1280": {
+          "violations": [
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".hover\\:border-line-strong"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+                }
+              ]
+            }
+          ],
+          "passes": 32
+        }
+      }
+    },
+    {
+      "slug": "voice-agent",
+      "path": "/voice-agent",
+      "byWidth": {
+        "1280": {
+          "violations": [],
+          "passes": 28
+        }
+      }
+    },
+    {
+      "slug": "shopify",
+      "path": "/shopify-growth-agency",
+      "byWidth": {
+        "1280": {
+          "violations": [
+            {
+              "id": "label-content-name-mismatch",
+              "impact": "serious",
+              "nodes": 2,
+              "samples": [
+                {
+                  "target": [
+                    "article:nth-child(1) > .lg\\:gap-12.gap-8.lg\\:grid-cols-12 > .lg\\:col-span-7.min-h-0 > .hover\\:border-line-strong.border-transparent.rounded-panel"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+                },
+                {
+                  "target": [
+                    "article:nth-child(2) > .lg\\:gap-12.gap-8.lg\\:grid-cols-12 > .lg\\:col-span-7.min-h-0 > .hover\\:border-line-strong.border-transparent.rounded-panel"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+                }
+              ]
+            }
+          ],
+          "passes": 30
+        }
+      }
+    },
+    {
+      "slug": "about",
+      "path": "/about",
+      "byWidth": {
+        "1280": {
+          "violations": [
+            {
+              "id": "link-in-text-block",
+              "impact": "serious",
+              "nodes": 1,
+              "samples": [
+                {
+                  "target": [
+                    ".underline-offset-2[target=\"_blank\"][rel=\"noopener noreferrer\"]"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.46:1 with the surrounding text. (Minimum contrast is 3:1, link text: #2563eb, surrounding text: #475569)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+                }
+              ]
+            }
+          ],
+          "passes": 28
+        }
+      }
+    }
+  ]
+}

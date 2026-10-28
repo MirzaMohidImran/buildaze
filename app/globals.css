@@ -14,11 +14,13 @@
   --color-line: rgba(255, 255, 255, 0.09);
   --color-line-strong: rgba(255, 255, 255, 0.16);
   --color-mist: rgba(255, 255, 255, 0.6);
-  --color-mist-2: rgba(255, 255, 255, 0.42);
+  /* Keep in sync with --text-on-ink-muted in themes/buildaze.css (AA on ink) */
+  --color-mist-2: rgba(255, 255, 255, 0.48);
 
   --radius-control: 12px;
   --radius-card: 14px;
   --radius-panel: 14px;
+  --radius-pill: 9999px;
 }
 
 /* inline = keep next/font CSS variables runtime-resolved (not baked empty at build) */
@@ -49,6 +51,15 @@
   --text-body--line-height: 1.65;
   --text-ui: 1rem; /* nav + buttons: 16 */
   --text-ui--font-weight: 600;
+  --text-ui-sm: 0.875rem; /* compact UI: 14 */
+  --text-ui-sm--line-height: 1.45;
+  --text-ui-sm--font-weight: 500;
+  --text-body-sm: 0.9375rem; /* supporting body: 15 */
+  --text-body-sm--line-height: 1.65;
+  --text-body-sm--font-weight: 400;
+  --text-caption: 0.8125rem; /* fine print: 13 */
+  --text-caption--line-height: 1.5;
+  --text-caption--font-weight: 400;
   --text-label: 0.875rem; /* captions: 14 */
   --text-label--line-height: 1.4;
   --text-label--letter-spacing: 0.12em;

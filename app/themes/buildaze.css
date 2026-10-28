@@ -8,10 +8,14 @@
  * Brand white: #FFFFFF
  * Soft: #F7F8FA
  *
+ * Muted text tokens are AA-tuned shades of the slate/ink family
+ * (not new brand hues): light muted ≥4.5:1 on soft; ink muted ≥4.5:1 on ink.
+ *
  * Radius:
  * --radius-control: 12px
  * --radius-card: 14px
  * --radius-panel: 14px
+ * --radius-pill: 9999px (CTAs only)
  */
 
 :root,
@@ -31,19 +35,31 @@
 
   --text-on-light: #0a0a0a;
   --text-on-light-secondary: #475569;
-  --text-on-light-muted: #64748b;
+  /* Was #64748b (~4.47:1 on soft) — darkened shade for WCAG AA */
+  --text-on-light-muted: #5c6678;
   --border-on-light: #e2e8f0;
   --border-on-light-hover: #cbd5e1;
 
   --text-on-ink: #ffffff;
   --text-on-ink-secondary: rgba(255, 255, 255, 0.6);
-  --text-on-ink-muted: rgba(255, 255, 255, 0.42);
+  /* Was 0.42 (~3.7:1 on ink) — raised for WCAG AA on labels */
+  --text-on-ink-muted: rgba(255, 255, 255, 0.48);
   --border-on-ink: rgba(255, 255, 255, 0.09);
   --border-on-ink-strong: rgba(255, 255, 255, 0.16);
 
   --radius-control: 12px;
   --radius-card: 14px;
   --radius-panel: 14px;
+  --radius-pill: 9999px;
+
+  /* Elevation — replace ad-hoc shadow strings over time */
+  --shadow-cta: inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 0 1px rgba(37, 99, 235, 0.4), 0 8px 32px -8px rgba(37, 99, 235, 0.5);
+  --shadow-cta-light: inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 1px 2px rgba(12, 16, 23, 0.06), 0 8px 24px -10px rgba(37, 99, 235, 0.35);
+  --shadow-panel: 0 28px 70px -32px rgba(0, 0, 0, 0.65);
+  --shadow-nav: 0 24px 48px rgba(0, 0, 0, 0.45);
+  --shadow-nav-light: 0 16px 40px rgba(12, 16, 23, 0.08);
 }
 
 [data-theme="buildaze"],
@@ -213,7 +229,7 @@
 }
 
 /* ── Radius utilities ────────────────────────────────────────────────────── */
-/* Buttons / CTAs use Tailwind rounded-full (capsule). Controls keep 12px. */
+/* Buttons / CTAs use rounded-pill (capsule). Controls keep 12px. */
 
 .rounded-control {
   border-radius: var(--radius-control);
@@ -227,8 +243,32 @@
   border-radius: var(--radius-panel);
 }
 
+.rounded-pill {
+  border-radius: var(--radius-pill);
+}
+
 /* Media frames: clip content, not focus rings */
 .media-frame {
   border-radius: var(--radius-panel);
   overflow: hidden;
+}
+
+.shadow-cta {
+  box-shadow: var(--shadow-cta);
+}
+
+.shadow-cta-light {
+  box-shadow: var(--shadow-cta-light);
+}
+
+.shadow-panel {
+  box-shadow: var(--shadow-panel);
+}
+
+.shadow-nav {
+  box-shadow: var(--shadow-nav);
+}
+
+.shadow-nav-light {
+  box-shadow: var(--shadow-nav-light);
 }

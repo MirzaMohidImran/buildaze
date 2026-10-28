@@ -237,37 +237,42 @@ function Benefits() {
           <div className="lg:col-span-8">
             <ul>
               {voiceAgent.benefits.map((item, i) => (
-                <Reveal key={item.title} delay={Math.min(i * 0.06, 0.3)} y={32} amount={0.35}>
-                  <li className="group relative border-t border-line last:border-b">
-                    <div className="pointer-events-none absolute inset-0 bg-accent/[0.0] transition-colors duration-500 group-hover:bg-accent/[0.04]" />
-                    <div className="relative grid grid-cols-1 gap-5 py-9 md:grid-cols-12 md:gap-6 md:py-11">
-                      <div className="flex items-start gap-4 md:col-span-1">
-                        <span className="t-label text-accent-soft">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                      </div>
-
-                      <div className="md:col-span-1">
-                        <CapabilityMark index={i} />
-                      </div>
-
-                      <div className="md:col-span-4">
-                        <h3 className="text-[22px] font-semibold tracking-tight text-white transition-transform duration-500 ease-out group-hover:translate-x-1.5 md:text-[24px]">
-                          {item.title}
-                        </h3>
-                      </div>
-
-                      <div className="md:col-span-6">
-                        <p className="max-w-[460px] text-[15px] leading-relaxed text-mist">
-                          {item.description}
-                        </p>
-                        <span
-                          aria-hidden
-                          className="mt-5 block h-px w-0 bg-accent transition-all duration-500 ease-out group-hover:w-16"
-                        />
-                      </div>
+                <Reveal
+                  key={item.title}
+                  as="li"
+                  delay={Math.min(i * 0.06, 0.3)}
+                  y={32}
+                  amount={0.35}
+                  className="group relative border-t border-line last:border-b"
+                >
+                  <div className="pointer-events-none absolute inset-0 bg-accent/[0.0] transition-colors duration-500 group-hover:bg-accent/[0.04]" />
+                  <div className="relative grid grid-cols-1 gap-5 py-9 md:grid-cols-12 md:gap-6 md:py-11">
+                    <div className="flex items-start gap-4 md:col-span-1">
+                      <span className="t-label text-accent-soft">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
                     </div>
-                  </li>
+
+                    <div className="md:col-span-1">
+                      <CapabilityMark index={i} />
+                    </div>
+
+                    <div className="md:col-span-4">
+                      <h3 className="text-[22px] font-semibold tracking-tight text-white transition-transform duration-500 ease-out group-hover:translate-x-1.5 md:text-[24px]">
+                        {item.title}
+                      </h3>
+                    </div>
+
+                    <div className="md:col-span-6">
+                      <p className="max-w-[460px] text-[15px] leading-relaxed text-mist">
+                        {item.description}
+                      </p>
+                      <span
+                        aria-hidden
+                        className="mt-5 block h-px w-0 bg-accent transition-all duration-500 ease-out group-hover:w-16"
+                      />
+                    </div>
+                  </div>
                 </Reveal>
               ))}
             </ul>
@@ -369,26 +374,30 @@ function HowItWorks() {
 
         <ol className="mt-16 space-y-0">
           {voiceAgent.steps.map((step, i) => (
-            <Reveal key={step.title} delay={i * 0.08} y={28}>
-              <li className="grid grid-cols-1 gap-4 border-t border-line py-10 md:grid-cols-12 md:gap-8 md:py-12">
-                <div className="md:col-span-1">
-                  <span className="t-label text-accent-soft">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <div className="md:col-span-4">
-                  <h3 className="text-h3 font-medium text-white">{step.title}</h3>
-                </div>
-                <div className="md:col-span-7">
-                  <p className="max-w-[560px] text-[15.5px] leading-relaxed text-mist">
-                    {step.description}
-                  </p>
-                </div>
-              </li>
+            <Reveal
+              key={step.title}
+              as="li"
+              delay={i * 0.08}
+              y={28}
+              className="grid grid-cols-1 gap-4 border-t border-line py-10 md:grid-cols-12 md:gap-8 md:py-12"
+            >
+              <div className="md:col-span-1">
+                <span className="t-label text-accent-soft">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="md:col-span-4">
+                <h3 className="text-h3 font-medium text-white">{step.title}</h3>
+              </div>
+              <div className="md:col-span-7">
+                <p className="max-w-[560px] text-[15.5px] leading-relaxed text-mist">
+                  {step.description}
+                </p>
+              </div>
             </Reveal>
           ))}
-          <div className="rule" />
         </ol>
+        <div className="rule" aria-hidden />
       </div>
     </section>
   );
