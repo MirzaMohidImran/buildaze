@@ -3,6 +3,8 @@
 **Date:** 12 October 2026 · **Still active** (evidence gates unchanged as of 28 October 2026 research)  
 **Related:** [Buildaze SEO Audit 2026-10-12](../Buildaze-SEO-Audit-2026-10-12.md) · [implementation-tracker.md](./implementation-tracker.md) · [research-ledger-2026-10.md](./research-ledger-2026-10.md)
 
+**Batch B1 (28 Oct 2026):** Case-study **meta titles/descriptions**, work-hub copy, and page **summaries** were softened so SERP/social snippets do not assert unverified lifts. On-page `results` / `outcome` figures remain until evidence packs are attached or you approve removal. OG images are wired on `/work/*` via `/og/default-og.png` (replace per case when branded assets exist).
+
 **Important:** Items in this document are **not completed**. They were moved out of public copy where the audit found editorial/owner-instruction residue, or they depend on accounts and facts only the owner can supply. **Do not mark these done in the tracker until proof is attached.**
 
 ---

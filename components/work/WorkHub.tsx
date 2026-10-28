@@ -49,13 +49,14 @@ export function WorkHub() {
             <RevealText
               as="h1"
               id="work-hub-heading"
-              text="Real products. Measured results."
+              text="Real products. Documented results."
               className="text-display mt-10 max-w-[920px] font-semibold text-white"
             />
             <Reveal delay={0.2} className="mt-8">
               <p className="max-w-[540px] text-lead text-mist">
-                Every engagement below shipped to production and moved a number
-                the client cared about.
+                Selected projects shipped to production. Outcome figures on each
+                case study are published where evidence is approved — discuss a
+                similar brief if your problem matches.
               </p>
             </Reveal>
             <Reveal delay={0.3} className="mt-10">

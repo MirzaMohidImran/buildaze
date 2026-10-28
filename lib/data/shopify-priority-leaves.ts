@@ -131,6 +131,7 @@ export const shopifyPriorityLeaves: Service[] = [
         "We diagnose the purchase journey with consistent session or shopper cohorts where data allows: product engagement, add-to-cart, checkout start and paid orders. Event counts are not substituted for unique sessions.",
         "Deliverables centre on a funnel diagnosis, UX and offer review, prioritized hypotheses and an implementation backlog your team — or Buildaze — can ship. Store Design implements larger theme work; Performance owns speed bottlenecks; Checkout Optimization owns cart-to-checkout and payment-stage detail.",
         "Experimentation is scoped only when baseline conversion, traffic and a stopping rule make a fair test possible. We do not describe a before-and-after comparison as a causal A/B result when it is not.",
+        "Prefer to self-diagnose first? Read our resource guide on Shopify traffic without purchases, then return here when you want a scoped conversion engagement.",
       ],
       solutionsTitle: "CRO work we prioritize",
       solutions: [
@@ -212,6 +213,11 @@ export const shopifyPriorityLeaves: Service[] = [
           question: "Where does checkout recovery sit?",
           answer:
             "Eligible recovery messaging is planned with Checkout Optimization and Email & SMS Marketing. Anonymous cart visitors cannot all be emailed; consent and suppression rules apply.",
+        },
+        {
+          question: "Where can I read a diagnostic guide before enquiring?",
+          answer:
+            "See /resources/shopify-traffic-not-converting — a stage-by-stage diagnosis of traffic without purchases. It links back here when you want scoped CRO help.",
         },
       ],
       faqEyebrow: "Shopify CRO FAQs",

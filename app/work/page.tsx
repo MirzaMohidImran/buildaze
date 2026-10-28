@@ -10,13 +10,14 @@ const path = "/work";
 const url = `${site.url}${path}`;
 
 export const metadata: Metadata = {
-  title: "Work | SaaS, AI, Web & Ecommerce Case Studies",
+  title: { absolute: "Work | SaaS, AI & Ecommerce Case Studies | Buildaze" },
   description:
-    "Buildaze case studies — real products shipped to production with measured results across SaaS, fintech, healthcare and ecommerce.",
+    "Selected Buildaze projects across SaaS, AI and ecommerce. Outcomes are documented where evidence is available — discuss a similar brief.",
   alternates: { canonical: path },
   openGraph: {
-    title: "Work — Buildaze",
-    description: "Real products. Measured results.",
+    title: "Work | SaaS, AI & Ecommerce Case Studies | Buildaze",
+    description:
+      "Selected Buildaze projects across SaaS, AI and ecommerce. Outcomes are documented where evidence is available.",
     url,
     siteName: site.name,
     type: "website",
@@ -24,8 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Work — Buildaze",
-    description: "Real products. Measured results.",
+    title: "Work | SaaS, AI & Ecommerce Case Studies | Buildaze",
+    description:
+      "Selected Buildaze projects across SaaS, AI and ecommerce. Outcomes are documented where evidence is available.",
     images: twitterImages(DEFAULT_OG_IMAGE),
   },
 };
@@ -37,9 +39,9 @@ const structuredData = {
       "@type": ["CollectionPage", "WebPage"],
       "@id": `${url}#webpage`,
       url,
-      name: "Work | SaaS, AI, Web & Ecommerce Case Studies — Buildaze",
+      name: "Work | SaaS, AI & Ecommerce Case Studies | Buildaze",
       description:
-        "Buildaze case studies across SaaS, fintech, healthcare and ecommerce.",
+        "Selected Buildaze projects across SaaS, AI and ecommerce. Outcomes are documented where evidence is available.",
       isPartOf: { "@id": `${site.url}/#website` },
       provider: { "@id": ORGANIZATION_ID },
       inLanguage: "en",

@@ -6,6 +6,7 @@ import {
   caseStudySlugs,
   getCaseStudyBySlug,
 } from "@/lib/data/work";
+import { DEFAULT_OG_IMAGE, ogImages, twitterImages } from "@/lib/seo/social";
 
 export function generateStaticParams() {
   return caseStudySlugs.map((slug) => ({ slug }));
@@ -21,6 +22,7 @@ export async function generateMetadata({
   if (!study) return {};
 
   const url = `${site.url}/work/${study.slug}`;
+  const image = study.page.ogImage ?? DEFAULT_OG_IMAGE;
   // absolute avoids root template appending " — Buildaze" twice when metaTitle already brands
   const title = study.page.metaTitle.includes("Buildaze")
     ? { absolute: study.page.metaTitle }
@@ -36,11 +38,13 @@ export async function generateMetadata({
       url,
       siteName: site.name,
       type: "article",
+      images: ogImages(image, study.page.metaTitle),
     },
     twitter: {
       card: "summary_large_image",
       title: study.page.metaTitle,
       description: study.page.metaDescription,
+      images: twitterImages(image),
     },
   };
 }

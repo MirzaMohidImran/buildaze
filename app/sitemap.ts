@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { resourceArticles } from "@/lib/data/resources";
 import { services } from "@/lib/data/services";
 import { site } from "@/lib/data/site";
 import { caseStudies } from "@/lib/data/work";
@@ -22,6 +23,7 @@ const ABOUT_UPDATED = new Date("2026-10-12");
 const CONTACT_UPDATED = new Date("2026-10-12");
 const SHOPIFY_LEAVES_UPDATED = new Date("2026-10-12");
 const DEVELOPMENT_LEAVES_UPDATED = new Date("2026-10-12");
+const RESOURCES_UPDATED = new Date("2026-10-28");
 
 function isDigitalMarketingService(id: string) {
   return id === "digital-marketing" || id.startsWith("dm-");
@@ -111,6 +113,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...caseStudies.map((study) => ({
       url: `${site.url}/work/${study.slug}`,
       lastModified: WORK_UPDATED,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    {
+      url: `${site.url}/resources`,
+      lastModified: RESOURCES_UPDATED,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    ...resourceArticles.map((article) => ({
+      url: `${site.url}/resources/${article.slug}`,
+      lastModified: new Date(article.updatedAt),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),

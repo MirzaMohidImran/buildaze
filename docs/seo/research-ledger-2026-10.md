@@ -15,6 +15,8 @@
 | 3 | [`phase3-keyword-page-map-2026-10.md`](./phase3-keyword-page-map-2026-10.md) | Complete |
 | 4 | [`phase4-metadata-table-2026-10.md`](./phase4-metadata-table-2026-10.md) | Complete — **approved** |
 | 5A | [`phase5-batch-a-ledger.md`](./phase5-batch-a-ledger.md) | Complete — five NEW pages + hub wiring in repo |
+| Blog 01 | [`blog-01-shopify-traffic-not-converting.md`](./blog-01-shopify-traffic-not-converting.md) | Complete — `/resources` hub + first article in repo |
+| Batch B1 | Work meta/proof | Complete — softened case-study + work-hub meta; OG images on `/work/*` |
 
 **Supporting extracts (working files)**
 
@@ -69,9 +71,10 @@
 
 ## Next concrete batch
 
-1. Deploy Batch A routes; verify HTTP 200 on five NEW URLs; submit sitemap.  
-2. Phase 5 Batch B per [`phase5-batch-a-ledger.md`](./phase5-batch-a-ledger.md).  
-3. Phase 6 implementation/measurement handoff when requested.
+1. **Batch B2 — AI/RAG depth:** expand Custom AI Solutions + AI hub (RAG visibility, evaluation language).  
+2. Batch B3 — Design proof samples on design leaves.  
+3. Batch B4 — P2 NEW pages only after delivery confirmation.  
+4. Deploy pending routes; GSC sitemap resubmit.
 
 ---
 
