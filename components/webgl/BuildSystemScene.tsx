@@ -4,8 +4,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
-const ACCENT = new THREE.Color("#2563eb");
-const ACCENT_SOFT = new THREE.Color("#5b8def");
+const ACCENT = new THREE.Color("#C8F542");
+const ACCENT_SOFT = new THREE.Color("#C8F542");
 const WHITE_DIM = new THREE.Color("#3a3a42");
 
 /** The five layers of the Buildaze build system, bottom to top. */

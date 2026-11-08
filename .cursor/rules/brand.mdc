@@ -21,19 +21,20 @@ Next.js 15 App Router, React 19, TypeScript, Tailwind CSS 4, Framer Motion, Thre
 ## Palette (do not invent new brand hues)
 | Token | Value | Role |
 |-------|-------|------|
-| Primary / ink | `#0a0a0a` | Page canvas (dark), text on light |
-| Ink elevated | `#0e0e10` | Elevated dark surfaces |
-| Ink-3 | `#131316` | Dark tertiary |
-| Accent / blue | `#2563eb` | Primary action |
-| Accent hover | `#1d4ed8` | Hover / pressed blue |
-| Accent soft | `#7fa6f5` | Readable blue text on dark |
-| Accent dim | `rgba(37,99,235,0.14)` | Soft blue fill |
-| Paper / white | `#ffffff` | Type on dark; light page bg |
-| Soft | `#F7F8FA` | Light section bg |
-| Blue soft | `#eff5ff` | Light blue wash |
-| Text secondary (light) | `#475569` | Body on light |
-| Text muted (light) | `#5c6678` | Captions on light (AA on soft) |
-| Border light | `#e2e8f0` / hover `#cbd5e1` | Light borders |
+| Primary / ink | `#151713` | Dark backgrounds, text on light and on lime |
+| Dark card | `#23261F` | Dark cards and elevated panels |
+| Ink-3 | `#2A2E26` | Derived step above the dark card |
+| Accent / lime | `#C8F542` | Primary buttons and highlights |
+| Accent hover | `#B6E22E` | Hover / pressed lime |
+| Accent on light | `#3A401F` | Accent text and borders on light surfaces |
+| Accent soft | `#C8F542` | Lime text and marks on charcoal |
+| Accent dim | `rgba(200,245,66,0.14)` | Soft lime fill |
+| Paper / white | `#ffffff` | Type on dark; light cards |
+| Warm white | `#F7F8F2` | Light backgrounds |
+| Pale lime | `#EDF5D8` | Soft accents |
+| Text secondary (light) | `#3E4436` | Body on light |
+| Text muted (light) | `#64685e` | Captions on light (AA on warm white and pale lime) |
+| Border light | `#E0E4D6` / hover `#CDD3C2` | Light borders |
 | Mist (dark) | `rgba(255,255,255,0.6)` / `0.48` | Secondary / muted on dark (AA) |
 | Line (dark) | `rgba(255,255,255,0.09)` / `0.16` | Borders on dark |
 

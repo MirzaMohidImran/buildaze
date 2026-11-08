@@ -60,7 +60,7 @@ export function VoiceAgentSection({ tone = "dark" }: { tone?: HomeSectionTone })
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 50% 45% at 80% 30%, rgba(37,99,235,0.1), transparent 70%)",
+              "radial-gradient(ellipse 50% 45% at 80% 30%, rgba(200,245,66,0.1), transparent 70%)",
           }}
         />
       )}
@@ -121,7 +121,7 @@ export function VoiceAgentSection({ tone = "dark" }: { tone?: HomeSectionTone })
                   className="absolute inset-0"
                   style={{
                     background:
-                      "radial-gradient(ellipse 60% 80% at 30% 40%, rgba(37,99,235,0.1), transparent 70%)",
+                      "radial-gradient(ellipse 60% 80% at 30% 40%, rgba(200,245,66,0.1), transparent 70%)",
                   }}
                 />
               )}

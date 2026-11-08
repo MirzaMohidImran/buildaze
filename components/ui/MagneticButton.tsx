@@ -56,11 +56,11 @@ export function MagneticButton({
   const variants = {
     primary:
       tone === "light"
-        ? "bg-accent text-white hover:bg-accent-bright shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_1px_2px_rgba(12,16,23,0.06),0_8px_24px_-10px_rgba(37,99,235,0.35)]"
-        : "bg-accent text-white hover:bg-accent-bright shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_0_0_1px_rgba(37,99,235,0.4),0_8px_32px_-8px_rgba(37,99,235,0.5)]",
+        ? "bg-accent text-white hover:bg-accent-bright shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_1px_2px_rgba(12,16,23,0.06),0_8px_24px_-10px_rgba(200,245,66,0.35)]"
+        : "bg-accent text-white hover:bg-accent-bright shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_0_0_1px_rgba(200,245,66,0.4),0_8px_32px_-8px_rgba(200,245,66,0.5)]",
     ghost:
       tone === "light"
-        ? "border border-[var(--border-on-light,#E2E8F0)] bg-white text-[var(--text-on-light,#0a0a0a)] hover:border-[var(--border-on-light-hover,#CBD5E1)] hover:bg-[var(--section-blue-soft,#EFF5FF)]"
+        ? "border border-[var(--border-on-light,#E0E4D6)] bg-white text-[var(--text-on-light,#151713)] hover:border-[var(--border-on-light-hover,#CDD3C2)] hover:bg-[var(--section-blue-soft,#EDF5D8)]"
         : "border border-line-strong text-white hover:border-white/40 hover:bg-white/[0.04]",
   };
 

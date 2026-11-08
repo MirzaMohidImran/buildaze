@@ -34,7 +34,7 @@ function TeamMemberCard({
         featured ? "sm:col-span-2 lg:col-span-2" : ""
       }`}
     >
-      <div className="build-grid relative mb-6 flex aspect-[4/3] max-h-[200px] items-end overflow-hidden rounded-panel border border-line bg-[var(--section-soft,#f7f8fa)] p-5">
+      <div className="build-grid relative mb-6 flex aspect-[4/3] max-h-[200px] items-end overflow-hidden rounded-panel border border-line bg-[var(--section-soft,#F7F8F2)] p-5">
         <span
           aria-hidden
           className="font-mono text-[48px] leading-none font-medium tracking-tight text-white/20 md:text-[56px]"
@@ -369,7 +369,7 @@ export function AboutPage() {
                 <li key={link.label} className="surface-card bg-white">
                   <Link
                     href={serviceHref(link)}
-                    className="group flex h-full flex-col p-7 transition-colors hover:bg-[var(--section-blue-soft,#EFF5FF)] md:p-8"
+                    className="group flex h-full flex-col p-7 transition-colors hover:bg-[var(--section-blue-soft,#EDF5D8)] md:p-8"
                   >
                     <span className="text-[17px] font-medium tracking-tight text-white group-hover:text-accent-soft">
                       {link.label}

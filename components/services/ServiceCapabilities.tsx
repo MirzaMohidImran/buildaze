@@ -125,7 +125,7 @@ export function ServiceCapabilities({
               className="absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 70% 60% at 20% 15%, rgba(37,99,235,0.1), transparent 70%)",
+                  "radial-gradient(ellipse 70% 60% at 20% 15%, rgba(200,245,66,0.1), transparent 70%)",
               }}
             />
             {items.map((item) => {
@@ -322,7 +322,7 @@ export function ServiceCapabilities({
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 70% 80% at 85% 20%, rgba(37,99,235,0.1), transparent 65%)",
+                "radial-gradient(ellipse 70% 80% at 85% 20%, rgba(200,245,66,0.1), transparent 65%)",
             }}
           />
           <div className="relative grid grid-cols-1 items-end gap-10 lg:grid-cols-12">

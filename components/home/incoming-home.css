@@ -1,0 +1,590 @@
+.incoming-home {
+  background: #f7f8f2;
+  color: #151713;
+  font-family: var(--font-incoming), Inter, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.incoming-home [style*="Anton"] {
+  font-family: var(--font-anton), Impact, "Arial Narrow", sans-serif !important;
+}
+
+.incoming-home a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.incoming-home button,
+.incoming-home input,
+.incoming-home textarea {
+  font-family: inherit;
+}
+
+.incoming-home section,
+.incoming-home footer {
+  overflow: clip;
+}
+
+.incoming-home .sv-grid {
+  display: grid;
+}
+
+.incoming-home .faq summary {
+  list-style: none;
+}
+
+.incoming-home .faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.incoming-home .faq details {
+  border-bottom: 1px solid #dcdfd0;
+}
+
+.incoming-home .faq details[open] {
+  background: #edf5d8;
+  border-bottom-color: transparent;
+}
+
+.incoming-home .faq details[open] .plus {
+  transform: rotate(45deg);
+  background: #c8f542;
+  border-color: #c8f542;
+  color: #151713;
+}
+
+.incoming-home .faq .plus {
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    background-color 0.3s;
+}
+
+.incoming-home .faq summary {
+  transition: padding 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.incoming-home .faq details[open] summary {
+  padding-left: 8px;
+}
+
+.incoming-home details[open] > p {
+  animation: incoming-fade-up 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes incoming-fade-up {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.incoming-home input:focus,
+.incoming-home textarea:focus {
+  outline: none;
+  border-color: #151713 !important;
+  box-shadow: 0 0 0 4px rgba(200, 245, 66, 0.6);
+}
+
+.incoming-home a:focus-visible,
+.incoming-home button:focus-visible,
+.incoming-home summary:focus-visible {
+  outline: 2px solid #151713;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px #c8f542;
+}
+
+.incoming-home .fl {
+  transition:
+    color 0.25s,
+    translate 0.25s,
+    border-color 0.25s;
+}
+
+.incoming-home .fl:hover {
+  color: #f7f8f2 !important;
+  translate: 4px 0;
+}
+
+.incoming-home .pill {
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.35s,
+    background-color 0.3s,
+    color 0.3s,
+    scale 0.2s;
+}
+
+.incoming-home .pill:hover {
+  box-shadow: 0 14px 34px rgba(200, 245, 66, 0.55);
+}
+
+.incoming-home .pill:active {
+  scale: 0.95;
+}
+
+.incoming-home .tx {
+  transition:
+    opacity 0.35s,
+    translate 0.35s;
+}
+
+.incoming-home .tx.out {
+  opacity: 0;
+  translate: 0 14px;
+}
+
+.incoming-home #band {
+  overflow: hidden;
+}
+
+.incoming-home #band .band,
+.incoming-home #band .mq {
+  display: inline-block;
+  min-width: max-content;
+  white-space: nowrap;
+  font-family: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+  font-weight: 400;
+  font-size: clamp(56px, 9vw, 130px);
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #151713;
+}
+
+.incoming-home #band:hover .band {
+  color: #151713;
+}
+
+.incoming-home .bigmark {
+  font-family: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+  font-weight: 400;
+  font-size: clamp(70px, 19vw, 300px);
+  letter-spacing: 0.01em;
+  line-height: 0.78;
+  color: #23261f;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  margin: 40px 0 -0.08em;
+  transition: color 0.6s;
+}
+
+.incoming-home footer:hover .bigmark {
+  color: #2c3025;
+}
+
+.incoming-home .form-note {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #151713;
+}
+
+@media (max-width: 1100px) {
+  .incoming-home .fgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .incoming-home section,
+  .incoming-home footer {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .incoming-home h2 {
+    font-size: clamp(32px, 8.5vw, 48px) !important;
+  }
+
+  .incoming-home .sv-grid > * {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .incoming-home .fgrid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.incoming-home.is-motion .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.incoming-home.is-motion .w > span {
+  display: inline-block;
+}
+
+.incoming-home.is-motion .sw {
+  transform: skewY(var(--sk, 0deg));
+  transform-origin: left center;
+}
+
+.incoming-home.is-motion .sw .w > span {
+  translate: 0 120%;
+  rotate: 4deg;
+  transform-origin: left bottom;
+  transition:
+    translate 1.1s cubic-bezier(0.2, 0.7, 0.2, 1),
+    rotate 1.1s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.incoming-home.is-motion .sw.in .w > span {
+  translate: 0 0;
+  rotate: 0deg;
+}
+
+.incoming-home.is-motion .sc .w > span {
+  opacity: 0.16;
+}
+
+.incoming-home.is-motion [data-rv] {
+  opacity: 0;
+  translate: 0 56px;
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    translate 1s cubic-bezier(0.2, 0.7, 0.2, 1),
+    scale 1s cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 0.9s,
+    clip-path 1.3s cubic-bezier(0.7, 0, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+
+.incoming-home.is-motion [data-rv="left"] {
+  translate: -70px 0;
+}
+
+.incoming-home.is-motion [data-rv="right"] {
+  translate: 70px 0;
+}
+
+.incoming-home.is-motion [data-rv="zoom"] {
+  scale: 0.86;
+  translate: 0 36px;
+}
+
+.incoming-home.is-motion [data-rv="blur"] {
+  filter: blur(14px);
+}
+
+.incoming-home.is-motion [data-rv="clip"] {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1.08;
+  clip-path: inset(100% 0 0 0 round 28px);
+}
+
+.incoming-home.is-motion [data-rv].in {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  filter: none;
+  clip-path: inset(0 0 0 0 round 28px);
+}
+
+.incoming-home.is-motion [data-rv]:not([data-rv="clip"]).in {
+  clip-path: none;
+}
+
+.incoming-home.is-motion .hv {
+  transition:
+    scale 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.5s;
+}
+
+.incoming-home.is-motion .hv:hover {
+  scale: 1.02;
+  box-shadow: 0 28px 60px rgba(21, 23, 19, 0.18);
+  z-index: 2;
+  position: relative;
+}
+
+.incoming-home.is-motion .hv.dim {
+  opacity: 0.5 !important;
+  scale: 0.985;
+}
+
+.incoming-home.is-motion .hv:hover [aria-hidden="true"] {
+  translate: 4px 0;
+}
+
+.incoming-home.is-motion .hv [aria-hidden="true"] {
+  transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.incoming-home.is-motion .hv:hover svg {
+  rotate: 8deg;
+}
+
+.incoming-home.is-motion .hv svg {
+  transition: rotate 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.incoming-home.is-motion .bm span {
+  translate: 0 110%;
+  opacity: 0;
+  transition:
+    translate 1.2s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 1.2s;
+}
+
+.incoming-home.is-motion .bm.in span {
+  translate: 0 0;
+  opacity: 1;
+}
+
+.incoming-home.is-motion .chx {
+  opacity: 0;
+  translate: 0 14px;
+  scale: 0.96;
+  transition:
+    opacity 0.5s,
+    translate 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    scale 0.5s;
+}
+
+.incoming-home.is-motion .chx.on {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+}
+
+.incoming-home.is-motion .knob {
+  transition: translate 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.incoming-home.is-motion .tog {
+  transition: background-color 0.3s;
+}
+
+.incoming-home.is-motion .tl {
+  transition:
+    translate 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.3s;
+}
+
+.incoming-home.is-motion .tl:hover {
+  translate: 0 -4px;
+}
+
+.incoming-home.is-motion .tl.sel {
+  box-shadow: 0 0 0 2px #151713;
+}
+
+.incoming-home.is-motion .pj-r {
+  transition: background-color 0.4s;
+}
+
+.incoming-home.is-motion .pj-t {
+  transition: color 0.35s;
+}
+
+.incoming-home.is-motion .pj-a {
+  transition:
+    background-color 0.35s,
+    color 0.35s,
+    border-color 0.35s,
+    translate 0.35s;
+}
+
+.incoming-home.is-motion a.ul {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat;
+  transition: background-size 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.incoming-home.is-motion a.ul:hover {
+  background-size: 100% 1.5px;
+}
+
+.incoming-home.is-motion .rip {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  scale: 0;
+  animation: incoming-rip 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+.incoming-home.is-motion .ring {
+  position: relative;
+}
+
+.incoming-home.is-motion .ring::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 999px;
+  border: 2px solid #151713;
+  opacity: 0;
+  animation: incoming-ring 2.6s ease-out infinite;
+  pointer-events: none;
+}
+
+.incoming-home.is-motion .pc > div:first-child > *:last-child {
+  transition: scale 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.incoming-home.is-motion .pc:hover > div:first-child > *:last-child {
+  scale: 1.07;
+}
+
+.incoming-home .incoming-progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 70;
+  height: 3px;
+  width: 100%;
+  background: #c8f542;
+  box-shadow: 0 1px 0 rgba(21, 23, 19, 0.4);
+  transform-origin: left;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+.incoming-home .incoming-dots {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 90;
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.incoming-home.is-motion .incoming-dots {
+  display: none;
+}
+
+@media (min-width: 1100px) and (hover: hover) {
+  .incoming-home.is-motion .incoming-dots {
+    display: flex;
+  }
+}
+
+.incoming-home .incoming-dots a {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #151713;
+  border: 2px solid #f7f8f2;
+  box-shadow: 0 0 0 1px rgba(21, 23, 19, 0.3);
+  transition:
+    scale 0.3s,
+    background-color 0.3s;
+}
+
+.incoming-home .incoming-dots a.on {
+  background: #c8f542;
+  scale: 1.5;
+}
+
+.incoming-home .incoming-dots a span {
+  position: absolute;
+  right: 26px;
+  top: 50%;
+  translate: 10px -50%;
+  white-space: nowrap;
+  background: #151713;
+  color: #f7f8f2;
+  font: 600 12px var(--font-incoming), Inter, sans-serif;
+  padding: 6px 12px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.25s,
+    translate 0.25s;
+}
+
+.incoming-home .incoming-dots a:hover span {
+  opacity: 1;
+  translate: 0 -50%;
+}
+
+.incoming-home.is-motion .mic-on {
+  animation: incoming-mic 1.4s ease-out infinite;
+}
+
+@keyframes incoming-wave {
+  from {
+    transform: scaleY(0.4);
+  }
+  to {
+    transform: scaleY(1.2);
+  }
+}
+
+@keyframes incoming-wave2 {
+  from {
+    transform: scaleY(0.2);
+  }
+  to {
+    transform: scaleY(1.7);
+  }
+}
+
+@keyframes incoming-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    scale: 0.8;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.15;
+  }
+}
+
+@keyframes incoming-rip {
+  to {
+    scale: 1;
+    opacity: 0;
+  }
+}
+
+@keyframes incoming-ring {
+  0% {
+    opacity: 0.7;
+    scale: 0.96;
+  }
+  100% {
+    opacity: 0;
+    scale: 1.14;
+  }
+}
+
+@keyframes incoming-mic {
+  0% {
+    box-shadow: 0 0 0 0 rgba(200, 245, 66, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 22px rgba(200, 245, 66, 0);
+  }
+}
+
+@media (max-width: 900px) {
+  .incoming-home.is-motion [data-rv="left"],
+  .incoming-home.is-motion [data-rv="right"] {
+    translate: 0 56px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .incoming-home *,
+  .incoming-home *::before,
+  .incoming-home *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

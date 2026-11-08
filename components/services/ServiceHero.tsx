@@ -55,7 +55,7 @@ export function ServiceHero({ service }: { service: Service }) {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 55% 50% at 50% 35%, rgba(37,99,235,0.14), transparent 70%)",
+            "radial-gradient(ellipse 55% 50% at 50% 35%, rgba(200,245,66,0.14), transparent 70%)",
         }}
       />
 

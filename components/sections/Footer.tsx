@@ -43,7 +43,7 @@ export function Footer({ tone = "dark" }: { tone?: "dark" | "light" } = {}) {
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 55% 45% at 15% 0%, rgba(37,99,235,0.12), transparent 60%)",
+                "radial-gradient(ellipse 55% 45% at 15% 0%, rgba(200,245,66,0.12), transparent 60%)",
             }}
           />
         </>

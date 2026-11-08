@@ -48,7 +48,7 @@ export function ServiceDeliverables({
                 className="absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(ellipse 70% 60% at 20% 10%, rgba(37,99,235,0.1), transparent 70%)",
+                    "radial-gradient(ellipse 70% 60% at 20% 10%, rgba(200,245,66,0.1), transparent 70%)",
                 }}
               />
               <div className="relative">

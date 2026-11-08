@@ -176,7 +176,7 @@ export function ShopifyWorkVisual({
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 80% 70% at 50% 0%, rgba(37,99,235,0.07), transparent 65%)",
+                "radial-gradient(ellipse 80% 70% at 50% 0%, rgba(200,245,66,0.07), transparent 65%)",
             }}
           />
           <div className="relative flex h-full flex-col">

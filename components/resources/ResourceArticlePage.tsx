@@ -115,7 +115,7 @@ export function ResourceArticlePage({ article }: { article: ResourceArticle }) {
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 55% 50% at 50% 30%, rgba(37,99,235,0.12), transparent 70%)",
+                "radial-gradient(ellipse 55% 50% at 50% 30%, rgba(200,245,66,0.12), transparent 70%)",
             }}
           />
           <div className="relative mx-auto max-w-[760px] px-5 md:px-10">

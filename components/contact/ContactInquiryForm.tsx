@@ -39,13 +39,13 @@ interface FieldErrors {
 }
 
 const glassShell =
-  "relative overflow-hidden rounded-panel border border-white/15 bg-gradient-to-b from-white/[0.12] to-white/[0.04] p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_0_0_1px_rgba(37,99,235,0.12),0_28px_70px_-32px_rgba(0,0,0,0.65)] backdrop-blur-2xl md:p-8";
+  "relative overflow-hidden rounded-panel border border-white/15 bg-gradient-to-b from-white/[0.12] to-white/[0.04] p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_0_0_1px_rgba(200,245,66,0.12),0_28px_70px_-32px_rgba(0,0,0,0.65)] backdrop-blur-2xl md:p-8";
 
 const fieldLabel =
   "mb-1.5 block text-[13px] font-medium tracking-wide text-white/80";
 
 const fieldControl =
-  "w-full rounded-control border border-white/12 bg-white/[0.06] px-3.5 py-2.5 text-[15px] text-white placeholder:text-white/35 transition-colors focus:border-accent/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/35";
+  "w-full rounded-control border border-white/12 bg-white/[0.06] px-3.5 py-2.5 text-[15px] text-white placeholder:text-white/55 transition-colors focus:border-accent/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/35";
 
 const fieldError = "mt-1.5 text-[12px] text-red-300";
 
@@ -140,7 +140,7 @@ function GlassSelect({
       <label htmlFor={id} className={fieldLabel}>
         {label}
         {optional ? (
-          <span className="ml-1.5 font-normal text-white/40">Optional</span>
+          <span className="ml-1.5 font-normal text-white/55">Optional</span>
         ) : null}
         {required ? <span className="sr-only"> (required)</span> : null}
       </label>
@@ -154,19 +154,19 @@ function GlassSelect({
         onChange={(e) => onChange(e.target.value)}
         className={`${fieldControl} appearance-none bg-[length:12px] bg-[right_14px_center] bg-no-repeat pr-10 ${
           error ? "border-red-400/60" : ""
-        } ${!value ? "text-white/40" : ""}`}
+        } ${!value ? "text-white/55" : ""}`}
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' stroke='%23ffffff99' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
         }}
       >
-        <option value="" disabled={required} className="bg-[#0a0a0a] text-white">
+        <option value="" disabled={required} className="bg-[#151713] text-white">
           {placeholder}
         </option>
         {options.map((option) => (
           <option
             key={option}
             value={option}
-            className="bg-[#0a0a0a] text-white"
+            className="bg-[#151713] text-white"
           >
             {option}
           </option>
@@ -515,7 +515,7 @@ export function ContactInquiryForm({
             <button
               type="button"
               onClick={openEmailDraft}
-              className="min-h-10 rounded-full border border-accent/50 bg-accent-dim px-4 py-2 text-[13px] text-white transition-colors hover:bg-accent"
+              className="min-h-10 rounded-full border border-accent/50 bg-accent-dim px-4 py-2 text-[13px] text-white transition-colors hover:bg-accent hover:text-[var(--brand-ink,#151713)]"
             >
               Email {site.email}
             </button>
@@ -531,7 +531,7 @@ export function ContactInquiryForm({
         >
           {status === "pending" ? "Sending…" : contactPage.form.submitLabel}
         </button>
-        <p className="text-[12px] leading-relaxed text-white/40 sm:max-w-[280px] sm:text-right">
+        <p className="text-[12px] leading-relaxed text-white/55 sm:max-w-[280px] sm:text-right">
           {contactPage.form.privacyNote}{" "}
           <Link
             href="/privacy-policy"

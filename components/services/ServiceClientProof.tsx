@@ -57,7 +57,7 @@ function ReviewEvidence({ review }: { review: ServiceClientReview }) {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 100% 0%, rgba(37,99,235,0.1), transparent 65%)",
+            "radial-gradient(ellipse 80% 60% at 100% 0%, rgba(200,245,66,0.1), transparent 65%)",
         }}
       />
       <div className="relative flex items-center justify-between gap-4 border-b border-line pb-5">
@@ -174,7 +174,7 @@ export function ServiceClientProof({
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(ellipse 70% 55% at 10% 0%, rgba(37,99,235,0.1), transparent 65%)",
+                    "radial-gradient(ellipse 70% 55% at 10% 0%, rgba(200,245,66,0.1), transparent 65%)",
                 }}
               />
               <div className="relative">
@@ -259,7 +259,7 @@ export function ServiceClientProof({
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 70% 80% at 85% 20%, rgba(37,99,235,0.1), transparent 65%)",
+                "radial-gradient(ellipse 70% 80% at 85% 20%, rgba(200,245,66,0.1), transparent 65%)",
             }}
           />
           <div className="relative">

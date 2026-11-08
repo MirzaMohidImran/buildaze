@@ -79,9 +79,9 @@ function JourneyVisual({
                       ? undefined
                       : {
                           boxShadow: [
-                            "0 0 0 0 rgba(37,99,235,0)",
-                            "0 0 0 8px rgba(37,99,235,0.15)",
-                            "0 0 0 0 rgba(37,99,235,0)",
+                            "0 0 0 0 rgba(200,245,66,0)",
+                            "0 0 0 8px rgba(200,245,66,0.15)",
+                            "0 0 0 0 rgba(200,245,66,0)",
                           ],
                         }
                   }
@@ -218,7 +218,7 @@ export function ServiceWhy({
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 70% 60% at 80% 20%, rgba(37,99,235,0.12), transparent 70%)",
+                  "radial-gradient(ellipse 70% 60% at 80% 20%, rgba(200,245,66,0.12), transparent 70%)",
               }}
             />
 
@@ -320,7 +320,7 @@ export function ServiceWhy({
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 60% 80% at 90% 30%, rgba(37,99,235,0.12), transparent 65%)",
+                "radial-gradient(ellipse 60% 80% at 90% 30%, rgba(200,245,66,0.12), transparent 65%)",
             }}
           />
           <div className="relative grid grid-cols-1 items-end gap-12 lg:grid-cols-12">

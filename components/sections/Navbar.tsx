@@ -177,7 +177,7 @@ export function Navbar({
             transition={{ duration: 0.2 }}
             onClick={closePanel}
             className={`fixed inset-0 top-[72px] z-40 hidden cursor-default lg:block ${
-              isLight ? "bg-[rgb(12_16_23/0.28)]" : "bg-black/55"
+              isLight ? "bg-[rgb(21_23_19/0.28)]" : "bg-black/55"
             }`}
           />
         )}
@@ -192,8 +192,8 @@ export function Navbar({
         className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 ${
           isLight
             ? scrolled || panelOpen || mobileOpen
-              ? "border-b border-line bg-white/95 backdrop-blur-xl"
-              : "border-b border-line bg-white"
+              ? "nav-light border-b border-[var(--border-on-light)] bg-[#F7F8F2]/95 backdrop-blur-xl"
+              : "nav-light border-b border-[var(--border-on-light)] bg-[#F7F8F2]"
             : scrolled || panelOpen || mobileOpen
               ? "border-b border-line bg-[var(--brand-ink,var(--color-ink))]/95 backdrop-blur-xl"
               : "border-b border-transparent bg-transparent"
@@ -266,10 +266,10 @@ export function Navbar({
                     className={`group relative inline-flex items-center gap-1.5 px-4 py-2 text-base font-semibold transition-colors ${
                       openMenu === link.menu
                         ? isLight
-                          ? "text-[var(--brand-black,#0C1017)]"
+                          ? "text-[var(--brand-black,#151713)]"
                           : "text-white"
                         : isLight
-                          ? "text-[var(--text-secondary,#475569)] hover:text-[var(--brand-blue,#2563EB)]"
+                          ? "text-[var(--text-on-light-secondary,#3E4436)] hover:text-[var(--accent-on-light,#3A401F)]"
                           : "text-mist hover:text-white"
                     }`}
                   >
@@ -281,7 +281,9 @@ export function Navbar({
                       }
                     />
                     <span
-                      className={`absolute inset-x-4 -bottom-px h-px origin-left bg-accent transition-transform duration-300 ${
+                      className={`absolute inset-x-4 -bottom-px h-px origin-left transition-transform duration-300 ${
+                        isLight ? "bg-[var(--accent-on-light,#3A401F)]" : "bg-accent"
+                      } ${
                         openMenu === link.menu
                           ? "scale-x-100"
                           : "scale-x-0 group-hover:scale-x-100"
@@ -296,12 +298,16 @@ export function Navbar({
                   onClick={closePanel}
                   className={`group relative px-4 py-2 text-base font-semibold transition-colors ${
                     isLight
-                      ? "text-[var(--text-secondary,#475569)] hover:text-[var(--brand-blue,#2563EB)]"
+                      ? "text-[var(--text-on-light-secondary,#3E4436)] hover:text-[var(--accent-on-light,#3A401F)]"
                       : "text-mist hover:text-white"
                   }`}
                 >
                   {link.label}
-                  <span className="absolute inset-x-4 -bottom-px h-px origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
+                  <span
+                    className={`absolute inset-x-4 -bottom-px h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${
+                      isLight ? "bg-[var(--accent-on-light,#3A401F)]" : "bg-accent"
+                    }`}
+                  />
                 </Link>
               ),
             )}
@@ -329,12 +335,12 @@ export function Navbar({
           >
             <span
               className={`h-px w-5 transition-transform duration-300 ${
-                isLight ? "bg-[var(--brand-black,#0C1017)]" : "bg-white"
+                isLight ? "bg-[var(--brand-black,#151713)]" : "bg-white"
               } ${mobileOpen ? "translate-y-[3px] rotate-45" : ""}`}
             />
             <span
               className={`h-px w-5 transition-transform duration-300 ${
-                isLight ? "bg-[var(--brand-black,#0C1017)]" : "bg-white"
+                isLight ? "bg-[var(--brand-black,#151713)]" : "bg-white"
               } ${mobileOpen ? "-translate-y-[3px] -rotate-45" : ""}`}
             />
           </button>
@@ -354,7 +360,7 @@ export function Navbar({
               onMouseEnter={() => openPanel("services")}
               className={`absolute inset-x-0 top-full hidden border-b border-line lg:block ${
                 isLight
-                  ? "bg-white shadow-[0_16px_40px_rgba(12,16,23,0.08)]"
+                  ? "bg-[#F7F8F2] shadow-[0_16px_40px_rgba(21,23,19,0.08)]"
                   : "bg-ink shadow-[0_24px_48px_rgba(0,0,0,0.45)]"
               }`}
             >
@@ -436,7 +442,7 @@ export function Navbar({
 
               <div
                 className={`mt-7 border-t border-line ${
-                  isLight ? "bg-[var(--section-soft,#F7F8FA)]" : "bg-ink-2"
+                  isLight ? "bg-[var(--section-soft,#F7F8F2)]" : "bg-ink-2"
                 }`}
               >
                 <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-between gap-4 px-10 py-4">
@@ -472,7 +478,7 @@ export function Navbar({
               onMouseEnter={() => openPanel("products")}
               className={`absolute inset-x-0 top-full hidden border-b border-line lg:block ${
                 isLight
-                  ? "bg-white shadow-[0_16px_40px_rgba(12,16,23,0.08)]"
+                  ? "bg-[#F7F8F2] shadow-[0_16px_40px_rgba(21,23,19,0.08)]"
                   : "bg-ink shadow-[0_24px_48px_rgba(0,0,0,0.45)]"
               }`}
             >
@@ -492,7 +498,7 @@ export function Navbar({
                       onClick={closePanel}
                       data-analytics={`nav-product-${product.id}`}
                       className={`group flex flex-col rounded-card border border-line p-4 transition-colors hover:border-accent ${
-                        isLight ? "bg-[var(--section-soft,#F7F8FA)]" : "bg-ink-2"
+                        isLight ? "bg-[var(--section-soft,#F7F8F2)]" : "bg-ink-2"
                       }`}
                     >
                       <span className="t-label text-accent-soft">
@@ -527,7 +533,7 @@ export function Navbar({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className={`fixed inset-x-0 top-[72px] bottom-0 z-[60] flex flex-col lg:hidden ${
-              isLight ? "bg-white" : "bg-ink"
+              isLight ? "nav-light bg-[#F7F8F2]" : "bg-ink"
             }`}
           >
             <div className="flex-1 overflow-y-auto overscroll-contain px-5 pb-28 pt-2">
@@ -738,7 +744,7 @@ export function Navbar({
 
             <div
               className={`absolute inset-x-0 bottom-0 z-10 border-t border-line px-5 py-4 ${
-                isLight ? "bg-white" : "bg-ink"
+                isLight ? "bg-[#F7F8F2]" : "bg-ink"
               }`}
             >
               <Link

@@ -21,13 +21,13 @@ function TeamCard({
     <div
       className={`group h-full p-7 transition-colors duration-500 md:p-8 ${
         isLight
-          ? "home-card border border-line bg-white hover:border-[var(--border-hover,#CBD5E1)]"
+          ? "home-card border border-line bg-white hover:border-[var(--border-hover,#CDD3C2)]"
           : "bg-ink hover:bg-ink-2"
       }`}
     >
       <div
         className={`build-grid relative mb-7 flex aspect-[4/3] items-end overflow-hidden border border-line p-5 ${
-          isLight ? "bg-[var(--section-soft,#f7f8fa)]" : "bg-ink-2"
+          isLight ? "bg-[var(--section-soft,#F7F8F2)]" : "bg-ink-2"
         }`}
       >
         {!isLight ? (
@@ -36,7 +36,7 @@ function TeamCard({
             className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
             style={{
               background:
-                "radial-gradient(ellipse 80% 80% at 50% 100%, rgba(37,99,235,0.16), transparent 70%)",
+                "radial-gradient(ellipse 80% 80% at 50% 100%, rgba(200,245,66,0.16), transparent 70%)",
             }}
           />
         ) : (
@@ -45,7 +45,7 @@ function TeamCard({
             className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-30"
             style={{
               background:
-                "radial-gradient(ellipse 80% 80% at 50% 100%, rgba(37,99,235,0.08), transparent 70%)",
+                "radial-gradient(ellipse 80% 80% at 50% 100%, rgba(200,245,66,0.08), transparent 70%)",
             }}
           />
         )}
@@ -53,7 +53,7 @@ function TeamCard({
           aria-hidden
           className={`font-mono text-[52px] leading-none font-medium tracking-tight transition-colors duration-500 ${
             isLight
-              ? "text-[var(--text-primary,#0C1017)]/15 group-hover:text-accent"
+              ? "text-[var(--text-primary,#151713)]/15 group-hover:text-accent"
               : "text-white/20 group-hover:text-accent-soft"
           }`}
         >

@@ -3,13 +3,15 @@
  * Activated via data-theme="buildaze" on <html> (layout).
  * Legacy homepage aliases: buildaze-home, buildaze-light.
  *
- * Brand ink: #0a0a0a
- * Brand blue: #2563EB
- * Brand white: #FFFFFF
- * Soft: #F7F8FA
+ * Brand ink: #151713
+ * Electric lime: #C8F542
+ * Lime hover: #B6E22E
+ * Warm white: #F7F8F2
+ * Pale lime: #EDF5D8
+ * Dark card: #23261F
  *
- * Muted text tokens are AA-tuned shades of the slate/ink family
- * (not new brand hues): light muted ≥4.5:1 on soft; ink muted ≥4.5:1 on ink.
+ * Muted text is an AA-tuned shade of charcoal: ≥4.5:1 on warm white and pale lime.
+ * Lime is for fills and highlights. Text on light uses --accent-on-light.
  *
  * Radius:
  * --radius-control: 12px
@@ -22,23 +24,25 @@
 [data-theme="buildaze"],
 [data-theme="buildaze-home"],
 [data-theme="buildaze-light"] {
-  --brand-ink: #0a0a0a;
-  --brand-ink-elevated: #0e0e10;
-  --brand-blue: #2563eb;
-  --brand-blue-hover: #1d4ed8;
+  --brand-ink: #151713;
+  --brand-ink-elevated: #23261F;
+  --brand-blue: #C8F542;
+  --brand-blue-hover: #B6E22E;
+  /* Dark olive from the lime hue. 9.6:1 on pale lime, 10.2:1 on warm white. */
+  --accent-on-light: #3A401F;
   --brand-white: #ffffff;
 
-  --page-bg: #ffffff;
-  --section-soft: #f7f8fa;
-  --section-blue-soft: #eff5ff;
+  --page-bg: #F7F8F2;
+  --section-soft: #F7F8F2;
+  --section-blue-soft: #EDF5D8;
   --card-bg: #ffffff;
 
-  --text-on-light: #0a0a0a;
-  --text-on-light-secondary: #475569;
-  /* Was #64748b (~4.47:1 on soft) — darkened shade for WCAG AA */
-  --text-on-light-muted: #5c6678;
-  --border-on-light: #e2e8f0;
-  --border-on-light-hover: #cbd5e1;
+  --text-on-light: #151713;
+  --text-on-light-secondary: #3E4436;
+  /* 5.06:1 on pale lime, 5.34:1 on warm white */
+  --text-on-light-muted: #64685e;
+  --border-on-light: #E0E4D6;
+  --border-on-light-hover: #CDD3C2;
 
   --text-on-ink: #ffffff;
   --text-on-ink-secondary: rgba(255, 255, 255, 0.6);
@@ -54,12 +58,12 @@
 
   /* Elevation — replace ad-hoc shadow strings over time */
   --shadow-cta: inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 0 0 1px rgba(37, 99, 235, 0.4), 0 8px 32px -8px rgba(37, 99, 235, 0.5);
+    0 0 0 1px rgba(200, 245, 66, 0.4), 0 8px 32px -8px rgba(200, 245, 66, 0.5);
   --shadow-cta-light: inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 1px 2px rgba(12, 16, 23, 0.06), 0 8px 24px -10px rgba(37, 99, 235, 0.35);
+    0 1px 2px rgba(21, 23, 19, 0.06), 0 8px 24px -10px rgba(200, 245, 66, 0.35);
   --shadow-panel: 0 28px 70px -32px rgba(0, 0, 0, 0.65);
   --shadow-nav: 0 24px 48px rgba(0, 0, 0, 0.45);
-  --shadow-nav-light: 0 16px 40px rgba(12, 16, 23, 0.08);
+  --shadow-nav-light: 0 16px 40px rgba(21, 23, 19, 0.08);
 }
 
 [data-theme="buildaze"],
@@ -67,12 +71,12 @@
 [data-theme="buildaze-light"] {
   --color-ink: var(--brand-ink);
   --color-ink-2: var(--brand-ink-elevated);
-  --color-ink-3: #131316;
+  --color-ink-3: #2A2E26;
   --color-paper: var(--brand-white);
   --color-accent: var(--brand-blue);
   --color-accent-bright: var(--brand-blue-hover);
-  --color-accent-soft: #7fa6f5;
-  --color-accent-dim: rgb(37 99 235 / 0.14);
+  --color-accent-soft: #C8F542;
+  --color-accent-dim: rgb(200 245 66 / 0.14);
   --color-line: var(--border-on-ink);
   --color-line-strong: var(--border-on-ink-strong);
   --color-mist: var(--text-on-ink-secondary);
@@ -92,7 +96,7 @@
   --color-line-strong: var(--border-on-ink-strong);
   --color-mist: var(--text-on-ink-secondary);
   --color-mist-2: var(--text-on-ink-muted);
-  --color-accent-soft: #7fa6f5;
+  --color-accent-soft: #C8F542;
   --color-ink: var(--brand-ink);
   --color-ink-2: var(--brand-ink-elevated);
 }
@@ -100,14 +104,14 @@
 .surface-blue,
 .home-surface-blue {
   background-color: var(--brand-blue);
-  color: var(--brand-white);
-  --color-line: rgb(255 255 255 / 0.22);
-  --color-line-strong: rgb(255 255 255 / 0.35);
-  --color-mist: rgb(255 255 255 / 0.88);
-  --color-mist-2: rgb(255 255 255 / 0.75);
-  --color-accent: var(--brand-white);
-  --color-accent-soft: var(--brand-white);
-  --color-accent-dim: rgb(255 255 255 / 0.12);
+  color: var(--brand-ink);
+  --color-line: rgb(21 23 19 / 0.16);
+  --color-line-strong: rgb(21 23 19 / 0.28);
+  --color-mist: rgb(21 23 19 / 0.82);
+  --color-mist-2: rgb(21 23 19 / 0.72);
+  --color-accent: var(--brand-ink);
+  --color-accent-soft: var(--brand-ink);
+  --color-accent-dim: rgb(21 23 19 / 0.1);
 }
 
 .surface-page,
@@ -120,8 +124,8 @@
   --color-paper: var(--brand-white);
   --color-accent: var(--brand-blue);
   --color-accent-bright: var(--brand-blue-hover);
-  --color-accent-soft: var(--brand-blue);
-  --color-accent-dim: rgb(37 99 235 / 0.1);
+  --color-accent-soft: var(--accent-on-light);
+  --color-accent-dim: rgb(200 245 66 / 0.28);
   --color-line: var(--border-on-light);
   --color-line-strong: var(--border-on-light-hover);
   --color-mist: var(--text-on-light-secondary);
@@ -166,7 +170,7 @@
 .home-surface-page button.bg-accent,
 .surface-soft button.bg-accent,
 .home-surface-soft button.bg-accent {
-  color: var(--brand-white) !important;
+  color: var(--brand-ink) !important;
 }
 
 .surface-page .hover\:text-white:hover,
@@ -177,14 +181,45 @@
 .home-surface-page .group:hover .group-hover\:text-white,
 .surface-soft .group:hover .group-hover\:text-white,
 .home-surface-soft .group:hover .group-hover\:text-white {
-  color: var(--brand-blue);
+  color: var(--accent-on-light);
+}
+
+.surface-page .text-accent,
+.home-surface-page .text-accent,
+.surface-soft .text-accent,
+.home-surface-soft .text-accent,
+.surface-page .hover\:text-accent:hover,
+.home-surface-page .hover\:text-accent:hover,
+.surface-soft .hover\:text-accent:hover,
+.home-surface-soft .hover\:text-accent:hover,
+.surface-page .group:hover .group-hover\:text-accent,
+.home-surface-page .group:hover .group-hover\:text-accent,
+.surface-soft .group:hover .group-hover\:text-accent,
+.home-surface-soft .group:hover .group-hover\:text-accent {
+  color: var(--accent-on-light);
+}
+
+.surface-page .border-accent,
+.home-surface-page .border-accent,
+.surface-soft .border-accent,
+.home-surface-soft .border-accent,
+.surface-page .hover\:border-accent:hover,
+.home-surface-page .hover\:border-accent:hover,
+.surface-soft .hover\:border-accent:hover,
+.home-surface-soft .hover\:border-accent:hover,
+.surface-page .decoration-accent,
+.home-surface-page .decoration-accent,
+.surface-soft .decoration-accent,
+.home-surface-soft .decoration-accent {
+  border-color: var(--accent-on-light);
+  text-decoration-color: var(--accent-on-light);
 }
 
 .surface-page .text-white\/20,
 .home-surface-page .text-white\/20,
 .surface-soft .text-white\/20,
 .home-surface-soft .text-white\/20 {
-  color: rgb(10 10 10 / 0.2);
+  color: rgb(21 23 19 / 0.2);
 }
 
 .surface-page .build-grid,
@@ -192,15 +227,20 @@
 .surface-soft .build-grid,
 .home-surface-soft .build-grid {
   background-image:
-    linear-gradient(to right, rgb(37 99 235 / 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(37 99 235 / 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgb(200 245 66 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(200 245 66 / 0.06) 1px, transparent 1px);
 }
 
 .surface-ink .text-white,
-.home-surface-ink .text-white,
-.surface-blue .text-white,
-.home-surface-blue .text-white {
+.home-surface-ink .text-white {
   color: var(--brand-white);
+}
+
+.surface-blue .text-white,
+.home-surface-blue .text-white,
+.surface-blue [class*="text-white"],
+.home-surface-blue [class*="text-white"] {
+  color: var(--brand-ink) !important;
 }
 
 .surface-ink .bg-accent.text-white,
@@ -210,8 +250,48 @@
 .surface-ink a.bg-accent,
 .home-surface-ink a.bg-accent,
 .surface-ink button.bg-accent,
-.home-surface-ink button.bg-accent {
-  color: var(--brand-white) !important;
+.home-surface-ink button.bg-accent,
+.surface-blue .bg-accent.text-white,
+.home-surface-blue .bg-accent.text-white,
+.surface-blue a.bg-accent,
+.home-surface-blue a.bg-accent,
+.surface-blue button.bg-accent,
+.home-surface-blue button.bg-accent {
+  color: var(--brand-ink) !important;
+}
+
+/* Accent fills stay lime outside section surfaces (nav, skip link). */
+a.bg-accent,
+button.bg-accent,
+.bg-accent.text-white {
+  color: var(--brand-ink) !important;
+}
+
+.nav-light {
+  --color-accent-soft: var(--accent-on-light);
+  --color-mist: var(--text-on-light-secondary);
+  --color-mist-2: var(--text-on-light-muted);
+  --color-line: var(--border-on-light);
+  --color-line-strong: var(--border-on-light-hover);
+  color: var(--brand-ink);
+}
+
+.nav-light [class*="text-white"] {
+  color: var(--brand-ink) !important;
+}
+
+.nav-light .text-accent,
+.nav-light .hover\:text-accent:hover,
+.nav-light .border-accent,
+.nav-light .hover\:border-accent:hover {
+  color: var(--accent-on-light);
+  border-color: var(--accent-on-light);
+}
+
+.nav-light a.bg-accent,
+.nav-light button.bg-accent,
+.nav-light .bg-accent.text-white {
+  color: var(--brand-ink) !important;
 }
 
 .surface-ink .build-grid,
@@ -224,8 +304,16 @@
 .surface-blue .build-grid,
 .home-surface-blue .build-grid {
   background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.12) 1px, transparent 1px);
+    linear-gradient(to right, rgb(21 23 19 / 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(21 23 19 / 0.12) 1px, transparent 1px);
+}
+
+.surface-page :focus-visible,
+.home-surface-page :focus-visible,
+.surface-soft :focus-visible,
+.home-surface-soft :focus-visible,
+.nav-light :focus-visible {
+  outline-color: var(--accent-on-light);
 }
 
 /* ── Radius utilities ────────────────────────────────────────────────────── */

@@ -65,7 +65,7 @@ export function ProcessTimeline({ tone = "dark" }: { tone?: SectionTone }) {
                 <li key={phase.index} className="relative pl-12 md:pl-16">
                   <span
                     aria-hidden
-                    className={`absolute top-2 left-0 h-[11px] w-[11px] border border-accent ${isLight ? "bg-white" : "bg-ink"}`}
+                    className={`absolute top-2 left-0 h-[11px] w-[11px] border ${isLight ? "border-[var(--accent-on-light,#3A401F)] bg-[var(--page-bg,#F7F8F2)]" : "border-accent bg-ink"}`}
                   />
                   <Reveal y={34} amount={0.3}>
                     <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2">

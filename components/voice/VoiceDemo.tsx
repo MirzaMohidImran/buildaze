@@ -269,7 +269,7 @@ export function VoiceDemo({ className = "" }: { className?: string }) {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 55% 70% at 50% 20%, rgba(37,99,235,0.12), transparent 70%)",
+              "radial-gradient(ellipse 55% 70% at 50% 20%, rgba(200,245,66,0.12), transparent 70%)",
           }}
         />
 

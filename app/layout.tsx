@@ -74,10 +74,10 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
-      <body className={`${spaceGrotesk.className} antialiased bg-[var(--brand-ink,#0a0a0a)] text-white`} suppressHydrationWarning>
+      <body className={`${spaceGrotesk.className} antialiased bg-[var(--brand-ink,#151713)] text-white`} suppressHydrationWarning>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-full focus:bg-accent focus:px-5 focus:py-3 focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-full focus:bg-accent focus:px-5 focus:py-3 focus:text-[var(--brand-ink,#151713)]"
         >
           Skip to content
         </a>

@@ -76,7 +76,7 @@ function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 55% 50% at 50% 40%, rgba(37,99,235,0.14), transparent 70%)",
+            "radial-gradient(ellipse 55% 50% at 50% 40%, rgba(200,245,66,0.14), transparent 70%)",
         }}
       />
 
@@ -206,7 +206,7 @@ function Benefits() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 50% 45% at 85% 15%, rgba(37,99,235,0.12), transparent 65%), radial-gradient(ellipse 40% 35% at 10% 80%, rgba(37,99,235,0.06), transparent 60%)",
+            "radial-gradient(ellipse 50% 45% at 85% 15%, rgba(200,245,66,0.12), transparent 65%), radial-gradient(ellipse 40% 35% at 10% 80%, rgba(200,245,66,0.06), transparent 60%)",
         }}
       />
 
@@ -360,7 +360,7 @@ function HowItWorks() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 45% 40% at 20% 20%, rgba(37,99,235,0.08), transparent 70%)",
+            "radial-gradient(ellipse 45% 40% at 20% 20%, rgba(200,245,66,0.08), transparent 70%)",
         }}
       />
       <div className="relative mx-auto max-w-[1600px] px-5 md:px-10">
@@ -433,7 +433,7 @@ function UseCases() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 55% 40% at 50% 0%, rgba(37,99,235,0.1), transparent 60%)",
+            "radial-gradient(ellipse 55% 40% at 50% 0%, rgba(200,245,66,0.1), transparent 60%)",
         }}
       />
 
@@ -469,7 +469,7 @@ function UseCases() {
                     className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                     style={{
                       background:
-                        "radial-gradient(ellipse 70% 60% at 0% 0%, rgba(37,99,235,0.14), transparent 55%)",
+                        "radial-gradient(ellipse 70% 60% at 0% 0%, rgba(200,245,66,0.14), transparent 55%)",
                     }}
                   />
 

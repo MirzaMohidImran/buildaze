@@ -61,12 +61,12 @@ function EcosystemHub({
               y1={center.y}
               x2={pos.x}
               y2={pos.y}
-              stroke={isActive ? "rgba(37,99,235,0.7)" : "rgba(255,255,255,0.1)"}
+              stroke={isActive ? "rgba(200,245,66,0.7)" : "rgba(255,255,255,0.1)"}
               strokeWidth={isActive ? 0.45 : 0.3}
               initial={false}
               animate={{
                 stroke: isActive
-                  ? "rgba(37,99,235,0.7)"
+                  ? "rgba(200,245,66,0.7)"
                   : "rgba(255,255,255,0.1)",
               }}
               transition={{ duration: 0.35 }}
@@ -76,7 +76,7 @@ function EcosystemHub({
       </svg>
 
       {/* Center Shopify hub */}
-      <div className="absolute top-1/2 left-1/2 z-10 w-[132px] -translate-x-1/2 -translate-y-1/2 border border-accent/50 bg-ink px-4 py-5 text-center shadow-[0_0_40px_rgba(37,99,235,0.15)]">
+      <div className="absolute top-1/2 left-1/2 z-10 w-[132px] -translate-x-1/2 -translate-y-1/2 border border-accent/50 bg-ink px-4 py-5 text-center shadow-[0_0_40px_rgba(200,245,66,0.15)]">
         <span
           aria-hidden
           className="mx-auto mb-3 block h-1.5 w-1.5 bg-accent"
@@ -192,7 +192,7 @@ export function ServiceEcosystem({
               className="absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 65% 55% at 15% 10%, rgba(37,99,235,0.1), transparent 70%)",
+                  "radial-gradient(ellipse 65% 55% at 15% 10%, rgba(200,245,66,0.1), transparent 70%)",
               }}
             />
             <AnimatePresence mode="wait">
@@ -336,7 +336,7 @@ export function ServiceEcosystem({
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 70% 80% at 10% 20%, rgba(37,99,235,0.1), transparent 65%)",
+                "radial-gradient(ellipse 70% 80% at 10% 20%, rgba(200,245,66,0.1), transparent 65%)",
             }}
           />
           <div className="relative grid grid-cols-1 items-end gap-10 lg:grid-cols-12">

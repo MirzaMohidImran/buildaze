@@ -170,7 +170,7 @@ export function FeaturedWork({ tone = "dark" }: { tone?: HomeSectionTone }) {
                       onClick={() => go(-1)}
                       className={`inline-flex h-10 w-10 items-center justify-center rounded-full border text-mist transition-colors hover:border-accent ${
                         isLight
-                          ? "border-[var(--border-default,#E2E8F0)] bg-white hover:text-[var(--text-primary,#0C1017)]"
+                          ? "border-[var(--border-default,#E0E4D6)] bg-white hover:text-[var(--text-primary,#151713)]"
                           : "border-line-strong hover:text-white"
                       }`}
                     >
@@ -182,7 +182,7 @@ export function FeaturedWork({ tone = "dark" }: { tone?: HomeSectionTone }) {
                       onClick={() => go(1)}
                       className={`inline-flex h-10 w-10 items-center justify-center rounded-full border text-mist transition-colors hover:border-accent ${
                         isLight
-                          ? "border-[var(--border-default,#E2E8F0)] bg-white hover:text-[var(--text-primary,#0C1017)]"
+                          ? "border-[var(--border-default,#E0E4D6)] bg-white hover:text-[var(--text-primary,#151713)]"
                           : "border-line-strong hover:text-white"
                       }`}
                     >
@@ -340,7 +340,7 @@ export function FeaturedWork({ tone = "dark" }: { tone?: HomeSectionTone }) {
                     active
                       ? "bg-accent"
                       : isLight
-                        ? "bg-line-strong group-hover:bg-[var(--border-default,#E2E8F0)]"
+                        ? "bg-line-strong group-hover:bg-[var(--border-default,#E0E4D6)]"
                         : "bg-line group-hover:bg-line-strong"
                   }`}
                 />

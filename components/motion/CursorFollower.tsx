@@ -65,8 +65,8 @@ export function CursorFollower() {
           translateX: "-50%",
           translateY: "-50%",
           borderColor:
-            state === "default" ? "rgba(255,255,255,0.35)" : "rgba(37,99,235,0.9)",
-          backgroundColor: state === "view" ? "rgba(37,99,235,0.92)" : "transparent",
+            state === "default" ? "rgba(255,255,255,0.35)" : "rgba(200,245,66,0.9)",
+          backgroundColor: state === "view" ? "rgba(200,245,66,0.92)" : "transparent",
           opacity: visible ? 1 : 0,
         }}
         animate={{ width: ringSize, height: ringSize }}

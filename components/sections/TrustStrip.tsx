@@ -23,12 +23,12 @@ export function TrustStrip() {
       {statements.map((statement) => (
         <li
           key={statement}
-          className="t-label flex items-center gap-6 pr-8 whitespace-nowrap text-white/90"
+          className="t-label flex items-center gap-6 pr-8 whitespace-nowrap text-[var(--brand-ink,#151713)]"
         >
           {statement}
           <span
             aria-hidden
-            className="inline-block h-1.5 w-1.5 rotate-45 border border-white/50"
+            className="inline-block h-1.5 w-1.5 rotate-45 border border-[var(--brand-ink,#151713)]/50"
           />
         </li>
       ))}
@@ -42,7 +42,7 @@ export function TrustStrip() {
     >
       <div aria-hidden className="build-grid pointer-events-none absolute inset-0 opacity-40" />
       <Reveal y={10} className="relative">
-        <p className="t-label mb-5 text-center text-white/80">
+        <p className="t-label mb-5 text-center text-[var(--brand-ink,#151713)]/80">
           Design, development and digital growth — scoped around your goals
         </p>
       </Reveal>

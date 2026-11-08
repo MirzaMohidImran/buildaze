@@ -197,7 +197,7 @@ export function ServiceExperience({ tone = "dark" }: { tone?: HomeSectionTone })
                 className="absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(ellipse 70% 60% at 30% 20%, rgba(37,99,235,0.1), transparent 70%)",
+                    "radial-gradient(ellipse 70% 60% at 30% 20%, rgba(200,245,66,0.1), transparent 70%)",
                 }}
               />
             )}

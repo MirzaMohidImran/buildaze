@@ -47,7 +47,7 @@ export function WhyBuildaze({ tone = "dark" }: { tone?: SectionTone }) {
                   transition={{ delay: i * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                   className={
                     isLight
-                      ? "group relative home-card border border-line bg-white p-8 transition-colors duration-500 hover:border-accent hover:bg-[var(--section-blue-soft,#EFF5FF)] md:p-10"
+                      ? "group relative home-card border border-line bg-white p-8 transition-colors duration-500 hover:border-accent hover:bg-[var(--section-blue-soft,#EDF5D8)] md:p-10"
                       : "group relative bg-ink p-8 transition-colors duration-500 hover:bg-ink-2 md:p-10"
                   }
                 >

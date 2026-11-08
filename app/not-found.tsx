@@ -30,7 +30,7 @@ export default function NotFound() {
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 55% 50% at 50% 30%, rgba(37,99,235,0.14), transparent 70%)",
+                "radial-gradient(ellipse 55% 50% at 50% 30%, rgba(200,245,66,0.14), transparent 70%)",
             }}
           />
           <div className="relative mx-auto max-w-[1600px] px-5 text-center md:px-10">

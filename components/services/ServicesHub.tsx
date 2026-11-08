@@ -26,7 +26,7 @@ export function ServicesHub() {
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 55% 50% at 50% 35%, rgba(37,99,235,0.13), transparent 70%)",
+                "radial-gradient(ellipse 55% 50% at 50% 35%, rgba(200,245,66,0.13), transparent 70%)",
             }}
           />
 
@@ -75,14 +75,14 @@ export function ServicesHub() {
                   <Link
                     href={getServicePath(service)}
                     data-analytics={`services-hub-${service.id}`}
-                    className="group relative flex h-full flex-col p-9 transition-colors hover:bg-[var(--section-blue-soft,#EFF5FF)] md:p-12"
+                    className="group relative flex h-full flex-col p-9 transition-colors hover:bg-[var(--section-blue-soft,#EDF5D8)] md:p-12"
                   >
                     <div
                       aria-hidden
                       className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                       style={{
                         background:
-                          "radial-gradient(ellipse 60% 50% at 20% 20%, rgba(37,99,235,0.1), transparent 70%)",
+                          "radial-gradient(ellipse 60% 50% at 20% 20%, rgba(200,245,66,0.1), transparent 70%)",
                       }}
                     />
                     <div className="relative">

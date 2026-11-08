@@ -16,9 +16,10 @@ type SectionTone = "dark" | "light";
 /** Static Build System fallback for reduced motion / WebGL unavailable. */
 function StaticBuildSystem({ tone = "dark" }: { tone?: SectionTone }) {
   const isLight = tone === "light";
-  const strokeLayer = isLight ? "rgba(12,16,23,0.22)" : "rgba(255,255,255,0.22)";
-  const strokeCross = isLight ? "rgba(12,16,23,0.12)" : "rgba(255,255,255,0.1)";
-  const fillNode = isLight ? "rgba(12,16,23,0.45)" : "rgba(255,255,255,0.5)";
+  const strokeLayer = isLight ? "rgba(21,23,19,0.22)" : "rgba(255,255,255,0.22)";
+  const strokeCross = isLight ? "rgba(21,23,19,0.12)" : "rgba(255,255,255,0.1)";
+  const fillNode = isLight ? "rgba(21,23,19,0.45)" : "rgba(255,255,255,0.5)";
+  const accentMark = isLight ? "#3A401F" : "#C8F542";
 
   return (
     <svg viewBox="0 0 400 400" fill="none" aria-hidden className="h-full w-full opacity-80">
@@ -29,7 +30,7 @@ function StaticBuildSystem({ tone = "dark" }: { tone?: SectionTone }) {
           <g key={i} transform={`translate(200 ${y})`}>
             <path
               d={`M ${-w} 0 L 0 ${-w * 0.42} L ${w} 0 L 0 ${w * 0.42} Z`}
-              stroke={i === 2 ? "#2563EB" : strokeLayer}
+              stroke={i === 2 ? accentMark : strokeLayer}
               strokeWidth={i === 2 ? 1.5 : 1}
             />
             <path
@@ -38,9 +39,9 @@ function StaticBuildSystem({ tone = "dark" }: { tone?: SectionTone }) {
               strokeWidth="1"
             />
             {i < 4 && (
-              <line x1="0" y1="-8" x2="0" y2="-46" stroke="rgba(37,99,235,0.5)" strokeWidth="1" strokeDasharray="2 4" />
+              <line x1="0" y1="-8" x2="0" y2="-46" stroke={isLight ? "rgba(58,64,31,0.55)" : "rgba(200,245,66,0.5)"} strokeWidth="1" strokeDasharray="2 4" />
             )}
-            <rect x="-3" y="-3" width="6" height="6" fill={i % 2 === 0 ? "#2563EB" : fillNode} />
+            <rect x="-3" y="-3" width="6" height="6" fill={i % 2 === 0 ? accentMark : fillNode} />
           </g>
         );
       })}
@@ -112,8 +113,8 @@ export function Hero({ tone = "dark" }: { tone?: SectionTone }) {
         className="absolute inset-0"
         style={{
           background: isLight
-            ? "radial-gradient(ellipse 55% 45% at 72% 42%, rgba(37,99,235,0.06), transparent 70%)"
-            : "radial-gradient(ellipse 55% 45% at 72% 42%, rgba(37,99,235,0.13), transparent 70%)",
+            ? "radial-gradient(ellipse 55% 45% at 72% 42%, rgba(200,245,66,0.06), transparent 70%)"
+            : "radial-gradient(ellipse 55% 45% at 72% 42%, rgba(200,245,66,0.13), transparent 70%)",
         }}
       />
 

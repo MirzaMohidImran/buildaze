@@ -112,7 +112,7 @@ export function LegalPage({
                   <div className="mt-6 overflow-x-auto rounded-panel border border-line">
                     <table className="w-full min-w-[720px] border-collapse text-left text-[14px]">
                       <thead>
-                        <tr className="border-b border-line bg-[var(--section-soft,#f7f8fa)]">
+                        <tr className="border-b border-line bg-[var(--section-soft,#F7F8F2)]">
                           <th className="px-4 py-3 font-semibold text-white">
                             Technology
                           </th>

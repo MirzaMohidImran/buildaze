@@ -136,7 +136,7 @@ export function ServiceDeliveryProcess({
               className="absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 65% 55% at 85% 15%, rgba(37,99,235,0.1), transparent 70%)",
+                  "radial-gradient(ellipse 65% 55% at 85% 15%, rgba(200,245,66,0.1), transparent 70%)",
               }}
             />
             <AnimatePresence mode="wait">
@@ -211,7 +211,7 @@ export function ServiceDeliveryProcess({
                   <span
                     className={`h-1.5 w-1.5 ${
                       isOpen
-                        ? "bg-white"
+                        ? "bg-[var(--brand-ink,#151713)]"
                         : i < activeIndex
                           ? "bg-accent-soft"
                           : "bg-mist-2"
@@ -289,7 +289,7 @@ export function ServiceDeliveryProcess({
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 70% 80% at 15% 20%, rgba(37,99,235,0.1), transparent 65%)",
+                "radial-gradient(ellipse 70% 80% at 15% 20%, rgba(200,245,66,0.1), transparent 65%)",
             }}
           />
           <div className="relative grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
