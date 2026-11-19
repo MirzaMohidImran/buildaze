@@ -7,9 +7,12 @@ import { ServiceCapabilities } from "@/components/services/ServiceCapabilities";
 import { ServiceClientProof } from "@/components/services/ServiceClientProof";
 import { ServiceDeliverables } from "@/components/services/ServiceDeliverables";
 import { ServiceDeliveryProcess } from "@/components/services/ServiceDeliveryProcess";
+import { ServiceDetailSections } from "@/components/services/ServiceDetailSections";
 import { ServiceEcosystem } from "@/components/services/ServiceEcosystem";
 import { ServiceFaq } from "@/components/services/ServiceFaq";
 import { ServiceHero } from "@/components/services/ServiceHero";
+import { ServiceIndustries } from "@/components/services/ServiceIndustries";
+import { ServiceLearnMore } from "@/components/services/ServiceLearnMore";
 import { ServiceOverview } from "@/components/services/ServiceOverview";
 import { ServiceProblems } from "@/components/services/ServiceProblems";
 import { ServiceProcess } from "@/components/services/ServiceProcess";
@@ -113,9 +116,13 @@ export function ServicePage({ service }: { service: Service }) {
   const audienceIndex = service.page.audience ? take() : "";
 
   const overviewIndex = skipGenericCore ? "" : take();
+  const detailSectionsIndex =
+    !skipGenericCore && service.page.detailSections?.length ? take() : "";
   const deliverablesIndex = skipGenericCore ? "" : take();
   const processIndex = skipGenericCore ? "" : take();
   const relatedWorkIndex = skipGenericCore ? "" : take();
+  const industriesIndex = service.page.industries ? take() : "";
+  const learnMoreIndex = service.page.learnMore?.links.length ? take() : "";
   const faqIndex = take();
   /** Specialist hubs/leaves keep related paths where configured. */
   const relatedIndex =
@@ -217,6 +224,18 @@ export function ServicePage({ service }: { service: Service }) {
                 sectionIndex={audienceIndex}
               />
             )}
+            {service.page.industries && (
+              <ServiceIndustries
+                industries={service.page.industries}
+                sectionIndex={industriesIndex}
+              />
+            )}
+            {service.page.learnMore && (
+              <ServiceLearnMore
+                learnMore={service.page.learnMore}
+                sectionIndex={learnMoreIndex}
+              />
+            )}
           </>
         ) : (
           <>
@@ -273,6 +292,17 @@ export function ServicePage({ service }: { service: Service }) {
               />
             )}
             <ServiceOverview service={service} sectionIndex={overviewIndex} />
+            {service.page.detailSections && (
+              <ServiceDetailSections
+                sections={service.page.detailSections}
+                sectionIndex={detailSectionsIndex}
+                headline={
+                  service.id === "shopify-cro"
+                    ? "How Shopify CRO work is scoped."
+                    : "How this work is scoped."
+                }
+              />
+            )}
             <ServiceDeliverables
               service={service}
               sectionIndex={deliverablesIndex}
@@ -282,6 +312,18 @@ export function ServicePage({ service }: { service: Service }) {
               service={service}
               sectionIndex={relatedWorkIndex}
             />
+            {service.page.industries && (
+              <ServiceIndustries
+                industries={service.page.industries}
+                sectionIndex={industriesIndex}
+              />
+            )}
+            {service.page.learnMore && (
+              <ServiceLearnMore
+                learnMore={service.page.learnMore}
+                sectionIndex={learnMoreIndex}
+              />
+            )}
           </>
         )}
 

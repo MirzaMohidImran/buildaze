@@ -55,11 +55,14 @@ export const shopifyPriorityLeaves: Service[] = [
       "dm-email-sms",
     ],
     page: base({
-      metaTitle: "Shopify CRO & Conversion Optimization | Buildaze",
+      metaTitle:
+        "Shopify CRO Agency | Conversion Rate Optimization | Buildaze",
       metaDescription:
-        "Diagnose why traffic does not purchase — funnel research, UX friction and an implementation backlog. No guaranteed lift.",
+        "Shopify CRO services to find why visitors don't buy. Funnel analysis, product page and cart fixes, GA4 tracking and a prioritized backlog. Book a CRO audit.",
+      ogImage: "/og/shopify-cro-og.png",
       eyebrow: "Shopify conversion",
-      headline: "Shopify CRO that starts with the real funnel problem.",
+      headline:
+        "Shopify Conversion Rate Optimization that starts with the real funnel problem.",
       subheadline:
         "Traffic, product pages, cart behaviour and checkout can each look like “low conversion.” We establish what is failing before prescribing a redesign, app or discount — and we do not promise a specific lift.",
       ctaLabel: "Discuss Shopify CRO",
@@ -131,7 +134,136 @@ export const shopifyPriorityLeaves: Service[] = [
         "We diagnose the purchase journey with consistent session or shopper cohorts where data allows: product engagement, add-to-cart, checkout start and paid orders. Event counts are not substituted for unique sessions.",
         "Deliverables centre on a funnel diagnosis, UX and offer review, prioritized hypotheses and an implementation backlog your team — or Buildaze — can ship. Store Design implements larger theme work; Performance owns speed bottlenecks; Checkout Optimization owns cart-to-checkout and payment-stage detail.",
         "Experimentation is scoped only when baseline conversion, traffic and a stopping rule make a fair test possible. We do not describe a before-and-after comparison as a causal A/B result when it is not.",
-        "Prefer to self-diagnose first? Read our resource guide on Shopify traffic without purchases, then return here when you want a scoped conversion engagement.",
+        [
+          "Prefer to self-diagnose first? Read ",
+          {
+            type: "link",
+            href: "/resources/shopify-traffic-not-converting",
+            label: "our guide to Shopify traffic that doesn't convert",
+          },
+          ", then return here when you want a scoped conversion engagement.",
+        ],
+      ],
+      detailSections: [
+        {
+          id: "what-we-audit",
+          title: "What we audit",
+          paragraphs: [
+            [
+              "A conversion engagement starts with the live storefront and the journey your traffic actually takes — not a generic checklist copied from another brand. We walk the same paths shoppers use on mobile and desktop, then reconcile what we see with the analytics you already have.",
+            ],
+            [
+              "Homepage and landing templates are checked for message match, navigation clarity and whether paid or organic traffic lands somewhere that explains the offer quickly. Collection pages are reviewed for filtering, sorting, merchandising density and whether shoppers can reach a credible product shortlist without friction.",
+            ],
+            [
+              "Product pages get close attention: imagery, variant selection, shipping and returns visibility, trust signals and add-to-cart clarity. Cart behaviour is separated from checkout and payment failure so you do not treat every abandoned cart as a theme problem. Mobile experience is reviewed as a first-class path — not an afterthought — because many stores lose the majority of sessions on small screens.",
+            ],
+            [
+              "When the issue sits later in the funnel, we hand off cleanly to ",
+              {
+                type: "link",
+                href: "/shopify-growth-agency/checkout-optimization",
+                label: "Shopify Checkout Optimization",
+              },
+              ". When speed is the bottleneck, we point to ",
+              {
+                type: "link",
+                href: "/shopify-growth-agency/performance",
+                label: "Shopify Performance",
+              },
+              ". When discovery and crawlability are weak, ",
+              {
+                type: "link",
+                href: "/shopify-growth-agency/seo",
+                label: "Shopify SEO",
+              },
+              " is the better primary owner.",
+            ],
+          ],
+          bullets: [
+            "Homepage and campaign landing templates",
+            "Collection and merchandising paths",
+            "Product pages and offer clarity",
+            "Cart behaviour and total-cost visibility",
+            "Mobile journey and tap-target friction",
+          ],
+        },
+        {
+          id: "how-we-measure",
+          title: "How we measure",
+          paragraphs: [
+            [
+              "Measurement starts with definitions. We agree what a session, product view, add-to-cart, checkout start and paid order mean in your store before ranking hypotheses. Where possible we reconcile Shopify analytics with GA4 so funnel stages use the same shopper cohorts rather than mixing event counts with unique sessions.",
+            ],
+            [
+              "If tracking is incomplete or inconsistent, diagnosis slows down. In that case we may recommend tightening event coverage through ",
+              {
+                type: "link",
+                href: "/services/digital-marketing/web-analytics-data-tracking",
+                label: "Web Analytics & Data Tracking",
+              },
+              " before treating a conversion backlog as reliable. We use Shopify analytics and GA4 as the default stack for this service.",
+            ],
+            [
+              "TODO: confirm whether Buildaze routinely uses additional CRO tooling (session replay, heatmaps or A/B platforms) that should be named publicly — do not list tools here until approved.",
+            ],
+            [
+              "Before-and-after comparisons use the same definitions and comparable traffic windows. A lift is only described as causal when the test design supports it. Observational improvements are labelled as observations.",
+            ],
+          ],
+        },
+        {
+          id: "who-this-is-for",
+          title: "Who this is for",
+          paragraphs: [
+            [
+              "Shopify CRO is a fit when the store already receives meaningful traffic but product engagement, carts or orders lag what the offer should support. Typical situations include a launch that attracts sessions without purchases, a catalogue that gets views without add-to-cart, or a team shipping theme and app changes without a shared evidence trail.",
+            ],
+            [
+              "It also fits teams that want a prioritized backlog they can implement themselves or with Buildaze — rather than another open-ended redesign. If you are still diagnosing whether the problem is traffic quality versus storefront friction, start with ",
+              {
+                type: "link",
+                href: "/resources/shopify-traffic-not-converting",
+                label: "our guide to Shopify traffic that doesn't convert",
+              },
+              ", then enquire when you want a scoped engagement.",
+            ],
+            [
+              "CRO is usually not the first move when traffic volume is too low to judge patterns, when the offer or pricing is still unresolved, when the store is mid-migration with unstable URLs, or when checkout and payment failure is already known to be the primary break. In those cases we recommend fixing the upstream constraint — acquisition quality, offer clarity, migration stability or checkout reliability — before a broad conversion programme.",
+            ],
+          ],
+        },
+        {
+          id: "engagement-shape",
+          title: "What a CRO engagement looks like",
+          paragraphs: [
+            [
+              "Engagements are written in phases so scope stays honest. Exact calendar length depends on catalogue size, theme complexity, analytics readiness and how much implementation Buildaze owns versus your team. The outline below is a realistic shape — not a guaranteed timeline or result.",
+            ],
+          ],
+          bullets: [
+            "Phase 1 — Discover: access review, analytics reconciliation, journey walkthrough and a written funnel baseline.",
+            "Phase 2 — Diagnose: stage-level friction notes, qualitative findings and a shortlist of evidence-backed hypotheses.",
+            "Phase 3 — Prioritize: backlog ranked by evidence, effort and risk, including when not to A/B test.",
+            "Phase 4 — Implement: agreed storefront, content or configuration changes; larger builds handed to Store Design when needed.",
+            "Phase 5 — Review: same-definition comparison, open items and recommended next experiments or fixes.",
+          ],
+        },
+        {
+          id: "cro-case-study",
+          title: "CRO-focused case study",
+          paragraphs: [
+            [
+              "Published conversion case studies appear here only when a client project and metric are approved for the site. Until then this block is an explicit placeholder so we do not invent a lift story.",
+            ],
+          ],
+          callout: {
+            title: "TODO — real CRO case study",
+            body: [
+              "TODO: replace with an approved Shopify CRO project name, problem summary, work performed and one verified metric (or clearly labelled observational note). Do not publish a percentage lift until confirmed.",
+            ],
+          },
+        },
       ],
       solutionsTitle: "CRO work we prioritize",
       solutions: [
@@ -197,12 +329,27 @@ export const shopifyPriorityLeaves: Service[] = [
         {
           question: "Do you guarantee a conversion rate increase?",
           answer:
-            "No. Conversion depends on traffic quality, offer, price, shipping, trust and technical reliability. We prioritize evidence-led changes and measure honestly — we do not sell a fixed lift.",
+            "No. Conversion depends on traffic quality, offer, price, shipping, trust and technical reliability. We prioritize evidence-led changes and measure honestly — we do not sell a fixed lift or guarantee a percentage improvement.",
+        },
+        {
+          question: "What is a good Shopify conversion rate?",
+          answer:
+            "There is no single good rate for every store. Benchmarks vary by category, traffic source, average order value and device mix. We establish your baseline with clear stage definitions, then judge whether product engagement, cart or checkout is the first break — instead of chasing a generic industry average.",
+        },
+        {
+          question: "How long does Shopify CRO take?",
+          answer:
+            "A focused diagnosis and backlog can often be scoped in weeks; implementation length depends on theme complexity, catalogue size and how many changes Buildaze ships versus your team. We write phases in the engagement rather than promising a fixed calendar date before discovery.",
+        },
+        {
+          question: "How much does Shopify CRO cost?",
+          answer:
+            "Cost depends on scope: audit-only, backlog plus limited implementation, or a longer programme with experiments. TODO: publish an approved price range or starting fee here if the owner wants a public figure — until then, enquire for a written estimate.",
         },
         {
           question: "Is this the same as Shopify Performance?",
           answer:
-            "No. Performance work targets speed and front-end bottlenecks. CRO diagnoses buying friction across the journey. They often link, but they own different primary problems.",
+            "No. Performance work targets speed and front-end bottlenecks. CRO diagnoses buying friction across the journey. They often link, but they own different primary problems. See Shopify Performance when load time is the main constraint.",
         },
         {
           question: "Will you run A/B tests on every store?",
@@ -217,7 +364,16 @@ export const shopifyPriorityLeaves: Service[] = [
         {
           question: "Where can I read a diagnostic guide before enquiring?",
           answer:
-            "See /resources/shopify-traffic-not-converting — a stage-by-stage diagnosis of traffic without purchases. It links back here when you want scoped CRO help.",
+            "Read our guide to Shopify traffic that doesn't convert — a stage-by-stage diagnosis of traffic without purchases. It links back here when you want scoped CRO help.",
+          answerParts: [
+            "Read ",
+            {
+              type: "link",
+              href: "/resources/shopify-traffic-not-converting",
+              label: "our guide to Shopify traffic that doesn't convert",
+            },
+            " — a stage-by-stage diagnosis of traffic without purchases. It links back here when you want scoped CRO help.",
+          ],
         },
       ],
       faqEyebrow: "Shopify CRO FAQs",

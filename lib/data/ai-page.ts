@@ -23,9 +23,10 @@ function enquiry(service: string, problem?: string) {
  * Voice Agents remain on `/voice-agent`; other leaves nest under this hub.
  */
 export const aiPageContent: ServicePageContent = {
-  metaTitle: "AI Development Services & Business Solutions | Buildaze",
+  metaTitle: "AI Development Services: Chatbots, RAG & Automation | Buildaze",
   metaDescription:
-    "AI applications, chatbots, voice agents, knowledge retrieval (RAG) and automation — scoped, evaluated and owned with Buildaze.",
+    "Custom AI development for businesses: AI apps, chatbots, voice agents, RAG and workflow automation. Scoped, tested and handed over. Talk to our team.",
+  ogImage: "/og/ai-development-og.png",
   eyebrow: "Applications, conversations, knowledge and automation",
   headline: "AI development services built around your business.",
   subheadline:
@@ -82,7 +83,7 @@ export const aiPageContent: ServicePageContent = {
         name: "Useful knowledge is buried in documents",
         title: "Grounded retrieval over approved sources — with evaluation.",
         description:
-          "RAG (retrieval-augmented generation) uses your approved documents and systems to answer or draft — it is not automatic model training and not a guarantee of accuracy. Custom AI Solutions owns source design, permissions, citations, freshness and evaluation for that job.",
+          "RAG (retrieval-augmented generation) uses your approved documents and systems to answer or draft — with source design, permissions, citations, freshness and evaluation owned by Custom AI Solutions.",
         serviceLabel: "Custom AI Solutions",
         enquiryHref: enquiry(
           "Custom AI Solutions",
@@ -140,8 +141,9 @@ export const aiPageContent: ServicePageContent = {
         description:
           "A SaaS support team needed drafted replies with account context. Buildaze delivered a production web application feature that uses retrieval and live integrations — agents review before send.",
         outcome: {
-          value: "RAG",
-          label: "grounded drafts + human review (see case study)",
+          value: "Result",
+          label:
+            "TODO: approved metric pending — production feature with grounded drafts and human review (see case study).",
         },
         tags: ["AI Applications", "Custom AI Solutions", "RAG"],
         cta: "View case study",
@@ -158,8 +160,9 @@ export const aiPageContent: ServicePageContent = {
         description:
           "Underwriters spent hours summarizing claims. Buildaze built operational software that summarizes claims and surfaces risk signals for day-to-day use — with human review in the loop.",
         outcome: {
-          value: "Docs",
-          label: "document intelligence + review (see case study)",
+          value: "Result",
+          label:
+            "TODO: approved metric pending — document intelligence with review in the loop (see case study).",
         },
         tags: ["Custom AI Solutions", "Document intelligence"],
         cta: "View case study",
@@ -176,8 +179,9 @@ export const aiPageContent: ServicePageContent = {
         description:
           "Shoppers could not find products when search ignored attributes. Buildaze cleaned catalogue data, built a retrieval layer and shipped a shopping experience integration.",
         outcome: {
-          value: "Search",
-          label: "attribute-aware retrieval (see case study)",
+          value: "Result",
+          label:
+            "TODO: approved metric pending — attribute-aware retrieval in shopping UX (see case study).",
         },
         tags: ["AI Applications", "Retrieval"],
         cta: "View case study",
@@ -202,7 +206,7 @@ export const aiPageContent: ServicePageContent = {
         bestFor:
           "Teams shipping a new AI product experience or adding search, summarization or assistant features inside an existing app.",
         boundaries:
-          "Detailed knowledge/RAG systems are owned by Custom AI Solutions. Generic website or app builds without AI remain under Development.",
+          "Deep knowledge/RAG systems sit under Custom AI Solutions. Ordinary website or app builds without AI remain under Development.",
         description:
           "Start with the user task, expected output and integration needs before choosing the model or architecture. LLM integrations and product copilots often live here when the deliverable is a usable application interface.",
         items: [
@@ -225,9 +229,9 @@ export const aiPageContent: ServicePageContent = {
         bestFor:
           "Customer support, lead intake or staff knowledge questions that should stay in a text channel.",
         boundaries:
-          "Spoken conversations belong on Voice Agents. Deep RAG methodology lives on Custom AI Solutions — chatbots can use approved documents when scoped.",
+          "Spoken conversations belong on Voice Agents. Deeper retrieval design lives on Custom AI Solutions — chatbots can use approved documents when scoped.",
         description:
-          "Map conversation goals, prepare knowledge, implement the chatbot interface, define handoff and test representative conversations. Website chat does not automatically include every messaging channel.",
+          "Map conversation goals, prepare knowledge, implement the chatbot interface, define handoff and test representative conversations. Channels beyond website chat are added when scoped.",
         items: [
           "Conversation mapping",
           "Approved knowledge",
@@ -248,9 +252,9 @@ export const aiPageContent: ServicePageContent = {
         bestFor:
           "Businesses that need routine calls answered with approved information and clear escalation.",
         boundaries:
-          "The browser demo is not a telephone deployment. Appointment requests are not confirmed calendar bookings unless that integration is scoped.",
+          "The public browser demo shows conversation behaviour; production telephony and calendar booking integrations are scoped separately when needed.",
         description:
-          "Configure business information, test realistic conversations and implement the agreed channel. Production handoff and telephony are project-scoped — not assumed from the public demo.",
+          "Configure business information, test realistic conversations and implement the agreed channel. Production handoff and telephony are written into the project scope.",
         items: [
           "Conversation design",
           "Approved knowledge and tone",
@@ -271,7 +275,7 @@ export const aiPageContent: ServicePageContent = {
         bestFor:
           "Teams whose core problem is grounded retrieval, document workflows, internal copilots or LLM systems tied to a specific business task — not only a chat skin.",
         boundaries:
-          "RAG is not model training and not guaranteed accuracy. Chat UI alone may sit on AI Chatbots or Applications. Fine-tuning, computer vision and compliance certifications are not assumed. Dedicated evaluation-only consulting is a future specialist only when capability is confirmed.",
+          "RAG retrieves from approved sources rather than training a new model. Chat UI alone may sit on AI Chatbots or Applications. Fine-tuning, computer vision and compliance certifications are included only when scoped.",
         description:
           "Define the output, inventory approved sources, design retrieval with permissions and citations where useful, then evaluate on representative hard cases before treating a demo as production-ready.",
         items: [
@@ -294,7 +298,7 @@ export const aiPageContent: ServicePageContent = {
         bestFor:
           "Teams repeating data entry, routing, follow-ups or record updates across systems.",
         boundaries:
-          "Not every automation needs AI. Tool names such as n8n, Make or Zapier are only claimed when confirmed for a project. Autonomous agents are not an unlimited promise.",
+          "Many workflows succeed with clear rules alone. Specific automation platforms are named only when confirmed for a project; agent behaviour stays within the agreed steps and exceptions.",
         description:
           "Map the workflow, choose a bounded starting scope, implement triggers and actions, and define exception handling. AI agents that carry out workflow steps belong here when the buyer intent is process automation.",
         items: [
@@ -321,7 +325,7 @@ export const aiPageContent: ServicePageContent = {
     eyebrow: "How we work",
     headline: "From use case to a system you can evaluate",
     intro: [
-      "Discover the task → define scope and evaluation → build and test → hand over with ownership and operating considerations. Fixed delivery dates are not promised before requirements are clear.",
+      "Discover the task → define scope and evaluation → build and test → hand over with ownership and operating notes. Delivery dates are set once requirements are clear enough to estimate.",
     ],
     steps: [
       {
@@ -365,7 +369,7 @@ export const aiPageContent: ServicePageContent = {
         name: "Build and evaluate",
         title: "Working increments against agreed tests.",
         description:
-          "We implement the agreed work and review representative cases — not a single impressive demo.",
+          "We implement the agreed work and review representative cases so progress is judged against the scope, not a single demo.",
         itemsLabel: "What happens",
         items: [
           "Agreed implementation",
@@ -390,26 +394,59 @@ export const aiPageContent: ServicePageContent = {
           "Monitoring/cost notes as agreed",
           "Optional support explained",
         ],
-        outcome: "Practical handover without invented lock-in claims.",
+        outcome: "Practical handover with clear ownership of agreed custom work.",
       },
     ],
-    closingTitle: "Evaluation before promises",
+    closingTitle: "Our approach and limits",
     closingBody:
-      "Useful AI work defines how quality will be judged. We do not guarantee zero errors, automatic growth or full replacement of human oversight.",
+      "Useful AI work defines how quality will be judged, includes fallbacks for missing information, and keeps human review where the task needs it. We scope what we can verify — and we say when ordinary software is the better starting point.",
     ctaLabel: "Discuss your AI use case",
     ctaHref: "/contact?service=ai",
   },
 
   why: {
-    eyebrow: "Working practices",
-    headline: "Trust themes you can verify in delivery",
+    eyebrow: "Why Buildaze",
+    headline: "Practical AI delivery you can verify",
     intro: [
-      "Preserve evaluation, ownership and honest limits — without inventing certifications or uptime guarantees.",
+      "Buildaze combines product, retrieval and automation delivery with clear scope and handover. Review our Clutch profile for third-party feedback, then talk through the use case with the team.",
     ],
     differentiators: [
       {
-        id: "evaluation",
+        id: "clutch",
         index: "01",
+        name: "Clutch profile",
+        summary: "Independent reviews on Clutch.",
+        title: "Check Buildaze on Clutch.",
+        description:
+          "Read client reviews on our Clutch profile for an external view of how we work.",
+        panelStatement: "Third-party reviews sit on Clutch — not invented on this page.",
+        panelNote: "https://clutch.co/profile/buildaze",
+      },
+      {
+        id: "projects",
+        index: "02",
+        name: "Project depth",
+        summary: "TODO: confirm public project count.",
+        title: "Shipped AI and software work.",
+        description:
+          "TODO: confirm the public project or case-study count to show here. Until approved, see selected AI work on this page and the Work section for real examples.",
+        panelStatement: "Case studies stay evidence-led.",
+        panelNote: "TODO: approved project count",
+      },
+      {
+        id: "team",
+        index: "03",
+        name: "Team",
+        summary: "TODO: confirm public team size / roles.",
+        title: "A delivery team matched to the scope.",
+        description:
+          "TODO: confirm the public team size, roles or locations to publish. Engagements are staffed against the written scope rather than a generic bench claim.",
+        panelStatement: "Staffing follows the agreement.",
+        panelNote: "TODO: approved team details",
+      },
+      {
+        id: "evaluation",
+        index: "04",
         name: "Evaluation first",
         summary: "Agree what “good” looks like.",
         title: "Define evaluation before launch.",
@@ -417,39 +454,6 @@ export const aiPageContent: ServicePageContent = {
           "Representative examples and acceptable performance belong in scope so demos are not mistaken for production readiness.",
         panelStatement: "A single impressive answer is not an evaluation set.",
         panelNote: "Task-specific quality over slogans.",
-      },
-      {
-        id: "boundaries",
-        index: "02",
-        name: "Clear boundaries",
-        summary: "Fallbacks when information is missing.",
-        title: "Know when the system should stop.",
-        description:
-          "Unsupported questions, missing documents and sensitive actions need fallback or human review paths.",
-        panelStatement: "No system should be sold as infallible.",
-        panelNote: "Handoff is a feature, not a failure.",
-      },
-      {
-        id: "ownership",
-        index: "03",
-        name: "Practical ownership",
-        summary: "Agreed custom work and access.",
-        title: "Handover matched to the agreement.",
-        description:
-          "Custom deliverables follow the contract. Model providers and third-party platforms retain their own terms.",
-        panelStatement: "Ownership language stays accurate.",
-        panelNote: "No zero-dependency fiction.",
-      },
-      {
-        id: "cost-visibility",
-        index: "04",
-        name: "Operating visibility",
-        summary: "Cost and monitoring as scoped.",
-        title: "Consider how the system will be run.",
-        description:
-          "Where relevant, we discuss monitoring and operating-cost considerations for the agreed workload — not invented benchmarks.",
-        panelStatement: "Runtime cost is part of product fitness.",
-        panelNote: "Scoped notes, not fake SLAs.",
       },
     ],
     closingTitle: "Ready to describe the use case?",
@@ -461,10 +465,40 @@ export const aiPageContent: ServicePageContent = {
     ctaHref: "/contact?service=ai",
   },
 
+  industries: {
+    eyebrow: "Industries",
+    headline: "Industries we work with",
+    intro: [
+      "AI engagements follow the same delivery approach across verticals. The examples below are already evidenced by published case studies on this site — not a claim of every industry under the sun.",
+    ],
+    items: [
+      {
+        name: "Ecommerce",
+        description:
+          "Product discovery, catalogue intelligence and shopping experiences where retrieval and attributes matter — see the catalogue intelligence case study.",
+      },
+      {
+        name: "SaaS",
+        description:
+          "In-product copilots and support features grounded in live account context — see the support copilot case study.",
+      },
+      {
+        name: "Insurance",
+        description:
+          "Document intelligence and underwriting support tooling with human review in the loop — see the underwriting risk copilot case study.",
+      },
+      {
+        name: "Other knowledge-heavy teams",
+        description:
+          "Operations and product teams with approved documents, repetitive questions or workflow handoffs that fit chatbots, RAG or automation.",
+      },
+    ],
+  },
+
   overviewTitle: "What AI development includes",
   overview: [
     "AI development covers applications, chatbots, voice agents, custom knowledge/document solutions and business automation.",
-    "RAG and knowledge systems are owned by Custom AI Solutions: approved sources, permissions, retrieval, citations where useful, evaluation and known limits — not a promise that every answer is correct.",
+    "RAG and knowledge systems are owned by Custom AI Solutions: approved sources, permissions, retrieval, citations where useful and evaluation against representative cases.",
     "LLM integrations, document intelligence, internal copilots and scoped AI workflow agents appear under the owner that matches the deliverable — not as thin synonym pages.",
   ],
   solutionsTitle: "AI services",
@@ -549,6 +583,26 @@ export const aiPageContent: ServicePageContent = {
       question: "Is a chatbot the same as a custom AI solution?",
       answer:
         "No. A chatbot is a conversation channel with routing and handoff. A custom AI solution designs the knowledge system behind answers or drafts — sources, retrieval, permissions and evaluation. Some projects need both.",
+    },
+    {
+      question: "How much does AI development cost?",
+      answer:
+        "Cost depends on scope: a focused chatbot, a product feature, a RAG system or a broader automation programme each land differently. TODO: publish an approved starting range or typical package prices if the owner wants public figures — until then, enquire for a written estimate after discovery.",
+    },
+    {
+      question: "How long does it take to build an AI chatbot?",
+      answer:
+        "A bounded chatbot over approved content can often move from discovery to a testable build in weeks; multi-channel, deep retrieval or complex handoff extends that. Timeline is written after we know knowledge readiness, channels and integrations — not before.",
+    },
+    {
+      question: "RAG vs fine-tuning: which do I need?",
+      answer:
+        "Most business knowledge problems start with RAG — retrieving from approved sources with permissions and evaluation. Fine-tuning changes model behaviour and is a separate, narrower decision when retrieval alone cannot meet the task. We recommend starting with the simplest approach that can be evaluated.",
+    },
+    {
+      question: "Is my business data safe?",
+      answer:
+        "We only use the systems and documents you authorize for the engagement, and we keep sensitive credentials out of the public contact form. TODO: confirm the public data-handling / retention policy wording the owner wants published (DPA, hosting regions, subprocessors) before stating stronger compliance claims.",
     },
   ],
   faqClosingTitle: "Still choosing a starting point?",

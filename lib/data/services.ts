@@ -7,9 +7,32 @@ import { digitalMarketingLeaves } from "./digital-marketing-leaves";
 import { shopifyLeaves } from "./shopify-leaves";
 import { shopifyPageContent } from "./shopify-page";
 
+export type ServiceFaqAnswerPart =
+  | string
+  | { type: "link"; href: string; label: string };
+
 export interface ServiceFaq {
   question: string;
+  /** Plain answer — also used for FAQPage JSON-LD. */
   answer: string;
+  /** Optional rich answer for the UI (links). Falls back to `answer`. */
+  answerParts?: ServiceFaqAnswerPart[];
+}
+
+export type ServiceBodyInline =
+  | string
+  | { type: "link"; href: string; label: string };
+
+export interface ServiceDetailSection {
+  id: string;
+  title: string;
+  paragraphs: ServiceBodyInline[][];
+  bullets?: string[];
+  /** Optional callout / case-study style note under the section. */
+  callout?: {
+    title: string;
+    body: ServiceBodyInline[];
+  };
 }
 
 export interface ServicePhase {
@@ -319,7 +342,27 @@ export interface ServicePageContent {
   /** Optional who we work with / growth maturity journey. */
   audience?: ServiceAudience;
   overviewTitle: string;
-  overview: string[];
+  /** Plain paragraphs, or inline parts when a paragraph needs links. */
+  overview: Array<string | ServiceBodyInline[]>;
+  /**
+   * Optional long-form body sections (H2 + paragraphs) for detail pages
+   * that need more depth than the short overview block.
+   */
+  detailSections?: ServiceDetailSection[];
+  /** Optional “learn more” internal/resource links. */
+  learnMore?: {
+    eyebrow: string;
+    headline: string;
+    intro?: string[];
+    links: Array<{ href: string; label: string; description?: string }>;
+  };
+  /** Optional industries / verticals strip. */
+  industries?: {
+    eyebrow: string;
+    headline: string;
+    intro?: string[];
+    items: Array<{ name: string; description: string }>;
+  };
   /** What we build */
   solutionsTitle: string;
   solutions: string[];

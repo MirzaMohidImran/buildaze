@@ -14,14 +14,14 @@ const SITE_UPDATED = new Date("2026-10-09");
 const SHOPIFY_UPDATED = new Date("2026-10-09");
 const DEVELOPMENT_UPDATED = new Date("2026-10-12");
 const DIGITAL_MARKETING_UPDATED = new Date("2026-10-12");
-const AI_UPDATED = new Date("2026-10-12");
+const AI_UPDATED = new Date("2026-11-19");
 const DESIGN_UPDATED = new Date("2026-10-12");
 const WORK_UPDATED = new Date("2026-10-12");
 const VOICE_UPDATED = new Date("2026-10-12");
 const LEGAL_UPDATED = new Date("2026-10-12");
 const ABOUT_UPDATED = new Date("2026-10-12");
 const CONTACT_UPDATED = new Date("2026-10-12");
-const SHOPIFY_LEAVES_UPDATED = new Date("2026-10-12");
+const SHOPIFY_LEAVES_UPDATED = new Date("2026-11-19");
 const DEVELOPMENT_LEAVES_UPDATED = new Date("2026-10-12");
 const RESOURCES_UPDATED = new Date("2026-10-28");
 

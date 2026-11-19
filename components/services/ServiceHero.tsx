@@ -67,12 +67,19 @@ export function ServiceHero({ service }: { service: Service }) {
                 Home
               </Link>
             </li>
-            <li aria-hidden>/</li>
-            <li>
-              <Link href="/services" className="transition-colors hover:text-white">
-                Services
-              </Link>
-            </li>
+            {!isShopifyLeaf && (
+              <>
+                <li aria-hidden>/</li>
+                <li>
+                  <Link
+                    href="/services"
+                    className="transition-colors hover:text-white"
+                  >
+                    Services
+                  </Link>
+                </li>
+              </>
+            )}
             <li aria-hidden>/</li>
             {isMarketingLeaf && marketingHub ? (
               <>
@@ -117,6 +124,23 @@ export function ServiceHero({ service }: { service: Service }) {
                 <li aria-hidden>/</li>
                 <li className="text-accent-soft" aria-current="page">
                   {service.shortName}
+                </li>
+              </>
+            ) : isShopifyLeaf && shopifyHub ? (
+              <>
+                <li>
+                  <Link
+                    href={getServicePath(shopifyHub)}
+                    className="transition-colors hover:text-white"
+                  >
+                    Shopify
+                  </Link>
+                </li>
+                <li aria-hidden>/</li>
+                <li className="text-accent-soft" aria-current="page">
+                  {service.id === "shopify-cro"
+                    ? "Conversion Rate Optimization"
+                    : service.shortName}
                 </li>
               </>
             ) : (

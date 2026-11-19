@@ -5,7 +5,11 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { shopifyLeaves } from "@/lib/data/shopify-leaves";
 import { getServiceById, getServiceBySlug } from "@/lib/data/services";
 import { site } from "@/lib/data/site";
-import { ORGANIZATION_ID, breadcrumbList } from "@/lib/seo/jsonld";
+import {
+  ORGANIZATION_ID,
+  breadcrumbList,
+  faqPageNode,
+} from "@/lib/seo/jsonld";
 import { getServicePath, getServiceUrl } from "@/lib/seo/paths";
 import { DEFAULT_OG_IMAGE, ogImages, twitterImages } from "@/lib/seo/social";
 
@@ -71,6 +75,11 @@ export default async function ShopifyLeafPage({
   const serviceId = `${url}#service`;
   const hubPath = hub ? getServicePath(hub) : "/shopify-growth-agency";
 
+  const croBreadcrumbName =
+    service.id === "shopify-cro"
+      ? "Conversion Rate Optimization"
+      : service.name;
+
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -98,10 +107,12 @@ export default async function ShopifyLeafPage({
       },
       breadcrumbList([
         { name: "Home", path: "/" },
-        { name: "Services", path: "/services" },
         { name: "Shopify", path: hubPath },
-        { name: service.name, path },
+        { name: croBreadcrumbName, path },
       ]),
+      ...(service.page.faqs.length > 0
+        ? [faqPageNode(service.page.faqs, url)]
+        : []),
     ],
   };
 

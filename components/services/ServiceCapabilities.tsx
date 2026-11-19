@@ -69,7 +69,8 @@ export function ServiceCapabilities({
           </Reveal>
         </div>
 
-        <div className="mt-16 hidden gap-12 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        {/* Single content tree for all breakpoints — no duplicated capability copy. */}
+        <div className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12">
           <div
             role="tablist"
             aria-label={sectionLabel}
@@ -84,7 +85,7 @@ export function ServiceCapabilities({
                   role="tab"
                   id={`capability-tab-${item.id}`}
                   aria-selected={isActive}
-                  aria-controls="capability-panel"
+                  aria-controls={`capability-panel-${item.id}`}
                   tabIndex={isActive ? 0 : -1}
                   onClick={() => setActiveId(item.id)}
                   onKeyDown={onTabKeyDown}
@@ -114,12 +115,7 @@ export function ServiceCapabilities({
             })}
           </div>
 
-          <div
-            id="capability-panel"
-            role="tabpanel"
-            aria-labelledby={`capability-tab-${active.id}`}
-            className="media-frame build-grid relative min-h-[420px] border border-line p-10 xl:p-12"
-          >
+          <div className="media-frame build-grid relative min-h-[360px] border border-line p-8 md:min-h-[420px] md:p-10 xl:p-12">
             <div
               aria-hidden
               className="absolute inset-0"
@@ -131,8 +127,15 @@ export function ServiceCapabilities({
             {items.map((item) => {
               const isActivePanel = item.id === active.id;
               return (
-                <div key={item.id} hidden={!isActivePanel} className="relative">
-                  {isActivePanel ? (
+                <div
+                  key={item.id}
+                  id={`capability-panel-${item.id}`}
+                  role="tabpanel"
+                  aria-labelledby={`capability-tab-${item.id}`}
+                  hidden={!isActivePanel}
+                  className="relative"
+                >
+                  {isActivePanel && (
                     <motion.div
                       key={item.id}
                       initial={{ opacity: 0, y: 16 }}
@@ -155,14 +158,19 @@ export function ServiceCapabilities({
                           {item.bestFor}
                         </p>
                       )}
-                      <p className="t-label mt-8 mb-4 text-mist-2">Typical deliverables</p>
+                      <p className="t-label mt-8 mb-4 text-mist-2">
+                        Typical deliverables
+                      </p>
                       <ul className="space-y-3">
                         {item.items.map((line) => (
                           <li
                             key={line}
                             className="flex items-start gap-3 text-[14.5px] text-mist"
                           >
-                            <span aria-hidden className="mt-2 h-1 w-1 shrink-0 bg-accent" />
+                            <span
+                              aria-hidden
+                              className="mt-2 h-1 w-1 shrink-0 bg-accent"
+                            />
                             {line}
                           </li>
                         ))}
@@ -210,22 +218,6 @@ export function ServiceCapabilities({
                         )}
                       </div>
                     </motion.div>
-                  ) : (
-                    <div className="sr-only">
-                      <h3>{item.name}</h3>
-                      <p>{item.description}</p>
-                      {item.bestFor && <p>Best fit: {item.bestFor}</p>}
-                      <ul>
-                        {item.items.map((line) => (
-                          <li key={line}>{line}</li>
-                        ))}
-                      </ul>
-                      {item.boundaries && <p>{item.boundaries}</p>}
-                      <a href={item.href}>{item.cta}</a>
-                      {item.detailHref && item.detailLabel && (
-                        <a href={item.detailHref}>{item.detailLabel}</a>
-                      )}
-                    </div>
                   )}
                 </div>
               );
@@ -233,90 +225,10 @@ export function ServiceCapabilities({
           </div>
         </div>
 
-        <div className="mt-12 lg:hidden">
-          {items.map((item) => {
-            const isOpen = item.id === activeId;
-            return (
-              <div key={item.id} className="border-b border-line">
-                <button
-                  type="button"
-                  aria-expanded={isOpen}
-                  onClick={() => setActiveId(isOpen ? "" : item.id)}
-                  data-analytics={`service-capability-${item.id}`}
-                  className="flex w-full items-center gap-4 py-5 text-left"
-                >
-                  <span
-                    className={`t-label ${isOpen ? "text-accent-soft" : "text-mist-2"}`}
-                  >
-                    {item.index}
-                  </span>
-                  <span
-                    className={`flex-1 text-[17px] font-medium tracking-tight ${
-                      isOpen ? "text-white" : "text-mist"
-                    }`}
-                  >
-                    {item.name}
-                  </span>
-                </button>
-                <div
-                  className={`overflow-hidden transition-[max-height,opacity] duration-350 ${
-                    isOpen ? "max-h-[1200px] opacity-100" : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <div className="pb-7">
-                    <h3 className="text-[20px] font-medium text-white">{item.title}</h3>
-                    <p className="mt-3 text-[15px] leading-relaxed text-mist">
-                      {item.description}
-                    </p>
-                    {item.bestFor && (
-                      <p className="mt-4 text-[14px] leading-relaxed text-mist-2">
-                        <span className="text-white">Best fit: </span>
-                        {item.bestFor}
-                      </p>
-                    )}
-                    <ul className="mt-5 space-y-2.5">
-                      {item.items.map((line) => (
-                        <li
-                          key={line}
-                          className="flex items-start gap-3 text-[14px] text-mist"
-                        >
-                          <span aria-hidden className="mt-2 h-1 w-1 shrink-0 bg-accent" />
-                          {line}
-                        </li>
-                      ))}
-                    </ul>
-                    {item.boundaries && (
-                      <p className="mt-4 text-[13px] leading-relaxed text-mist-2">
-                        {item.boundaries}
-                      </p>
-                    )}
-                    <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
-                      <Link
-                        href={item.href}
-                        data-analytics={`service-capability-cta-${item.id}`}
-                        className="inline-flex items-center gap-2 text-[15px] font-medium text-accent-soft"
-                      >
-                        {item.cta}
-                        <span aria-hidden>→</span>
-                      </Link>
-                      {item.detailHref && item.detailLabel && (
-                        <Link
-                          href={item.detailHref}
-                          data-analytics={`service-capability-detail-${item.id}`}
-                          className="text-[14px] text-mist transition-colors hover:text-white"
-                        >
-                          {item.detailLabel}
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <Reveal y={28} className="relative mt-20 overflow-hidden rounded-panel border border-line p-8 md:p-12">
+        <Reveal
+          y={28}
+          className="relative mt-20 overflow-hidden rounded-panel border border-line p-8 md:p-12"
+        >
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"

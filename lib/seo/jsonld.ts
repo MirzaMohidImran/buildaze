@@ -58,3 +58,22 @@ export function breadcrumbList(
     })),
   };
 }
+
+/** FAQPage from the same Q&A strings shown on the page. */
+export function faqPageNode(
+  faqs: Array<{ question: string; answer: string }>,
+  pageUrl: string,
+) {
+  return {
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}

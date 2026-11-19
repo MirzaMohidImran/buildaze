@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
@@ -51,51 +52,32 @@ function JourneyVisual({
             width:
               JOURNEY.length <= 1
                 ? "0%"
-                : `calc(${(focus / (JOURNEY.length - 1)) * 100}% - 16px)`,
+                : `${(focus / (JOURNEY.length - 1)) * 100}%`,
           }}
           transition={
-            reduced
-              ? { duration: 0 }
-              : { duration: 0.55, ease: [0.16, 1, 0.3, 1] }
+            reduced ? { duration: 0 } : { duration: 0.45, ease: [0.16, 1, 0.3, 1] }
           }
         />
-
         <div className="relative flex justify-between">
           {JOURNEY.map((node, i) => {
-            const lit = i <= focus;
-            const current = i === focus;
+            const isFocus = i === focus;
+            const isPast = i < focus;
             return (
-              <div key={node.id} className="flex flex-col items-center">
-                <motion.span
-                  className={`block h-[9px] w-[9px] border ${
-                    current
+              <div key={node.id} className="flex flex-col items-center gap-2">
+                <span
+                  className={`h-2 w-2 rounded-full border ${
+                    isFocus
                       ? "border-accent bg-accent"
-                      : lit
-                        ? "border-accent bg-ink"
+                      : isPast
+                        ? "border-accent bg-accent/40"
                         : "border-line-strong bg-ink"
                   }`}
-                  animate={
-                    reduced || !current
-                      ? undefined
-                      : {
-                          boxShadow: [
-                            "0 0 0 0 rgba(200,245,66,0)",
-                            "0 0 0 8px rgba(200,245,66,0.15)",
-                            "0 0 0 0 rgba(200,245,66,0)",
-                          ],
-                        }
-                  }
-                  transition={
-                    reduced
-                      ? undefined
-                      : { duration: 2.2, repeat: Infinity, ease: "easeInOut" }
-                  }
                 />
                 <span
-                  className={`t-label mt-3 text-[9px] tracking-[0.16em] ${
-                    current
+                  className={`t-label text-[9px] ${
+                    isFocus
                       ? "text-accent-soft"
-                      : lit
+                      : isPast
                         ? "text-mist"
                         : "text-mist-2/70"
                   }`}
@@ -108,6 +90,26 @@ function JourneyVisual({
         </div>
       </div>
     </div>
+  );
+}
+
+function PanelNote({ note }: { note: string }) {
+  if (note.startsWith("http://") || note.startsWith("https://")) {
+    return (
+      <Link
+        href={note}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-5 inline-block max-w-[420px] text-[15px] leading-relaxed text-accent-soft underline-offset-2 hover:underline"
+      >
+        {note.replace(/^https?:\/\//, "")}
+      </Link>
+    );
+  }
+  return (
+    <p className="mt-5 max-w-[420px] text-[15px] leading-relaxed text-mist">
+      {note}
+    </p>
   );
 }
 
@@ -151,8 +153,8 @@ export function ServiceWhy({
           </Reveal>
         </div>
 
-        {/* Desktop: left differentiators + right manifesto panel */}
-        <div className="mt-16 hidden gap-12 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        {/* Single content tree for all breakpoints — no duplicated why copy. */}
+        <div className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12">
           <div
             role="tablist"
             aria-label="What makes Buildaze different"
@@ -169,7 +171,14 @@ export function ServiceWhy({
                   aria-selected={isActive}
                   aria-controls="why-panel"
                   onClick={() => setActiveId(item.id)}
-                  onMouseEnter={() => setActiveId(item.id)}
+                  onMouseEnter={() => {
+                    if (
+                      typeof window !== "undefined" &&
+                      window.matchMedia("(min-width: 1024px)").matches
+                    ) {
+                      setActiveId(item.id);
+                    }
+                  }}
                   data-analytics={`shopify-why-${item.id}`}
                   className={`group relative w-full border-b border-line py-6 text-left transition-colors ${
                     isActive ? "text-white" : "text-mist-2 hover:text-mist"
@@ -211,7 +220,7 @@ export function ServiceWhy({
             id="why-panel"
             role="tabpanel"
             aria-labelledby={`why-tab-${active.id}`}
-            className="media-frame build-grid relative min-h-[560px] border border-line"
+            className="media-frame build-grid relative min-h-[420px] border border-line md:min-h-[560px]"
           >
             <div
               aria-hidden
@@ -229,19 +238,15 @@ export function ServiceWhy({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="relative flex h-full min-h-[560px] flex-col p-10 xl:p-12"
+                className="relative flex h-full min-h-[420px] flex-col p-8 md:min-h-[560px] md:p-10 xl:p-12"
               >
                 <p className="t-label text-accent-soft">
                   {active.index} — {active.name}
                 </p>
-                <h3 className="mt-8 max-w-[520px] text-[28px] leading-[1.15] font-semibold tracking-tight text-white xl:text-[34px]">
+                <h3 className="mt-8 max-w-[520px] text-[24px] leading-[1.15] font-semibold tracking-tight text-white md:text-[28px] xl:text-[34px]">
                   {active.panelStatement}
                 </h3>
-                {active.panelNote && (
-                  <p className="mt-5 max-w-[420px] text-[15px] leading-relaxed text-mist">
-                    {active.panelNote}
-                  </p>
-                )}
+                {active.panelNote && <PanelNote note={active.panelNote} />}
 
                 <div className="mt-10 border-t border-line pt-8">
                   <JourneyVisual activeId={active.id} reduced={reduced} />
@@ -258,63 +263,10 @@ export function ServiceWhy({
           </div>
         </div>
 
-        {/* Mobile: expandable differentiators */}
-        <div className="mt-12 lg:hidden">
-          {items.map((item) => {
-            const isOpen = item.id === activeId;
-            return (
-              <div key={item.id} className="border-b border-line">
-                <button
-                  type="button"
-                  aria-expanded={isOpen}
-                  onClick={() => setActiveId(isOpen ? "" : item.id)}
-                  className="flex w-full items-start gap-4 py-5 text-left"
-                >
-                  <span
-                    className={`t-label mt-1 ${isOpen ? "text-accent-soft" : "text-mist-2"}`}
-                  >
-                    {item.index}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p
-                      className={`text-[16px] font-medium tracking-tight ${
-                        isOpen ? "text-white" : "text-mist"
-                      }`}
-                    >
-                      {item.name}
-                    </p>
-                    <p className="mt-1.5 text-[13.5px] leading-snug text-mist-2">
-                      {item.summary}
-                    </p>
-                  </div>
-                </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pb-7 pl-10">
-                        <p className="text-[20px] leading-snug font-medium text-white">
-                          {item.panelStatement}
-                        </p>
-                        <p className="mt-4 text-[15px] leading-relaxed text-mist">
-                          {item.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Closing manifesto */}
-        <Reveal y={28} className="relative mt-20 overflow-hidden rounded-panel border border-line p-8 md:p-12">
+        <Reveal
+          y={28}
+          className="relative mt-20 overflow-hidden rounded-panel border border-line p-8 md:p-12"
+        >
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"

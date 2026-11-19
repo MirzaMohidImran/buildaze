@@ -4,7 +4,11 @@ import { ServicePage } from "@/components/services/ServicePage";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getServiceBySlug, serviceSlugs } from "@/lib/data/services";
 import { site } from "@/lib/data/site";
-import { ORGANIZATION_ID, breadcrumbList } from "@/lib/seo/jsonld";
+import {
+  ORGANIZATION_ID,
+  breadcrumbList,
+  faqPageNode,
+} from "@/lib/seo/jsonld";
 import { getServicePath, getServiceUrl } from "@/lib/seo/paths";
 import { DEFAULT_OG_IMAGE, ogImages, twitterImages } from "@/lib/seo/social";
 
@@ -185,6 +189,9 @@ export default async function ServiceDetailPage({
         { name: "Services", path: "/services" },
         { name: service.name, path },
       ]),
+      ...(service.page.faqs.length > 0
+        ? [faqPageNode(service.page.faqs, url)]
+        : []),
     ],
   };
 

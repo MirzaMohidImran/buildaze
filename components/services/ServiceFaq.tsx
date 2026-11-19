@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
+import { ServiceRichText } from "@/components/services/ServiceRichText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import type { Service } from "@/lib/data/services";
@@ -125,7 +126,11 @@ export function ServiceFaq({
                       }`}
                     >
                       <p className="max-w-[640px] pb-7 pl-12 text-[15.5px] leading-relaxed text-mist md:pl-14">
-                        {faq.answer}
+                        {faq.answerParts ? (
+                          <ServiceRichText parts={faq.answerParts} />
+                        ) : (
+                          faq.answer
+                        )}
                       </p>
                     </div>
                   </div>

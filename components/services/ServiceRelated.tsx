@@ -82,7 +82,7 @@ export function ServiceRelated({
                   {item.oneLiner}
                 </span>
                 <span className="mt-8 inline-flex items-center gap-2 text-[14px] font-medium text-mist transition-colors group-hover:text-white">
-                  Explore
+                  Explore {item.shortName}
                   <svg aria-hidden width="12" height="12" viewBox="0 0 14 14" fill="none" className="text-accent transition-transform group-hover:translate-x-0.5">
                     <path d="M1 7h11M8 2.5 12.5 7 8 11.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>

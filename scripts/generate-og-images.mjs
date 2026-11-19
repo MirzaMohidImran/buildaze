@@ -55,3 +55,21 @@ await writePng(
     subtitle: "Routine calls · Lead intake · Human handoff",
   }),
 );
+
+await writePng(
+  "public/og/shopify-cro-og.png",
+  card({
+    title1: "Shopify Conversion",
+    title2: "Rate Optimization",
+    subtitle: "Funnel diagnosis · Product and cart fixes · CRO backlog",
+  }),
+);
+
+await writePng(
+  "public/og/ai-development-og.png",
+  card({
+    title1: "AI Development",
+    title2: "for Your Business",
+    subtitle: "Apps · Chatbots · RAG · Voice · Automation",
+  }),
+);

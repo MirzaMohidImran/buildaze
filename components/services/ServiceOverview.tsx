@@ -2,6 +2,7 @@
 
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
+import { ServiceRichText } from "@/components/services/ServiceRichText";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import type { Service } from "@/lib/data/services";
 
@@ -44,7 +45,11 @@ export function ServiceOverview({
             {page.overview.map((paragraph, i) => (
               <Reveal key={i} delay={0.08 * i} y={24}>
                 <p className="text-[16.5px] leading-relaxed text-mist md:text-[17.5px]">
-                  {paragraph}
+                  {typeof paragraph === "string" ? (
+                    paragraph
+                  ) : (
+                    <ServiceRichText parts={paragraph} />
+                  )}
                 </p>
               </Reveal>
             ))}
